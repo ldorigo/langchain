@@ -72,6 +72,9 @@
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../exa_api_reference.html">exa</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../fireworks_api_reference.html">fireworks</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../google_genai_api_reference.html">google-genai</a>
         </li>
         <li class="nav-item">
@@ -114,6 +117,7 @@
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../anthropic_api_reference.html">anthropic</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../astradb_api_reference.html">astradb</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../exa_api_reference.html">exa</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../../fireworks_api_reference.html">fireworks</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../google_genai_api_reference.html">google-genai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../google_vertexai_api_reference.html">google-vertexai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../groq_api_reference.html">groq</a>
@@ -182,7 +186,8 @@
 
 
 <div class="viewcode-block" id="VectorSQLOutputParser"><a class="viewcode-back" href="../../../sql/langchain_experimental.sql.vector_sql.VectorSQLOutputParser.html#langchain_experimental.sql.vector_sql.VectorSQLOutputParser">[docs]</a><span class="k">class</span> <span class="nc">VectorSQLOutputParser</span><span class="p">(</span><span class="n">BaseOutputParser</span><span class="p">[</span><span class="nb">str</span><span class="p">]):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Output Parser for Vector SQL</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Output Parser for Vector SQL.</span>
+
 <span class="sd">    1. finds for `NeuralArray()` and replace it with the embedding</span>
 <span class="sd">    2. finds for `DISTANCE()` and replace it with the distance name in backend SQL</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -224,8 +229,8 @@
 
 
 <div class="viewcode-block" id="VectorSQLRetrieveAllOutputParser"><a class="viewcode-back" href="../../../sql/langchain_experimental.sql.vector_sql.VectorSQLRetrieveAllOutputParser.html#langchain_experimental.sql.vector_sql.VectorSQLRetrieveAllOutputParser">[docs]</a><span class="k">class</span> <span class="nc">VectorSQLRetrieveAllOutputParser</span><span class="p">(</span><span class="n">VectorSQLOutputParser</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Based on VectorSQLOutputParser</span>
-<span class="sd">    It also modify the SQL to get all columns</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Parser based on VectorSQLOutputParser.</span>
+<span class="sd">    It also modifies the SQL to get all columns.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="nd">@property</span>
@@ -242,6 +247,8 @@
 
 
 <div class="viewcode-block" id="get_result_from_sqldb"><a class="viewcode-back" href="../../../sql/langchain_experimental.sql.vector_sql.get_result_from_sqldb.html#langchain_experimental.sql.vector_sql.get_result_from_sqldb">[docs]</a><span class="k">def</span> <span class="nf">get_result_from_sqldb</span><span class="p">(</span><span class="n">db</span><span class="p">:</span> <span class="n">SQLDatabase</span><span class="p">,</span> <span class="n">cmd</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get result from SQL Database.&quot;&quot;&quot;</span>
+
     <span class="n">result</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">_execute</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">fetch</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">)</span>
     <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">result</span></div>
@@ -394,7 +401,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Feb 23, 2024.
+          Last updated on Feb 26, 2024.
       </footer>
     </div>
   </div>

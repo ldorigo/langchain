@@ -72,6 +72,9 @@
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../exa_api_reference.html">exa</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../fireworks_api_reference.html">fireworks</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../google_genai_api_reference.html">google-genai</a>
         </li>
         <li class="nav-item">
@@ -114,6 +117,7 @@
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../anthropic_api_reference.html">anthropic</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../astradb_api_reference.html">astradb</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../exa_api_reference.html">exa</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../../fireworks_api_reference.html">fireworks</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../google_genai_api_reference.html">google-genai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../google_vertexai_api_reference.html">google-vertexai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../groq_api_reference.html">groq</a>
@@ -176,6 +180,8 @@
 
 
 <div class="viewcode-block" id="BaseModeration"><a class="viewcode-back" href="../../../comprehend_moderation/langchain_experimental.comprehend_moderation.base_moderation.BaseModeration.html#langchain_experimental.comprehend_moderation.base_moderation.BaseModeration">[docs]</a><span class="k">class</span> <span class="nc">BaseModeration</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Base class for moderation.&quot;&quot;&quot;</span>
+
 <div class="viewcode-block" id="BaseModeration.__init__"><a class="viewcode-back" href="../../../comprehend_moderation/langchain_experimental.comprehend_moderation.base_moderation.BaseModeration.html#langchain_experimental.comprehend_moderation.base_moderation.BaseModeration.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">client</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
@@ -272,6 +278,8 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">run_manager</span><span class="o">.</span><span class="n">on_text</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
 <div class="viewcode-block" id="BaseModeration.moderate"><a class="viewcode-back" href="../../../comprehend_moderation/langchain_experimental.comprehend_moderation.base_moderation.BaseModeration.html#langchain_experimental.comprehend_moderation.base_moderation.BaseModeration.moderate">[docs]</a>    <span class="k">def</span> <span class="nf">moderate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prompt</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Moderate the input prompt.&quot;&quot;&quot;</span>
+
         <span class="kn">from</span> <span class="nn">langchain_experimental.comprehend_moderation.base_moderation_config</span> <span class="kn">import</span> <span class="p">(</span>  <span class="c1"># noqa: E501</span>
             <span class="n">ModerationPiiConfig</span><span class="p">,</span>
             <span class="n">ModerationPromptSafetyConfig</span><span class="p">,</span>
@@ -348,7 +356,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Feb 23, 2024.
+          Last updated on Feb 26, 2024.
       </footer>
     </div>
   </div>

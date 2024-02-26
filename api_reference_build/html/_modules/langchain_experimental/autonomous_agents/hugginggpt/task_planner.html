@@ -72,6 +72,9 @@
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../../exa_api_reference.html">exa</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../../fireworks_api_reference.html">fireworks</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../../google_genai_api_reference.html">google-genai</a>
         </li>
         <li class="nav-item">
@@ -114,6 +117,7 @@
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../../anthropic_api_reference.html">anthropic</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../../astradb_api_reference.html">astradb</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../../exa_api_reference.html">exa</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../../../fireworks_api_reference.html">fireworks</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../../google_genai_api_reference.html">google-genai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../../google_vertexai_api_reference.html">google-vertexai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../../groq_api_reference.html">groq</a>
@@ -239,6 +243,8 @@
 
 
 <div class="viewcode-block" id="Step"><a class="viewcode-back" href="../../../../autonomous_agents/langchain_experimental.autonomous_agents.hugginggpt.task_planner.Step.html#langchain_experimental.autonomous_agents.hugginggpt.task_planner.Step">[docs]</a><span class="k">class</span> <span class="nc">Step</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A step in the plan.&quot;&quot;&quot;</span>
+
 <div class="viewcode-block" id="Step.__init__"><a class="viewcode-back" href="../../../../autonomous_agents/langchain_experimental.autonomous_agents.hugginggpt.task_planner.Step.html#langchain_experimental.autonomous_agents.hugginggpt.task_planner.Step.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">task</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">dep</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">args</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">tool</span><span class="p">:</span> <span class="n">BaseTool</span>
     <span class="p">):</span>
@@ -250,6 +256,8 @@
 
 
 <div class="viewcode-block" id="Plan"><a class="viewcode-back" href="../../../../autonomous_agents/langchain_experimental.autonomous_agents.hugginggpt.task_planner.Plan.html#langchain_experimental.autonomous_agents.hugginggpt.task_planner.Plan">[docs]</a><span class="k">class</span> <span class="nc">Plan</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A plan to execute.&quot;&quot;&quot;</span>
+
 <div class="viewcode-block" id="Plan.__init__"><a class="viewcode-back" href="../../../../autonomous_agents/langchain_experimental.autonomous_agents.hugginggpt.task_planner.Plan.html#langchain_experimental.autonomous_agents.hugginggpt.task_planner.Plan.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">steps</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Step</span><span class="p">]):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">steps</span> <span class="o">=</span> <span class="n">steps</span></div>
 
@@ -261,6 +269,8 @@
 
 
 <div class="viewcode-block" id="BasePlanner"><a class="viewcode-back" href="../../../../autonomous_agents/langchain_experimental.autonomous_agents.hugginggpt.task_planner.BasePlanner.html#langchain_experimental.autonomous_agents.hugginggpt.task_planner.BasePlanner">[docs]</a><span class="k">class</span> <span class="nc">BasePlanner</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Base class for a planner.&quot;&quot;&quot;</span>
+
 <div class="viewcode-block" id="BasePlanner.plan"><a class="viewcode-back" href="../../../../autonomous_agents/langchain_experimental.autonomous_agents.hugginggpt.task_planner.BasePlanner.html#langchain_experimental.autonomous_agents.hugginggpt.task_planner.BasePlanner.plan">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">plan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">callbacks</span><span class="p">:</span> <span class="n">Callbacks</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Plan</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Given input, decide what to do.&quot;&quot;&quot;</span></div>
@@ -269,11 +279,22 @@
     <span class="k">async</span> <span class="k">def</span> <span class="nf">aplan</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">callbacks</span><span class="p">:</span> <span class="n">Callbacks</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Plan</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Given input, decide what to do.&quot;&quot;&quot;</span></div></div>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Asynchronous Given input, decide what to do.&quot;&quot;&quot;</span></div></div>
 
 
 <div class="viewcode-block" id="PlanningOutputParser"><a class="viewcode-back" href="../../../../autonomous_agents/langchain_experimental.autonomous_agents.hugginggpt.task_planner.PlanningOutputParser.html#langchain_experimental.autonomous_agents.hugginggpt.task_planner.PlanningOutputParser">[docs]</a><span class="k">class</span> <span class="nc">PlanningOutputParser</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Parses the output of the planning stage.&quot;&quot;&quot;</span>
+
 <div class="viewcode-block" id="PlanningOutputParser.parse"><a class="viewcode-back" href="../../../../autonomous_agents/langchain_experimental.autonomous_agents.hugginggpt.task_planner.PlanningOutputParser.html#langchain_experimental.autonomous_agents.hugginggpt.task_planner.PlanningOutputParser.parse">[docs]</a>    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">hf_tools</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">BaseTool</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Plan</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Parse the output of the planning stage.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            text: The output of the planning stage.</span>
+<span class="sd">            hf_tools: The tools available.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The plan.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">steps</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\[.*\]&quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">)[</span><span class="mi">0</span><span class="p">]):</span>
             <span class="n">choose_tool</span> <span class="o">=</span> <span class="kc">None</span>
@@ -287,6 +308,8 @@
 
 
 <div class="viewcode-block" id="TaskPlanner"><a class="viewcode-back" href="../../../../autonomous_agents/langchain_experimental.autonomous_agents.hugginggpt.task_planner.TaskPlanner.html#langchain_experimental.autonomous_agents.hugginggpt.task_planner.TaskPlanner">[docs]</a><span class="k">class</span> <span class="nc">TaskPlanner</span><span class="p">(</span><span class="n">BasePlanner</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Planner for tasks.&quot;&quot;&quot;</span>
+
     <span class="n">llm_chain</span><span class="p">:</span> <span class="n">LLMChain</span>
     <span class="n">output_parser</span><span class="p">:</span> <span class="n">PlanningOutputParser</span>
     <span class="n">stop</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
@@ -302,7 +325,7 @@
 <div class="viewcode-block" id="TaskPlanner.aplan"><a class="viewcode-back" href="../../../../autonomous_agents/langchain_experimental.autonomous_agents.hugginggpt.task_planner.TaskPlanner.html#langchain_experimental.autonomous_agents.hugginggpt.task_planner.TaskPlanner.aplan">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">aplan</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">callbacks</span><span class="p">:</span> <span class="n">Callbacks</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Plan</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Given input, decided what to do.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Asynchronous Given input, decided what to do.&quot;&quot;&quot;</span>
         <span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;hf_tools&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
             <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">tool</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">tool</span><span class="o">.</span><span class="n">description</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">tool</span> <span class="ow">in</span> <span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;hf_tools&quot;</span><span class="p">]</span>
         <span class="p">]</span>
@@ -313,6 +336,8 @@
 
 
 <div class="viewcode-block" id="load_chat_planner"><a class="viewcode-back" href="../../../../autonomous_agents/langchain_experimental.autonomous_agents.hugginggpt.task_planner.load_chat_planner.html#langchain_experimental.autonomous_agents.hugginggpt.task_planner.load_chat_planner">[docs]</a><span class="k">def</span> <span class="nf">load_chat_planner</span><span class="p">(</span><span class="n">llm</span><span class="p">:</span> <span class="n">BaseLanguageModel</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TaskPlanner</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Load the chat planner.&quot;&quot;&quot;</span>
+
     <span class="n">llm_chain</span> <span class="o">=</span> <span class="n">TaskPlaningChain</span><span class="o">.</span><span class="n">from_llm</span><span class="p">(</span><span class="n">llm</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">TaskPlanner</span><span class="p">(</span><span class="n">llm_chain</span><span class="o">=</span><span class="n">llm_chain</span><span class="p">,</span> <span class="n">output_parser</span><span class="o">=</span><span class="n">PlanningOutputParser</span><span class="p">())</span></div>
 </pre></div>
@@ -321,7 +346,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Feb 23, 2024.
+          Last updated on Feb 26, 2024.
       </footer>
     </div>
   </div>

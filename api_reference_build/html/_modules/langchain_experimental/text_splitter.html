@@ -72,6 +72,9 @@
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../exa_api_reference.html">exa</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../fireworks_api_reference.html">fireworks</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../google_genai_api_reference.html">google-genai</a>
         </li>
         <li class="nav-item">
@@ -114,6 +117,7 @@
               <a class="sk-nav-dropdown-item dropdown-item" href="../../anthropic_api_reference.html">anthropic</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../astradb_api_reference.html">astradb</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../exa_api_reference.html">exa</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../fireworks_api_reference.html">fireworks</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../google_genai_api_reference.html">google-genai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../google_vertexai_api_reference.html">google-vertexai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../groq_api_reference.html">groq</a>
@@ -174,6 +178,16 @@
 
 
 <div class="viewcode-block" id="combine_sentences"><a class="viewcode-back" href="../../text_splitter/langchain_experimental.text_splitter.combine_sentences.html#langchain_experimental.text_splitter.combine_sentences">[docs]</a><span class="k">def</span> <span class="nf">combine_sentences</span><span class="p">(</span><span class="n">sentences</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">],</span> <span class="n">buffer_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Combine sentences based on buffer size.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        sentences: List of sentences to combine.</span>
+<span class="sd">        buffer_size: Number of sentences to combine. Defaults to 1.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        List of sentences with combined sentences.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="c1"># Go through each sentence dict</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sentences</span><span class="p">)):</span>
         <span class="c1"># Create a string that will hold the sentences which are joined</span>
@@ -205,6 +219,14 @@
 
 
 <div class="viewcode-block" id="calculate_cosine_distances"><a class="viewcode-back" href="../../text_splitter/langchain_experimental.text_splitter.calculate_cosine_distances.html#langchain_experimental.text_splitter.calculate_cosine_distances">[docs]</a><span class="k">def</span> <span class="nf">calculate_cosine_distances</span><span class="p">(</span><span class="n">sentences</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">]]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate cosine distances between sentences.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        sentences: List of sentences to calculate distances for.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Tuple of distances and sentences.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">distances</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sentences</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
         <span class="n">embedding_current</span> <span class="o">=</span> <span class="n">sentences</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s2">&quot;combined_sentence_embedding&quot;</span><span class="p">]</span>
@@ -229,12 +251,12 @@
 
 
 <div class="viewcode-block" id="SemanticChunker"><a class="viewcode-back" href="../../text_splitter/langchain_experimental.text_splitter.SemanticChunker.html#langchain_experimental.text_splitter.SemanticChunker">[docs]</a><span class="k">class</span> <span class="nc">SemanticChunker</span><span class="p">(</span><span class="n">BaseDocumentTransformer</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Splits the text based on semantic similarity.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Split the text based on semantic similarity.</span>
 
 <span class="sd">    Taken from Greg Kamradt&#39;s wonderful notebook:</span>
 <span class="sd">    https://github.com/FullStackRetrieval-com/RetrievalTutorials/blob/main/5_Levels_Of_Text_Splitting.ipynb</span>
 
-<span class="sd">    All credit to him.</span>
+<span class="sd">    All credits to him.</span>
 
 <span class="sd">    At a high level, this splits into sentences, then groups into groups of 3</span>
 <span class="sd">    sentences, and then merges one that are similar in the embedding space.</span>
@@ -332,7 +354,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Feb 23, 2024.
+          Last updated on Feb 26, 2024.
       </footer>
     </div>
   </div>

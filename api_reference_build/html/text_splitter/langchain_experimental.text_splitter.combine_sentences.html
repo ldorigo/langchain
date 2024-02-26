@@ -73,6 +73,9 @@
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../exa_api_reference.html">exa</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../fireworks_api_reference.html">fireworks</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../google_genai_api_reference.html">google-genai</a>
         </li>
         <li class="nav-item">
@@ -115,6 +118,7 @@
               <a class="sk-nav-dropdown-item dropdown-item" href="../anthropic_api_reference.html">anthropic</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../astradb_api_reference.html">astradb</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../exa_api_reference.html">exa</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../fireworks_api_reference.html">fireworks</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../google_genai_api_reference.html">google-genai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../google_vertexai_api_reference.html">google-vertexai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../groq_api_reference.html">groq</a>
@@ -173,15 +177,19 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="langchain_experimental.text_splitter.combine_sentences">
 <span class="sig-prename descclassname"><span class="pre">langchain_experimental.text_splitter.</span></span><span class="sig-name descname"><span class="pre">combine_sentences</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sentences</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffer_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/langchain_experimental/text_splitter.html#combine_sentences"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#langchain_experimental.text_splitter.combine_sentences" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
+<dd><p>Combine sentences based on buffer size.</p>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>sentences</strong> (<em>List</em><em>[</em><em>dict</em><em>]</em>) – </p></li>
-<li><p><strong>buffer_size</strong> (<em>int</em>) – </p></li>
+<li><p><strong>sentences</strong> (<em>List</em><em>[</em><em>dict</em><em>]</em>) – List of sentences to combine.</p></li>
+<li><p><strong>buffer_size</strong> (<em>int</em>) – Number of sentences to combine. Defaults to 1.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><em>List</em>[dict]</p>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>List of sentences with combined sentences.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><em>List</em>[dict]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -195,7 +203,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Feb 23, 2024.
+          Last updated on Feb 26, 2024.
           <a href="../_sources/text_splitter/langchain_experimental.text_splitter.combine_sentences.rst.txt" rel="nofollow">Show this page source</a>
       </footer>
     </div>

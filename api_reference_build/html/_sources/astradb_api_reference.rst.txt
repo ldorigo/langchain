@@ -4,6 +4,23 @@
 ``langchain_astradb`` 0.0.1
 =======================
 
+:mod:`langchain_astradb.chat_message_histories`
+================================================
+
+.. automodule:: langchain_astradb.chat_message_histories
+    :no-members:
+    :no-inherited-members:
+
+Classes
+--------------
+.. currentmodule:: langchain_astradb
+
+.. autosummary::
+    :toctree: chat_message_histories
+    :template: class.rst
+    
+    chat_message_histories.AstraDBChatMessageHistory
+    
 :mod:`langchain_astradb.storage`
 =================================
 

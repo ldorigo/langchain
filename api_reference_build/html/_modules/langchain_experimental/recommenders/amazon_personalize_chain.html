@@ -72,6 +72,9 @@
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../exa_api_reference.html">exa</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../fireworks_api_reference.html">fireworks</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../google_genai_api_reference.html">google-genai</a>
         </li>
         <li class="nav-item">
@@ -114,6 +117,7 @@
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../anthropic_api_reference.html">anthropic</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../astradb_api_reference.html">astradb</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../exa_api_reference.html">exa</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../../fireworks_api_reference.html">fireworks</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../google_genai_api_reference.html">google-genai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../google_vertexai_api_reference.html">google-vertexai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../groq_api_reference.html">groq</a>
@@ -202,12 +206,12 @@
 
 
 <div class="viewcode-block" id="AmazonPersonalizeChain"><a class="viewcode-back" href="../../../recommenders/langchain_experimental.recommenders.amazon_personalize_chain.AmazonPersonalizeChain.html#langchain_experimental.recommenders.amazon_personalize_chain.AmazonPersonalizeChain">[docs]</a><span class="k">class</span> <span class="nc">AmazonPersonalizeChain</span><span class="p">(</span><span class="n">Chain</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Amazon Personalize Chain for retrieving recommendations</span>
-<span class="sd">                        from Amazon Personalize, and summarizing</span>
-<span class="sd">    the recommendations in natural language.</span>
-<span class="sd">                    It will only return recommendations if return_direct=True.</span>
-<span class="sd">    Can also be used in sequential chains for working with</span>
-<span class="sd">                                                the output of Amazon Personalize.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Chain for retrieving recommendations from Amazon Personalize,</span>
+<span class="sd">     and summarizing them.</span>
+
+<span class="sd">    It only returns recommendations if return_direct=True.</span>
+<span class="sd">    It can also be used in sequential chains for working with</span>
+<span class="sd">    the output of Amazon Personalize.</span>
 
 <span class="sd">    Example:</span>
 <span class="sd">        .. code-block:: python</span>
@@ -359,7 +363,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Feb 23, 2024.
+          Last updated on Feb 26, 2024.
       </footer>
     </div>
   </div>

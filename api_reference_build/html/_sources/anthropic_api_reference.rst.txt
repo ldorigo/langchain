@@ -1,7 +1,7 @@
 .. anthropic_api_reference:
 
 =======================
-``langchain_anthropic`` 0.0.2
+``langchain_anthropic`` 0.1.0
 =======================
 
 :mod:`langchain_anthropic.chat_models`
@@ -19,5 +19,30 @@ Classes
     :toctree: chat_models
     :template: pydantic.rst
     
+    chat_models.ChatAnthropic
+    
+    :template: pydantic.rst
+    
     chat_models.ChatAnthropicMessages
+    
+:mod:`langchain_anthropic.llms`
+================================
+
+.. automodule:: langchain_anthropic.llms
+    :no-members:
+    :no-inherited-members:
+
+Classes
+--------------
+.. currentmodule:: langchain_anthropic
+
+.. autosummary::
+    :toctree: llms
+    :template: pydantic.rst
+    
+    llms.Anthropic
+    
+    :template: pydantic.rst
+    
+    llms.AnthropicLLM
     

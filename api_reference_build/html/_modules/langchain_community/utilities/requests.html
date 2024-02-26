@@ -72,6 +72,9 @@
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../exa_api_reference.html">exa</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../fireworks_api_reference.html">fireworks</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../google_genai_api_reference.html">google-genai</a>
         </li>
         <li class="nav-item">
@@ -114,6 +117,7 @@
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../anthropic_api_reference.html">anthropic</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../astradb_api_reference.html">astradb</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../exa_api_reference.html">exa</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../../fireworks_api_reference.html">fireworks</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../google_genai_api_reference.html">google-genai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../google_vertexai_api_reference.html">google-vertexai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../groq_api_reference.html">groq</a>
@@ -300,13 +304,13 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid return type: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">response_content_type</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_aget_resp_content</span><span class="p">(</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_aget_resp_content</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">:</span> <span class="n">aiohttp</span><span class="o">.</span><span class="n">ClientResponse</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">response_content_type</span> <span class="o">==</span> <span class="s2">&quot;text&quot;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>  <span class="c1"># type: ignore[return-value]</span>
+            <span class="k">return</span> <span class="k">await</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">response_content_type</span> <span class="o">==</span> <span class="s2">&quot;json&quot;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>  <span class="c1"># type: ignore[return-value]</span>
+            <span class="k">return</span> <span class="k">await</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid return type: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">response_content_type</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
@@ -339,33 +343,33 @@
 <div class="viewcode-block" id="GenericRequestsWrapper.aget"><a class="viewcode-back" href="../../../utilities/langchain_community.utilities.requests.GenericRequestsWrapper.html#langchain_community.utilities.requests.GenericRequestsWrapper.aget">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">aget</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;GET the URL and return the text asynchronously.&quot;&quot;&quot;</span>
         <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">requests</span><span class="o">.</span><span class="n">aget</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="k">as</span> <span class="n">response</span><span class="p">:</span>
-            <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_aget_resp_content</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>  <span class="c1"># type: ignore[misc]</span></div>
+            <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_aget_resp_content</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="GenericRequestsWrapper.apost"><a class="viewcode-back" href="../../../utilities/langchain_community.utilities.requests.GenericRequestsWrapper.html#langchain_community.utilities.requests.GenericRequestsWrapper.apost">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">apost</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;POST to the URL and return the text asynchronously.&quot;&quot;&quot;</span>
         <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">requests</span><span class="o">.</span><span class="n">apost</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="k">as</span> <span class="n">response</span><span class="p">:</span>
-            <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_aget_resp_content</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>  <span class="c1"># type: ignore[misc]</span></div>
+            <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_aget_resp_content</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="GenericRequestsWrapper.apatch"><a class="viewcode-back" href="../../../utilities/langchain_community.utilities.requests.GenericRequestsWrapper.html#langchain_community.utilities.requests.GenericRequestsWrapper.apatch">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">apatch</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;PATCH the URL and return the text asynchronously.&quot;&quot;&quot;</span>
         <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">requests</span><span class="o">.</span><span class="n">apatch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="k">as</span> <span class="n">response</span><span class="p">:</span>
-            <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_aget_resp_content</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>  <span class="c1"># type: ignore[misc]</span></div>
+            <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_aget_resp_content</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="GenericRequestsWrapper.aput"><a class="viewcode-back" href="../../../utilities/langchain_community.utilities.requests.GenericRequestsWrapper.html#langchain_community.utilities.requests.GenericRequestsWrapper.aput">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">aput</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;PUT the URL and return the text asynchronously.&quot;&quot;&quot;</span>
         <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">requests</span><span class="o">.</span><span class="n">aput</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="k">as</span> <span class="n">response</span><span class="p">:</span>
-            <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_aget_resp_content</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>  <span class="c1"># type: ignore[misc]</span></div>
+            <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_aget_resp_content</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="GenericRequestsWrapper.adelete"><a class="viewcode-back" href="../../../utilities/langchain_community.utilities.requests.GenericRequestsWrapper.html#langchain_community.utilities.requests.GenericRequestsWrapper.adelete">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">adelete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;DELETE the URL and return the text asynchronously.&quot;&quot;&quot;</span>
         <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">requests</span><span class="o">.</span><span class="n">adelete</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="k">as</span> <span class="n">response</span><span class="p">:</span>
-            <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_aget_resp_content</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>  <span class="c1"># type: ignore[misc]</span></div></div>
+            <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_aget_resp_content</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="JsonRequestsWrapper"><a class="viewcode-back" href="../../../utilities/langchain_community.utilities.requests.JsonRequestsWrapper.html#langchain_community.utilities.requests.JsonRequestsWrapper">[docs]</a><span class="k">class</span> <span class="nc">JsonRequestsWrapper</span><span class="p">(</span><span class="n">GenericRequestsWrapper</span><span class="p">):</span>
@@ -392,7 +396,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Feb 23, 2024.
+          Last updated on Feb 26, 2024.
       </footer>
     </div>
   </div>

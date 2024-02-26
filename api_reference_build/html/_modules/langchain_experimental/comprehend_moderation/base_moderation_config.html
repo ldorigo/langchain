@@ -72,6 +72,9 @@
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../exa_api_reference.html">exa</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../fireworks_api_reference.html">fireworks</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../google_genai_api_reference.html">google-genai</a>
         </li>
         <li class="nav-item">
@@ -114,6 +117,7 @@
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../anthropic_api_reference.html">anthropic</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../astradb_api_reference.html">astradb</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../exa_api_reference.html">exa</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../../fireworks_api_reference.html">fireworks</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../google_genai_api_reference.html">google-genai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../google_vertexai_api_reference.html">google-vertexai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../groq_api_reference.html">groq</a>
@@ -167,6 +171,8 @@
 
 
 <div class="viewcode-block" id="ModerationPiiConfig"><a class="viewcode-back" href="../../../comprehend_moderation/langchain_experimental.comprehend_moderation.base_moderation_config.ModerationPiiConfig.html#langchain_experimental.comprehend_moderation.base_moderation_config.ModerationPiiConfig">[docs]</a><span class="k">class</span> <span class="nc">ModerationPiiConfig</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Configuration for PII moderation filter.&quot;&quot;&quot;</span>
+
     <span class="n">threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Threshold for PII confidence score, defaults to 0.5 i.e. 50%&quot;&quot;&quot;</span>
 
@@ -184,6 +190,8 @@
 
 
 <div class="viewcode-block" id="ModerationToxicityConfig"><a class="viewcode-back" href="../../../comprehend_moderation/langchain_experimental.comprehend_moderation.base_moderation_config.ModerationToxicityConfig.html#langchain_experimental.comprehend_moderation.base_moderation_config.ModerationToxicityConfig">[docs]</a><span class="k">class</span> <span class="nc">ModerationToxicityConfig</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Configuration for Toxicity moderation filter.&quot;&quot;&quot;</span>
+
     <span class="n">threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Threshold for Toxic label confidence score, defaults to 0.5 i.e. 50%&quot;&quot;&quot;</span>
 
@@ -192,6 +200,8 @@
 
 
 <div class="viewcode-block" id="ModerationPromptSafetyConfig"><a class="viewcode-back" href="../../../comprehend_moderation/langchain_experimental.comprehend_moderation.base_moderation_config.ModerationPromptSafetyConfig.html#langchain_experimental.comprehend_moderation.base_moderation_config.ModerationPromptSafetyConfig">[docs]</a><span class="k">class</span> <span class="nc">ModerationPromptSafetyConfig</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Configuration for Prompt Safety moderation filter.&quot;&quot;&quot;</span>
+
     <span class="n">threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Threshold for Prompt Safety classification</span>
@@ -200,6 +210,8 @@
 
 
 <div class="viewcode-block" id="BaseModerationConfig"><a class="viewcode-back" href="../../../comprehend_moderation/langchain_experimental.comprehend_moderation.base_moderation_config.BaseModerationConfig.html#langchain_experimental.comprehend_moderation.base_moderation_config.BaseModerationConfig">[docs]</a><span class="k">class</span> <span class="nc">BaseModerationConfig</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Base configuration settings for moderation.&quot;&quot;&quot;</span>
+
     <span class="n">filters</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span>
         <span class="n">Union</span><span class="p">[</span>
             <span class="n">ModerationPiiConfig</span><span class="p">,</span> <span class="n">ModerationToxicityConfig</span><span class="p">,</span> <span class="n">ModerationPromptSafetyConfig</span>
@@ -220,7 +232,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Feb 23, 2024.
+          Last updated on Feb 26, 2024.
       </footer>
     </div>
   </div>

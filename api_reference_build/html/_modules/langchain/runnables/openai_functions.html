@@ -72,6 +72,9 @@
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../exa_api_reference.html">exa</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../fireworks_api_reference.html">fireworks</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../google_genai_api_reference.html">google-genai</a>
         </li>
         <li class="nav-item">
@@ -114,6 +117,7 @@
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../anthropic_api_reference.html">anthropic</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../astradb_api_reference.html">astradb</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../exa_api_reference.html">exa</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../../fireworks_api_reference.html">fireworks</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../google_genai_api_reference.html">google-genai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../google_vertexai_api_reference.html">google-vertexai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../groq_api_reference.html">groq</a>
@@ -165,11 +169,10 @@
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
 
 <span class="kn">from</span> <span class="nn">langchain_core.messages</span> <span class="kn">import</span> <span class="n">BaseMessage</span>
+<span class="kn">from</span> <span class="nn">langchain_core.output_parsers.openai_functions</span> <span class="kn">import</span> <span class="n">JsonOutputFunctionsParser</span>
 <span class="kn">from</span> <span class="nn">langchain_core.runnables</span> <span class="kn">import</span> <span class="n">RouterRunnable</span><span class="p">,</span> <span class="n">Runnable</span>
 <span class="kn">from</span> <span class="nn">langchain_core.runnables.base</span> <span class="kn">import</span> <span class="n">RunnableBindingBase</span>
 <span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">TypedDict</span>
-
-<span class="kn">from</span> <span class="nn">langchain.output_parsers.openai_functions</span> <span class="kn">import</span> <span class="n">JsonOutputFunctionsParser</span>
 
 
 <div class="viewcode-block" id="OpenAIFunction"><a class="viewcode-back" href="../../../runnables/langchain.runnables.openai_functions.OpenAIFunction.html#langchain.runnables.openai_functions.OpenAIFunction">[docs]</a><span class="k">class</span> <span class="nc">OpenAIFunction</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
@@ -214,7 +217,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Feb 23, 2024.
+          Last updated on Feb 26, 2024.
       </footer>
     </div>
   </div>

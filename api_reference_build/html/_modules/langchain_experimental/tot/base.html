@@ -72,6 +72,9 @@
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../exa_api_reference.html">exa</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../fireworks_api_reference.html">fireworks</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../google_genai_api_reference.html">google-genai</a>
         </li>
         <li class="nav-item">
@@ -114,6 +117,7 @@
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../anthropic_api_reference.html">anthropic</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../astradb_api_reference.html">astradb</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../exa_api_reference.html">exa</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../../fireworks_api_reference.html">fireworks</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../google_genai_api_reference.html">google-genai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../google_vertexai_api_reference.html">google-vertexai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../groq_api_reference.html">groq</a>
@@ -161,18 +165,7 @@
       <div class="sk-page-content container-fluid body px-md-3" role="main">
         
   <h1>Source code for langchain_experimental.tot.base</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">This a Tree of Thought (ToT) chain based on the paper &quot;Large Language Model</span>
-<span class="sd">Guided Tree-of-Thought&quot;</span>
-
-<span class="sd">https://arxiv.org/pdf/2305.08291.pdf</span>
-
-<span class="sd">The Tree of Thought (ToT) chain uses a tree structure to explore the space of</span>
-<span class="sd">possible solutions to a problem.</span>
-
-<span class="sd">&quot;&quot;&quot;</span>
-
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 
 <span class="kn">from</span> <span class="nn">textwrap</span> <span class="kn">import</span> <span class="n">indent</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Type</span>
@@ -197,7 +190,7 @@
 
 <div class="viewcode-block" id="ToTChain"><a class="viewcode-back" href="../../../tot/langchain_experimental.tot.base.ToTChain.html#langchain_experimental.tot.base.ToTChain">[docs]</a><span class="k">class</span> <span class="nc">ToTChain</span><span class="p">(</span><span class="n">Chain</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A Chain implementing the Tree of Thought (ToT).</span>
+<span class="sd">    Chain implementing the Tree of Thought (ToT).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">llm</span><span class="p">:</span> <span class="n">BaseLanguageModel</span>
@@ -322,7 +315,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Feb 23, 2024.
+          Last updated on Feb 26, 2024.
       </footer>
     </div>
   </div>

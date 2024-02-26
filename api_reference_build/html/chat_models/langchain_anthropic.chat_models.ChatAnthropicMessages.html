@@ -73,6 +73,9 @@
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../exa_api_reference.html">exa</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../fireworks_api_reference.html">fireworks</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../google_genai_api_reference.html">google-genai</a>
         </li>
         <li class="nav-item">
@@ -115,6 +118,7 @@
               <a class="sk-nav-dropdown-item dropdown-item" href="../anthropic_api_reference.html">anthropic</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../astradb_api_reference.html">astradb</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../exa_api_reference.html">exa</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../fireworks_api_reference.html">fireworks</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../google_genai_api_reference.html">google-genai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../google_vertexai_api_reference.html">google-vertexai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../groq_api_reference.html">groq</a>
@@ -257,13 +261,11 @@
 <dl class="py class pydantic_model">
 <dt class="sig sig-object py" id="langchain_anthropic.chat_models.ChatAnthropicMessages">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">langchain_anthropic.chat_models.</span></span><span class="sig-name descname"><span class="pre">ChatAnthropicMessages</span></span><a class="reference internal" href="../_modules/langchain_anthropic/chat_models.html#ChatAnthropicMessages"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#langchain_anthropic.chat_models.ChatAnthropicMessages" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../language_models/langchain_core.language_models.chat_models.BaseChatModel.html#langchain_core.language_models.chat_models.BaseChatModel" title="langchain_core.language_models.chat_models.BaseChatModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseChatModel</span></code></a></p>
-<p>ChatAnthropicMessages chat model.</p>
-<p class="rubric">Example</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">langchain_anthropic</span> <span class="kn">import</span> <span class="n">ChatAnthropicMessages</span>
-
-<span class="n">model</span> <span class="o">=</span> <span class="n">ChatAnthropicMessages</span><span class="p">()</span>
-</pre></div>
+<dd><p>Bases: <a class="reference internal" href="langchain_anthropic.chat_models.ChatAnthropic.html#langchain_anthropic.chat_models.ChatAnthropic" title="langchain_anthropic.chat_models.ChatAnthropic"><code class="xref py py-class docutils literal notranslate"><span class="pre">ChatAnthropic</span></code></a></p>
+<p>[<em>Deprecated</em>]</p>
+<p class="rubric">Notes</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 0.1.0: </span>Use ChatAnthropic instead.</p>
 </div>
 <p>Create a new model by parsing and validating input data from keyword arguments.</p>
 <p>Raises ValidationError if the input data cannot be parsed to form a valid model.</p>
@@ -312,7 +314,7 @@
 
 <dl class="py attribute pydantic_field">
 <dt class="sig sig-object py" id="langchain_anthropic.chat_models.ChatAnthropicMessages.max_tokens">
-<em class="property"><span class="pre">param</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">max_tokens</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">256</span></em><a class="headerlink" href="#langchain_anthropic.chat_models.ChatAnthropicMessages.max_tokens" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">param</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">max_tokens</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">256</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'max_tokens_to_sample')</span></em><a class="headerlink" href="#langchain_anthropic.chat_models.ChatAnthropicMessages.max_tokens" title="Permalink to this definition">¶</a></dt>
 <dd><p>Denotes the number of tokens to predict per generation.</p>
 </dd></dl>
 
@@ -1753,7 +1755,7 @@ between retries</p></li>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Feb 23, 2024.
+          Last updated on Feb 26, 2024.
           <a href="../_sources/chat_models/langchain_anthropic.chat_models.ChatAnthropicMessages.rst.txt" rel="nofollow">Show this page source</a>
       </footer>
     </div>

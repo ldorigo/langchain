@@ -73,6 +73,9 @@
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="exa_api_reference.html">exa</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="fireworks_api_reference.html">fireworks</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="google_genai_api_reference.html">google-genai</a>
         </li>
         <li class="nav-item">
@@ -115,6 +118,7 @@
               <a class="sk-nav-dropdown-item dropdown-item" href="anthropic_api_reference.html">anthropic</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="astradb_api_reference.html">astradb</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="exa_api_reference.html">exa</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="fireworks_api_reference.html">fireworks</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="google_genai_api_reference.html">google-genai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="google_vertexai_api_reference.html">google-vertexai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="groq_api_reference.html">groq</a>
@@ -1443,52 +1447,37 @@ documents that were derived from parent documents by chunking.)</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="output_parsers/langchain.output_parsers.fix.OutputFixingParser.html#langchain.output_parsers.fix.OutputFixingParser" title="langchain.output_parsers.fix.OutputFixingParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">output_parsers.fix.OutputFixingParser</span></code></a></p></td>
 <td><p>Wraps a parser and tries to fix parsing errors.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="output_parsers/langchain.output_parsers.openai_functions.JsonKeyOutputFunctionsParser.html#langchain.output_parsers.openai_functions.JsonKeyOutputFunctionsParser" title="langchain.output_parsers.openai_functions.JsonKeyOutputFunctionsParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">output_parsers.openai_functions.JsonKeyOutputFunctionsParser</span></code></a></p></td>
-<td><p>Parse an output as the element of the Json object.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="output_parsers/langchain.output_parsers.openai_functions.JsonOutputFunctionsParser.html#langchain.output_parsers.openai_functions.JsonOutputFunctionsParser" title="langchain.output_parsers.openai_functions.JsonOutputFunctionsParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">output_parsers.openai_functions.JsonOutputFunctionsParser</span></code></a></p></td>
-<td><p>Parse an output as the Json object.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="output_parsers/langchain.output_parsers.openai_functions.OutputFunctionsParser.html#langchain.output_parsers.openai_functions.OutputFunctionsParser" title="langchain.output_parsers.openai_functions.OutputFunctionsParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">output_parsers.openai_functions.OutputFunctionsParser</span></code></a></p></td>
-<td><p>Parse an output that is one of sets of values.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="output_parsers/langchain.output_parsers.openai_functions.PydanticAttrOutputFunctionsParser.html#langchain.output_parsers.openai_functions.PydanticAttrOutputFunctionsParser" title="langchain.output_parsers.openai_functions.PydanticAttrOutputFunctionsParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">output_parsers.openai_functions.PydanticAttrOutputFunctionsParser</span></code></a></p></td>
-<td><p>Parse an output as an attribute of a pydantic object.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="output_parsers/langchain.output_parsers.openai_functions.PydanticOutputFunctionsParser.html#langchain.output_parsers.openai_functions.PydanticOutputFunctionsParser" title="langchain.output_parsers.openai_functions.PydanticOutputFunctionsParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">output_parsers.openai_functions.PydanticOutputFunctionsParser</span></code></a></p></td>
-<td><p>Parse an output as a pydantic object.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="output_parsers/langchain.output_parsers.openai_tools.JsonOutputKeyToolsParser.html#langchain.output_parsers.openai_tools.JsonOutputKeyToolsParser" title="langchain.output_parsers.openai_tools.JsonOutputKeyToolsParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">output_parsers.openai_tools.JsonOutputKeyToolsParser</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="output_parsers/langchain.output_parsers.openai_tools.JsonOutputKeyToolsParser.html#langchain.output_parsers.openai_tools.JsonOutputKeyToolsParser" title="langchain.output_parsers.openai_tools.JsonOutputKeyToolsParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">output_parsers.openai_tools.JsonOutputKeyToolsParser</span></code></a></p></td>
 <td><p>Parse tools from OpenAI response.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="output_parsers/langchain.output_parsers.openai_tools.JsonOutputToolsParser.html#langchain.output_parsers.openai_tools.JsonOutputToolsParser" title="langchain.output_parsers.openai_tools.JsonOutputToolsParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">output_parsers.openai_tools.JsonOutputToolsParser</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="output_parsers/langchain.output_parsers.openai_tools.JsonOutputToolsParser.html#langchain.output_parsers.openai_tools.JsonOutputToolsParser" title="langchain.output_parsers.openai_tools.JsonOutputToolsParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">output_parsers.openai_tools.JsonOutputToolsParser</span></code></a></p></td>
 <td><p>Parse tools from OpenAI response.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="output_parsers/langchain.output_parsers.openai_tools.PydanticToolsParser.html#langchain.output_parsers.openai_tools.PydanticToolsParser" title="langchain.output_parsers.openai_tools.PydanticToolsParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">output_parsers.openai_tools.PydanticToolsParser</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="output_parsers/langchain.output_parsers.openai_tools.PydanticToolsParser.html#langchain.output_parsers.openai_tools.PydanticToolsParser" title="langchain.output_parsers.openai_tools.PydanticToolsParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">output_parsers.openai_tools.PydanticToolsParser</span></code></a></p></td>
 <td><p>Parse tools from OpenAI response.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="output_parsers/langchain.output_parsers.pandas_dataframe.PandasDataFrameOutputParser.html#langchain.output_parsers.pandas_dataframe.PandasDataFrameOutputParser" title="langchain.output_parsers.pandas_dataframe.PandasDataFrameOutputParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">output_parsers.pandas_dataframe.PandasDataFrameOutputParser</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="output_parsers/langchain.output_parsers.pandas_dataframe.PandasDataFrameOutputParser.html#langchain.output_parsers.pandas_dataframe.PandasDataFrameOutputParser" title="langchain.output_parsers.pandas_dataframe.PandasDataFrameOutputParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">output_parsers.pandas_dataframe.PandasDataFrameOutputParser</span></code></a></p></td>
 <td><p>Parse an output using Pandas DataFrame format.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="output_parsers/langchain.output_parsers.regex.RegexParser.html#langchain.output_parsers.regex.RegexParser" title="langchain.output_parsers.regex.RegexParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">output_parsers.regex.RegexParser</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="output_parsers/langchain.output_parsers.regex.RegexParser.html#langchain.output_parsers.regex.RegexParser" title="langchain.output_parsers.regex.RegexParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">output_parsers.regex.RegexParser</span></code></a></p></td>
 <td><p>Parse the output of an LLM call using a regex.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="output_parsers/langchain.output_parsers.regex_dict.RegexDictParser.html#langchain.output_parsers.regex_dict.RegexDictParser" title="langchain.output_parsers.regex_dict.RegexDictParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">output_parsers.regex_dict.RegexDictParser</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="output_parsers/langchain.output_parsers.regex_dict.RegexDictParser.html#langchain.output_parsers.regex_dict.RegexDictParser" title="langchain.output_parsers.regex_dict.RegexDictParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">output_parsers.regex_dict.RegexDictParser</span></code></a></p></td>
 <td><p>Parse the output of an LLM call into a Dictionary using a regex.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="output_parsers/langchain.output_parsers.retry.RetryOutputParser.html#langchain.output_parsers.retry.RetryOutputParser" title="langchain.output_parsers.retry.RetryOutputParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">output_parsers.retry.RetryOutputParser</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="output_parsers/langchain.output_parsers.retry.RetryOutputParser.html#langchain.output_parsers.retry.RetryOutputParser" title="langchain.output_parsers.retry.RetryOutputParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">output_parsers.retry.RetryOutputParser</span></code></a></p></td>
 <td><p>Wraps a parser and tries to fix parsing errors.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="output_parsers/langchain.output_parsers.retry.RetryWithErrorOutputParser.html#langchain.output_parsers.retry.RetryWithErrorOutputParser" title="langchain.output_parsers.retry.RetryWithErrorOutputParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">output_parsers.retry.RetryWithErrorOutputParser</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="output_parsers/langchain.output_parsers.retry.RetryWithErrorOutputParser.html#langchain.output_parsers.retry.RetryWithErrorOutputParser" title="langchain.output_parsers.retry.RetryWithErrorOutputParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">output_parsers.retry.RetryWithErrorOutputParser</span></code></a></p></td>
 <td><p>Wraps a parser and tries to fix parsing errors.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="output_parsers/langchain.output_parsers.structured.ResponseSchema.html#langchain.output_parsers.structured.ResponseSchema" title="langchain.output_parsers.structured.ResponseSchema"><code class="xref py py-obj docutils literal notranslate"><span class="pre">output_parsers.structured.ResponseSchema</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="output_parsers/langchain.output_parsers.structured.ResponseSchema.html#langchain.output_parsers.structured.ResponseSchema" title="langchain.output_parsers.structured.ResponseSchema"><code class="xref py py-obj docutils literal notranslate"><span class="pre">output_parsers.structured.ResponseSchema</span></code></a></p></td>
 <td><p>A schema for a response from a structured output parser.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="output_parsers/langchain.output_parsers.structured.StructuredOutputParser.html#langchain.output_parsers.structured.StructuredOutputParser" title="langchain.output_parsers.structured.StructuredOutputParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">output_parsers.structured.StructuredOutputParser</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="output_parsers/langchain.output_parsers.structured.StructuredOutputParser.html#langchain.output_parsers.structured.StructuredOutputParser" title="langchain.output_parsers.structured.StructuredOutputParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">output_parsers.structured.StructuredOutputParser</span></code></a></p></td>
 <td><p>Parse the output of an LLM call to a structured output.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="output_parsers/langchain.output_parsers.yaml.YamlOutputParser.html#langchain.output_parsers.yaml.YamlOutputParser" title="langchain.output_parsers.yaml.YamlOutputParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">output_parsers.yaml.YamlOutputParser</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="output_parsers/langchain.output_parsers.yaml.YamlOutputParser.html#langchain.output_parsers.yaml.YamlOutputParser" title="langchain.output_parsers.yaml.YamlOutputParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">output_parsers.yaml.YamlOutputParser</span></code></a></p></td>
 <td><p>Parse YAML output using a pydantic model.</p></td>
 </tr>
 </tbody>
@@ -2056,7 +2045,7 @@ tool for the job.</p>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Feb 23, 2024.
+          Last updated on Feb 26, 2024.
           <a href="_sources/langchain_api_reference.rst.txt" rel="nofollow">Show this page source</a>
       </footer>
     </div>

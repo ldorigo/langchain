@@ -72,6 +72,9 @@
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../exa_api_reference.html">exa</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../fireworks_api_reference.html">fireworks</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../google_genai_api_reference.html">google-genai</a>
         </li>
         <li class="nav-item">
@@ -114,6 +117,7 @@
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../anthropic_api_reference.html">anthropic</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../astradb_api_reference.html">astradb</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../exa_api_reference.html">exa</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../../fireworks_api_reference.html">fireworks</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../google_genai_api_reference.html">google-genai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../google_vertexai_api_reference.html">google-vertexai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../groq_api_reference.html">groq</a>
@@ -170,12 +174,16 @@
 
 
 <div class="viewcode-block" id="ThoughtValidity"><a class="viewcode-back" href="../../../tot/langchain_experimental.tot.thought.ThoughtValidity.html#langchain_experimental.tot.thought.ThoughtValidity">[docs]</a><span class="k">class</span> <span class="nc">ThoughtValidity</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Enum for the validity of a thought.&quot;&quot;&quot;</span>
+
     <span class="n">VALID_INTERMEDIATE</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">VALID_FINAL</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">INVALID</span> <span class="o">=</span> <span class="mi">2</span></div>
 
 
 <div class="viewcode-block" id="Thought"><a class="viewcode-back" href="../../../tot/langchain_experimental.tot.thought.Thought.html#langchain_experimental.tot.thought.Thought">[docs]</a><span class="k">class</span> <span class="nc">Thought</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A thought in the ToT.&quot;&quot;&quot;</span>
+
     <span class="n">text</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">validity</span><span class="p">:</span> <span class="n">ThoughtValidity</span>
     <span class="n">children</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="n">Thought</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">set</span><span class="p">)</span>
@@ -188,7 +196,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Feb 23, 2024.
+          Last updated on Feb 26, 2024.
       </footer>
     </div>
   </div>

@@ -73,6 +73,9 @@
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../exa_api_reference.html">exa</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../fireworks_api_reference.html">fireworks</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../google_genai_api_reference.html">google-genai</a>
         </li>
         <li class="nav-item">
@@ -115,6 +118,7 @@
               <a class="sk-nav-dropdown-item dropdown-item" href="../anthropic_api_reference.html">anthropic</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../astradb_api_reference.html">astradb</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../exa_api_reference.html">exa</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../fireworks_api_reference.html">fireworks</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../google_genai_api_reference.html">google-genai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../google_vertexai_api_reference.html">google-vertexai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../groq_api_reference.html">groq</a>
@@ -173,8 +177,8 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="langchain_experimental.data_anonymizer.deanonymizer_matching_strategies.ngram_fuzzy_matching_strategy">
 <span class="sig-prename descclassname"><span class="pre">langchain_experimental.data_anonymizer.deanonymizer_matching_strategies.</span></span><span class="sig-name descname"><span class="pre">ngram_fuzzy_matching_strategy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deanonymizer_mapping</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fuzzy_threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">85</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_variable_length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../_modules/langchain_experimental/data_anonymizer/deanonymizer_matching_strategies.html#ngram_fuzzy_matching_strategy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#langchain_experimental.data_anonymizer.deanonymizer_matching_strategies.ngram_fuzzy_matching_strategy" title="Permalink to this definition">¶</a></dt>
-<dd><p>N-gram fuzzy matching strategy for deanonymization.
-It replaces all the anonymized entities with the original ones.
+<dd><p>N-gram fuzzy matching strategy for deanonymization.</p>
+<p>It replaces all the anonymized entities with the original ones.
 It uses fuzzy matching to find the position of the anonymized entity in the text.
 It generates n-grams of the same length as the anonymized entity from the text and
 uses fuzzy matching to find the position of the anonymized entity in the text.</p>
@@ -202,7 +206,7 @@ uses fuzzy matching to find the position of the anonymized entity in the text.</
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Feb 23, 2024.
+          Last updated on Feb 26, 2024.
           <a href="../_sources/data_anonymizer/langchain_experimental.data_anonymizer.deanonymizer_matching_strategies.ngram_fuzzy_matching_strategy.rst.txt" rel="nofollow">Show this page source</a>
       </footer>
     </div>

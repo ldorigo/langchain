@@ -1,7 +1,7 @@
 .. community_api_reference:
 
 =======================
-``langchain_community`` 0.0.22
+``langchain_community`` 0.0.24
 =======================
 
 :mod:`langchain_community.adapters`
@@ -413,6 +413,10 @@ Classes
     
     :template: class.rst
     
+    callbacks.fiddler_callback.FiddlerCallbackHandler
+    
+    :template: class.rst
+    
     callbacks.flyte_callback.FlyteCallbackHandler
     
     :template: class.rst
@@ -543,6 +547,7 @@ Functions
     callbacks.clearml_callback.import_clearml
     callbacks.comet_ml_callback.import_comet_ml
     callbacks.context_callback.import_context
+    callbacks.fiddler_callback.import_fiddler
     callbacks.flyte_callback.analyze_text
     callbacks.flyte_callback.import_flytekit
     callbacks.infino_callback.get_num_tokens

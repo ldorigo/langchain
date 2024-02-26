@@ -1,0 +1,77 @@
+﻿:mod:`langchain_community.callbacks.fiddler_callback`.FiddlerCallbackHandler
+===================================================================================
+
+.. currentmodule:: langchain_community.callbacks.fiddler_callback
+
+.. autoclass:: FiddlerCallbackHandler
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~FiddlerCallbackHandler.custom_features
+      ~FiddlerCallbackHandler.ignore_agent
+      ~FiddlerCallbackHandler.ignore_chain
+      ~FiddlerCallbackHandler.ignore_chat_model
+      ~FiddlerCallbackHandler.ignore_llm
+      ~FiddlerCallbackHandler.ignore_retriever
+      ~FiddlerCallbackHandler.ignore_retry
+      ~FiddlerCallbackHandler.raise_error
+      ~FiddlerCallbackHandler.run_inline
+   
+   
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~FiddlerCallbackHandler.__init__
+      ~FiddlerCallbackHandler.on_agent_action
+      ~FiddlerCallbackHandler.on_agent_finish
+      ~FiddlerCallbackHandler.on_chain_end
+      ~FiddlerCallbackHandler.on_chain_error
+      ~FiddlerCallbackHandler.on_chain_start
+      ~FiddlerCallbackHandler.on_chat_model_start
+      ~FiddlerCallbackHandler.on_llm_end
+      ~FiddlerCallbackHandler.on_llm_error
+      ~FiddlerCallbackHandler.on_llm_new_token
+      ~FiddlerCallbackHandler.on_llm_start
+      ~FiddlerCallbackHandler.on_retriever_end
+      ~FiddlerCallbackHandler.on_retriever_error
+      ~FiddlerCallbackHandler.on_retriever_start
+      ~FiddlerCallbackHandler.on_retry
+      ~FiddlerCallbackHandler.on_text
+      ~FiddlerCallbackHandler.on_tool_end
+      ~FiddlerCallbackHandler.on_tool_error
+      ~FiddlerCallbackHandler.on_tool_start
+
+   
+   .. automethod:: FiddlerCallbackHandler.__init__
+   .. automethod:: FiddlerCallbackHandler.on_agent_action
+   .. automethod:: FiddlerCallbackHandler.on_agent_finish
+   .. automethod:: FiddlerCallbackHandler.on_chain_end
+   .. automethod:: FiddlerCallbackHandler.on_chain_error
+   .. automethod:: FiddlerCallbackHandler.on_chain_start
+   .. automethod:: FiddlerCallbackHandler.on_chat_model_start
+   .. automethod:: FiddlerCallbackHandler.on_llm_end
+   .. automethod:: FiddlerCallbackHandler.on_llm_error
+   .. automethod:: FiddlerCallbackHandler.on_llm_new_token
+   .. automethod:: FiddlerCallbackHandler.on_llm_start
+   .. automethod:: FiddlerCallbackHandler.on_retriever_end
+   .. automethod:: FiddlerCallbackHandler.on_retriever_error
+   .. automethod:: FiddlerCallbackHandler.on_retriever_start
+   .. automethod:: FiddlerCallbackHandler.on_retry
+   .. automethod:: FiddlerCallbackHandler.on_text
+   .. automethod:: FiddlerCallbackHandler.on_tool_end
+   .. automethod:: FiddlerCallbackHandler.on_tool_error
+   .. automethod:: FiddlerCallbackHandler.on_tool_start
+
+   
+   
+
+
+.. example_links:: FiddlerCallbackHandler

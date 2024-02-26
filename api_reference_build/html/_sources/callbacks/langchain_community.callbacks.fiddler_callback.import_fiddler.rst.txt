@@ -1,0 +1,8 @@
+﻿:mod:`langchain_community.callbacks.fiddler_callback`.import_fiddler
+===========================================================================
+
+.. currentmodule:: langchain_community.callbacks.fiddler_callback
+
+.. autofunction:: import_fiddler
+
+.. example_links:: import_fiddler

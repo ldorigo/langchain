@@ -72,6 +72,9 @@
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../exa_api_reference.html">exa</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../fireworks_api_reference.html">fireworks</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../google_genai_api_reference.html">google-genai</a>
         </li>
         <li class="nav-item">
@@ -114,6 +117,7 @@
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../anthropic_api_reference.html">anthropic</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../astradb_api_reference.html">astradb</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../exa_api_reference.html">exa</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../../fireworks_api_reference.html">fireworks</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../google_genai_api_reference.html">google-genai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../google_vertexai_api_reference.html">google-vertexai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../groq_api_reference.html">groq</a>
@@ -180,7 +184,7 @@
 
 <div class="viewcode-block" id="NarrativeModel"><a class="viewcode-back" href="../../../cpal/langchain_experimental.cpal.models.NarrativeModel.html#langchain_experimental.cpal.models.NarrativeModel">[docs]</a><span class="k">class</span> <span class="nc">NarrativeModel</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Represent the narrative input as three story elements.</span>
+<span class="sd">    Narrative input as three story elements.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">story_outcome_question</span><span class="p">:</span> <span class="nb">str</span>
@@ -196,6 +200,8 @@
 
 
 <div class="viewcode-block" id="EntityModel"><a class="viewcode-back" href="../../../cpal/langchain_experimental.cpal.models.EntityModel.html#langchain_experimental.cpal.models.EntityModel">[docs]</a><span class="k">class</span> <span class="nc">EntityModel</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Entity in the story.&quot;&quot;&quot;</span>
+
     <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;entity name&quot;</span><span class="p">)</span>
     <span class="n">code</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;entity actions&quot;</span><span class="p">)</span>
     <span class="n">value</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;entity initial value&quot;</span><span class="p">)</span>
@@ -214,6 +220,8 @@
 
 
 <div class="viewcode-block" id="CausalModel"><a class="viewcode-back" href="../../../cpal/langchain_experimental.cpal.models.CausalModel.html#langchain_experimental.cpal.models.CausalModel">[docs]</a><span class="k">class</span> <span class="nc">CausalModel</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Casual data.&quot;&quot;&quot;</span>
+
     <span class="n">attribute</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;name of the attribute to be calculated&quot;</span><span class="p">)</span>
     <span class="n">entities</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">EntityModel</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;entities in the story&quot;</span><span class="p">)</span></div>
 
@@ -221,7 +229,8 @@
 
 
 <div class="viewcode-block" id="EntitySettingModel"><a class="viewcode-back" href="../../../cpal/langchain_experimental.cpal.models.EntitySettingModel.html#langchain_experimental.cpal.models.EntitySettingModel">[docs]</a><span class="k">class</span> <span class="nc">EntitySettingModel</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Entity initial conditions.</span>
+
 <span class="sd">    Initial conditions for an entity</span>
 
 <span class="sd">    {&quot;name&quot;: &quot;bud&quot;, &quot;attribute&quot;: &quot;pet_count&quot;, &quot;value&quot;: 12}</span>
@@ -238,7 +247,8 @@
 
 
 <div class="viewcode-block" id="SystemSettingModel"><a class="viewcode-back" href="../../../cpal/langchain_experimental.cpal.models.SystemSettingModel.html#langchain_experimental.cpal.models.SystemSettingModel">[docs]</a><span class="k">class</span> <span class="nc">SystemSettingModel</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;System initial conditions.</span>
+
 <span class="sd">    Initial global conditions for the system.</span>
 
 <span class="sd">    {&quot;parameter&quot;: &quot;interest_rate&quot;, &quot;value&quot;: .05}</span>
@@ -249,8 +259,7 @@
 
 
 <div class="viewcode-block" id="InterventionModel"><a class="viewcode-back" href="../../../cpal/langchain_experimental.cpal.models.InterventionModel.html#langchain_experimental.cpal.models.InterventionModel">[docs]</a><span class="k">class</span> <span class="nc">InterventionModel</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    aka initial conditions</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Intervention data of the story aka initial conditions.</span>
 
 <span class="sd">    &gt;&gt;&gt; intervention.dict()</span>
 <span class="sd">    {</span>
@@ -273,7 +282,9 @@
 
 
 <div class="viewcode-block" id="QueryModel"><a class="viewcode-back" href="../../../cpal/langchain_experimental.cpal.models.QueryModel.html#langchain_experimental.cpal.models.QueryModel">[docs]</a><span class="k">class</span> <span class="nc">QueryModel</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;translate a question about the story outcome into a programmatic expression&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Query data of the story.</span>
+
+<span class="sd">    translate a question about the story outcome into a programmatic expression&quot;&quot;&quot;</span>
 
     <span class="n">question</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">alias</span><span class="o">=</span><span class="n">Constant</span><span class="o">.</span><span class="n">narrative_input</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>  <span class="c1"># input</span>
     <span class="n">expression</span><span class="p">:</span> <span class="nb">str</span>  <span class="c1"># output, part of llm completion</span>
@@ -282,11 +293,15 @@
 
 
 <div class="viewcode-block" id="ResultModel"><a class="viewcode-back" href="../../../cpal/langchain_experimental.cpal.models.ResultModel.html#langchain_experimental.cpal.models.ResultModel">[docs]</a><span class="k">class</span> <span class="nc">ResultModel</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Result of the story query.&quot;&quot;&quot;</span>
+
     <span class="n">question</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">alias</span><span class="o">=</span><span class="n">Constant</span><span class="o">.</span><span class="n">narrative_input</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>  <span class="c1"># input</span>
     <span class="n">_result_table</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">PrivateAttr</span><span class="p">()</span>  <span class="c1"># result of the executed query</span></div>
 
 
 <div class="viewcode-block" id="StoryModel"><a class="viewcode-back" href="../../../cpal/langchain_experimental.cpal.models.StoryModel.html#langchain_experimental.cpal.models.StoryModel">[docs]</a><span class="k">class</span> <span class="nc">StoryModel</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Story data.&quot;&quot;&quot;</span>
+
     <span class="n">causal_operations</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">intervention</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">query</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -430,7 +445,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Feb 23, 2024.
+          Last updated on Feb 26, 2024.
       </footer>
     </div>
   </div>

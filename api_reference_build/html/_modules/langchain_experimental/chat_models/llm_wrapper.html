@@ -72,6 +72,9 @@
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../exa_api_reference.html">exa</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../fireworks_api_reference.html">fireworks</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../google_genai_api_reference.html">google-genai</a>
         </li>
         <li class="nav-item">
@@ -114,6 +117,7 @@
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../anthropic_api_reference.html">anthropic</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../astradb_api_reference.html">astradb</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../exa_api_reference.html">exa</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../../fireworks_api_reference.html">fireworks</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../google_genai_api_reference.html">google-genai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../google_vertexai_api_reference.html">google-vertexai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../groq_api_reference.html">groq</a>
@@ -187,6 +191,8 @@
 
 
 <div class="viewcode-block" id="ChatWrapper"><a class="viewcode-back" href="../../../chat_models/langchain_experimental.chat_models.llm_wrapper.ChatWrapper.html#langchain_experimental.chat_models.llm_wrapper.ChatWrapper">[docs]</a><span class="k">class</span> <span class="nc">ChatWrapper</span><span class="p">(</span><span class="n">BaseChatModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Wrapper for chat LLMs.&quot;&quot;&quot;</span>
+
     <span class="n">llm</span><span class="p">:</span> <span class="n">LLM</span>
     <span class="n">sys_beg</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">sys_end</span><span class="p">:</span> <span class="nb">str</span>
@@ -293,6 +299,8 @@
 
 
 <div class="viewcode-block" id="Llama2Chat"><a class="viewcode-back" href="../../../chat_models/langchain_experimental.chat_models.llm_wrapper.Llama2Chat.html#langchain_experimental.chat_models.llm_wrapper.Llama2Chat">[docs]</a><span class="k">class</span> <span class="nc">Llama2Chat</span><span class="p">(</span><span class="n">ChatWrapper</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Wrapper for Llama-2-chat model.&quot;&quot;&quot;</span>
+
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">_llm_type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="s2">&quot;llama-2-chat&quot;</span>
@@ -308,6 +316,8 @@
 
 
 <div class="viewcode-block" id="Orca"><a class="viewcode-back" href="../../../chat_models/langchain_experimental.chat_models.llm_wrapper.Orca.html#langchain_experimental.chat_models.llm_wrapper.Orca">[docs]</a><span class="k">class</span> <span class="nc">Orca</span><span class="p">(</span><span class="n">ChatWrapper</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Wrapper for Orca-style models.&quot;&quot;&quot;</span>
+
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">_llm_type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="s2">&quot;orca-style&quot;</span>
@@ -321,6 +331,8 @@
 
 
 <div class="viewcode-block" id="Vicuna"><a class="viewcode-back" href="../../../chat_models/langchain_experimental.chat_models.llm_wrapper.Vicuna.html#langchain_experimental.chat_models.llm_wrapper.Vicuna">[docs]</a><span class="k">class</span> <span class="nc">Vicuna</span><span class="p">(</span><span class="n">ChatWrapper</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Wrapper for Vicuna-style models.&quot;&quot;&quot;</span>
+
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">_llm_type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="s2">&quot;vicuna-style&quot;</span>
@@ -337,7 +349,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Feb 23, 2024.
+          Last updated on Feb 26, 2024.
       </footer>
     </div>
   </div>

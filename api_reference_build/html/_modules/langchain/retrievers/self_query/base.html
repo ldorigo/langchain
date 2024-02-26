@@ -72,6 +72,9 @@
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../../exa_api_reference.html">exa</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../../fireworks_api_reference.html">fireworks</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../../google_genai_api_reference.html">google-genai</a>
         </li>
         <li class="nav-item">
@@ -114,6 +117,7 @@
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../../anthropic_api_reference.html">anthropic</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../../astradb_api_reference.html">astradb</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../../exa_api_reference.html">exa</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../../../fireworks_api_reference.html">fireworks</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../../google_genai_api_reference.html">google-genai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../../google_vertexai_api_reference.html">google-vertexai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../../groq_api_reference.html">groq</a>
@@ -217,6 +221,7 @@
 <span class="kn">from</span> <span class="nn">langchain.retrievers.self_query.weaviate</span> <span class="kn">import</span> <span class="n">WeaviateTranslator</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="n">QUERY_CONSTRUCTOR_RUN_NAME</span> <span class="o">=</span> <span class="s2">&quot;query_constructor&quot;</span>
 
 
 <span class="k">def</span> <span class="nf">_get_builtin_translator</span><span class="p">(</span><span class="n">vectorstore</span><span class="p">:</span> <span class="n">VectorStore</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Visitor</span><span class="p">:</span>
@@ -407,6 +412,9 @@
             <span class="n">enable_limit</span><span class="o">=</span><span class="n">enable_limit</span><span class="p">,</span>
             <span class="o">**</span><span class="n">chain_kwargs</span><span class="p">,</span>
         <span class="p">)</span>
+        <span class="n">query_constructor</span> <span class="o">=</span> <span class="n">query_constructor</span><span class="o">.</span><span class="n">with_config</span><span class="p">(</span>
+            <span class="n">run_name</span><span class="o">=</span><span class="n">QUERY_CONSTRUCTOR_RUN_NAME</span>
+        <span class="p">)</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
             <span class="n">query_constructor</span><span class="o">=</span><span class="n">query_constructor</span><span class="p">,</span>
             <span class="n">vectorstore</span><span class="o">=</span><span class="n">vectorstore</span><span class="p">,</span>
@@ -420,7 +428,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Feb 23, 2024.
+          Last updated on Feb 26, 2024.
       </footer>
     </div>
   </div>

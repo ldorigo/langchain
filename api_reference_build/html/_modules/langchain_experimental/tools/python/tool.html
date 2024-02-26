@@ -72,6 +72,9 @@
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../../exa_api_reference.html">exa</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../../fireworks_api_reference.html">fireworks</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../../google_genai_api_reference.html">google-genai</a>
         </li>
         <li class="nav-item">
@@ -114,6 +117,7 @@
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../../anthropic_api_reference.html">anthropic</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../../astradb_api_reference.html">astradb</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../../exa_api_reference.html">exa</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../../../fireworks_api_reference.html">fireworks</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../../google_genai_api_reference.html">google-genai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../../google_vertexai_api_reference.html">google-vertexai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../../groq_api_reference.html">groq</a>
@@ -187,6 +191,7 @@
 
 <div class="viewcode-block" id="sanitize_input"><a class="viewcode-back" href="../../../../tools/langchain_experimental.tools.python.tool.sanitize_input.html#langchain_experimental.tools.python.tool.sanitize_input">[docs]</a><span class="k">def</span> <span class="nf">sanitize_input</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Sanitize input to the python REPL.</span>
+
 <span class="sd">    Remove whitespace, backtick &amp; python (if llm mistakes python console as terminal)</span>
 
 <span class="sd">    Args:</span>
@@ -204,7 +209,7 @@
 
 
 <div class="viewcode-block" id="PythonREPLTool"><a class="viewcode-back" href="../../../../tools/langchain_experimental.tools.python.tool.PythonREPLTool.html#langchain_experimental.tools.python.tool.PythonREPLTool">[docs]</a><span class="k">class</span> <span class="nc">PythonREPLTool</span><span class="p">(</span><span class="n">BaseTool</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;A tool for running python code in a REPL.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Tool for running python code in a REPL.&quot;&quot;&quot;</span>
 
     <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Python_REPL&quot;</span>
     <span class="n">description</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="p">(</span>
@@ -239,11 +244,13 @@
 
 
 <div class="viewcode-block" id="PythonInputs"><a class="viewcode-back" href="../../../../tools/langchain_experimental.tools.python.tool.PythonInputs.html#langchain_experimental.tools.python.tool.PythonInputs">[docs]</a><span class="k">class</span> <span class="nc">PythonInputs</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Python inputs.&quot;&quot;&quot;</span>
+
     <span class="n">query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;code snippet to run&quot;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="PythonAstREPLTool"><a class="viewcode-back" href="../../../../tools/langchain_experimental.tools.python.tool.PythonAstREPLTool.html#langchain_experimental.tools.python.tool.PythonAstREPLTool">[docs]</a><span class="k">class</span> <span class="nc">PythonAstREPLTool</span><span class="p">(</span><span class="n">BaseTool</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;A tool for running python code in a REPL.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Tool for running python code in a REPL.&quot;&quot;&quot;</span>
 
     <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;python_repl_ast&quot;</span>
     <span class="n">description</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="p">(</span>
@@ -311,7 +318,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Feb 23, 2024.
+          Last updated on Feb 26, 2024.
       </footer>
     </div>
   </div>

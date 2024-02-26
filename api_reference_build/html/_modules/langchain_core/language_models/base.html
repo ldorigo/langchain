@@ -72,6 +72,9 @@
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../exa_api_reference.html">exa</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../fireworks_api_reference.html">fireworks</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../google_genai_api_reference.html">google-genai</a>
         </li>
         <li class="nav-item">
@@ -114,6 +117,7 @@
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../anthropic_api_reference.html">anthropic</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../astradb_api_reference.html">astradb</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../exa_api_reference.html">exa</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../../fireworks_api_reference.html">fireworks</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../google_genai_api_reference.html">google-genai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../google_vertexai_api_reference.html">google-vertexai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../groq_api_reference.html">groq</a>
@@ -226,7 +230,7 @@
 <span class="n">LanguageModelOutputVar</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;LanguageModelOutputVar&quot;</span><span class="p">,</span> <span class="n">BaseMessage</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="BaseLanguageModel"><a class="viewcode-back" href="../../../language_models/langchain_core.language_models.base.BaseLanguageModel.html#langchain_core.language_models.base.BaseLanguageModel">[docs]</a><span class="k">class</span> <span class="nc">BaseLanguageModel</span><span class="p">(</span>
+<div class="viewcode-block" id="BaseLanguageModel"><a class="viewcode-back" href="../../../language_models/langchain_core.language_models.base.BaseLanguageModel.html#langchain_community.llms.predibase.BaseLanguageModel">[docs]</a><span class="k">class</span> <span class="nc">BaseLanguageModel</span><span class="p">(</span>
     <span class="n">RunnableSerializable</span><span class="p">[</span><span class="n">LanguageModelInput</span><span class="p">,</span> <span class="n">LanguageModelOutputVar</span><span class="p">],</span> <span class="n">ABC</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Abstract base class for interfacing with language models.</span>
@@ -251,7 +255,7 @@
             <span class="n">List</span><span class="p">[</span><span class="n">AnyMessage</span><span class="p">],</span>
         <span class="p">]</span>
 
-<div class="viewcode-block" id="BaseLanguageModel.generate_prompt"><a class="viewcode-back" href="../../../language_models/langchain_core.language_models.base.BaseLanguageModel.html#langchain_core.language_models.base.BaseLanguageModel.generate_prompt">[docs]</a>    <span class="nd">@abstractmethod</span>
+<div class="viewcode-block" id="BaseLanguageModel.generate_prompt"><a class="viewcode-back" href="../../../language_models/langchain_core.language_models.base.BaseLanguageModel.html#langchain_community.llms.predibase.BaseLanguageModel.generate_prompt">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">generate_prompt</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">prompts</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">PromptValue</span><span class="p">],</span>
@@ -286,7 +290,7 @@
 <span class="sd">                prompt and additional model provider-specific output.</span>
 <span class="sd">        &quot;&quot;&quot;</span></div>
 
-<div class="viewcode-block" id="BaseLanguageModel.agenerate_prompt"><a class="viewcode-back" href="../../../language_models/langchain_core.language_models.base.BaseLanguageModel.html#langchain_core.language_models.base.BaseLanguageModel.agenerate_prompt">[docs]</a>    <span class="nd">@abstractmethod</span>
+<div class="viewcode-block" id="BaseLanguageModel.agenerate_prompt"><a class="viewcode-back" href="../../../language_models/langchain_core.language_models.base.BaseLanguageModel.html#langchain_community.llms.predibase.BaseLanguageModel.agenerate_prompt">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">agenerate_prompt</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">prompts</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">PromptValue</span><span class="p">],</span>
@@ -321,14 +325,14 @@
 <span class="sd">                prompt and additional model provider-specific output.</span>
 <span class="sd">        &quot;&quot;&quot;</span></div>
 
-<div class="viewcode-block" id="BaseLanguageModel.with_structured_output"><a class="viewcode-back" href="../../../language_models/langchain_core.language_models.base.BaseLanguageModel.html#langchain_core.language_models.base.BaseLanguageModel.with_structured_output">[docs]</a>    <span class="nd">@beta</span><span class="p">()</span>
+<div class="viewcode-block" id="BaseLanguageModel.with_structured_output"><a class="viewcode-back" href="../../../language_models/langchain_core.language_models.base.BaseLanguageModel.html#langchain_community.llms.predibase.BaseLanguageModel.with_structured_output">[docs]</a>    <span class="nd">@beta</span><span class="p">()</span>
     <span class="k">def</span> <span class="nf">with_structured_output</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">schema</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Dict</span><span class="p">,</span> <span class="n">Type</span><span class="p">[</span><span class="n">BaseModel</span><span class="p">]],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Runnable</span><span class="p">[</span><span class="n">LanguageModelInput</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="n">Dict</span><span class="p">,</span> <span class="n">BaseModel</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Implement this if there is a way of steering the model to generate responses that match a given schema.&quot;&quot;&quot;</span>  <span class="c1"># noqa: E501</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="BaseLanguageModel.predict"><a class="viewcode-back" href="../../../language_models/langchain_core.language_models.base.BaseLanguageModel.html#langchain_core.language_models.base.BaseLanguageModel.predict">[docs]</a>    <span class="nd">@deprecated</span><span class="p">(</span><span class="s2">&quot;0.1.7&quot;</span><span class="p">,</span> <span class="n">alternative</span><span class="o">=</span><span class="s2">&quot;invoke&quot;</span><span class="p">,</span> <span class="n">removal</span><span class="o">=</span><span class="s2">&quot;0.2.0&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="BaseLanguageModel.predict"><a class="viewcode-back" href="../../../language_models/langchain_core.language_models.base.BaseLanguageModel.html#langchain_community.llms.predibase.BaseLanguageModel.predict">[docs]</a>    <span class="nd">@deprecated</span><span class="p">(</span><span class="s2">&quot;0.1.7&quot;</span><span class="p">,</span> <span class="n">alternative</span><span class="o">=</span><span class="s2">&quot;invoke&quot;</span><span class="p">,</span> <span class="n">removal</span><span class="o">=</span><span class="s2">&quot;0.2.0&quot;</span><span class="p">)</span>
     <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">stop</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
@@ -349,7 +353,7 @@
 <span class="sd">            Top model prediction as a string.</span>
 <span class="sd">        &quot;&quot;&quot;</span></div>
 
-<div class="viewcode-block" id="BaseLanguageModel.predict_messages"><a class="viewcode-back" href="../../../language_models/langchain_core.language_models.base.BaseLanguageModel.html#langchain_core.language_models.base.BaseLanguageModel.predict_messages">[docs]</a>    <span class="nd">@deprecated</span><span class="p">(</span><span class="s2">&quot;0.1.7&quot;</span><span class="p">,</span> <span class="n">alternative</span><span class="o">=</span><span class="s2">&quot;invoke&quot;</span><span class="p">,</span> <span class="n">removal</span><span class="o">=</span><span class="s2">&quot;0.2.0&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="BaseLanguageModel.predict_messages"><a class="viewcode-back" href="../../../language_models/langchain_core.language_models.base.BaseLanguageModel.html#langchain_community.llms.predibase.BaseLanguageModel.predict_messages">[docs]</a>    <span class="nd">@deprecated</span><span class="p">(</span><span class="s2">&quot;0.1.7&quot;</span><span class="p">,</span> <span class="n">alternative</span><span class="o">=</span><span class="s2">&quot;invoke&quot;</span><span class="p">,</span> <span class="n">removal</span><span class="o">=</span><span class="s2">&quot;0.2.0&quot;</span><span class="p">)</span>
     <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">predict_messages</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -374,7 +378,7 @@
 <span class="sd">            Top model prediction as a message.</span>
 <span class="sd">        &quot;&quot;&quot;</span></div>
 
-<div class="viewcode-block" id="BaseLanguageModel.apredict"><a class="viewcode-back" href="../../../language_models/langchain_core.language_models.base.BaseLanguageModel.html#langchain_core.language_models.base.BaseLanguageModel.apredict">[docs]</a>    <span class="nd">@deprecated</span><span class="p">(</span><span class="s2">&quot;0.1.7&quot;</span><span class="p">,</span> <span class="n">alternative</span><span class="o">=</span><span class="s2">&quot;ainvoke&quot;</span><span class="p">,</span> <span class="n">removal</span><span class="o">=</span><span class="s2">&quot;0.2.0&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="BaseLanguageModel.apredict"><a class="viewcode-back" href="../../../language_models/langchain_core.language_models.base.BaseLanguageModel.html#langchain_community.llms.predibase.BaseLanguageModel.apredict">[docs]</a>    <span class="nd">@deprecated</span><span class="p">(</span><span class="s2">&quot;0.1.7&quot;</span><span class="p">,</span> <span class="n">alternative</span><span class="o">=</span><span class="s2">&quot;ainvoke&quot;</span><span class="p">,</span> <span class="n">removal</span><span class="o">=</span><span class="s2">&quot;0.2.0&quot;</span><span class="p">)</span>
     <span class="nd">@abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">apredict</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">stop</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
@@ -395,7 +399,7 @@
 <span class="sd">            Top model prediction as a string.</span>
 <span class="sd">        &quot;&quot;&quot;</span></div>
 
-<div class="viewcode-block" id="BaseLanguageModel.apredict_messages"><a class="viewcode-back" href="../../../language_models/langchain_core.language_models.base.BaseLanguageModel.html#langchain_core.language_models.base.BaseLanguageModel.apredict_messages">[docs]</a>    <span class="nd">@deprecated</span><span class="p">(</span><span class="s2">&quot;0.1.7&quot;</span><span class="p">,</span> <span class="n">alternative</span><span class="o">=</span><span class="s2">&quot;ainvoke&quot;</span><span class="p">,</span> <span class="n">removal</span><span class="o">=</span><span class="s2">&quot;0.2.0&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="BaseLanguageModel.apredict_messages"><a class="viewcode-back" href="../../../language_models/langchain_core.language_models.base.BaseLanguageModel.html#langchain_community.llms.predibase.BaseLanguageModel.apredict_messages">[docs]</a>    <span class="nd">@deprecated</span><span class="p">(</span><span class="s2">&quot;0.1.7&quot;</span><span class="p">,</span> <span class="n">alternative</span><span class="o">=</span><span class="s2">&quot;ainvoke&quot;</span><span class="p">,</span> <span class="n">removal</span><span class="o">=</span><span class="s2">&quot;0.2.0&quot;</span><span class="p">)</span>
     <span class="nd">@abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">apredict_messages</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -420,7 +424,7 @@
 <span class="sd">            Top model prediction as a message.</span>
 <span class="sd">        &quot;&quot;&quot;</span></div>
 
-<div class="viewcode-block" id="BaseLanguageModel.get_token_ids"><a class="viewcode-back" href="../../../language_models/langchain_core.language_models.base.BaseLanguageModel.html#langchain_core.language_models.base.BaseLanguageModel.get_token_ids">[docs]</a>    <span class="k">def</span> <span class="nf">get_token_ids</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+<div class="viewcode-block" id="BaseLanguageModel.get_token_ids"><a class="viewcode-back" href="../../../language_models/langchain_core.language_models.base.BaseLanguageModel.html#langchain_community.llms.predibase.BaseLanguageModel.get_token_ids">[docs]</a>    <span class="k">def</span> <span class="nf">get_token_ids</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the ordered ids of the tokens in a text.</span>
 
 <span class="sd">        Args:</span>
@@ -432,7 +436,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">_get_token_ids_default_method</span><span class="p">(</span><span class="n">text</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="BaseLanguageModel.get_num_tokens"><a class="viewcode-back" href="../../../language_models/langchain_core.language_models.base.BaseLanguageModel.html#langchain_core.language_models.base.BaseLanguageModel.get_num_tokens">[docs]</a>    <span class="k">def</span> <span class="nf">get_num_tokens</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<div class="viewcode-block" id="BaseLanguageModel.get_num_tokens"><a class="viewcode-back" href="../../../language_models/langchain_core.language_models.base.BaseLanguageModel.html#langchain_community.llms.predibase.BaseLanguageModel.get_num_tokens">[docs]</a>    <span class="k">def</span> <span class="nf">get_num_tokens</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the number of tokens present in the text.</span>
 
 <span class="sd">        Useful for checking if an input will fit in a model&#39;s context window.</span>
@@ -445,7 +449,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_token_ids</span><span class="p">(</span><span class="n">text</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="BaseLanguageModel.get_num_tokens_from_messages"><a class="viewcode-back" href="../../../language_models/langchain_core.language_models.base.BaseLanguageModel.html#langchain_core.language_models.base.BaseLanguageModel.get_num_tokens_from_messages">[docs]</a>    <span class="k">def</span> <span class="nf">get_num_tokens_from_messages</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">messages</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">BaseMessage</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<div class="viewcode-block" id="BaseLanguageModel.get_num_tokens_from_messages"><a class="viewcode-back" href="../../../language_models/langchain_core.language_models.base.BaseLanguageModel.html#langchain_community.llms.predibase.BaseLanguageModel.get_num_tokens_from_messages">[docs]</a>    <span class="k">def</span> <span class="nf">get_num_tokens_from_messages</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">messages</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">BaseMessage</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the number of tokens in the messages.</span>
 
 <span class="sd">        Useful for checking if an input will fit in a model&#39;s context window.</span>
@@ -471,7 +475,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Feb 23, 2024.
+          Last updated on Feb 26, 2024.
       </footer>
     </div>
   </div>

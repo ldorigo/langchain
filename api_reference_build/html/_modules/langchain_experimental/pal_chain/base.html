@@ -72,6 +72,9 @@
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../exa_api_reference.html">exa</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../fireworks_api_reference.html">fireworks</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../google_genai_api_reference.html">google-genai</a>
         </li>
         <li class="nav-item">
@@ -114,6 +117,7 @@
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../anthropic_api_reference.html">anthropic</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../astradb_api_reference.html">astradb</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../exa_api_reference.html">exa</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../../fireworks_api_reference.html">fireworks</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../google_genai_api_reference.html">google-genai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../google_vertexai_api_reference.html">google-vertexai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../groq_api_reference.html">groq</a>
@@ -197,6 +201,8 @@
 
 
 <div class="viewcode-block" id="PALValidation"><a class="viewcode-back" href="../../../pal_chain/langchain_experimental.pal_chain.base.PALValidation.html#langchain_experimental.pal_chain.base.PALValidation">[docs]</a><span class="k">class</span> <span class="nc">PALValidation</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Validation for PAL generated code.&quot;&quot;&quot;</span>
+
     <span class="n">SOLUTION_EXPRESSION_TYPE_FUNCTION</span> <span class="o">=</span> <span class="n">ast</span><span class="o">.</span><span class="n">FunctionDef</span>
     <span class="n">SOLUTION_EXPRESSION_TYPE_VARIABLE</span> <span class="o">=</span> <span class="n">ast</span><span class="o">.</span><span class="n">Name</span>
 
@@ -258,7 +264,7 @@
 
 
 <div class="viewcode-block" id="PALChain"><a class="viewcode-back" href="../../../pal_chain/langchain_experimental.pal_chain.base.PALChain.html#langchain_experimental.pal_chain.base.PALChain">[docs]</a><span class="k">class</span> <span class="nc">PALChain</span><span class="p">(</span><span class="n">Chain</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Implements Program-Aided Language Models (PAL).</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Chain that implements Program-Aided Language Models (PAL).</span>
 
 <span class="sd">    This class implements the Program-Aided Language Models (PAL) for generating code</span>
 <span class="sd">    solutions. PAL is a technique described in the paper &quot;Program-Aided Language Models&quot;</span>
@@ -498,7 +504,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Feb 23, 2024.
+          Last updated on Feb 26, 2024.
       </footer>
     </div>
   </div>

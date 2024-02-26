@@ -73,6 +73,9 @@
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../exa_api_reference.html">exa</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../fireworks_api_reference.html">fireworks</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../google_genai_api_reference.html">google-genai</a>
         </li>
         <li class="nav-item">
@@ -115,6 +118,7 @@
               <a class="sk-nav-dropdown-item dropdown-item" href="../anthropic_api_reference.html">anthropic</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../astradb_api_reference.html">astradb</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../exa_api_reference.html">exa</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../fireworks_api_reference.html">fireworks</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../google_genai_api_reference.html">google-genai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../google_vertexai_api_reference.html">google-vertexai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../groq_api_reference.html">groq</a>
@@ -160,6 +164,7 @@
 <li><a class="reference internal" href="#langchain_core.messages.base.BaseMessageChunk"><code class="docutils literal notranslate"><span class="pre">BaseMessageChunk</span></code></a><ul>
 <li><a class="reference internal" href="#langchain_core.messages.base.BaseMessageChunk.additional_kwargs"><code class="docutils literal notranslate"><span class="pre">BaseMessageChunk.additional_kwargs</span></code></a></li>
 <li><a class="reference internal" href="#langchain_core.messages.base.BaseMessageChunk.content"><code class="docutils literal notranslate"><span class="pre">BaseMessageChunk.content</span></code></a></li>
+<li><a class="reference internal" href="#langchain_core.messages.base.BaseMessageChunk.id"><code class="docutils literal notranslate"><span class="pre">BaseMessageChunk.id</span></code></a></li>
 <li><a class="reference internal" href="#langchain_core.messages.base.BaseMessageChunk.name"><code class="docutils literal notranslate"><span class="pre">BaseMessageChunk.name</span></code></a></li>
 <li><a class="reference internal" href="#langchain_core.messages.base.BaseMessageChunk.type"><code class="docutils literal notranslate"><span class="pre">BaseMessageChunk.type</span></code></a></li>
 <li><a class="reference internal" href="#langchain_core.messages.base.BaseMessageChunk.construct"><code class="docutils literal notranslate"><span class="pre">BaseMessageChunk.construct()</span></code></a></li>
@@ -214,6 +219,11 @@
 <em class="property"><span class="pre">param</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">content</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">[Required]</span></em><a class="headerlink" href="#langchain_core.messages.base.BaseMessageChunk.content" title="Permalink to this definition">¶</a></dt>
 <dd><p>The string contents of the message.</p>
 </dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="langchain_core.messages.base.BaseMessageChunk.id">
+<em class="property"><span class="pre">param</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#langchain_core.messages.base.BaseMessageChunk.id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="py attribute pydantic_field">
 <dt class="sig sig-object py" id="langchain_core.messages.base.BaseMessageChunk.name">
@@ -546,7 +556,7 @@ to the object.</p>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Feb 23, 2024.
+          Last updated on Feb 26, 2024.
           <a href="../_sources/messages/langchain_core.messages.base.BaseMessageChunk.rst.txt" rel="nofollow">Show this page source</a>
       </footer>
     </div>

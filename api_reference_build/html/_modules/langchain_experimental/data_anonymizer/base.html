@@ -72,6 +72,9 @@
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../exa_api_reference.html">exa</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../fireworks_api_reference.html">fireworks</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../google_genai_api_reference.html">google-genai</a>
         </li>
         <li class="nav-item">
@@ -114,6 +117,7 @@
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../anthropic_api_reference.html">anthropic</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../astradb_api_reference.html">astradb</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../exa_api_reference.html">exa</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../../fireworks_api_reference.html">fireworks</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../google_genai_api_reference.html">google-genai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../google_vertexai_api_reference.html">google-vertexai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../groq_api_reference.html">groq</a>
@@ -173,8 +177,8 @@
 
 
 <div class="viewcode-block" id="AnonymizerBase"><a class="viewcode-back" href="../../../data_anonymizer/langchain_experimental.data_anonymizer.base.AnonymizerBase.html#langchain_experimental.data_anonymizer.base.AnonymizerBase">[docs]</a><span class="k">class</span> <span class="nc">AnonymizerBase</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Base abstract class for anonymizers.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Base abstract class for anonymizers.</span>
+
 <span class="sd">    It is public and non-virtual because it allows</span>
 <span class="sd">        wrapping the behavior for all methods in a base class.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -185,7 +189,8 @@
         <span class="n">language</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">allow_list</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Anonymize text&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Anonymize text.&quot;&quot;&quot;</span>
+
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_anonymize</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">language</span><span class="p">,</span> <span class="n">allow_list</span><span class="p">)</span></div>
 
     <span class="nd">@abstractmethod</span>
@@ -227,7 +232,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Feb 23, 2024.
+          Last updated on Feb 26, 2024.
       </footer>
     </div>
   </div>

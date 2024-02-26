@@ -72,6 +72,9 @@
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../exa_api_reference.html">exa</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../fireworks_api_reference.html">fireworks</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../google_genai_api_reference.html">google-genai</a>
         </li>
         <li class="nav-item">
@@ -114,6 +117,7 @@
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../anthropic_api_reference.html">anthropic</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../astradb_api_reference.html">astradb</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../exa_api_reference.html">exa</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../../fireworks_api_reference.html">fireworks</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../google_genai_api_reference.html">google-genai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../google_vertexai_api_reference.html">google-vertexai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../groq_api_reference.html">groq</a>
@@ -187,10 +191,7 @@
 <span class="kn">from</span> <span class="nn">langchain_community.utils.openai</span> <span class="kn">import</span> <span class="n">is_openai_v1</span>
 
 <span class="n">DEFAULT_BASE_URL</span> <span class="o">=</span> <span class="s2">&quot;https://api.endpoints.anyscale.com/v1&quot;</span>
-<span class="n">DEFAULT_MODEL</span> <span class="o">=</span> <span class="s2">&quot;Meta-Llama/Llama-Guard-7b&quot;</span>
-
-<span class="c1"># Completion models support by Anyscale Endpoints</span>
-<span class="n">COMPLETION_MODELS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Meta-Llama/Llama-Guard-7b&quot;</span><span class="p">]</span>
+<span class="n">DEFAULT_MODEL</span> <span class="o">=</span> <span class="s2">&quot;mistralai/Mixtral-8x7B-Instruct-v0.1&quot;</span>
 
 
 <div class="viewcode-block" id="update_token_usage"><a class="viewcode-back" href="../../../llms/langchain_community.llms.anyscale.update_token_usage.html#langchain_community.llms.anyscale.update_token_usage">[docs]</a><span class="k">def</span> <span class="nf">update_token_usage</span><span class="p">(</span>
@@ -276,12 +277,6 @@
             <span class="s2">&quot;MODEL_NAME&quot;</span><span class="p">,</span>
             <span class="n">default</span><span class="o">=</span><span class="n">DEFAULT_MODEL</span><span class="p">,</span>
         <span class="p">)</span>
-        <span class="k">if</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;model_name&quot;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">COMPLETION_MODELS</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="s2">&quot;langchain_community.llm.Anyscale ONLY works </span><span class="se">\</span>
-<span class="s2">            with completions models.For Chat models, please use </span><span class="se">\</span>
-<span class="s2">            langchain_community.chat_model.ChatAnyscale&quot;</span>
-            <span class="p">)</span>
 
         <span class="k">try</span><span class="p">:</span>
             <span class="kn">import</span> <span class="nn">openai</span>
@@ -298,7 +293,12 @@
                     <span class="c1"># &quot;default_query&quot;: values[&quot;default_query&quot;],</span>
                     <span class="c1"># &quot;http_client&quot;: values[&quot;http_client&quot;],</span>
                 <span class="p">}</span>
-                <span class="n">values</span><span class="p">[</span><span class="s2">&quot;client&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">OpenAI</span><span class="p">(</span><span class="o">**</span><span class="n">client_params</span><span class="p">)</span><span class="o">.</span><span class="n">completions</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">values</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;client&quot;</span><span class="p">):</span>
+                    <span class="n">values</span><span class="p">[</span><span class="s2">&quot;client&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">OpenAI</span><span class="p">(</span><span class="o">**</span><span class="n">client_params</span><span class="p">)</span><span class="o">.</span><span class="n">completions</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">values</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;async_client&quot;</span><span class="p">):</span>
+                    <span class="n">values</span><span class="p">[</span><span class="s2">&quot;async_client&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">AsyncOpenAI</span><span class="p">(</span>
+                        <span class="o">**</span><span class="n">client_params</span>
+                    <span class="p">)</span><span class="o">.</span><span class="n">completions</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">values</span><span class="p">[</span><span class="s2">&quot;openai_api_base&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;anyscale_api_base&quot;</span><span class="p">]</span>
                 <span class="n">values</span><span class="p">[</span><span class="s2">&quot;openai_api_key&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;anyscale_api_key&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get_secret_value</span><span class="p">()</span>
@@ -489,7 +489,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Feb 23, 2024.
+          Last updated on Feb 26, 2024.
       </footer>
     </div>
   </div>

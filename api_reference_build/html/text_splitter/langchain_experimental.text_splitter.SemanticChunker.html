@@ -73,6 +73,9 @@
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../exa_api_reference.html">exa</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../fireworks_api_reference.html">fireworks</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../google_genai_api_reference.html">google-genai</a>
         </li>
         <li class="nav-item">
@@ -115,6 +118,7 @@
               <a class="sk-nav-dropdown-item dropdown-item" href="../anthropic_api_reference.html">anthropic</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../astradb_api_reference.html">astradb</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../exa_api_reference.html">exa</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../fireworks_api_reference.html">fireworks</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../google_genai_api_reference.html">google-genai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../google_vertexai_api_reference.html">google-vertexai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../groq_api_reference.html">groq</a>
@@ -181,10 +185,10 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="langchain_experimental.text_splitter.SemanticChunker">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">langchain_experimental.text_splitter.</span></span><span class="sig-name descname"><span class="pre">SemanticChunker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">embeddings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../embeddings/langchain_core.embeddings.Embeddings.html#langchain_core.embeddings.Embeddings" title="langchain_core.embeddings.Embeddings"><span class="pre">Embeddings</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_start_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/langchain_experimental/text_splitter.html#SemanticChunker"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#langchain_experimental.text_splitter.SemanticChunker" title="Permalink to this definition">¶</a></dt>
-<dd><p>Splits the text based on semantic similarity.</p>
+<dd><p>Split the text based on semantic similarity.</p>
 <p>Taken from Greg Kamradt’s wonderful notebook:
 <a class="reference external" href="https://github.com/FullStackRetrieval-com/RetrievalTutorials/blob/main/5_Levels_Of_Text_Splitting.ipynb">https://github.com/FullStackRetrieval-com/RetrievalTutorials/blob/main/5_Levels_Of_Text_Splitting.ipynb</a></p>
-<p>All credit to him.</p>
+<p>All credits to him.</p>
 <p>At a high level, this splits into sentences, then groups into groups of 3
 sentences, and then merges one that are similar in the embedding space.</p>
 <p class="rubric">Methods</p>
@@ -328,7 +332,7 @@ sentences, and then merges one that are similar in the embedding space.</p>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Feb 23, 2024.
+          Last updated on Feb 26, 2024.
           <a href="../_sources/text_splitter/langchain_experimental.text_splitter.SemanticChunker.rst.txt" rel="nofollow">Show this page source</a>
       </footer>
     </div>

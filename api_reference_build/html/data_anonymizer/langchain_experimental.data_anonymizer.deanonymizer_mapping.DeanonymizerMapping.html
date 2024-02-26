@@ -73,6 +73,9 @@
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../exa_api_reference.html">exa</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../fireworks_api_reference.html">fireworks</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../google_genai_api_reference.html">google-genai</a>
         </li>
         <li class="nav-item">
@@ -115,6 +118,7 @@
               <a class="sk-nav-dropdown-item dropdown-item" href="../anthropic_api_reference.html">anthropic</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../astradb_api_reference.html">astradb</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../exa_api_reference.html">exa</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../fireworks_api_reference.html">fireworks</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../google_genai_api_reference.html">google-genai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../google_vertexai_api_reference.html">google-vertexai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../groq_api_reference.html">groq</a>
@@ -176,8 +180,9 @@
 <h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_experimental.data_anonymizer.deanonymizer_mapping</span></code>.DeanonymizerMapping<a class="headerlink" href="#langchain-experimental-data-anonymizer-deanonymizer-mapping-deanonymizermapping" title="Permalink to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="langchain_experimental.data_anonymizer.deanonymizer_mapping.DeanonymizerMapping">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">langchain_experimental.data_anonymizer.deanonymizer_mapping.</span></span><span class="sig-name descname"><span class="pre">DeanonymizerMapping</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mapping:</span> <span class="pre">Dict[str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Dict[str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">str]]</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/langchain_experimental/data_anonymizer/deanonymizer_mapping.html#DeanonymizerMapping"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#langchain_experimental.data_anonymizer.deanonymizer_mapping.DeanonymizerMapping" title="Permalink to this definition">¶</a></dt>
-<dd><p class="rubric">Attributes</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">langchain_experimental.data_anonymizer.deanonymizer_mapping.</span></span><span class="sig-name descname"><span class="pre">DeanonymizerMapping</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mapping:</span> <span class="pre">~typing.Dict[str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">~typing.Dict[str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">str]]</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/langchain_experimental/data_anonymizer/deanonymizer_mapping.html#DeanonymizerMapping"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#langchain_experimental.data_anonymizer.deanonymizer_mapping.DeanonymizerMapping" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deanonymizer mapping.</p>
+<p class="rubric">Attributes</p>
 <table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -185,7 +190,7 @@
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">data</span></code></p></td>
-<td><p>Return the deanonymizer mapping</p></td>
+<td><p>Return the deanonymizer mapping.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">mapping</span></code></p></td>
 <td><p></p></td>
@@ -203,7 +208,7 @@
 <td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#langchain_experimental.data_anonymizer.deanonymizer_mapping.DeanonymizerMapping.update" title="langchain_experimental.data_anonymizer.deanonymizer_mapping.DeanonymizerMapping.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code></a>(new_mapping)</p></td>
-<td><p>Update the deanonymizer mapping with new values Duplicated values will not be added If there are multiple entities of the same type, the mapping will include a count to differentiate them.</p></td>
+<td><p>Update the deanonymizer mapping with new values.</p></td>
 </tr>
 </tbody>
 </table>
@@ -228,8 +233,8 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="langchain_experimental.data_anonymizer.deanonymizer_mapping.DeanonymizerMapping.update">
 <span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_mapping</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/langchain_experimental/data_anonymizer/deanonymizer_mapping.html#DeanonymizerMapping.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#langchain_experimental.data_anonymizer.deanonymizer_mapping.DeanonymizerMapping.update" title="Permalink to this definition">¶</a></dt>
-<dd><p>Update the deanonymizer mapping with new values
-Duplicated values will not be added
+<dd><p>Update the deanonymizer mapping with new values.</p>
+<p>Duplicated values will not be added
 If there are multiple entities of the same type, the mapping will
 include a count to differentiate them. For example, if there are
 two names in the input text, the mapping will include NAME_1 and NAME_2.</p>
@@ -254,7 +259,7 @@ two names in the input text, the mapping will include NAME_1 and NAME_2.</p>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Feb 23, 2024.
+          Last updated on Feb 26, 2024.
           <a href="../_sources/data_anonymizer/langchain_experimental.data_anonymizer.deanonymizer_mapping.DeanonymizerMapping.rst.txt" rel="nofollow">Show this page source</a>
       </footer>
     </div>

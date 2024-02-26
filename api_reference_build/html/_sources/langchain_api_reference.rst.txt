@@ -1110,26 +1110,6 @@ Classes
     
     :template: pydantic.rst
     
-    output_parsers.openai_functions.JsonKeyOutputFunctionsParser
-    
-    :template: pydantic.rst
-    
-    output_parsers.openai_functions.JsonOutputFunctionsParser
-    
-    :template: pydantic.rst
-    
-    output_parsers.openai_functions.OutputFunctionsParser
-    
-    :template: pydantic.rst
-    
-    output_parsers.openai_functions.PydanticAttrOutputFunctionsParser
-    
-    :template: pydantic.rst
-    
-    output_parsers.openai_functions.PydanticOutputFunctionsParser
-    
-    :template: pydantic.rst
-    
     output_parsers.openai_tools.JsonOutputKeyToolsParser
     
     :template: pydantic.rst

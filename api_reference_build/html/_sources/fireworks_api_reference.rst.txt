@@ -1,0 +1,57 @@
+.. fireworks_api_reference:
+
+=======================
+``langchain_fireworks`` 0.0.1
+=======================
+
+:mod:`langchain_fireworks.chat_models`
+=======================================
+
+.. automodule:: langchain_fireworks.chat_models
+    :no-members:
+    :no-inherited-members:
+
+Classes
+--------------
+.. currentmodule:: langchain_fireworks
+
+.. autosummary::
+    :toctree: chat_models
+    :template: pydantic.rst
+    
+    chat_models.ChatFireworks
+    
+:mod:`langchain_fireworks.embeddings`
+======================================
+
+.. automodule:: langchain_fireworks.embeddings
+    :no-members:
+    :no-inherited-members:
+
+Classes
+--------------
+.. currentmodule:: langchain_fireworks
+
+.. autosummary::
+    :toctree: embeddings
+    :template: pydantic.rst
+    
+    embeddings.FireworksEmbeddings
+    
+:mod:`langchain_fireworks.llms`
+================================
+
+.. automodule:: langchain_fireworks.llms
+    :no-members:
+    :no-inherited-members:
+
+Classes
+--------------
+.. currentmodule:: langchain_fireworks
+
+.. autosummary::
+    :toctree: llms
+    :template: pydantic.rst
+    
+    llms.Fireworks
+    

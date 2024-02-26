@@ -73,6 +73,9 @@
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../exa_api_reference.html">exa</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../fireworks_api_reference.html">fireworks</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../google_genai_api_reference.html">google-genai</a>
         </li>
         <li class="nav-item">
@@ -115,6 +118,7 @@
               <a class="sk-nav-dropdown-item dropdown-item" href="../anthropic_api_reference.html">anthropic</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../astradb_api_reference.html">astradb</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../exa_api_reference.html">exa</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../fireworks_api_reference.html">fireworks</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../google_genai_api_reference.html">google-genai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../google_vertexai_api_reference.html">google-vertexai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../groq_api_reference.html">groq</a>
@@ -252,7 +256,9 @@
 <dt class="sig sig-object py" id="langchain_experimental.fallacy_removal.base.FallacyChain">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">langchain_experimental.fallacy_removal.base.</span></span><span class="sig-name descname"><span class="pre">FallacyChain</span></span><a class="reference internal" href="../_modules/langchain_experimental/fallacy_removal/base.html#FallacyChain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#langchain_experimental.fallacy_removal.base.FallacyChain" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../chains/langchain.chains.base.Chain.html#langchain.chains.base.Chain" title="langchain.chains.base.Chain"><code class="xref py py-class docutils literal notranslate"><span class="pre">Chain</span></code></a></p>
-<p>Chain for applying logical fallacy evaluations, modeled after Constitutional AI     and in same format, but applying logical fallacies as generalized rules to remove     in output</p>
+<p>Chain for applying logical fallacy evaluations.</p>
+<p>It is modeled after Constitutional AI and in same format, but
+applying logical fallacies as generalized rules to remove in output.</p>
 <p class="rubric">Example</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">langchain_community.llms</span> <span class="kn">import</span> <span class="n">OpenAI</span>
 <span class="kn">from</span> <span class="nn">langchain.chains</span> <span class="kn">import</span> <span class="n">LLMChain</span>
@@ -1689,7 +1695,7 @@ between retries</p></li>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Feb 23, 2024.
+          Last updated on Feb 26, 2024.
           <a href="../_sources/fallacy_removal/langchain_experimental.fallacy_removal.base.FallacyChain.rst.txt" rel="nofollow">Show this page source</a>
       </footer>
     </div>

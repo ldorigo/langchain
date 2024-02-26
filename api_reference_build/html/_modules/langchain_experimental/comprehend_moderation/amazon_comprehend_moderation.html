@@ -72,6 +72,9 @@
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../exa_api_reference.html">exa</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../fireworks_api_reference.html">fireworks</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../google_genai_api_reference.html">google-genai</a>
         </li>
         <li class="nav-item">
@@ -114,6 +117,7 @@
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../anthropic_api_reference.html">anthropic</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../astradb_api_reference.html">astradb</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../exa_api_reference.html">exa</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../../fireworks_api_reference.html">fireworks</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../google_genai_api_reference.html">google-genai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../google_vertexai_api_reference.html">google-vertexai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../groq_api_reference.html">groq</a>
@@ -177,7 +181,10 @@
 
 
 <div class="viewcode-block" id="AmazonComprehendModerationChain"><a class="viewcode-back" href="../../../comprehend_moderation/langchain_experimental.comprehend_moderation.amazon_comprehend_moderation.AmazonComprehendModerationChain.html#langchain_experimental.comprehend_moderation.amazon_comprehend_moderation.AmazonComprehendModerationChain">[docs]</a><span class="k">class</span> <span class="nc">AmazonComprehendModerationChain</span><span class="p">(</span><span class="n">Chain</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;A subclass of Chain, designed to apply moderation to LLMs.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Moderation Chain, based on `Amazon Comprehend` service.</span>
+
+<span class="sd">    See more at https://aws.amazon.com/comprehend/</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">output_key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;output&quot;</span>  <span class="c1">#: :meta private:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Key used to fetch/store the output in data containers. Defaults to `output`&quot;&quot;&quot;</span>
@@ -217,7 +224,7 @@
     <span class="nd">@root_validator</span><span class="p">(</span><span class="n">pre</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">create_client</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Creates an Amazon Comprehend client</span>
+<span class="sd">        Creates an Amazon Comprehend client.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            values (Dict[str, Any]): A dictionary containing configuration values.</span>
@@ -355,7 +362,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Feb 23, 2024.
+          Last updated on Feb 26, 2024.
       </footer>
     </div>
   </div>

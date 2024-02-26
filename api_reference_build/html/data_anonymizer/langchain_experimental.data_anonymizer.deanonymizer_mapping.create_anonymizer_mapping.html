@@ -73,6 +73,9 @@
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../exa_api_reference.html">exa</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../fireworks_api_reference.html">fireworks</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../google_genai_api_reference.html">google-genai</a>
         </li>
         <li class="nav-item">
@@ -115,6 +118,7 @@
               <a class="sk-nav-dropdown-item dropdown-item" href="../anthropic_api_reference.html">anthropic</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../astradb_api_reference.html">astradb</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../exa_api_reference.html">exa</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../fireworks_api_reference.html">fireworks</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../google_genai_api_reference.html">google-genai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../google_vertexai_api_reference.html">google-vertexai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../groq_api_reference.html">groq</a>
@@ -173,7 +177,10 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="langchain_experimental.data_anonymizer.deanonymizer_mapping.create_anonymizer_mapping">
 <span class="sig-prename descclassname"><span class="pre">langchain_experimental.data_anonymizer.deanonymizer_mapping.</span></span><span class="sig-name descname"><span class="pre">create_anonymizer_mapping</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">original_text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">analyzer_results</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">RecognizerResult</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">anonymizer_results</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">EngineResult</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_reversed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/langchain_experimental/data_anonymizer/deanonymizer_mapping.html#create_anonymizer_mapping"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#langchain_experimental.data_anonymizer.deanonymizer_mapping.create_anonymizer_mapping" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates or updates the mapping used to anonymize and/or deanonymize text.</p>
+<dd><dl class="simple">
+<dt>Create or update the mapping used to anonymize and/or</dt><dd><p>deanonymize a text.</p>
+</dd>
+</dl>
 <p>This method exploits the results returned by the
 analysis and anonymization processes.</p>
 <p>If is_reversed is True, it constructs a mapping from each original
@@ -222,7 +229,7 @@ two names in the input text, the mapping will include NAME_1 and NAME_2.</p>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Feb 23, 2024.
+          Last updated on Feb 26, 2024.
           <a href="../_sources/data_anonymizer/langchain_experimental.data_anonymizer.deanonymizer_mapping.create_anonymizer_mapping.rst.txt" rel="nofollow">Show this page source</a>
       </footer>
     </div>

@@ -72,6 +72,9 @@
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../exa_api_reference.html">exa</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../fireworks_api_reference.html">fireworks</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../google_genai_api_reference.html">google-genai</a>
         </li>
         <li class="nav-item">
@@ -114,6 +117,7 @@
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../anthropic_api_reference.html">anthropic</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../astradb_api_reference.html">astradb</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../exa_api_reference.html">exa</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../../fireworks_api_reference.html">fireworks</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../google_genai_api_reference.html">google-genai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../google_vertexai_api_reference.html">google-vertexai</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../groq_api_reference.html">groq</a>
@@ -204,6 +208,8 @@
 
 
 <div class="viewcode-block" id="TagParser"><a class="viewcode-back" href="../../../llms/langchain_experimental.llms.anthropic_functions.TagParser.html#langchain_experimental.llms.anthropic_functions.TagParser">[docs]</a><span class="k">class</span> <span class="nc">TagParser</span><span class="p">(</span><span class="n">HTMLParser</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Parser for the tool tags.&quot;&quot;&quot;</span>
+
 <div class="viewcode-block" id="TagParser.__init__"><a class="viewcode-back" href="../../../llms/langchain_experimental.llms.anthropic_functions.TagParser.html#langchain_experimental.llms.anthropic_functions.TagParser.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;A heavy-handed solution, but it&#39;s fast for prototyping.</span>
 
@@ -285,6 +291,8 @@
 
 
 <div class="viewcode-block" id="AnthropicFunctions"><a class="viewcode-back" href="../../../llms/langchain_experimental.llms.anthropic_functions.AnthropicFunctions.html#langchain_experimental.llms.anthropic_functions.AnthropicFunctions">[docs]</a><span class="k">class</span> <span class="nc">AnthropicFunctions</span><span class="p">(</span><span class="n">BaseChatModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Chat model for interacting with Anthropic functions.&quot;&quot;&quot;</span>
+
     <span class="n">llm</span><span class="p">:</span> <span class="n">BaseChatModel</span>
 
     <span class="nd">@root_validator</span><span class="p">(</span><span class="n">pre</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -385,7 +393,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Feb 23, 2024.
+          Last updated on Feb 26, 2024.
       </footer>
     </div>
   </div>
