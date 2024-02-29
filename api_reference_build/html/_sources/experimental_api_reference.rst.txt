@@ -1,7 +1,7 @@
 .. experimental_api_reference:
 
 =======================
-``langchain_experimental`` 0.0.52
+``langchain_experimental`` 0.0.53
 =======================
 
 :mod:`langchain_experimental.agents`

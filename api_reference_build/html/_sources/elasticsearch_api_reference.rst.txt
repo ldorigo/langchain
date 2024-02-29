@@ -1,0 +1,73 @@
+.. elasticsearch_api_reference:
+
+=======================
+``langchain_elasticsearch`` 0.1.0
+=======================
+
+:mod:`langchain_elasticsearch.chat_history`
+============================================
+
+.. automodule:: langchain_elasticsearch.chat_history
+    :no-members:
+    :no-inherited-members:
+
+Classes
+--------------
+.. currentmodule:: langchain_elasticsearch
+
+.. autosummary::
+    :toctree: chat_history
+    :template: class.rst
+    
+    chat_history.ElasticsearchChatMessageHistory
+    
+:mod:`langchain_elasticsearch.embeddings`
+==========================================
+
+.. automodule:: langchain_elasticsearch.embeddings
+    :no-members:
+    :no-inherited-members:
+
+Classes
+--------------
+.. currentmodule:: langchain_elasticsearch
+
+.. autosummary::
+    :toctree: embeddings
+    :template: class.rst
+    
+    embeddings.ElasticsearchEmbeddings
+    
+:mod:`langchain_elasticsearch.vectorstores`
+============================================
+
+.. automodule:: langchain_elasticsearch.vectorstores
+    :no-members:
+    :no-inherited-members:
+
+Classes
+--------------
+.. currentmodule:: langchain_elasticsearch
+
+.. autosummary::
+    :toctree: vectorstores
+    :template: class.rst
+    
+    vectorstores.ApproxRetrievalStrategy
+    
+    :template: class.rst
+    
+    vectorstores.BaseRetrievalStrategy
+    
+    :template: class.rst
+    
+    vectorstores.ElasticsearchStore
+    
+    :template: class.rst
+    
+    vectorstores.ExactRetrievalStrategy
+    
+    :template: class.rst
+    
+    vectorstores.SparseRetrievalStrategy
+    

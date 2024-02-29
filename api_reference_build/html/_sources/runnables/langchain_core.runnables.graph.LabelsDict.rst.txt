@@ -1,0 +1,16 @@
+﻿:mod:`langchain_core.runnables.graph`.LabelsDict
+=======================================================
+
+.. currentmodule:: langchain_core.runnables.graph
+
+.. autoclass:: LabelsDict
+
+    
+   
+  .. autoattribute:: nodes
+   
+  .. autoattribute:: edges
+   
+   
+
+.. example_links:: LabelsDict

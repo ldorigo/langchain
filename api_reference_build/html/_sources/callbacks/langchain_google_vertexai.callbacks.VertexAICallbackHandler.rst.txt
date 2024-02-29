@@ -1,0 +1,82 @@
+﻿:mod:`langchain_google_vertexai.callbacks`.VertexAICallbackHandler
+=========================================================================
+
+.. currentmodule:: langchain_google_vertexai.callbacks
+
+.. autoclass:: VertexAICallbackHandler
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~VertexAICallbackHandler.always_verbose
+      ~VertexAICallbackHandler.completion_characters
+      ~VertexAICallbackHandler.completion_tokens
+      ~VertexAICallbackHandler.ignore_agent
+      ~VertexAICallbackHandler.ignore_chain
+      ~VertexAICallbackHandler.ignore_chat_model
+      ~VertexAICallbackHandler.ignore_llm
+      ~VertexAICallbackHandler.ignore_retriever
+      ~VertexAICallbackHandler.ignore_retry
+      ~VertexAICallbackHandler.prompt_characters
+      ~VertexAICallbackHandler.prompt_tokens
+      ~VertexAICallbackHandler.raise_error
+      ~VertexAICallbackHandler.run_inline
+      ~VertexAICallbackHandler.successful_requests
+   
+   
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~VertexAICallbackHandler.__init__
+      ~VertexAICallbackHandler.on_agent_action
+      ~VertexAICallbackHandler.on_agent_finish
+      ~VertexAICallbackHandler.on_chain_end
+      ~VertexAICallbackHandler.on_chain_error
+      ~VertexAICallbackHandler.on_chain_start
+      ~VertexAICallbackHandler.on_chat_model_start
+      ~VertexAICallbackHandler.on_llm_end
+      ~VertexAICallbackHandler.on_llm_error
+      ~VertexAICallbackHandler.on_llm_new_token
+      ~VertexAICallbackHandler.on_llm_start
+      ~VertexAICallbackHandler.on_retriever_end
+      ~VertexAICallbackHandler.on_retriever_error
+      ~VertexAICallbackHandler.on_retriever_start
+      ~VertexAICallbackHandler.on_retry
+      ~VertexAICallbackHandler.on_text
+      ~VertexAICallbackHandler.on_tool_end
+      ~VertexAICallbackHandler.on_tool_error
+      ~VertexAICallbackHandler.on_tool_start
+
+   
+   .. automethod:: VertexAICallbackHandler.__init__
+   .. automethod:: VertexAICallbackHandler.on_agent_action
+   .. automethod:: VertexAICallbackHandler.on_agent_finish
+   .. automethod:: VertexAICallbackHandler.on_chain_end
+   .. automethod:: VertexAICallbackHandler.on_chain_error
+   .. automethod:: VertexAICallbackHandler.on_chain_start
+   .. automethod:: VertexAICallbackHandler.on_chat_model_start
+   .. automethod:: VertexAICallbackHandler.on_llm_end
+   .. automethod:: VertexAICallbackHandler.on_llm_error
+   .. automethod:: VertexAICallbackHandler.on_llm_new_token
+   .. automethod:: VertexAICallbackHandler.on_llm_start
+   .. automethod:: VertexAICallbackHandler.on_retriever_end
+   .. automethod:: VertexAICallbackHandler.on_retriever_error
+   .. automethod:: VertexAICallbackHandler.on_retriever_start
+   .. automethod:: VertexAICallbackHandler.on_retry
+   .. automethod:: VertexAICallbackHandler.on_text
+   .. automethod:: VertexAICallbackHandler.on_tool_end
+   .. automethod:: VertexAICallbackHandler.on_tool_error
+   .. automethod:: VertexAICallbackHandler.on_tool_start
+
+   
+   
+
+
+.. example_links:: VertexAICallbackHandler

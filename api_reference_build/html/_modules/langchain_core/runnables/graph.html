@@ -63,10 +63,16 @@
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../ai21_api_reference.html">ai21</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../airbyte_api_reference.html">airbyte</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../anthropic_api_reference.html">anthropic</a>
         </li>
         <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../astradb_api_reference.html">astradb</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../elasticsearch_api_reference.html">elasticsearch</a>
         </li>
         <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../exa_api_reference.html">exa</a>
@@ -114,8 +120,10 @@
           <a class="sk-nav-link nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Partner libs</a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../ai21_api_reference.html">ai21</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../../airbyte_api_reference.html">airbyte</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../anthropic_api_reference.html">anthropic</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../astradb_api_reference.html">astradb</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../../elasticsearch_api_reference.html">elasticsearch</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../exa_api_reference.html">exa</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../fireworks_api_reference.html">fireworks</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../google_genai_api_reference.html">google-genai</a>
@@ -169,14 +177,30 @@
 
 <span class="kn">import</span> <span class="nn">inspect</span>
 <span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">NamedTuple</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">TYPE_CHECKING</span><span class="p">,</span>
+    <span class="n">Any</span><span class="p">,</span>
+    <span class="n">Dict</span><span class="p">,</span>
+    <span class="n">List</span><span class="p">,</span>
+    <span class="n">NamedTuple</span><span class="p">,</span>
+    <span class="n">Optional</span><span class="p">,</span>
+    <span class="n">Type</span><span class="p">,</span>
+    <span class="n">TypedDict</span><span class="p">,</span>
+    <span class="n">Union</span><span class="p">,</span>
+    <span class="n">overload</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="kn">from</span> <span class="nn">uuid</span> <span class="kn">import</span> <span class="n">UUID</span><span class="p">,</span> <span class="n">uuid4</span>
 
 <span class="kn">from</span> <span class="nn">langchain_core.pydantic_v1</span> <span class="kn">import</span> <span class="n">BaseModel</span>
-<span class="kn">from</span> <span class="nn">langchain_core.runnables.graph_draw</span> <span class="kn">import</span> <span class="n">draw</span>
+<span class="kn">from</span> <span class="nn">langchain_core.runnables.graph_ascii</span> <span class="kn">import</span> <span class="n">draw_ascii</span>
 
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">langchain_core.runnables.base</span> <span class="kn">import</span> <span class="n">Runnable</span> <span class="k">as</span> <span class="n">RunnableType</span>
+
+
+<div class="viewcode-block" id="LabelsDict"><a class="viewcode-back" href="../../../runnables/langchain_core.runnables.graph.LabelsDict.html#langchain_core.runnables.graph.LabelsDict">[docs]</a><span class="k">class</span> <span class="nc">LabelsDict</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+    <span class="n">nodes</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span>
+    <span class="n">edges</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span></div>
 
 
 <div class="viewcode-block" id="is_uuid"><a class="viewcode-back" href="../../../runnables/langchain_core.runnables.graph.is_uuid.html#langchain_core.runnables.graph.is_uuid">[docs]</a><span class="k">def</span> <span class="nf">is_uuid</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
@@ -380,20 +404,48 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">remove_node</span><span class="p">(</span><span class="n">last_node</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Graph.draw_ascii"><a class="viewcode-back" href="../../../runnables/langchain_core.runnables.graph.Graph.html#langchain_core.runnables.graph.Graph.draw_ascii">[docs]</a>    <span class="k">def</span> <span class="nf">draw_ascii</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">draw</span><span class="p">(</span>
+        <span class="k">return</span> <span class="n">draw_ascii</span><span class="p">(</span>
             <span class="p">{</span><span class="n">node</span><span class="o">.</span><span class="n">id</span><span class="p">:</span> <span class="n">node_data_str</span><span class="p">(</span><span class="n">node</span><span class="p">)</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">values</span><span class="p">()},</span>
             <span class="p">[(</span><span class="n">edge</span><span class="o">.</span><span class="n">source</span><span class="p">,</span> <span class="n">edge</span><span class="o">.</span><span class="n">target</span><span class="p">)</span> <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">],</span>
         <span class="p">)</span></div>
 
 <div class="viewcode-block" id="Graph.print_ascii"><a class="viewcode-back" href="../../../runnables/langchain_core.runnables.graph.Graph.html#langchain_core.runnables.graph.Graph.print_ascii">[docs]</a>    <span class="k">def</span> <span class="nf">print_ascii</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">draw_ascii</span><span class="p">())</span>  <span class="c1"># noqa: T201</span></div></div>
+        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">draw_ascii</span><span class="p">())</span>  <span class="c1"># noqa: T201</span></div>
+
+    <span class="nd">@overload</span>
+    <span class="k">def</span> <span class="nf">draw_png</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">output_file_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">fontname</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">labels</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">LabelsDict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="o">...</span>
+
+    <span class="nd">@overload</span>
+    <span class="k">def</span> <span class="nf">draw_png</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">output_file_path</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">fontname</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">labels</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">LabelsDict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
+        <span class="o">...</span>
+
+<div class="viewcode-block" id="Graph.draw_png"><a class="viewcode-back" href="../../../runnables/langchain_core.runnables.graph.Graph.html#langchain_core.runnables.graph.Graph.draw_png">[docs]</a>    <span class="k">def</span> <span class="nf">draw_png</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">output_file_path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">fontname</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">labels</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">LabelsDict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">bytes</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+        <span class="kn">from</span> <span class="nn">langchain_core.runnables.graph_png</span> <span class="kn">import</span> <span class="n">PngDrawer</span>
+
+        <span class="k">return</span> <span class="n">PngDrawer</span><span class="p">(</span><span class="n">fontname</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_file_path</span><span class="p">)</span></div></div>
 </pre></div>
 
       </div>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Feb 26, 2024.
+          Last updated on Feb 29, 2024.
       </footer>
     </div>
   </div>

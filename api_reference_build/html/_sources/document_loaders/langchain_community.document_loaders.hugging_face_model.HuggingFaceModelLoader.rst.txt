@@ -1,0 +1,46 @@
+﻿:mod:`langchain_community.document_loaders.hugging_face_model`.HuggingFaceModelLoader
+============================================================================================
+
+.. currentmodule:: langchain_community.document_loaders.hugging_face_model
+
+.. autoclass:: HuggingFaceModelLoader
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~HuggingFaceModelLoader.BASE_URL
+      ~HuggingFaceModelLoader.README_BASE_URL
+   
+   
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~HuggingFaceModelLoader.__init__
+      ~HuggingFaceModelLoader.alazy_load
+      ~HuggingFaceModelLoader.fetch_models
+      ~HuggingFaceModelLoader.fetch_readme_content
+      ~HuggingFaceModelLoader.lazy_load
+      ~HuggingFaceModelLoader.load
+      ~HuggingFaceModelLoader.load_and_split
+
+   
+   .. automethod:: HuggingFaceModelLoader.__init__
+   .. automethod:: HuggingFaceModelLoader.alazy_load
+   .. automethod:: HuggingFaceModelLoader.fetch_models
+   .. automethod:: HuggingFaceModelLoader.fetch_readme_content
+   .. automethod:: HuggingFaceModelLoader.lazy_load
+   .. automethod:: HuggingFaceModelLoader.load
+   .. automethod:: HuggingFaceModelLoader.load_and_split
+
+   
+   
+
+
+.. example_links:: HuggingFaceModelLoader

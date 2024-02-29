@@ -63,10 +63,16 @@
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../ai21_api_reference.html">ai21</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../airbyte_api_reference.html">airbyte</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../anthropic_api_reference.html">anthropic</a>
         </li>
         <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../astradb_api_reference.html">astradb</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../elasticsearch_api_reference.html">elasticsearch</a>
         </li>
         <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../exa_api_reference.html">exa</a>
@@ -114,8 +120,10 @@
           <a class="sk-nav-link nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Partner libs</a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="sk-nav-dropdown-item dropdown-item" href="../../ai21_api_reference.html">ai21</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../airbyte_api_reference.html">airbyte</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../anthropic_api_reference.html">anthropic</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../astradb_api_reference.html">astradb</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../elasticsearch_api_reference.html">elasticsearch</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../exa_api_reference.html">exa</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../fireworks_api_reference.html">fireworks</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../google_genai_api_reference.html">google-genai</a>
@@ -167,7 +175,7 @@
   <h1>Source code for langchain_experimental.text_splitter</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">copy</span>
 <span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">cast</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">langchain_community.utils.math</span> <span class="kn">import</span> <span class="p">(</span>
@@ -250,6 +258,14 @@
     <span class="k">return</span> <span class="n">distances</span><span class="p">,</span> <span class="n">sentences</span></div>
 
 
+<span class="n">BreakpointThresholdType</span> <span class="o">=</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;percentile&quot;</span><span class="p">,</span> <span class="s2">&quot;standard_deviation&quot;</span><span class="p">,</span> <span class="s2">&quot;interquartile&quot;</span><span class="p">]</span>
+<span class="n">BREAKPOINT_DEFAULTS</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">BreakpointThresholdType</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;percentile&quot;</span><span class="p">:</span> <span class="mi">95</span><span class="p">,</span>
+    <span class="s2">&quot;standard_deviation&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="s2">&quot;interquartile&quot;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span>
+<span class="p">}</span>
+
+
 <div class="viewcode-block" id="SemanticChunker"><a class="viewcode-back" href="../../text_splitter/langchain_experimental.text_splitter.SemanticChunker.html#langchain_experimental.text_splitter.SemanticChunker">[docs]</a><span class="k">class</span> <span class="nc">SemanticChunker</span><span class="p">(</span><span class="n">BaseDocumentTransformer</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Split the text based on semantic similarity.</span>
 
@@ -262,12 +278,89 @@
 <span class="sd">    sentences, and then merges one that are similar in the embedding space.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="SemanticChunker.__init__"><a class="viewcode-back" href="../../text_splitter/langchain_experimental.text_splitter.SemanticChunker.html#langchain_experimental.text_splitter.SemanticChunker.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">embeddings</span><span class="p">:</span> <span class="n">Embeddings</span><span class="p">,</span> <span class="n">add_start_index</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="SemanticChunker.__init__"><a class="viewcode-back" href="../../text_splitter/langchain_experimental.text_splitter.SemanticChunker.html#langchain_experimental.text_splitter.SemanticChunker.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">embeddings</span><span class="p">:</span> <span class="n">Embeddings</span><span class="p">,</span>
+        <span class="n">add_start_index</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">breakpoint_threshold_type</span><span class="p">:</span> <span class="n">BreakpointThresholdType</span> <span class="o">=</span> <span class="s2">&quot;percentile&quot;</span><span class="p">,</span>
+        <span class="n">breakpoint_threshold_amount</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">number_of_chunks</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_add_start_index</span> <span class="o">=</span> <span class="n">add_start_index</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">embeddings</span> <span class="o">=</span> <span class="n">embeddings</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">embeddings</span> <span class="o">=</span> <span class="n">embeddings</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">breakpoint_threshold_type</span> <span class="o">=</span> <span class="n">breakpoint_threshold_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">number_of_chunks</span> <span class="o">=</span> <span class="n">number_of_chunks</span>
+        <span class="k">if</span> <span class="n">breakpoint_threshold_amount</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">breakpoint_threshold_amount</span> <span class="o">=</span> <span class="n">BREAKPOINT_DEFAULTS</span><span class="p">[</span>
+                <span class="n">breakpoint_threshold_type</span>
+            <span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">breakpoint_threshold_amount</span> <span class="o">=</span> <span class="n">breakpoint_threshold_amount</span></div>
 
-<div class="viewcode-block" id="SemanticChunker.split_text"><a class="viewcode-back" href="../../text_splitter/langchain_experimental.text_splitter.SemanticChunker.html#langchain_experimental.text_splitter.SemanticChunker.split_text">[docs]</a>    <span class="k">def</span> <span class="nf">split_text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="k">def</span> <span class="nf">_calculate_breakpoint_threshold</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">distances</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">breakpoint_threshold_type</span> <span class="o">==</span> <span class="s2">&quot;percentile&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">cast</span><span class="p">(</span>
+                <span class="nb">float</span><span class="p">,</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">distances</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">breakpoint_threshold_amount</span><span class="p">),</span>
+            <span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">breakpoint_threshold_type</span> <span class="o">==</span> <span class="s2">&quot;standard_deviation&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">cast</span><span class="p">(</span>
+                <span class="nb">float</span><span class="p">,</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">distances</span><span class="p">)</span>
+                <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">breakpoint_threshold_amount</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">distances</span><span class="p">),</span>
+            <span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">breakpoint_threshold_type</span> <span class="o">==</span> <span class="s2">&quot;interquartile&quot;</span><span class="p">:</span>
+            <span class="n">q1</span><span class="p">,</span> <span class="n">q3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">distances</span><span class="p">,</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">75</span><span class="p">])</span>
+            <span class="n">iqr</span> <span class="o">=</span> <span class="n">q3</span> <span class="o">-</span> <span class="n">q1</span>
+
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">distances</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">breakpoint_threshold_amount</span> <span class="o">*</span> <span class="n">iqr</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Got unexpected `breakpoint_threshold_type`: &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">breakpoint_threshold_type</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_threshold_from_clusters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">distances</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculate the threshold based on the number of chunks.</span>
+<span class="sd">        Inverse of percentile method.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">number_of_chunks</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;This should never be called if `number_of_chunks` is None.&quot;</span>
+            <span class="p">)</span>
+        <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">distances</span><span class="p">),</span> <span class="mf">0.0</span>
+        <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">100.0</span>
+
+        <span class="n">x</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">number_of_chunks</span><span class="p">,</span> <span class="n">x1</span><span class="p">),</span> <span class="n">x2</span><span class="p">)</span>
+
+        <span class="c1"># Linear interpolation formula</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">y1</span> <span class="o">+</span> <span class="p">((</span><span class="n">y2</span> <span class="o">-</span> <span class="n">y1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">x2</span> <span class="o">-</span> <span class="n">x1</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">x1</span><span class="p">)</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">100</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">distances</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">_calculate_sentence_distances</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">single_sentences_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Split text into multiple components.&quot;&quot;&quot;</span>
+
+        <span class="n">_sentences</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">{</span><span class="s2">&quot;sentence&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">,</span> <span class="s2">&quot;index&quot;</span><span class="p">:</span> <span class="n">i</span><span class="p">}</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">single_sentences_list</span><span class="p">)</span>
+        <span class="p">]</span>
+        <span class="n">sentences</span> <span class="o">=</span> <span class="n">combine_sentences</span><span class="p">(</span><span class="n">_sentences</span><span class="p">)</span>
+        <span class="n">embeddings</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embeddings</span><span class="o">.</span><span class="n">embed_documents</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;combined_sentence&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">sentences</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sentences</span><span class="p">):</span>
+            <span class="n">sentence</span><span class="p">[</span><span class="s2">&quot;combined_sentence_embedding&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">embeddings</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">calculate_cosine_distances</span><span class="p">(</span><span class="n">sentences</span><span class="p">)</span>
+
+<div class="viewcode-block" id="SemanticChunker.split_text"><a class="viewcode-back" href="../../text_splitter/langchain_experimental.text_splitter.SemanticChunker.html#langchain_experimental.text_splitter.SemanticChunker.split_text">[docs]</a>    <span class="k">def</span> <span class="nf">split_text</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
         <span class="c1"># Splitting the essay on &#39;.&#39;, &#39;?&#39;, and &#39;!&#39;</span>
         <span class="n">single_sentences_list</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(?&lt;=[.?!])\s+&quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
 
@@ -275,29 +368,20 @@
         <span class="c1"># np.percentile to fail.</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">single_sentences_list</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">single_sentences_list</span>
-
-        <span class="n">sentences</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="p">{</span><span class="s2">&quot;sentence&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">,</span> <span class="s2">&quot;index&quot;</span><span class="p">:</span> <span class="n">i</span><span class="p">}</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">single_sentences_list</span><span class="p">)</span>
-        <span class="p">]</span>
-        <span class="n">sentences</span> <span class="o">=</span> <span class="n">combine_sentences</span><span class="p">(</span><span class="n">sentences</span><span class="p">)</span>
-        <span class="n">embeddings</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embeddings</span><span class="o">.</span><span class="n">embed_documents</span><span class="p">(</span>
-            <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;combined_sentence&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">sentences</span><span class="p">]</span>
-        <span class="p">)</span>
-        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sentences</span><span class="p">):</span>
-            <span class="n">sentence</span><span class="p">[</span><span class="s2">&quot;combined_sentence_embedding&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">embeddings</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-        <span class="n">distances</span><span class="p">,</span> <span class="n">sentences</span> <span class="o">=</span> <span class="n">calculate_cosine_distances</span><span class="p">(</span><span class="n">sentences</span><span class="p">)</span>
-        <span class="n">start_index</span> <span class="o">=</span> <span class="mi">0</span>
-
-        <span class="c1"># Create a list to hold the grouped sentences</span>
-        <span class="n">chunks</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">breakpoint_percentile_threshold</span> <span class="o">=</span> <span class="mi">95</span>
-        <span class="n">breakpoint_distance_threshold</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span>
-            <span class="n">distances</span><span class="p">,</span> <span class="n">breakpoint_percentile_threshold</span>
-        <span class="p">)</span>  <span class="c1"># If you want more chunks, lower the percentile cutoff</span>
+        <span class="n">distances</span><span class="p">,</span> <span class="n">sentences</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_calculate_sentence_distances</span><span class="p">(</span><span class="n">single_sentences_list</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">number_of_chunks</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">breakpoint_distance_threshold</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_threshold_from_clusters</span><span class="p">(</span><span class="n">distances</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">breakpoint_distance_threshold</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_calculate_breakpoint_threshold</span><span class="p">(</span>
+                <span class="n">distances</span>
+            <span class="p">)</span>
 
         <span class="n">indices_above_thresh</span> <span class="o">=</span> <span class="p">[</span>
             <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">distances</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">breakpoint_distance_threshold</span>
-        <span class="p">]</span>  <span class="c1"># The indices of those breakpoints on your list</span>
+        <span class="p">]</span>
+
+        <span class="n">chunks</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">start_index</span> <span class="o">=</span> <span class="mi">0</span>
 
         <span class="c1"># Iterate through the breakpoints to slice the sentences</span>
         <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">indices_above_thresh</span><span class="p">:</span>
@@ -354,7 +438,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Feb 26, 2024.
+          Last updated on Feb 29, 2024.
       </footer>
     </div>
   </div>

@@ -1,9 +1,26 @@
 .. google_vertexai_api_reference:
 
 =======================
-``langchain_google_vertexai`` 0.0.5
+``langchain_google_vertexai`` 0.1.0
 =======================
 
+:mod:`langchain_google_vertexai.callbacks`
+===========================================
+
+.. automodule:: langchain_google_vertexai.callbacks
+    :no-members:
+    :no-inherited-members:
+
+Classes
+--------------
+.. currentmodule:: langchain_google_vertexai
+
+.. autosummary::
+    :toctree: callbacks
+    :template: class.rst
+    
+    callbacks.VertexAICallbackHandler
+    
 :mod:`langchain_google_vertexai.chains`
 ========================================
 
@@ -52,6 +69,10 @@ Classes
 
 .. autosummary::
     :toctree: embeddings
+    :template: enum.rst
+    
+    embeddings.GoogleEmbeddingModelType
+    
     :template: pydantic.rst
     
     embeddings.VertexAIEmbeddings
@@ -73,6 +94,53 @@ Classes
     
     functions_utils.PydanticFunctionsOutputParser
     
+:mod:`langchain_google_vertexai.gemma`
+=======================================
+
+.. automodule:: langchain_google_vertexai.gemma
+    :no-members:
+    :no-inherited-members:
+
+Classes
+--------------
+.. currentmodule:: langchain_google_vertexai
+
+.. autosummary::
+    :toctree: gemma
+    :template: pydantic.rst
+    
+    gemma.GemmaChatLocalHF
+    
+    :template: pydantic.rst
+    
+    gemma.GemmaChatLocalKaggle
+    
+    :template: pydantic.rst
+    
+    gemma.GemmaChatVertexAIModelGarden
+    
+    :template: pydantic.rst
+    
+    gemma.GemmaLocalHF
+    
+    :template: pydantic.rst
+    
+    gemma.GemmaLocalKaggle
+    
+    :template: pydantic.rst
+    
+    gemma.GemmaVertexAIModelGarden
+    
+Functions
+--------------
+.. currentmodule:: langchain_google_vertexai
+
+.. autosummary::
+    :toctree: gemma
+    :template: function.rst
+
+    gemma.gemma_messages_to_prompt
+
 :mod:`langchain_google_vertexai.llms`
 ======================================
 
@@ -90,7 +158,70 @@ Classes
     
     llms.VertexAI
     
+:mod:`langchain_google_vertexai.model_garden`
+==============================================
+
+.. automodule:: langchain_google_vertexai.model_garden
+    :no-members:
+    :no-inherited-members:
+
+Classes
+--------------
+.. currentmodule:: langchain_google_vertexai
+
+.. autosummary::
+    :toctree: model_garden
     :template: pydantic.rst
     
-    llms.VertexAIModelGarden
+    model_garden.VertexAIModelGarden
+    
+:mod:`langchain_google_vertexai.vectorstores`
+==============================================
+
+.. automodule:: langchain_google_vertexai.vectorstores
+    :no-members:
+    :no-inherited-members:
+
+Classes
+--------------
+.. currentmodule:: langchain_google_vertexai
+
+.. autosummary::
+    :toctree: vectorstores
+    :template: class.rst
+    
+    vectorstores.vectorstores.VectorSearchVectorStore
+    
+:mod:`langchain_google_vertexai.vision_models`
+===============================================
+
+.. automodule:: langchain_google_vertexai.vision_models
+    :no-members:
+    :no-inherited-members:
+
+Classes
+--------------
+.. currentmodule:: langchain_google_vertexai
+
+.. autosummary::
+    :toctree: vision_models
+    :template: pydantic.rst
+    
+    vision_models.VertexAIImageCaptioning
+    
+    :template: pydantic.rst
+    
+    vision_models.VertexAIImageCaptioningChat
+    
+    :template: pydantic.rst
+    
+    vision_models.VertexAIImageEditorChat
+    
+    :template: pydantic.rst
+    
+    vision_models.VertexAIImageGeneratorChat
+    
+    :template: pydantic.rst
+    
+    vision_models.VertexAIVisualQnAChat
     

@@ -63,10 +63,16 @@
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../ai21_api_reference.html">ai21</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../airbyte_api_reference.html">airbyte</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../anthropic_api_reference.html">anthropic</a>
         </li>
         <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../astradb_api_reference.html">astradb</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../elasticsearch_api_reference.html">elasticsearch</a>
         </li>
         <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../exa_api_reference.html">exa</a>
@@ -114,8 +120,10 @@
           <a class="sk-nav-link nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Partner libs</a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../ai21_api_reference.html">ai21</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../../airbyte_api_reference.html">airbyte</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../anthropic_api_reference.html">anthropic</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../astradb_api_reference.html">astradb</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../../elasticsearch_api_reference.html">elasticsearch</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../exa_api_reference.html">exa</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../fireworks_api_reference.html">fireworks</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../google_genai_api_reference.html">google-genai</a>
@@ -384,10 +392,12 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="s2">&quot;n&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
             <span class="n">k</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;n&quot;</span><span class="p">)</span>
-        <span class="n">matches</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_table</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">vectors</span><span class="o">=</span><span class="p">[</span><span class="n">embedding</span><span class="p">],</span> <span class="n">n</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="nb">filter</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)[</span>
-            <span class="mi">0</span>
-        <span class="p">]</span>
-        <span class="n">docs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">matches</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_table</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">vectors</span><span class="o">=</span><span class="p">[</span><span class="n">embedding</span><span class="p">],</span> <span class="n">n</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="nb">filter</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">docs</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">matches</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="n">matches</span> <span class="o">=</span> <span class="n">matches</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">docs</span>
         <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">matches</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s2">&quot;records&quot;</span><span class="p">):</span>
             <span class="n">text</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;text&quot;</span><span class="p">)</span>
             <span class="n">score</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;__nn_distance&quot;</span><span class="p">)</span>
@@ -440,7 +450,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Feb 26, 2024.
+          Last updated on Feb 29, 2024.
       </footer>
     </div>
   </div>

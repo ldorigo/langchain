@@ -1,7 +1,7 @@
 .. google_genai_api_reference:
 
 =======================
-``langchain_google_genai`` 0.0.9
+``langchain_google_genai`` 0.0.10rc0
 =======================
 
 :mod:`langchain_google_genai.chat_models`

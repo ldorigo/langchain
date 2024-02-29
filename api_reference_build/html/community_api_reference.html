@@ -64,10 +64,16 @@
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="ai21_api_reference.html">ai21</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="airbyte_api_reference.html">airbyte</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="anthropic_api_reference.html">anthropic</a>
         </li>
         <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="astradb_api_reference.html">astradb</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="elasticsearch_api_reference.html">elasticsearch</a>
         </li>
         <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="exa_api_reference.html">exa</a>
@@ -115,8 +121,10 @@
           <a class="sk-nav-link nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Partner libs</a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="sk-nav-dropdown-item dropdown-item" href="ai21_api_reference.html">ai21</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="airbyte_api_reference.html">airbyte</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="anthropic_api_reference.html">anthropic</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="astradb_api_reference.html">astradb</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="elasticsearch_api_reference.html">elasticsearch</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="exa_api_reference.html">exa</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="fireworks_api_reference.html">fireworks</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="google_genai_api_reference.html">google-genai</a>
@@ -199,71 +207,75 @@
 <li><a class="reference internal" href="#id12">Classes</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#module-langchain_community.document_loaders"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_community.document_loaders</span></code></a><ul>
+<li><a class="reference internal" href="#module-langchain_community.document_compressors"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_community.document_compressors</span></code></a><ul>
 <li><a class="reference internal" href="#id13">Classes</a></li>
-<li><a class="reference internal" href="#id18">Functions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-langchain_community.document_loaders"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_community.document_loaders</span></code></a><ul>
+<li><a class="reference internal" href="#id14">Classes</a></li>
+<li><a class="reference internal" href="#id19">Functions</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-langchain_community.document_transformers"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_community.document_transformers</span></code></a><ul>
-<li><a class="reference internal" href="#id19">Classes</a></li>
-<li><a class="reference internal" href="#id20">Functions</a></li>
+<li><a class="reference internal" href="#id20">Classes</a></li>
+<li><a class="reference internal" href="#id21">Functions</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-langchain_community.embeddings"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_community.embeddings</span></code></a><ul>
-<li><a class="reference internal" href="#id21">Classes</a></li>
-<li><a class="reference internal" href="#id22">Functions</a></li>
+<li><a class="reference internal" href="#id22">Classes</a></li>
+<li><a class="reference internal" href="#id23">Functions</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-langchain_community.example_selectors"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_community.example_selectors</span></code></a><ul>
-<li><a class="reference internal" href="#id23">Classes</a></li>
-<li><a class="reference internal" href="#id24">Functions</a></li>
+<li><a class="reference internal" href="#id24">Classes</a></li>
+<li><a class="reference internal" href="#id25">Functions</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-langchain_community.graphs"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_community.graphs</span></code></a><ul>
-<li><a class="reference internal" href="#id25">Classes</a></li>
-<li><a class="reference internal" href="#id26">Functions</a></li>
+<li><a class="reference internal" href="#id26">Classes</a></li>
+<li><a class="reference internal" href="#id27">Functions</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-langchain_community.indexes"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_community.indexes</span></code></a><ul>
-<li><a class="reference internal" href="#id27">Classes</a></li>
+<li><a class="reference internal" href="#id28">Classes</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-langchain_community.llms"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_community.llms</span></code></a><ul>
-<li><a class="reference internal" href="#id28">Classes</a></li>
-<li><a class="reference internal" href="#id29">Functions</a></li>
+<li><a class="reference internal" href="#id29">Classes</a></li>
+<li><a class="reference internal" href="#id30">Functions</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-langchain_community.output_parsers"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_community.output_parsers</span></code></a><ul>
-<li><a class="reference internal" href="#id30">Classes</a></li>
+<li><a class="reference internal" href="#id31">Classes</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-langchain_community.retrievers"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_community.retrievers</span></code></a><ul>
-<li><a class="reference internal" href="#id31">Classes</a></li>
-<li><a class="reference internal" href="#id32">Functions</a></li>
+<li><a class="reference internal" href="#id32">Classes</a></li>
+<li><a class="reference internal" href="#id33">Functions</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-langchain_community.storage"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_community.storage</span></code></a><ul>
-<li><a class="reference internal" href="#id33">Classes</a></li>
+<li><a class="reference internal" href="#id34">Classes</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-langchain_community.tools"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_community.tools</span></code></a><ul>
-<li><a class="reference internal" href="#id34">Classes</a></li>
-<li><a class="reference internal" href="#id35">Functions</a></li>
+<li><a class="reference internal" href="#id35">Classes</a></li>
+<li><a class="reference internal" href="#id36">Functions</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-langchain_community.utilities"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_community.utilities</span></code></a><ul>
-<li><a class="reference internal" href="#id36">Classes</a></li>
-<li><a class="reference internal" href="#id37">Functions</a></li>
+<li><a class="reference internal" href="#id37">Classes</a></li>
+<li><a class="reference internal" href="#id38">Functions</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-langchain_community.utils"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_community.utils</span></code></a><ul>
-<li><a class="reference internal" href="#id38">Classes</a></li>
-<li><a class="reference internal" href="#id39">Functions</a></li>
+<li><a class="reference internal" href="#id39">Classes</a></li>
+<li><a class="reference internal" href="#id40">Functions</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-langchain_community.vectorstores"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_community.vectorstores</span></code></a><ul>
-<li><a class="reference internal" href="#id40">Classes</a></li>
-<li><a class="reference internal" href="#id41">Functions</a></li>
+<li><a class="reference internal" href="#id41">Classes</a></li>
+<li><a class="reference internal" href="#id42">Functions</a></li>
 </ul>
 </li>
 </ul>
@@ -1396,6 +1408,23 @@ an interface where “chat messages” are the inputs and outputs.</p>
 </table>
 </section>
 </section>
+<section id="module-langchain_community.document_compressors">
+<span id="langchain-community-document-compressors"></span><h2><a class="reference internal" href="#module-langchain_community.document_compressors" title="langchain_community.document_compressors"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_community.document_compressors</span></code></a><a class="headerlink" href="#module-langchain_community.document_compressors" title="Permalink to this heading">¶</a></h2>
+<section id="id13">
+<h3>Classes<a class="headerlink" href="#id13" title="Permalink to this heading">¶</a></h3>
+<table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_compressors/langchain_community.document_compressors.llmlingua_filter.LLMLinguaCompressor.html#langchain_community.document_compressors.llmlingua_filter.LLMLinguaCompressor" title="langchain_community.document_compressors.llmlingua_filter.LLMLinguaCompressor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_compressors.llmlingua_filter.LLMLinguaCompressor</span></code></a></p></td>
+<td><p>Compress using LLMLingua Project.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
 <section id="module-langchain_community.document_loaders">
 <span id="langchain-community-document-loaders"></span><h2><a class="reference internal" href="#module-langchain_community.document_loaders" title="langchain_community.document_loaders"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_community.document_loaders</span></code></a><a class="headerlink" href="#module-langchain_community.document_loaders" title="Permalink to this heading">¶</a></h2>
 <p><strong>Document Loaders</strong>  are classes to load Documents.</p>
@@ -1408,8 +1437,8 @@ an interface where “chat messages” are the inputs and outputs.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Document</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span><span class="n">TextSplitter</span>
 </pre></div>
 </div>
-<section id="id13">
-<h3>Classes<a class="headerlink" href="#id13" title="Permalink to this heading">¶</a></h3>
+<section id="id14">
+<h3>Classes<a class="headerlink" href="#id14" title="Permalink to this heading">¶</a></h3>
 <table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -1692,332 +1721,338 @@ an interface where “chat messages” are the inputs and outputs.</p>
 <tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.hugging_face_dataset.HuggingFaceDatasetLoader.html#langchain_community.document_loaders.hugging_face_dataset.HuggingFaceDatasetLoader" title="langchain_community.document_loaders.hugging_face_dataset.HuggingFaceDatasetLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.hugging_face_dataset.HuggingFaceDatasetLoader</span></code></a>(path)</p></td>
 <td><p>Load from <cite>Hugging Face Hub</cite> datasets.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.ifixit.IFixitLoader.html#langchain_community.document_loaders.ifixit.IFixitLoader" title="langchain_community.document_loaders.ifixit.IFixitLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.ifixit.IFixitLoader</span></code></a>(web_path)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.hugging_face_model.HuggingFaceModelLoader.html#langchain_community.document_loaders.hugging_face_model.HuggingFaceModelLoader" title="langchain_community.document_loaders.hugging_face_model.HuggingFaceModelLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.hugging_face_model.HuggingFaceModelLoader</span></code></a>(*)</p></td>
+<td><p>Load model information from <cite>Hugging Face Hub</cite>, including README content.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.ifixit.IFixitLoader.html#langchain_community.document_loaders.ifixit.IFixitLoader" title="langchain_community.document_loaders.ifixit.IFixitLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.ifixit.IFixitLoader</span></code></a>(web_path)</p></td>
 <td><p>Load <cite>iFixit</cite> repair guides, device wikis and answers.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.image.UnstructuredImageLoader.html#langchain_community.document_loaders.image.UnstructuredImageLoader" title="langchain_community.document_loaders.image.UnstructuredImageLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.image.UnstructuredImageLoader</span></code></a>(...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.image.UnstructuredImageLoader.html#langchain_community.document_loaders.image.UnstructuredImageLoader" title="langchain_community.document_loaders.image.UnstructuredImageLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.image.UnstructuredImageLoader</span></code></a>(...)</p></td>
 <td><p>Load <cite>PNG</cite> and <cite>JPG</cite> files using <cite>Unstructured</cite>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.image_captions.ImageCaptionLoader.html#langchain_community.document_loaders.image_captions.ImageCaptionLoader" title="langchain_community.document_loaders.image_captions.ImageCaptionLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.image_captions.ImageCaptionLoader</span></code></a>(images)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.image_captions.ImageCaptionLoader.html#langchain_community.document_loaders.image_captions.ImageCaptionLoader" title="langchain_community.document_loaders.image_captions.ImageCaptionLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.image_captions.ImageCaptionLoader</span></code></a>(images)</p></td>
 <td><p>Load image captions.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.imsdb.IMSDbLoader.html#langchain_community.document_loaders.imsdb.IMSDbLoader" title="langchain_community.document_loaders.imsdb.IMSDbLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.imsdb.IMSDbLoader</span></code></a>([...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.imsdb.IMSDbLoader.html#langchain_community.document_loaders.imsdb.IMSDbLoader" title="langchain_community.document_loaders.imsdb.IMSDbLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.imsdb.IMSDbLoader</span></code></a>([...])</p></td>
 <td><p>Load <cite>IMSDb</cite> webpages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.iugu.IuguLoader.html#langchain_community.document_loaders.iugu.IuguLoader" title="langchain_community.document_loaders.iugu.IuguLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.iugu.IuguLoader</span></code></a>(resource[, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.iugu.IuguLoader.html#langchain_community.document_loaders.iugu.IuguLoader" title="langchain_community.document_loaders.iugu.IuguLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.iugu.IuguLoader</span></code></a>(resource[, ...])</p></td>
 <td><p>Load from <cite>IUGU</cite>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.joplin.JoplinLoader.html#langchain_community.document_loaders.joplin.JoplinLoader" title="langchain_community.document_loaders.joplin.JoplinLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.joplin.JoplinLoader</span></code></a>([...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.joplin.JoplinLoader.html#langchain_community.document_loaders.joplin.JoplinLoader" title="langchain_community.document_loaders.joplin.JoplinLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.joplin.JoplinLoader</span></code></a>([...])</p></td>
 <td><p>Load notes from <cite>Joplin</cite>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.json_loader.JSONLoader.html#langchain_community.document_loaders.json_loader.JSONLoader" title="langchain_community.document_loaders.json_loader.JSONLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.json_loader.JSONLoader</span></code></a>(...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.json_loader.JSONLoader.html#langchain_community.document_loaders.json_loader.JSONLoader" title="langchain_community.document_loaders.json_loader.JSONLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.json_loader.JSONLoader</span></code></a>(...)</p></td>
 <td><p>Load a <cite>JSON</cite> file using a <cite>jq</cite> schema.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.lakefs.LakeFSClient.html#langchain_community.document_loaders.lakefs.LakeFSClient" title="langchain_community.document_loaders.lakefs.LakeFSClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.lakefs.LakeFSClient</span></code></a>(...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.lakefs.LakeFSClient.html#langchain_community.document_loaders.lakefs.LakeFSClient" title="langchain_community.document_loaders.lakefs.LakeFSClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.lakefs.LakeFSClient</span></code></a>(...)</p></td>
 <td><p>Client for lakeFS.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.lakefs.LakeFSLoader.html#langchain_community.document_loaders.lakefs.LakeFSLoader" title="langchain_community.document_loaders.lakefs.LakeFSLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.lakefs.LakeFSLoader</span></code></a>(...[, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.lakefs.LakeFSLoader.html#langchain_community.document_loaders.lakefs.LakeFSLoader" title="langchain_community.document_loaders.lakefs.LakeFSLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.lakefs.LakeFSLoader</span></code></a>(...[, ...])</p></td>
 <td><p>Load from <cite>lakeFS</cite>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.lakefs.UnstructuredLakeFSLoader.html#langchain_community.document_loaders.lakefs.UnstructuredLakeFSLoader" title="langchain_community.document_loaders.lakefs.UnstructuredLakeFSLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.lakefs.UnstructuredLakeFSLoader</span></code></a>(...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.lakefs.UnstructuredLakeFSLoader.html#langchain_community.document_loaders.lakefs.UnstructuredLakeFSLoader" title="langchain_community.document_loaders.lakefs.UnstructuredLakeFSLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.lakefs.UnstructuredLakeFSLoader</span></code></a>(...)</p></td>
 <td><p>Load from <cite>lakeFS</cite> as unstructured data.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.larksuite.LarkSuiteDocLoader.html#langchain_community.document_loaders.larksuite.LarkSuiteDocLoader" title="langchain_community.document_loaders.larksuite.LarkSuiteDocLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.larksuite.LarkSuiteDocLoader</span></code></a>(...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.larksuite.LarkSuiteDocLoader.html#langchain_community.document_loaders.larksuite.LarkSuiteDocLoader" title="langchain_community.document_loaders.larksuite.LarkSuiteDocLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.larksuite.LarkSuiteDocLoader</span></code></a>(...)</p></td>
 <td><p>Load from <cite>LarkSuite</cite> (<cite>FeiShu</cite>).</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.markdown.UnstructuredMarkdownLoader.html#langchain_community.document_loaders.markdown.UnstructuredMarkdownLoader" title="langchain_community.document_loaders.markdown.UnstructuredMarkdownLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.markdown.UnstructuredMarkdownLoader</span></code></a>(...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.markdown.UnstructuredMarkdownLoader.html#langchain_community.document_loaders.markdown.UnstructuredMarkdownLoader" title="langchain_community.document_loaders.markdown.UnstructuredMarkdownLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.markdown.UnstructuredMarkdownLoader</span></code></a>(...)</p></td>
 <td><p>Load <cite>Markdown</cite> files using <cite>Unstructured</cite>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.mastodon.MastodonTootsLoader.html#langchain_community.document_loaders.mastodon.MastodonTootsLoader" title="langchain_community.document_loaders.mastodon.MastodonTootsLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.mastodon.MastodonTootsLoader</span></code></a>(...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.mastodon.MastodonTootsLoader.html#langchain_community.document_loaders.mastodon.MastodonTootsLoader" title="langchain_community.document_loaders.mastodon.MastodonTootsLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.mastodon.MastodonTootsLoader</span></code></a>(...)</p></td>
 <td><p>Load the <cite>Mastodon</cite> 'toots'.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.max_compute.MaxComputeLoader.html#langchain_community.document_loaders.max_compute.MaxComputeLoader" title="langchain_community.document_loaders.max_compute.MaxComputeLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.max_compute.MaxComputeLoader</span></code></a>(...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.max_compute.MaxComputeLoader.html#langchain_community.document_loaders.max_compute.MaxComputeLoader" title="langchain_community.document_loaders.max_compute.MaxComputeLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.max_compute.MaxComputeLoader</span></code></a>(...)</p></td>
 <td><p>Load from <cite>Alibaba Cloud MaxCompute</cite> table.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.mediawikidump.MWDumpLoader.html#langchain_community.document_loaders.mediawikidump.MWDumpLoader" title="langchain_community.document_loaders.mediawikidump.MWDumpLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.mediawikidump.MWDumpLoader</span></code></a>(...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.mediawikidump.MWDumpLoader.html#langchain_community.document_loaders.mediawikidump.MWDumpLoader" title="langchain_community.document_loaders.mediawikidump.MWDumpLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.mediawikidump.MWDumpLoader</span></code></a>(...)</p></td>
 <td><p>Load <cite>MediaWiki</cite> dump from an <cite>XML</cite> file.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.merge.MergedDataLoader.html#langchain_community.document_loaders.merge.MergedDataLoader" title="langchain_community.document_loaders.merge.MergedDataLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.merge.MergedDataLoader</span></code></a>(loaders)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.merge.MergedDataLoader.html#langchain_community.document_loaders.merge.MergedDataLoader" title="langchain_community.document_loaders.merge.MergedDataLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.merge.MergedDataLoader</span></code></a>(loaders)</p></td>
 <td><p>Merge documents from a list of loaders</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.mhtml.MHTMLLoader.html#langchain_community.document_loaders.mhtml.MHTMLLoader" title="langchain_community.document_loaders.mhtml.MHTMLLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.mhtml.MHTMLLoader</span></code></a>(file_path)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.mhtml.MHTMLLoader.html#langchain_community.document_loaders.mhtml.MHTMLLoader" title="langchain_community.document_loaders.mhtml.MHTMLLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.mhtml.MHTMLLoader</span></code></a>(file_path)</p></td>
 <td><p>Parse <cite>MHTML</cite> files with <cite>BeautifulSoup</cite>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.modern_treasury.ModernTreasuryLoader.html#langchain_community.document_loaders.modern_treasury.ModernTreasuryLoader" title="langchain_community.document_loaders.modern_treasury.ModernTreasuryLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.modern_treasury.ModernTreasuryLoader</span></code></a>(...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.modern_treasury.ModernTreasuryLoader.html#langchain_community.document_loaders.modern_treasury.ModernTreasuryLoader" title="langchain_community.document_loaders.modern_treasury.ModernTreasuryLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.modern_treasury.ModernTreasuryLoader</span></code></a>(...)</p></td>
 <td><p>Load from <cite>Modern Treasury</cite>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.mongodb.MongodbLoader.html#langchain_community.document_loaders.mongodb.MongodbLoader" title="langchain_community.document_loaders.mongodb.MongodbLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.mongodb.MongodbLoader</span></code></a>(...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.mongodb.MongodbLoader.html#langchain_community.document_loaders.mongodb.MongodbLoader" title="langchain_community.document_loaders.mongodb.MongodbLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.mongodb.MongodbLoader</span></code></a>(...)</p></td>
 <td><p>Load MongoDB documents.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.news.NewsURLLoader.html#langchain_community.document_loaders.news.NewsURLLoader" title="langchain_community.document_loaders.news.NewsURLLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.news.NewsURLLoader</span></code></a>(urls[, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.news.NewsURLLoader.html#langchain_community.document_loaders.news.NewsURLLoader" title="langchain_community.document_loaders.news.NewsURLLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.news.NewsURLLoader</span></code></a>(urls[, ...])</p></td>
 <td><p>Load news articles from URLs using <cite>Unstructured</cite>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.notebook.NotebookLoader.html#langchain_community.document_loaders.notebook.NotebookLoader" title="langchain_community.document_loaders.notebook.NotebookLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.notebook.NotebookLoader</span></code></a>(path)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.notebook.NotebookLoader.html#langchain_community.document_loaders.notebook.NotebookLoader" title="langchain_community.document_loaders.notebook.NotebookLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.notebook.NotebookLoader</span></code></a>(path)</p></td>
 <td><p>Load <cite>Jupyter notebook</cite> (.ipynb) files.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.notion.NotionDirectoryLoader.html#langchain_community.document_loaders.notion.NotionDirectoryLoader" title="langchain_community.document_loaders.notion.NotionDirectoryLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.notion.NotionDirectoryLoader</span></code></a>(path, *)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.notion.NotionDirectoryLoader.html#langchain_community.document_loaders.notion.NotionDirectoryLoader" title="langchain_community.document_loaders.notion.NotionDirectoryLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.notion.NotionDirectoryLoader</span></code></a>(path, *)</p></td>
 <td><p>Load <cite>Notion directory</cite> dump.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.notiondb.NotionDBLoader.html#langchain_community.document_loaders.notiondb.NotionDBLoader" title="langchain_community.document_loaders.notiondb.NotionDBLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.notiondb.NotionDBLoader</span></code></a>(...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.notiondb.NotionDBLoader.html#langchain_community.document_loaders.notiondb.NotionDBLoader" title="langchain_community.document_loaders.notiondb.NotionDBLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.notiondb.NotionDBLoader</span></code></a>(...)</p></td>
 <td><p>Load from <cite>Notion DB</cite>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.nuclia.NucliaLoader.html#langchain_community.document_loaders.nuclia.NucliaLoader" title="langchain_community.document_loaders.nuclia.NucliaLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.nuclia.NucliaLoader</span></code></a>(path, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.nuclia.NucliaLoader.html#langchain_community.document_loaders.nuclia.NucliaLoader" title="langchain_community.document_loaders.nuclia.NucliaLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.nuclia.NucliaLoader</span></code></a>(path, ...)</p></td>
 <td><p>Load from any file type using <cite>Nuclia Understanding API</cite>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.obs_directory.OBSDirectoryLoader.html#langchain_community.document_loaders.obs_directory.OBSDirectoryLoader" title="langchain_community.document_loaders.obs_directory.OBSDirectoryLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.obs_directory.OBSDirectoryLoader</span></code></a>(...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.obs_directory.OBSDirectoryLoader.html#langchain_community.document_loaders.obs_directory.OBSDirectoryLoader" title="langchain_community.document_loaders.obs_directory.OBSDirectoryLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.obs_directory.OBSDirectoryLoader</span></code></a>(...)</p></td>
 <td><p>Load from <cite>Huawei OBS directory</cite>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.obs_file.OBSFileLoader.html#langchain_community.document_loaders.obs_file.OBSFileLoader" title="langchain_community.document_loaders.obs_file.OBSFileLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.obs_file.OBSFileLoader</span></code></a>(...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.obs_file.OBSFileLoader.html#langchain_community.document_loaders.obs_file.OBSFileLoader" title="langchain_community.document_loaders.obs_file.OBSFileLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.obs_file.OBSFileLoader</span></code></a>(...)</p></td>
 <td><p>Load from the <cite>Huawei OBS file</cite>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.obsidian.ObsidianLoader.html#langchain_community.document_loaders.obsidian.ObsidianLoader" title="langchain_community.document_loaders.obsidian.ObsidianLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.obsidian.ObsidianLoader</span></code></a>(path)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.obsidian.ObsidianLoader.html#langchain_community.document_loaders.obsidian.ObsidianLoader" title="langchain_community.document_loaders.obsidian.ObsidianLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.obsidian.ObsidianLoader</span></code></a>(path)</p></td>
 <td><p>Load <cite>Obsidian</cite> files from directory.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.odt.UnstructuredODTLoader.html#langchain_community.document_loaders.odt.UnstructuredODTLoader" title="langchain_community.document_loaders.odt.UnstructuredODTLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.odt.UnstructuredODTLoader</span></code></a>(...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.odt.UnstructuredODTLoader.html#langchain_community.document_loaders.odt.UnstructuredODTLoader" title="langchain_community.document_loaders.odt.UnstructuredODTLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.odt.UnstructuredODTLoader</span></code></a>(...)</p></td>
 <td><p>Load <cite>OpenOffice ODT</cite> files using <cite>Unstructured</cite>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.onedrive.OneDriveLoader.html#langchain_community.document_loaders.onedrive.OneDriveLoader" title="langchain_community.document_loaders.onedrive.OneDriveLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.onedrive.OneDriveLoader</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.onedrive.OneDriveLoader.html#langchain_community.document_loaders.onedrive.OneDriveLoader" title="langchain_community.document_loaders.onedrive.OneDriveLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.onedrive.OneDriveLoader</span></code></a></p></td>
 <td><p>Load from <cite>Microsoft OneDrive</cite>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.onedrive_file.OneDriveFileLoader.html#langchain_community.document_loaders.onedrive_file.OneDriveFileLoader" title="langchain_community.document_loaders.onedrive_file.OneDriveFileLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.onedrive_file.OneDriveFileLoader</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.onedrive_file.OneDriveFileLoader.html#langchain_community.document_loaders.onedrive_file.OneDriveFileLoader" title="langchain_community.document_loaders.onedrive_file.OneDriveFileLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.onedrive_file.OneDriveFileLoader</span></code></a></p></td>
 <td><p>Load a file from <cite>Microsoft OneDrive</cite>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.onenote.OneNoteLoader.html#langchain_community.document_loaders.onenote.OneNoteLoader" title="langchain_community.document_loaders.onenote.OneNoteLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.onenote.OneNoteLoader</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.onenote.OneNoteLoader.html#langchain_community.document_loaders.onenote.OneNoteLoader" title="langchain_community.document_loaders.onenote.OneNoteLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.onenote.OneNoteLoader</span></code></a></p></td>
 <td><p>Load pages from OneNote notebooks.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.open_city_data.OpenCityDataLoader.html#langchain_community.document_loaders.open_city_data.OpenCityDataLoader" title="langchain_community.document_loaders.open_city_data.OpenCityDataLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.open_city_data.OpenCityDataLoader</span></code></a>(...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.open_city_data.OpenCityDataLoader.html#langchain_community.document_loaders.open_city_data.OpenCityDataLoader" title="langchain_community.document_loaders.open_city_data.OpenCityDataLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.open_city_data.OpenCityDataLoader</span></code></a>(...)</p></td>
 <td><p>Load from <cite>Open City</cite>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.org_mode.UnstructuredOrgModeLoader.html#langchain_community.document_loaders.org_mode.UnstructuredOrgModeLoader" title="langchain_community.document_loaders.org_mode.UnstructuredOrgModeLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.org_mode.UnstructuredOrgModeLoader</span></code></a>(...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.org_mode.UnstructuredOrgModeLoader.html#langchain_community.document_loaders.org_mode.UnstructuredOrgModeLoader" title="langchain_community.document_loaders.org_mode.UnstructuredOrgModeLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.org_mode.UnstructuredOrgModeLoader</span></code></a>(...)</p></td>
 <td><p>Load <cite>Org-Mode</cite> files using <cite>Unstructured</cite>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.audio.OpenAIWhisperParser.html#langchain_community.document_loaders.parsers.audio.OpenAIWhisperParser" title="langchain_community.document_loaders.parsers.audio.OpenAIWhisperParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.audio.OpenAIWhisperParser</span></code></a>([...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.audio.OpenAIWhisperParser.html#langchain_community.document_loaders.parsers.audio.OpenAIWhisperParser" title="langchain_community.document_loaders.parsers.audio.OpenAIWhisperParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.audio.OpenAIWhisperParser</span></code></a>([...])</p></td>
 <td><p>Transcribe and parse audio files.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.audio.OpenAIWhisperParserLocal.html#langchain_community.document_loaders.parsers.audio.OpenAIWhisperParserLocal" title="langchain_community.document_loaders.parsers.audio.OpenAIWhisperParserLocal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.audio.OpenAIWhisperParserLocal</span></code></a>([...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.audio.OpenAIWhisperParserLocal.html#langchain_community.document_loaders.parsers.audio.OpenAIWhisperParserLocal" title="langchain_community.document_loaders.parsers.audio.OpenAIWhisperParserLocal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.audio.OpenAIWhisperParserLocal</span></code></a>([...])</p></td>
 <td><p>Transcribe and parse audio files with OpenAI Whisper model.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.audio.YandexSTTParser.html#langchain_community.document_loaders.parsers.audio.YandexSTTParser" title="langchain_community.document_loaders.parsers.audio.YandexSTTParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.audio.YandexSTTParser</span></code></a>(*)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.audio.YandexSTTParser.html#langchain_community.document_loaders.parsers.audio.YandexSTTParser" title="langchain_community.document_loaders.parsers.audio.YandexSTTParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.audio.YandexSTTParser</span></code></a>(*)</p></td>
 <td><p>Transcribe and parse audio files.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.doc_intelligence.AzureAIDocumentIntelligenceParser.html#langchain_community.document_loaders.parsers.doc_intelligence.AzureAIDocumentIntelligenceParser" title="langchain_community.document_loaders.parsers.doc_intelligence.AzureAIDocumentIntelligenceParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.doc_intelligence.AzureAIDocumentIntelligenceParser</span></code></a>(...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.doc_intelligence.AzureAIDocumentIntelligenceParser.html#langchain_community.document_loaders.parsers.doc_intelligence.AzureAIDocumentIntelligenceParser" title="langchain_community.document_loaders.parsers.doc_intelligence.AzureAIDocumentIntelligenceParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.doc_intelligence.AzureAIDocumentIntelligenceParser</span></code></a>(...)</p></td>
 <td><p>Loads a PDF with Azure Document Intelligence (formerly Forms Recognizer).</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.docai.DocAIParser.html#langchain_community.document_loaders.parsers.docai.DocAIParser" title="langchain_community.document_loaders.parsers.docai.DocAIParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.docai.DocAIParser</span></code></a>(*)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.docai.DocAIParser.html#langchain_community.document_loaders.parsers.docai.DocAIParser" title="langchain_community.document_loaders.parsers.docai.DocAIParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.docai.DocAIParser</span></code></a>(*)</p></td>
 <td><p><cite>Google Cloud Document AI</cite> parser.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.docai.DocAIParsingResults.html#langchain_community.document_loaders.parsers.docai.DocAIParsingResults" title="langchain_community.document_loaders.parsers.docai.DocAIParsingResults"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.docai.DocAIParsingResults</span></code></a>(...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.docai.DocAIParsingResults.html#langchain_community.document_loaders.parsers.docai.DocAIParsingResults" title="langchain_community.document_loaders.parsers.docai.DocAIParsingResults"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.docai.DocAIParsingResults</span></code></a>(...)</p></td>
 <td><p>A dataclass to store Document AI parsing results.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.generic.MimeTypeBasedParser.html#langchain_community.document_loaders.parsers.generic.MimeTypeBasedParser" title="langchain_community.document_loaders.parsers.generic.MimeTypeBasedParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.generic.MimeTypeBasedParser</span></code></a>(...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.generic.MimeTypeBasedParser.html#langchain_community.document_loaders.parsers.generic.MimeTypeBasedParser" title="langchain_community.document_loaders.parsers.generic.MimeTypeBasedParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.generic.MimeTypeBasedParser</span></code></a>(...)</p></td>
 <td><p>Parser that uses <cite>mime</cite>-types to parse a blob.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.grobid.GrobidParser.html#langchain_community.document_loaders.parsers.grobid.GrobidParser" title="langchain_community.document_loaders.parsers.grobid.GrobidParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.grobid.GrobidParser</span></code></a>(...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.grobid.GrobidParser.html#langchain_community.document_loaders.parsers.grobid.GrobidParser" title="langchain_community.document_loaders.parsers.grobid.GrobidParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.grobid.GrobidParser</span></code></a>(...)</p></td>
 <td><p>Load  article <cite>PDF</cite> files using <cite>Grobid</cite>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.grobid.ServerUnavailableException.html#langchain_community.document_loaders.parsers.grobid.ServerUnavailableException" title="langchain_community.document_loaders.parsers.grobid.ServerUnavailableException"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.grobid.ServerUnavailableException</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.grobid.ServerUnavailableException.html#langchain_community.document_loaders.parsers.grobid.ServerUnavailableException" title="langchain_community.document_loaders.parsers.grobid.ServerUnavailableException"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.grobid.ServerUnavailableException</span></code></a></p></td>
 <td><p>Exception raised when the Grobid server is unavailable.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.html.bs4.BS4HTMLParser.html#langchain_community.document_loaders.parsers.html.bs4.BS4HTMLParser" title="langchain_community.document_loaders.parsers.html.bs4.BS4HTMLParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.html.bs4.BS4HTMLParser</span></code></a>(*)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.html.bs4.BS4HTMLParser.html#langchain_community.document_loaders.parsers.html.bs4.BS4HTMLParser" title="langchain_community.document_loaders.parsers.html.bs4.BS4HTMLParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.html.bs4.BS4HTMLParser</span></code></a>(*)</p></td>
 <td><p>Pparse HTML files using <cite>Beautiful Soup</cite>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.language.c.CSegmenter.html#langchain_community.document_loaders.parsers.language.c.CSegmenter" title="langchain_community.document_loaders.parsers.language.c.CSegmenter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.language.c.CSegmenter</span></code></a>(code)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.language.c.CSegmenter.html#langchain_community.document_loaders.parsers.language.c.CSegmenter" title="langchain_community.document_loaders.parsers.language.c.CSegmenter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.language.c.CSegmenter</span></code></a>(code)</p></td>
 <td><p>Code segmenter for C.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.language.cobol.CobolSegmenter.html#langchain_community.document_loaders.parsers.language.cobol.CobolSegmenter" title="langchain_community.document_loaders.parsers.language.cobol.CobolSegmenter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.language.cobol.CobolSegmenter</span></code></a>(code)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.language.cobol.CobolSegmenter.html#langchain_community.document_loaders.parsers.language.cobol.CobolSegmenter" title="langchain_community.document_loaders.parsers.language.cobol.CobolSegmenter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.language.cobol.CobolSegmenter</span></code></a>(code)</p></td>
 <td><p>Code segmenter for <cite>COBOL</cite>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.language.code_segmenter.CodeSegmenter.html#langchain_community.document_loaders.parsers.language.code_segmenter.CodeSegmenter" title="langchain_community.document_loaders.parsers.language.code_segmenter.CodeSegmenter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.language.code_segmenter.CodeSegmenter</span></code></a>(code)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.language.code_segmenter.CodeSegmenter.html#langchain_community.document_loaders.parsers.language.code_segmenter.CodeSegmenter" title="langchain_community.document_loaders.parsers.language.code_segmenter.CodeSegmenter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.language.code_segmenter.CodeSegmenter</span></code></a>(code)</p></td>
 <td><p>Abstract class for the code segmenter.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.language.cpp.CPPSegmenter.html#langchain_community.document_loaders.parsers.language.cpp.CPPSegmenter" title="langchain_community.document_loaders.parsers.language.cpp.CPPSegmenter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.language.cpp.CPPSegmenter</span></code></a>(code)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.language.cpp.CPPSegmenter.html#langchain_community.document_loaders.parsers.language.cpp.CPPSegmenter" title="langchain_community.document_loaders.parsers.language.cpp.CPPSegmenter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.language.cpp.CPPSegmenter</span></code></a>(code)</p></td>
 <td><p>Code segmenter for C++.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.language.csharp.CSharpSegmenter.html#langchain_community.document_loaders.parsers.language.csharp.CSharpSegmenter" title="langchain_community.document_loaders.parsers.language.csharp.CSharpSegmenter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.language.csharp.CSharpSegmenter</span></code></a>(code)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.language.csharp.CSharpSegmenter.html#langchain_community.document_loaders.parsers.language.csharp.CSharpSegmenter" title="langchain_community.document_loaders.parsers.language.csharp.CSharpSegmenter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.language.csharp.CSharpSegmenter</span></code></a>(code)</p></td>
 <td><p>Code segmenter for C#.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.language.go.GoSegmenter.html#langchain_community.document_loaders.parsers.language.go.GoSegmenter" title="langchain_community.document_loaders.parsers.language.go.GoSegmenter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.language.go.GoSegmenter</span></code></a>(code)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.language.go.GoSegmenter.html#langchain_community.document_loaders.parsers.language.go.GoSegmenter" title="langchain_community.document_loaders.parsers.language.go.GoSegmenter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.language.go.GoSegmenter</span></code></a>(code)</p></td>
 <td><p>Code segmenter for Go.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.language.java.JavaSegmenter.html#langchain_community.document_loaders.parsers.language.java.JavaSegmenter" title="langchain_community.document_loaders.parsers.language.java.JavaSegmenter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.language.java.JavaSegmenter</span></code></a>(code)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.language.java.JavaSegmenter.html#langchain_community.document_loaders.parsers.language.java.JavaSegmenter" title="langchain_community.document_loaders.parsers.language.java.JavaSegmenter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.language.java.JavaSegmenter</span></code></a>(code)</p></td>
 <td><p>Code segmenter for Java.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.language.javascript.JavaScriptSegmenter.html#langchain_community.document_loaders.parsers.language.javascript.JavaScriptSegmenter" title="langchain_community.document_loaders.parsers.language.javascript.JavaScriptSegmenter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.language.javascript.JavaScriptSegmenter</span></code></a>(code)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.language.javascript.JavaScriptSegmenter.html#langchain_community.document_loaders.parsers.language.javascript.JavaScriptSegmenter" title="langchain_community.document_loaders.parsers.language.javascript.JavaScriptSegmenter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.language.javascript.JavaScriptSegmenter</span></code></a>(code)</p></td>
 <td><p>Code segmenter for JavaScript.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.language.kotlin.KotlinSegmenter.html#langchain_community.document_loaders.parsers.language.kotlin.KotlinSegmenter" title="langchain_community.document_loaders.parsers.language.kotlin.KotlinSegmenter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.language.kotlin.KotlinSegmenter</span></code></a>(code)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.language.kotlin.KotlinSegmenter.html#langchain_community.document_loaders.parsers.language.kotlin.KotlinSegmenter" title="langchain_community.document_loaders.parsers.language.kotlin.KotlinSegmenter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.language.kotlin.KotlinSegmenter</span></code></a>(code)</p></td>
 <td><p>Code segmenter for Kotlin.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.language.language_parser.LanguageParser.html#langchain_community.document_loaders.parsers.language.language_parser.LanguageParser" title="langchain_community.document_loaders.parsers.language.language_parser.LanguageParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.language.language_parser.LanguageParser</span></code></a>([...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.language.language_parser.LanguageParser.html#langchain_community.document_loaders.parsers.language.language_parser.LanguageParser" title="langchain_community.document_loaders.parsers.language.language_parser.LanguageParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.language.language_parser.LanguageParser</span></code></a>([...])</p></td>
 <td><p>Parse using the respective programming language syntax.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.language.lua.LuaSegmenter.html#langchain_community.document_loaders.parsers.language.lua.LuaSegmenter" title="langchain_community.document_loaders.parsers.language.lua.LuaSegmenter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.language.lua.LuaSegmenter</span></code></a>(code)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.language.lua.LuaSegmenter.html#langchain_community.document_loaders.parsers.language.lua.LuaSegmenter" title="langchain_community.document_loaders.parsers.language.lua.LuaSegmenter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.language.lua.LuaSegmenter</span></code></a>(code)</p></td>
 <td><p>Code segmenter for Lua.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.language.perl.PerlSegmenter.html#langchain_community.document_loaders.parsers.language.perl.PerlSegmenter" title="langchain_community.document_loaders.parsers.language.perl.PerlSegmenter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.language.perl.PerlSegmenter</span></code></a>(code)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.language.perl.PerlSegmenter.html#langchain_community.document_loaders.parsers.language.perl.PerlSegmenter" title="langchain_community.document_loaders.parsers.language.perl.PerlSegmenter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.language.perl.PerlSegmenter</span></code></a>(code)</p></td>
 <td><p>Code segmenter for Perl.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.language.python.PythonSegmenter.html#langchain_community.document_loaders.parsers.language.python.PythonSegmenter" title="langchain_community.document_loaders.parsers.language.python.PythonSegmenter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.language.python.PythonSegmenter</span></code></a>(code)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.language.python.PythonSegmenter.html#langchain_community.document_loaders.parsers.language.python.PythonSegmenter" title="langchain_community.document_loaders.parsers.language.python.PythonSegmenter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.language.python.PythonSegmenter</span></code></a>(code)</p></td>
 <td><p>Code segmenter for <cite>Python</cite>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.language.ruby.RubySegmenter.html#langchain_community.document_loaders.parsers.language.ruby.RubySegmenter" title="langchain_community.document_loaders.parsers.language.ruby.RubySegmenter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.language.ruby.RubySegmenter</span></code></a>(code)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.language.ruby.RubySegmenter.html#langchain_community.document_loaders.parsers.language.ruby.RubySegmenter" title="langchain_community.document_loaders.parsers.language.ruby.RubySegmenter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.language.ruby.RubySegmenter</span></code></a>(code)</p></td>
 <td><p>Code segmenter for Ruby.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.language.rust.RustSegmenter.html#langchain_community.document_loaders.parsers.language.rust.RustSegmenter" title="langchain_community.document_loaders.parsers.language.rust.RustSegmenter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.language.rust.RustSegmenter</span></code></a>(code)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.language.rust.RustSegmenter.html#langchain_community.document_loaders.parsers.language.rust.RustSegmenter" title="langchain_community.document_loaders.parsers.language.rust.RustSegmenter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.language.rust.RustSegmenter</span></code></a>(code)</p></td>
 <td><p>Code segmenter for Rust.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.language.scala.ScalaSegmenter.html#langchain_community.document_loaders.parsers.language.scala.ScalaSegmenter" title="langchain_community.document_loaders.parsers.language.scala.ScalaSegmenter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.language.scala.ScalaSegmenter</span></code></a>(code)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.language.scala.ScalaSegmenter.html#langchain_community.document_loaders.parsers.language.scala.ScalaSegmenter" title="langchain_community.document_loaders.parsers.language.scala.ScalaSegmenter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.language.scala.ScalaSegmenter</span></code></a>(code)</p></td>
 <td><p>Code segmenter for Scala.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.language.tree_sitter_segmenter.TreeSitterSegmenter.html#langchain_community.document_loaders.parsers.language.tree_sitter_segmenter.TreeSitterSegmenter" title="langchain_community.document_loaders.parsers.language.tree_sitter_segmenter.TreeSitterSegmenter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.language.tree_sitter_segmenter.TreeSitterSegmenter</span></code></a>(code)</p></td>
-<td><p>Abstract class for <a href="#id14"><span class="problematic" id="id15">`</span></a>CodeSegmenter`s that use the tree-sitter library.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.language.tree_sitter_segmenter.TreeSitterSegmenter.html#langchain_community.document_loaders.parsers.language.tree_sitter_segmenter.TreeSitterSegmenter" title="langchain_community.document_loaders.parsers.language.tree_sitter_segmenter.TreeSitterSegmenter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.language.tree_sitter_segmenter.TreeSitterSegmenter</span></code></a>(code)</p></td>
+<td><p>Abstract class for <a href="#id15"><span class="problematic" id="id16">`</span></a>CodeSegmenter`s that use the tree-sitter library.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.language.typescript.TypeScriptSegmenter.html#langchain_community.document_loaders.parsers.language.typescript.TypeScriptSegmenter" title="langchain_community.document_loaders.parsers.language.typescript.TypeScriptSegmenter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.language.typescript.TypeScriptSegmenter</span></code></a>(code)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.language.typescript.TypeScriptSegmenter.html#langchain_community.document_loaders.parsers.language.typescript.TypeScriptSegmenter" title="langchain_community.document_loaders.parsers.language.typescript.TypeScriptSegmenter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.language.typescript.TypeScriptSegmenter</span></code></a>(code)</p></td>
 <td><p>Code segmenter for TypeScript.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.msword.MsWordParser.html#langchain_community.document_loaders.parsers.msword.MsWordParser" title="langchain_community.document_loaders.parsers.msword.MsWordParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.msword.MsWordParser</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.msword.MsWordParser.html#langchain_community.document_loaders.parsers.msword.MsWordParser" title="langchain_community.document_loaders.parsers.msword.MsWordParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.msword.MsWordParser</span></code></a>()</p></td>
 <td><p>Parse the Microsoft Word documents from a blob.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.pdf.AmazonTextractPDFParser.html#langchain_community.document_loaders.parsers.pdf.AmazonTextractPDFParser" title="langchain_community.document_loaders.parsers.pdf.AmazonTextractPDFParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.pdf.AmazonTextractPDFParser</span></code></a>([...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.pdf.AmazonTextractPDFParser.html#langchain_community.document_loaders.parsers.pdf.AmazonTextractPDFParser" title="langchain_community.document_loaders.parsers.pdf.AmazonTextractPDFParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.pdf.AmazonTextractPDFParser</span></code></a>([...])</p></td>
 <td><p>Send <cite>PDF</cite> files to <cite>Amazon Textract</cite> and parse them.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.pdf.DocumentIntelligenceParser.html#langchain_community.document_loaders.parsers.pdf.DocumentIntelligenceParser" title="langchain_community.document_loaders.parsers.pdf.DocumentIntelligenceParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.pdf.DocumentIntelligenceParser</span></code></a>(...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.pdf.DocumentIntelligenceParser.html#langchain_community.document_loaders.parsers.pdf.DocumentIntelligenceParser" title="langchain_community.document_loaders.parsers.pdf.DocumentIntelligenceParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.pdf.DocumentIntelligenceParser</span></code></a>(...)</p></td>
 <td><p>Loads a PDF with Azure Document Intelligence (formerly Form Recognizer) and chunks at character level.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.pdf.PDFMinerParser.html#langchain_community.document_loaders.parsers.pdf.PDFMinerParser" title="langchain_community.document_loaders.parsers.pdf.PDFMinerParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.pdf.PDFMinerParser</span></code></a>([...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.pdf.PDFMinerParser.html#langchain_community.document_loaders.parsers.pdf.PDFMinerParser" title="langchain_community.document_loaders.parsers.pdf.PDFMinerParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.pdf.PDFMinerParser</span></code></a>([...])</p></td>
 <td><p>Parse <cite>PDF</cite> using <cite>PDFMiner</cite>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.pdf.PDFPlumberParser.html#langchain_community.document_loaders.parsers.pdf.PDFPlumberParser" title="langchain_community.document_loaders.parsers.pdf.PDFPlumberParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.pdf.PDFPlumberParser</span></code></a>([...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.pdf.PDFPlumberParser.html#langchain_community.document_loaders.parsers.pdf.PDFPlumberParser" title="langchain_community.document_loaders.parsers.pdf.PDFPlumberParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.pdf.PDFPlumberParser</span></code></a>([...])</p></td>
 <td><p>Parse <cite>PDF</cite> with <cite>PDFPlumber</cite>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.pdf.PyMuPDFParser.html#langchain_community.document_loaders.parsers.pdf.PyMuPDFParser" title="langchain_community.document_loaders.parsers.pdf.PyMuPDFParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.pdf.PyMuPDFParser</span></code></a>([...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.pdf.PyMuPDFParser.html#langchain_community.document_loaders.parsers.pdf.PyMuPDFParser" title="langchain_community.document_loaders.parsers.pdf.PyMuPDFParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.pdf.PyMuPDFParser</span></code></a>([...])</p></td>
 <td><p>Parse <cite>PDF</cite> using <cite>PyMuPDF</cite>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.pdf.PyPDFParser.html#langchain_community.document_loaders.parsers.pdf.PyPDFParser" title="langchain_community.document_loaders.parsers.pdf.PyPDFParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.pdf.PyPDFParser</span></code></a>([...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.pdf.PyPDFParser.html#langchain_community.document_loaders.parsers.pdf.PyPDFParser" title="langchain_community.document_loaders.parsers.pdf.PyPDFParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.pdf.PyPDFParser</span></code></a>([...])</p></td>
 <td><p>Load <cite>PDF</cite> using <cite>pypdf</cite></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.pdf.PyPDFium2Parser.html#langchain_community.document_loaders.parsers.pdf.PyPDFium2Parser" title="langchain_community.document_loaders.parsers.pdf.PyPDFium2Parser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.pdf.PyPDFium2Parser</span></code></a>([...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.pdf.PyPDFium2Parser.html#langchain_community.document_loaders.parsers.pdf.PyPDFium2Parser" title="langchain_community.document_loaders.parsers.pdf.PyPDFium2Parser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.pdf.PyPDFium2Parser</span></code></a>([...])</p></td>
 <td><p>Parse <cite>PDF</cite> with <cite>PyPDFium2</cite>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.txt.TextParser.html#langchain_community.document_loaders.parsers.txt.TextParser" title="langchain_community.document_loaders.parsers.txt.TextParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.txt.TextParser</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.txt.TextParser.html#langchain_community.document_loaders.parsers.txt.TextParser" title="langchain_community.document_loaders.parsers.txt.TextParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.txt.TextParser</span></code></a>()</p></td>
 <td><p>Parser for text blobs.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.vsdx.VsdxParser.html#langchain_community.document_loaders.parsers.vsdx.VsdxParser" title="langchain_community.document_loaders.parsers.vsdx.VsdxParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.vsdx.VsdxParser</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.parsers.vsdx.VsdxParser.html#langchain_community.document_loaders.parsers.vsdx.VsdxParser" title="langchain_community.document_loaders.parsers.vsdx.VsdxParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.parsers.vsdx.VsdxParser</span></code></a>()</p></td>
 <td><p>Parser for vsdx files.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.pdf.AmazonTextractPDFLoader.html#langchain_community.document_loaders.pdf.AmazonTextractPDFLoader" title="langchain_community.document_loaders.pdf.AmazonTextractPDFLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.pdf.AmazonTextractPDFLoader</span></code></a>(...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.pdf.AmazonTextractPDFLoader.html#langchain_community.document_loaders.pdf.AmazonTextractPDFLoader" title="langchain_community.document_loaders.pdf.AmazonTextractPDFLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.pdf.AmazonTextractPDFLoader</span></code></a>(...)</p></td>
 <td><p>Load <cite>PDF</cite> files from a local file system, HTTP or S3.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.pdf.BasePDFLoader.html#langchain_community.document_loaders.pdf.BasePDFLoader" title="langchain_community.document_loaders.pdf.BasePDFLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.pdf.BasePDFLoader</span></code></a>(file_path, *)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.pdf.BasePDFLoader.html#langchain_community.document_loaders.pdf.BasePDFLoader" title="langchain_community.document_loaders.pdf.BasePDFLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.pdf.BasePDFLoader</span></code></a>(file_path, *)</p></td>
 <td><p>Base Loader class for <cite>PDF</cite> files.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.pdf.DocumentIntelligenceLoader.html#langchain_community.document_loaders.pdf.DocumentIntelligenceLoader" title="langchain_community.document_loaders.pdf.DocumentIntelligenceLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.pdf.DocumentIntelligenceLoader</span></code></a>(...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.pdf.DocumentIntelligenceLoader.html#langchain_community.document_loaders.pdf.DocumentIntelligenceLoader" title="langchain_community.document_loaders.pdf.DocumentIntelligenceLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.pdf.DocumentIntelligenceLoader</span></code></a>(...)</p></td>
 <td><p>Loads a PDF with Azure Document Intelligence</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.pdf.MathpixPDFLoader.html#langchain_community.document_loaders.pdf.MathpixPDFLoader" title="langchain_community.document_loaders.pdf.MathpixPDFLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.pdf.MathpixPDFLoader</span></code></a>(file_path)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.pdf.MathpixPDFLoader.html#langchain_community.document_loaders.pdf.MathpixPDFLoader" title="langchain_community.document_loaders.pdf.MathpixPDFLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.pdf.MathpixPDFLoader</span></code></a>(file_path)</p></td>
 <td><p>Load <cite>PDF</cite> files using <cite>Mathpix</cite> service.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.pdf.OnlinePDFLoader.html#langchain_community.document_loaders.pdf.OnlinePDFLoader" title="langchain_community.document_loaders.pdf.OnlinePDFLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.pdf.OnlinePDFLoader</span></code></a>(...[, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.pdf.OnlinePDFLoader.html#langchain_community.document_loaders.pdf.OnlinePDFLoader" title="langchain_community.document_loaders.pdf.OnlinePDFLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.pdf.OnlinePDFLoader</span></code></a>(...[, ...])</p></td>
 <td><p>Load online <cite>PDF</cite>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.pdf.PDFMinerLoader.html#langchain_community.document_loaders.pdf.PDFMinerLoader" title="langchain_community.document_loaders.pdf.PDFMinerLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.pdf.PDFMinerLoader</span></code></a>(file_path, *)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.pdf.PDFMinerLoader.html#langchain_community.document_loaders.pdf.PDFMinerLoader" title="langchain_community.document_loaders.pdf.PDFMinerLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.pdf.PDFMinerLoader</span></code></a>(file_path, *)</p></td>
 <td><p>Load <cite>PDF</cite> files using <cite>PDFMiner</cite>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.pdf.PDFMinerPDFasHTMLLoader.html#langchain_community.document_loaders.pdf.PDFMinerPDFasHTMLLoader" title="langchain_community.document_loaders.pdf.PDFMinerPDFasHTMLLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.pdf.PDFMinerPDFasHTMLLoader</span></code></a>(...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.pdf.PDFMinerPDFasHTMLLoader.html#langchain_community.document_loaders.pdf.PDFMinerPDFasHTMLLoader" title="langchain_community.document_loaders.pdf.PDFMinerPDFasHTMLLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.pdf.PDFMinerPDFasHTMLLoader</span></code></a>(...)</p></td>
 <td><p>Load <cite>PDF</cite> files as HTML content using <cite>PDFMiner</cite>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.pdf.PDFPlumberLoader.html#langchain_community.document_loaders.pdf.PDFPlumberLoader" title="langchain_community.document_loaders.pdf.PDFPlumberLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.pdf.PDFPlumberLoader</span></code></a>(file_path)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.pdf.PDFPlumberLoader.html#langchain_community.document_loaders.pdf.PDFPlumberLoader" title="langchain_community.document_loaders.pdf.PDFPlumberLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.pdf.PDFPlumberLoader</span></code></a>(file_path)</p></td>
 <td><p>Load <cite>PDF</cite> files using <cite>pdfplumber</cite>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.pdf.PyMuPDFLoader.html#langchain_community.document_loaders.pdf.PyMuPDFLoader" title="langchain_community.document_loaders.pdf.PyMuPDFLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.pdf.PyMuPDFLoader</span></code></a>(file_path, *)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.pdf.PyMuPDFLoader.html#langchain_community.document_loaders.pdf.PyMuPDFLoader" title="langchain_community.document_loaders.pdf.PyMuPDFLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.pdf.PyMuPDFLoader</span></code></a>(file_path, *)</p></td>
 <td><p>Load <cite>PDF</cite> files using <cite>PyMuPDF</cite>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.pdf.PyPDFDirectoryLoader.html#langchain_community.document_loaders.pdf.PyPDFDirectoryLoader" title="langchain_community.document_loaders.pdf.PyPDFDirectoryLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.pdf.PyPDFDirectoryLoader</span></code></a>(path)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.pdf.PyPDFDirectoryLoader.html#langchain_community.document_loaders.pdf.PyPDFDirectoryLoader" title="langchain_community.document_loaders.pdf.PyPDFDirectoryLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.pdf.PyPDFDirectoryLoader</span></code></a>(path)</p></td>
 <td><p>Load a directory with <cite>PDF</cite> files using <cite>pypdf</cite> and chunks at character level.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.pdf.PyPDFLoader.html#langchain_community.document_loaders.pdf.PyPDFLoader" title="langchain_community.document_loaders.pdf.PyPDFLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.pdf.PyPDFLoader</span></code></a>(file_path)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.pdf.PyPDFLoader.html#langchain_community.document_loaders.pdf.PyPDFLoader" title="langchain_community.document_loaders.pdf.PyPDFLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.pdf.PyPDFLoader</span></code></a>(file_path)</p></td>
 <td><p>Load PDF using pypdf into list of documents.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.pdf.PyPDFium2Loader.html#langchain_community.document_loaders.pdf.PyPDFium2Loader" title="langchain_community.document_loaders.pdf.PyPDFium2Loader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.pdf.PyPDFium2Loader</span></code></a>(...[, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.pdf.PyPDFium2Loader.html#langchain_community.document_loaders.pdf.PyPDFium2Loader" title="langchain_community.document_loaders.pdf.PyPDFium2Loader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.pdf.PyPDFium2Loader</span></code></a>(...[, ...])</p></td>
 <td><p>Load <cite>PDF</cite> using <cite>pypdfium2</cite> and chunks at character level.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.pdf.UnstructuredPDFLoader.html#langchain_community.document_loaders.pdf.UnstructuredPDFLoader" title="langchain_community.document_loaders.pdf.UnstructuredPDFLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.pdf.UnstructuredPDFLoader</span></code></a>(...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.pdf.UnstructuredPDFLoader.html#langchain_community.document_loaders.pdf.UnstructuredPDFLoader" title="langchain_community.document_loaders.pdf.UnstructuredPDFLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.pdf.UnstructuredPDFLoader</span></code></a>(...)</p></td>
 <td><p>Load <cite>PDF</cite> files using <cite>Unstructured</cite>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.pebblo.PebbloSafeLoader.html#langchain_community.document_loaders.pebblo.PebbloSafeLoader" title="langchain_community.document_loaders.pebblo.PebbloSafeLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.pebblo.PebbloSafeLoader</span></code></a>(...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.pebblo.PebbloSafeLoader.html#langchain_community.document_loaders.pebblo.PebbloSafeLoader" title="langchain_community.document_loaders.pebblo.PebbloSafeLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.pebblo.PebbloSafeLoader</span></code></a>(...)</p></td>
 <td><p>Pebblo Safe Loader class is a wrapper around document loaders enabling the data to be scrutinized.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.polars_dataframe.PolarsDataFrameLoader.html#langchain_community.document_loaders.polars_dataframe.PolarsDataFrameLoader" title="langchain_community.document_loaders.polars_dataframe.PolarsDataFrameLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.polars_dataframe.PolarsDataFrameLoader</span></code></a>(...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.polars_dataframe.PolarsDataFrameLoader.html#langchain_community.document_loaders.polars_dataframe.PolarsDataFrameLoader" title="langchain_community.document_loaders.polars_dataframe.PolarsDataFrameLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.polars_dataframe.PolarsDataFrameLoader</span></code></a>(...)</p></td>
 <td><p>Load <cite>Polars</cite> DataFrame.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.powerpoint.UnstructuredPowerPointLoader.html#langchain_community.document_loaders.powerpoint.UnstructuredPowerPointLoader" title="langchain_community.document_loaders.powerpoint.UnstructuredPowerPointLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.powerpoint.UnstructuredPowerPointLoader</span></code></a>(...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.powerpoint.UnstructuredPowerPointLoader.html#langchain_community.document_loaders.powerpoint.UnstructuredPowerPointLoader" title="langchain_community.document_loaders.powerpoint.UnstructuredPowerPointLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.powerpoint.UnstructuredPowerPointLoader</span></code></a>(...)</p></td>
 <td><p>Load <cite>Microsoft PowerPoint</cite> files using <cite>Unstructured</cite>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.psychic.PsychicLoader.html#langchain_community.document_loaders.psychic.PsychicLoader" title="langchain_community.document_loaders.psychic.PsychicLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.psychic.PsychicLoader</span></code></a>(...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.psychic.PsychicLoader.html#langchain_community.document_loaders.psychic.PsychicLoader" title="langchain_community.document_loaders.psychic.PsychicLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.psychic.PsychicLoader</span></code></a>(...)</p></td>
 <td><p>Load from <cite>Psychic.dev</cite>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.pubmed.PubMedLoader.html#langchain_community.document_loaders.pubmed.PubMedLoader" title="langchain_community.document_loaders.pubmed.PubMedLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.pubmed.PubMedLoader</span></code></a>(query)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.pubmed.PubMedLoader.html#langchain_community.document_loaders.pubmed.PubMedLoader" title="langchain_community.document_loaders.pubmed.PubMedLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.pubmed.PubMedLoader</span></code></a>(query)</p></td>
 <td><p>Load from the <cite>PubMed</cite> biomedical library.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.pyspark_dataframe.PySparkDataFrameLoader.html#langchain_community.document_loaders.pyspark_dataframe.PySparkDataFrameLoader" title="langchain_community.document_loaders.pyspark_dataframe.PySparkDataFrameLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.pyspark_dataframe.PySparkDataFrameLoader</span></code></a>([...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.pyspark_dataframe.PySparkDataFrameLoader.html#langchain_community.document_loaders.pyspark_dataframe.PySparkDataFrameLoader" title="langchain_community.document_loaders.pyspark_dataframe.PySparkDataFrameLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.pyspark_dataframe.PySparkDataFrameLoader</span></code></a>([...])</p></td>
 <td><p>Load <cite>PySpark</cite> DataFrames.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.python.PythonLoader.html#langchain_community.document_loaders.python.PythonLoader" title="langchain_community.document_loaders.python.PythonLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.python.PythonLoader</span></code></a>(file_path)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.python.PythonLoader.html#langchain_community.document_loaders.python.PythonLoader" title="langchain_community.document_loaders.python.PythonLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.python.PythonLoader</span></code></a>(file_path)</p></td>
 <td><p>Load <cite>Python</cite> files, respecting any non-default encoding if specified.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.quip.QuipLoader.html#langchain_community.document_loaders.quip.QuipLoader" title="langchain_community.document_loaders.quip.QuipLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.quip.QuipLoader</span></code></a>(api_url, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.quip.QuipLoader.html#langchain_community.document_loaders.quip.QuipLoader" title="langchain_community.document_loaders.quip.QuipLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.quip.QuipLoader</span></code></a>(api_url, ...)</p></td>
 <td><p>Load <cite>Quip</cite> pages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.readthedocs.ReadTheDocsLoader.html#langchain_community.document_loaders.readthedocs.ReadTheDocsLoader" title="langchain_community.document_loaders.readthedocs.ReadTheDocsLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.readthedocs.ReadTheDocsLoader</span></code></a>(path)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.readthedocs.ReadTheDocsLoader.html#langchain_community.document_loaders.readthedocs.ReadTheDocsLoader" title="langchain_community.document_loaders.readthedocs.ReadTheDocsLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.readthedocs.ReadTheDocsLoader</span></code></a>(path)</p></td>
 <td><p>Load <cite>ReadTheDocs</cite> documentation directory.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.recursive_url_loader.RecursiveUrlLoader.html#langchain_community.document_loaders.recursive_url_loader.RecursiveUrlLoader" title="langchain_community.document_loaders.recursive_url_loader.RecursiveUrlLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.recursive_url_loader.RecursiveUrlLoader</span></code></a>(url)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.recursive_url_loader.RecursiveUrlLoader.html#langchain_community.document_loaders.recursive_url_loader.RecursiveUrlLoader" title="langchain_community.document_loaders.recursive_url_loader.RecursiveUrlLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.recursive_url_loader.RecursiveUrlLoader</span></code></a>(url)</p></td>
 <td><p>Load all child links from a URL page.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.reddit.RedditPostsLoader.html#langchain_community.document_loaders.reddit.RedditPostsLoader" title="langchain_community.document_loaders.reddit.RedditPostsLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.reddit.RedditPostsLoader</span></code></a>(...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.reddit.RedditPostsLoader.html#langchain_community.document_loaders.reddit.RedditPostsLoader" title="langchain_community.document_loaders.reddit.RedditPostsLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.reddit.RedditPostsLoader</span></code></a>(...)</p></td>
 <td><p>Load <cite>Reddit</cite> posts.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.roam.RoamLoader.html#langchain_community.document_loaders.roam.RoamLoader" title="langchain_community.document_loaders.roam.RoamLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.roam.RoamLoader</span></code></a>(path)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.roam.RoamLoader.html#langchain_community.document_loaders.roam.RoamLoader" title="langchain_community.document_loaders.roam.RoamLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.roam.RoamLoader</span></code></a>(path)</p></td>
 <td><p>Load <cite>Roam</cite> files from a directory.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.rocksetdb.ColumnNotFoundError.html#langchain_community.document_loaders.rocksetdb.ColumnNotFoundError" title="langchain_community.document_loaders.rocksetdb.ColumnNotFoundError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.rocksetdb.ColumnNotFoundError</span></code></a>(...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.rocksetdb.ColumnNotFoundError.html#langchain_community.document_loaders.rocksetdb.ColumnNotFoundError" title="langchain_community.document_loaders.rocksetdb.ColumnNotFoundError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.rocksetdb.ColumnNotFoundError</span></code></a>(...)</p></td>
 <td><p>Column not found error.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.rocksetdb.RocksetLoader.html#langchain_community.document_loaders.rocksetdb.RocksetLoader" title="langchain_community.document_loaders.rocksetdb.RocksetLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.rocksetdb.RocksetLoader</span></code></a>(...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.rocksetdb.RocksetLoader.html#langchain_community.document_loaders.rocksetdb.RocksetLoader" title="langchain_community.document_loaders.rocksetdb.RocksetLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.rocksetdb.RocksetLoader</span></code></a>(...)</p></td>
 <td><p>Load from a <cite>Rockset</cite> database.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.rspace.RSpaceLoader.html#langchain_community.document_loaders.rspace.RSpaceLoader" title="langchain_community.document_loaders.rspace.RSpaceLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.rspace.RSpaceLoader</span></code></a>(global_id)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.rspace.RSpaceLoader.html#langchain_community.document_loaders.rspace.RSpaceLoader" title="langchain_community.document_loaders.rspace.RSpaceLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.rspace.RSpaceLoader</span></code></a>(global_id)</p></td>
 <td><p>Load content from RSpace notebooks, folders, documents or PDF Gallery files.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.rss.RSSFeedLoader.html#langchain_community.document_loaders.rss.RSSFeedLoader" title="langchain_community.document_loaders.rss.RSSFeedLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.rss.RSSFeedLoader</span></code></a>([urls, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.rss.RSSFeedLoader.html#langchain_community.document_loaders.rss.RSSFeedLoader" title="langchain_community.document_loaders.rss.RSSFeedLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.rss.RSSFeedLoader</span></code></a>([urls, ...])</p></td>
 <td><p>Load news articles from <cite>RSS</cite> feeds using <cite>Unstructured</cite>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.rst.UnstructuredRSTLoader.html#langchain_community.document_loaders.rst.UnstructuredRSTLoader" title="langchain_community.document_loaders.rst.UnstructuredRSTLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.rst.UnstructuredRSTLoader</span></code></a>(...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.rst.UnstructuredRSTLoader.html#langchain_community.document_loaders.rst.UnstructuredRSTLoader" title="langchain_community.document_loaders.rst.UnstructuredRSTLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.rst.UnstructuredRSTLoader</span></code></a>(...)</p></td>
 <td><p>Load <cite>RST</cite> files using <cite>Unstructured</cite>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.rtf.UnstructuredRTFLoader.html#langchain_community.document_loaders.rtf.UnstructuredRTFLoader" title="langchain_community.document_loaders.rtf.UnstructuredRTFLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.rtf.UnstructuredRTFLoader</span></code></a>(...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.rtf.UnstructuredRTFLoader.html#langchain_community.document_loaders.rtf.UnstructuredRTFLoader" title="langchain_community.document_loaders.rtf.UnstructuredRTFLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.rtf.UnstructuredRTFLoader</span></code></a>(...)</p></td>
 <td><p>Load <cite>RTF</cite> files using <cite>Unstructured</cite>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.s3_directory.S3DirectoryLoader.html#langchain_community.document_loaders.s3_directory.S3DirectoryLoader" title="langchain_community.document_loaders.s3_directory.S3DirectoryLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.s3_directory.S3DirectoryLoader</span></code></a>(bucket)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.s3_directory.S3DirectoryLoader.html#langchain_community.document_loaders.s3_directory.S3DirectoryLoader" title="langchain_community.document_loaders.s3_directory.S3DirectoryLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.s3_directory.S3DirectoryLoader</span></code></a>(bucket)</p></td>
 <td><p>Load from <cite>Amazon AWS S3</cite> directory.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.s3_file.S3FileLoader.html#langchain_community.document_loaders.s3_file.S3FileLoader" title="langchain_community.document_loaders.s3_file.S3FileLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.s3_file.S3FileLoader</span></code></a>(...[, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.s3_file.S3FileLoader.html#langchain_community.document_loaders.s3_file.S3FileLoader" title="langchain_community.document_loaders.s3_file.S3FileLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.s3_file.S3FileLoader</span></code></a>(...[, ...])</p></td>
 <td><p>Load from <cite>Amazon AWS S3</cite> file.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.sharepoint.SharePointLoader.html#langchain_community.document_loaders.sharepoint.SharePointLoader" title="langchain_community.document_loaders.sharepoint.SharePointLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.sharepoint.SharePointLoader</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.sharepoint.SharePointLoader.html#langchain_community.document_loaders.sharepoint.SharePointLoader" title="langchain_community.document_loaders.sharepoint.SharePointLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.sharepoint.SharePointLoader</span></code></a></p></td>
 <td><p>Load  from <cite>SharePoint</cite>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.sitemap.SitemapLoader.html#langchain_community.document_loaders.sitemap.SitemapLoader" title="langchain_community.document_loaders.sitemap.SitemapLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.sitemap.SitemapLoader</span></code></a>(web_path)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.sitemap.SitemapLoader.html#langchain_community.document_loaders.sitemap.SitemapLoader" title="langchain_community.document_loaders.sitemap.SitemapLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.sitemap.SitemapLoader</span></code></a>(web_path)</p></td>
 <td><p>Load a sitemap and its URLs.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.slack_directory.SlackDirectoryLoader.html#langchain_community.document_loaders.slack_directory.SlackDirectoryLoader" title="langchain_community.document_loaders.slack_directory.SlackDirectoryLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.slack_directory.SlackDirectoryLoader</span></code></a>(...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.slack_directory.SlackDirectoryLoader.html#langchain_community.document_loaders.slack_directory.SlackDirectoryLoader" title="langchain_community.document_loaders.slack_directory.SlackDirectoryLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.slack_directory.SlackDirectoryLoader</span></code></a>(...)</p></td>
 <td><p>Load from a <cite>Slack</cite> directory dump.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.snowflake_loader.SnowflakeLoader.html#langchain_community.document_loaders.snowflake_loader.SnowflakeLoader" title="langchain_community.document_loaders.snowflake_loader.SnowflakeLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.snowflake_loader.SnowflakeLoader</span></code></a>(...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.snowflake_loader.SnowflakeLoader.html#langchain_community.document_loaders.snowflake_loader.SnowflakeLoader" title="langchain_community.document_loaders.snowflake_loader.SnowflakeLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.snowflake_loader.SnowflakeLoader</span></code></a>(...)</p></td>
 <td><p>Load from <cite>Snowflake</cite> API.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.spreedly.SpreedlyLoader.html#langchain_community.document_loaders.spreedly.SpreedlyLoader" title="langchain_community.document_loaders.spreedly.SpreedlyLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.spreedly.SpreedlyLoader</span></code></a>(...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.spreedly.SpreedlyLoader.html#langchain_community.document_loaders.spreedly.SpreedlyLoader" title="langchain_community.document_loaders.spreedly.SpreedlyLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.spreedly.SpreedlyLoader</span></code></a>(...)</p></td>
 <td><p>Load from <cite>Spreedly</cite> API.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.sql_database.SQLDatabaseLoader.html#langchain_community.document_loaders.sql_database.SQLDatabaseLoader" title="langchain_community.document_loaders.sql_database.SQLDatabaseLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.sql_database.SQLDatabaseLoader</span></code></a>(...)</p></td>
+<td><p>Load documents by querying database tables supported by SQLAlchemy.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.srt.SRTLoader.html#langchain_community.document_loaders.srt.SRTLoader" title="langchain_community.document_loaders.srt.SRTLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.srt.SRTLoader</span></code></a>(file_path)</p></td>
 <td><p>Load <cite>.srt</cite> (subtitle) files.</p></td>
@@ -2101,7 +2136,7 @@ an interface where “chat messages” are the inputs and outputs.</p>
 <td><p>Load weather data with <cite>Open Weather Map</cite> API.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.web_base.WebBaseLoader.html#langchain_community.document_loaders.web_base.WebBaseLoader" title="langchain_community.document_loaders.web_base.WebBaseLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.web_base.WebBaseLoader</span></code></a>([...])</p></td>
-<td><p>Load HTML pages using <cite>urllib</cite> and parse them with <a href="#id16"><span class="problematic" id="id17">`</span></a>BeautifulSoup'.</p></td>
+<td><p>Load HTML pages using <cite>urllib</cite> and parse them with <a href="#id17"><span class="problematic" id="id18">`</span></a>BeautifulSoup'.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.whatsapp_chat.WhatsAppChatLoader.html#langchain_community.document_loaders.whatsapp_chat.WhatsAppChatLoader" title="langchain_community.document_loaders.whatsapp_chat.WhatsAppChatLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.whatsapp_chat.WhatsAppChatLoader</span></code></a>(path)</p></td>
 <td><p>Load <cite>WhatsApp</cite> messages text file.</p></td>
@@ -2136,8 +2171,8 @@ an interface where “chat messages” are the inputs and outputs.</p>
 </tbody>
 </table>
 </section>
-<section id="id18">
-<h3>Functions<a class="headerlink" href="#id18" title="Permalink to this heading">¶</a></h3>
+<section id="id19">
+<h3>Functions<a class="headerlink" href="#id19" title="Permalink to this heading">¶</a></h3>
 <table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -2205,8 +2240,8 @@ an interface where “chat messages” are the inputs and outputs.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Document</span>
 </pre></div>
 </div>
-<section id="id19">
-<h3>Classes<a class="headerlink" href="#id19" title="Permalink to this heading">¶</a></h3>
+<section id="id20">
+<h3>Classes<a class="headerlink" href="#id20" title="Permalink to this heading">¶</a></h3>
 <table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -2249,8 +2284,8 @@ an interface where “chat messages” are the inputs and outputs.</p>
 </tbody>
 </table>
 </section>
-<section id="id20">
-<h3>Functions<a class="headerlink" href="#id20" title="Permalink to this heading">¶</a></h3>
+<section id="id21">
+<h3>Functions<a class="headerlink" href="#id21" title="Permalink to this heading">¶</a></h3>
 <table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -2279,8 +2314,8 @@ from different APIs and services.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Embeddings</span> <span class="o">--&gt;</span> <span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span><span class="n">Embeddings</span>  <span class="c1"># Examples: OpenAIEmbeddings, HuggingFaceEmbeddings</span>
 </pre></div>
 </div>
-<section id="id21">
-<h3>Classes<a class="headerlink" href="#id21" title="Permalink to this heading">¶</a></h3>
+<section id="id22">
+<h3>Classes<a class="headerlink" href="#id22" title="Permalink to this heading">¶</a></h3>
 <table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -2398,107 +2433,110 @@ from different APIs and services.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.johnsnowlabs.JohnSnowLabsEmbeddings.html#langchain_community.embeddings.johnsnowlabs.JohnSnowLabsEmbeddings" title="langchain_community.embeddings.johnsnowlabs.JohnSnowLabsEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.johnsnowlabs.JohnSnowLabsEmbeddings</span></code></a></p></td>
 <td><p>JohnSnowLabs embedding models</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.llamacpp.LlamaCppEmbeddings.html#langchain_community.embeddings.llamacpp.LlamaCppEmbeddings" title="langchain_community.embeddings.llamacpp.LlamaCppEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.llamacpp.LlamaCppEmbeddings</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.laser.LaserEmbeddings.html#langchain_community.embeddings.laser.LaserEmbeddings" title="langchain_community.embeddings.laser.LaserEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.laser.LaserEmbeddings</span></code></a></p></td>
+<td><p>LASER Language-Agnostic SEntence Representations.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.llamacpp.LlamaCppEmbeddings.html#langchain_community.embeddings.llamacpp.LlamaCppEmbeddings" title="langchain_community.embeddings.llamacpp.LlamaCppEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.llamacpp.LlamaCppEmbeddings</span></code></a></p></td>
 <td><p>llama.cpp embedding models.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.llm_rails.LLMRailsEmbeddings.html#langchain_community.embeddings.llm_rails.LLMRailsEmbeddings" title="langchain_community.embeddings.llm_rails.LLMRailsEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.llm_rails.LLMRailsEmbeddings</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.llm_rails.LLMRailsEmbeddings.html#langchain_community.embeddings.llm_rails.LLMRailsEmbeddings" title="langchain_community.embeddings.llm_rails.LLMRailsEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.llm_rails.LLMRailsEmbeddings</span></code></a></p></td>
 <td><p>LLMRails embedding models.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.localai.LocalAIEmbeddings.html#langchain_community.embeddings.localai.LocalAIEmbeddings" title="langchain_community.embeddings.localai.LocalAIEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.localai.LocalAIEmbeddings</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.localai.LocalAIEmbeddings.html#langchain_community.embeddings.localai.LocalAIEmbeddings" title="langchain_community.embeddings.localai.LocalAIEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.localai.LocalAIEmbeddings</span></code></a></p></td>
 <td><p>LocalAI embedding models.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.minimax.MiniMaxEmbeddings.html#langchain_community.embeddings.minimax.MiniMaxEmbeddings" title="langchain_community.embeddings.minimax.MiniMaxEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.minimax.MiniMaxEmbeddings</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.minimax.MiniMaxEmbeddings.html#langchain_community.embeddings.minimax.MiniMaxEmbeddings" title="langchain_community.embeddings.minimax.MiniMaxEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.minimax.MiniMaxEmbeddings</span></code></a></p></td>
 <td><p>MiniMax's embedding service.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.mlflow.MlflowCohereEmbeddings.html#langchain_community.embeddings.mlflow.MlflowCohereEmbeddings" title="langchain_community.embeddings.mlflow.MlflowCohereEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.mlflow.MlflowCohereEmbeddings</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.mlflow.MlflowCohereEmbeddings.html#langchain_community.embeddings.mlflow.MlflowCohereEmbeddings" title="langchain_community.embeddings.mlflow.MlflowCohereEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.mlflow.MlflowCohereEmbeddings</span></code></a></p></td>
 <td><p>Cohere embedding LLMs in MLflow.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.mlflow.MlflowEmbeddings.html#langchain_community.embeddings.mlflow.MlflowEmbeddings" title="langchain_community.embeddings.mlflow.MlflowEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.mlflow.MlflowEmbeddings</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.mlflow.MlflowEmbeddings.html#langchain_community.embeddings.mlflow.MlflowEmbeddings" title="langchain_community.embeddings.mlflow.MlflowEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.mlflow.MlflowEmbeddings</span></code></a></p></td>
 <td><p>Embedding LLMs in MLflow.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.mlflow_gateway.MlflowAIGatewayEmbeddings.html#langchain_community.embeddings.mlflow_gateway.MlflowAIGatewayEmbeddings" title="langchain_community.embeddings.mlflow_gateway.MlflowAIGatewayEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.mlflow_gateway.MlflowAIGatewayEmbeddings</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.mlflow_gateway.MlflowAIGatewayEmbeddings.html#langchain_community.embeddings.mlflow_gateway.MlflowAIGatewayEmbeddings" title="langchain_community.embeddings.mlflow_gateway.MlflowAIGatewayEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.mlflow_gateway.MlflowAIGatewayEmbeddings</span></code></a></p></td>
 <td><p>Wrapper around embeddings LLMs in the MLflow AI Gateway.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.modelscope_hub.ModelScopeEmbeddings.html#langchain_community.embeddings.modelscope_hub.ModelScopeEmbeddings" title="langchain_community.embeddings.modelscope_hub.ModelScopeEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.modelscope_hub.ModelScopeEmbeddings</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.modelscope_hub.ModelScopeEmbeddings.html#langchain_community.embeddings.modelscope_hub.ModelScopeEmbeddings" title="langchain_community.embeddings.modelscope_hub.ModelScopeEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.modelscope_hub.ModelScopeEmbeddings</span></code></a></p></td>
 <td><p>ModelScopeHub embedding models.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.mosaicml.MosaicMLInstructorEmbeddings.html#langchain_community.embeddings.mosaicml.MosaicMLInstructorEmbeddings" title="langchain_community.embeddings.mosaicml.MosaicMLInstructorEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.mosaicml.MosaicMLInstructorEmbeddings</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.mosaicml.MosaicMLInstructorEmbeddings.html#langchain_community.embeddings.mosaicml.MosaicMLInstructorEmbeddings" title="langchain_community.embeddings.mosaicml.MosaicMLInstructorEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.mosaicml.MosaicMLInstructorEmbeddings</span></code></a></p></td>
 <td><p>MosaicML embedding service.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.nemo.NeMoEmbeddings.html#langchain_community.embeddings.nemo.NeMoEmbeddings" title="langchain_community.embeddings.nemo.NeMoEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.nemo.NeMoEmbeddings</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.nemo.NeMoEmbeddings.html#langchain_community.embeddings.nemo.NeMoEmbeddings" title="langchain_community.embeddings.nemo.NeMoEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.nemo.NeMoEmbeddings</span></code></a></p></td>
 <td><p>Create a new model by parsing and validating input data from keyword arguments.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.nlpcloud.NLPCloudEmbeddings.html#langchain_community.embeddings.nlpcloud.NLPCloudEmbeddings" title="langchain_community.embeddings.nlpcloud.NLPCloudEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.nlpcloud.NLPCloudEmbeddings</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.nlpcloud.NLPCloudEmbeddings.html#langchain_community.embeddings.nlpcloud.NLPCloudEmbeddings" title="langchain_community.embeddings.nlpcloud.NLPCloudEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.nlpcloud.NLPCloudEmbeddings</span></code></a></p></td>
 <td><p>NLP Cloud embedding models.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.oci_generative_ai.OCIAuthType.html#langchain_community.embeddings.oci_generative_ai.OCIAuthType" title="langchain_community.embeddings.oci_generative_ai.OCIAuthType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.oci_generative_ai.OCIAuthType</span></code></a>(value)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.oci_generative_ai.OCIAuthType.html#langchain_community.embeddings.oci_generative_ai.OCIAuthType" title="langchain_community.embeddings.oci_generative_ai.OCIAuthType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.oci_generative_ai.OCIAuthType</span></code></a>(value)</p></td>
 <td><p>OCI authentication types as enumerator.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.oci_generative_ai.OCIGenAIEmbeddings.html#langchain_community.embeddings.oci_generative_ai.OCIGenAIEmbeddings" title="langchain_community.embeddings.oci_generative_ai.OCIGenAIEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.oci_generative_ai.OCIGenAIEmbeddings</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.oci_generative_ai.OCIGenAIEmbeddings.html#langchain_community.embeddings.oci_generative_ai.OCIGenAIEmbeddings" title="langchain_community.embeddings.oci_generative_ai.OCIGenAIEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.oci_generative_ai.OCIGenAIEmbeddings</span></code></a></p></td>
 <td><p>OCI embedding models.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.octoai_embeddings.OctoAIEmbeddings.html#langchain_community.embeddings.octoai_embeddings.OctoAIEmbeddings" title="langchain_community.embeddings.octoai_embeddings.OctoAIEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.octoai_embeddings.OctoAIEmbeddings</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.octoai_embeddings.OctoAIEmbeddings.html#langchain_community.embeddings.octoai_embeddings.OctoAIEmbeddings" title="langchain_community.embeddings.octoai_embeddings.OctoAIEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.octoai_embeddings.OctoAIEmbeddings</span></code></a></p></td>
 <td><p>OctoAI Compute Service embedding models.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.ollama.OllamaEmbeddings.html#langchain_community.embeddings.ollama.OllamaEmbeddings" title="langchain_community.embeddings.ollama.OllamaEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.ollama.OllamaEmbeddings</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.ollama.OllamaEmbeddings.html#langchain_community.embeddings.ollama.OllamaEmbeddings" title="langchain_community.embeddings.ollama.OllamaEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.ollama.OllamaEmbeddings</span></code></a></p></td>
 <td><p>Ollama locally runs large language models.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.openai.OpenAIEmbeddings.html#langchain_community.embeddings.openai.OpenAIEmbeddings" title="langchain_community.embeddings.openai.OpenAIEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.openai.OpenAIEmbeddings</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.openai.OpenAIEmbeddings.html#langchain_community.embeddings.openai.OpenAIEmbeddings" title="langchain_community.embeddings.openai.OpenAIEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.openai.OpenAIEmbeddings</span></code></a></p></td>
 <td><p>[<em>Deprecated</em>] OpenAI embedding models.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.optimum_intel.QuantizedBiEncoderEmbeddings.html#langchain_community.embeddings.optimum_intel.QuantizedBiEncoderEmbeddings" title="langchain_community.embeddings.optimum_intel.QuantizedBiEncoderEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.optimum_intel.QuantizedBiEncoderEmbeddings</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.optimum_intel.QuantizedBiEncoderEmbeddings.html#langchain_community.embeddings.optimum_intel.QuantizedBiEncoderEmbeddings" title="langchain_community.embeddings.optimum_intel.QuantizedBiEncoderEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.optimum_intel.QuantizedBiEncoderEmbeddings</span></code></a></p></td>
 <td><p>Quantized bi-encoders embedding models.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.sagemaker_endpoint.EmbeddingsContentHandler.html#langchain_community.embeddings.sagemaker_endpoint.EmbeddingsContentHandler" title="langchain_community.embeddings.sagemaker_endpoint.EmbeddingsContentHandler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.sagemaker_endpoint.EmbeddingsContentHandler</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.sagemaker_endpoint.EmbeddingsContentHandler.html#langchain_community.embeddings.sagemaker_endpoint.EmbeddingsContentHandler" title="langchain_community.embeddings.sagemaker_endpoint.EmbeddingsContentHandler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.sagemaker_endpoint.EmbeddingsContentHandler</span></code></a>()</p></td>
 <td><p>Content handler for LLM class.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.sagemaker_endpoint.SagemakerEndpointEmbeddings.html#langchain_community.embeddings.sagemaker_endpoint.SagemakerEndpointEmbeddings" title="langchain_community.embeddings.sagemaker_endpoint.SagemakerEndpointEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.sagemaker_endpoint.SagemakerEndpointEmbeddings</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.sagemaker_endpoint.SagemakerEndpointEmbeddings.html#langchain_community.embeddings.sagemaker_endpoint.SagemakerEndpointEmbeddings" title="langchain_community.embeddings.sagemaker_endpoint.SagemakerEndpointEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.sagemaker_endpoint.SagemakerEndpointEmbeddings</span></code></a></p></td>
 <td><p>Custom Sagemaker Inference Endpoints.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.self_hosted.SelfHostedEmbeddings.html#langchain_community.embeddings.self_hosted.SelfHostedEmbeddings" title="langchain_community.embeddings.self_hosted.SelfHostedEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.self_hosted.SelfHostedEmbeddings</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.self_hosted.SelfHostedEmbeddings.html#langchain_community.embeddings.self_hosted.SelfHostedEmbeddings" title="langchain_community.embeddings.self_hosted.SelfHostedEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.self_hosted.SelfHostedEmbeddings</span></code></a></p></td>
 <td><p>Custom embedding models on self-hosted remote hardware.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.self_hosted_hugging_face.SelfHostedHuggingFaceEmbeddings.html#langchain_community.embeddings.self_hosted_hugging_face.SelfHostedHuggingFaceEmbeddings" title="langchain_community.embeddings.self_hosted_hugging_face.SelfHostedHuggingFaceEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.self_hosted_hugging_face.SelfHostedHuggingFaceEmbeddings</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.self_hosted_hugging_face.SelfHostedHuggingFaceEmbeddings.html#langchain_community.embeddings.self_hosted_hugging_face.SelfHostedHuggingFaceEmbeddings" title="langchain_community.embeddings.self_hosted_hugging_face.SelfHostedHuggingFaceEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.self_hosted_hugging_face.SelfHostedHuggingFaceEmbeddings</span></code></a></p></td>
 <td><p>HuggingFace embedding models on self-hosted remote hardware.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.self_hosted_hugging_face.SelfHostedHuggingFaceInstructEmbeddings.html#langchain_community.embeddings.self_hosted_hugging_face.SelfHostedHuggingFaceInstructEmbeddings" title="langchain_community.embeddings.self_hosted_hugging_face.SelfHostedHuggingFaceInstructEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.self_hosted_hugging_face.SelfHostedHuggingFaceInstructEmbeddings</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.self_hosted_hugging_face.SelfHostedHuggingFaceInstructEmbeddings.html#langchain_community.embeddings.self_hosted_hugging_face.SelfHostedHuggingFaceInstructEmbeddings" title="langchain_community.embeddings.self_hosted_hugging_face.SelfHostedHuggingFaceInstructEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.self_hosted_hugging_face.SelfHostedHuggingFaceInstructEmbeddings</span></code></a></p></td>
 <td><p>HuggingFace InstructEmbedding models on self-hosted remote hardware.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.spacy_embeddings.SpacyEmbeddings.html#langchain_community.embeddings.spacy_embeddings.SpacyEmbeddings" title="langchain_community.embeddings.spacy_embeddings.SpacyEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.spacy_embeddings.SpacyEmbeddings</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.spacy_embeddings.SpacyEmbeddings.html#langchain_community.embeddings.spacy_embeddings.SpacyEmbeddings" title="langchain_community.embeddings.spacy_embeddings.SpacyEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.spacy_embeddings.SpacyEmbeddings</span></code></a></p></td>
 <td><p>Embeddings by spaCy models.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.sparkllm.AssembleHeaderException.html#langchain_community.embeddings.sparkllm.AssembleHeaderException" title="langchain_community.embeddings.sparkllm.AssembleHeaderException"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.sparkllm.AssembleHeaderException</span></code></a>(msg)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.sparkllm.AssembleHeaderException.html#langchain_community.embeddings.sparkllm.AssembleHeaderException" title="langchain_community.embeddings.sparkllm.AssembleHeaderException"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.sparkllm.AssembleHeaderException</span></code></a>(msg)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.sparkllm.SparkLLMTextEmbeddings.html#langchain_community.embeddings.sparkllm.SparkLLMTextEmbeddings" title="langchain_community.embeddings.sparkllm.SparkLLMTextEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.sparkllm.SparkLLMTextEmbeddings</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.sparkllm.SparkLLMTextEmbeddings.html#langchain_community.embeddings.sparkllm.SparkLLMTextEmbeddings" title="langchain_community.embeddings.sparkllm.SparkLLMTextEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.sparkllm.SparkLLMTextEmbeddings</span></code></a></p></td>
 <td><p>SparkLLM Text Embedding models.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.sparkllm.Url.html#langchain_community.embeddings.sparkllm.Url" title="langchain_community.embeddings.sparkllm.Url"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.sparkllm.Url</span></code></a>(host, path, schema)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.sparkllm.Url.html#langchain_community.embeddings.sparkllm.Url" title="langchain_community.embeddings.sparkllm.Url"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.sparkllm.Url</span></code></a>(host, path, schema)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.tensorflow_hub.TensorflowHubEmbeddings.html#langchain_community.embeddings.tensorflow_hub.TensorflowHubEmbeddings" title="langchain_community.embeddings.tensorflow_hub.TensorflowHubEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.tensorflow_hub.TensorflowHubEmbeddings</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.tensorflow_hub.TensorflowHubEmbeddings.html#langchain_community.embeddings.tensorflow_hub.TensorflowHubEmbeddings" title="langchain_community.embeddings.tensorflow_hub.TensorflowHubEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.tensorflow_hub.TensorflowHubEmbeddings</span></code></a></p></td>
 <td><p>TensorflowHub embedding models.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.vertexai.VertexAIEmbeddings.html#langchain_community.embeddings.vertexai.VertexAIEmbeddings" title="langchain_community.embeddings.vertexai.VertexAIEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.vertexai.VertexAIEmbeddings</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.vertexai.VertexAIEmbeddings.html#langchain_community.embeddings.vertexai.VertexAIEmbeddings" title="langchain_community.embeddings.vertexai.VertexAIEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.vertexai.VertexAIEmbeddings</span></code></a></p></td>
 <td><p>[<em>Deprecated</em>] Google Cloud VertexAI embedding models.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.volcengine.VolcanoEmbeddings.html#langchain_community.embeddings.volcengine.VolcanoEmbeddings" title="langchain_community.embeddings.volcengine.VolcanoEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.volcengine.VolcanoEmbeddings</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.volcengine.VolcanoEmbeddings.html#langchain_community.embeddings.volcengine.VolcanoEmbeddings" title="langchain_community.embeddings.volcengine.VolcanoEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.volcengine.VolcanoEmbeddings</span></code></a></p></td>
 <td><p><cite>Volcengine Embeddings</cite> embedding models.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.voyageai.VoyageEmbeddings.html#langchain_community.embeddings.voyageai.VoyageEmbeddings" title="langchain_community.embeddings.voyageai.VoyageEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.voyageai.VoyageEmbeddings</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.voyageai.VoyageEmbeddings.html#langchain_community.embeddings.voyageai.VoyageEmbeddings" title="langchain_community.embeddings.voyageai.VoyageEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.voyageai.VoyageEmbeddings</span></code></a></p></td>
 <td><p>Voyage embedding models.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.xinference.XinferenceEmbeddings.html#langchain_community.embeddings.xinference.XinferenceEmbeddings" title="langchain_community.embeddings.xinference.XinferenceEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.xinference.XinferenceEmbeddings</span></code></a>([...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.xinference.XinferenceEmbeddings.html#langchain_community.embeddings.xinference.XinferenceEmbeddings" title="langchain_community.embeddings.xinference.XinferenceEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.xinference.XinferenceEmbeddings</span></code></a>([...])</p></td>
 <td><p>Xinference embedding models.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.yandex.YandexGPTEmbeddings.html#langchain_community.embeddings.yandex.YandexGPTEmbeddings" title="langchain_community.embeddings.yandex.YandexGPTEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.yandex.YandexGPTEmbeddings</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.yandex.YandexGPTEmbeddings.html#langchain_community.embeddings.yandex.YandexGPTEmbeddings" title="langchain_community.embeddings.yandex.YandexGPTEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.yandex.YandexGPTEmbeddings</span></code></a></p></td>
 <td><p>YandexGPT Embeddings models.</p></td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="id22">
-<h3>Functions<a class="headerlink" href="#id22" title="Permalink to this heading">¶</a></h3>
+<section id="id23">
+<h3>Functions<a class="headerlink" href="#id23" title="Permalink to this heading">¶</a></h3>
 <table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -2547,8 +2585,8 @@ This allows us to select examples that are most relevant to the input.</p>
 <p>There could be multiple strategies for selecting examples. For example, one could
 select examples based on the similarity of the input to the examples. Another
 strategy could be to select examples based on the diversity of the examples.</p>
-<section id="id23">
-<h3>Classes<a class="headerlink" href="#id23" title="Permalink to this heading">¶</a></h3>
+<section id="id24">
+<h3>Classes<a class="headerlink" href="#id24" title="Permalink to this heading">¶</a></h3>
 <table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -2561,8 +2599,8 @@ strategy could be to select examples based on the diversity of the examples.</p>
 </tbody>
 </table>
 </section>
-<section id="id24">
-<h3>Functions<a class="headerlink" href="#id24" title="Permalink to this heading">¶</a></h3>
+<section id="id25">
+<h3>Functions<a class="headerlink" href="#id25" title="Permalink to this heading">¶</a></h3>
 <table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -2579,8 +2617,8 @@ strategy could be to select examples based on the diversity of the examples.</p>
 <section id="module-langchain_community.graphs">
 <span id="langchain-community-graphs"></span><h2><a class="reference internal" href="#module-langchain_community.graphs" title="langchain_community.graphs"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_community.graphs</span></code></a><a class="headerlink" href="#module-langchain_community.graphs" title="Permalink to this heading">¶</a></h2>
 <p><strong>Graphs</strong> provide a natural language interface to graph databases.</p>
-<section id="id25">
-<h3>Classes<a class="headerlink" href="#id25" title="Permalink to this heading">¶</a></h3>
+<section id="id26">
+<h3>Classes<a class="headerlink" href="#id26" title="Permalink to this heading">¶</a></h3>
 <table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -2647,8 +2685,8 @@ strategy could be to select examples based on the diversity of the examples.</p>
 </tbody>
 </table>
 </section>
-<section id="id26">
-<h3>Functions<a class="headerlink" href="#id26" title="Permalink to this heading">¶</a></h3>
+<section id="id27">
+<h3>Functions<a class="headerlink" href="#id27" title="Permalink to this heading">¶</a></h3>
 <table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -2683,8 +2721,8 @@ into the vectostore and to avoid over-writing content if it’s unchanged.</p>
 <p>Importantly, Index keeps on working even if the content being written is derived
 via a set of transformations from some source content (e.g., indexing children
 documents that were derived from parent documents by chunking.)</p>
-<section id="id27">
-<h3>Classes<a class="headerlink" href="#id27" title="Permalink to this heading">¶</a></h3>
+<section id="id28">
+<h3>Classes<a class="headerlink" href="#id28" title="Permalink to this heading">¶</a></h3>
 <table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -2713,8 +2751,8 @@ access to the large language model (<strong>LLM</strong>) APIs and services.</p>
 <span class="n">AIMessage</span><span class="p">,</span> <span class="n">BaseMessage</span>
 </pre></div>
 </div>
-<section id="id28">
-<h3>Classes<a class="headerlink" href="#id28" title="Permalink to this heading">¶</a></h3>
+<section id="id29">
+<h3>Classes<a class="headerlink" href="#id29" title="Permalink to this heading">¶</a></h3>
 <table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -3096,8 +3134,8 @@ access to the large language model (<strong>LLM</strong>) APIs and services.</p>
 </tbody>
 </table>
 </section>
-<section id="id29">
-<h3>Functions<a class="headerlink" href="#id29" title="Permalink to this heading">¶</a></h3>
+<section id="id30">
+<h3>Functions<a class="headerlink" href="#id30" title="Permalink to this heading">¶</a></h3>
 <table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -3224,8 +3262,8 @@ access to the large language model (<strong>LLM</strong>) APIs and services.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Serializable</span><span class="p">,</span> <span class="n">Generation</span><span class="p">,</span> <span class="n">PromptValue</span>
 </pre></div>
 </div>
-<section id="id30">
-<h3>Classes<a class="headerlink" href="#id30" title="Permalink to this heading">¶</a></h3>
+<section id="id31">
+<h3>Classes<a class="headerlink" href="#id31" title="Permalink to this heading">¶</a></h3>
 <table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -3269,8 +3307,8 @@ the backbone of a retriever, but there are other types of retrievers as well.</p
 <span class="n">CallbackManagerForRetrieverRun</span><span class="p">,</span> <span class="n">AsyncCallbackManagerForRetrieverRun</span>
 </pre></div>
 </div>
-<section id="id31">
-<h3>Classes<a class="headerlink" href="#id31" title="Permalink to this heading">¶</a></h3>
+<section id="id32">
+<h3>Classes<a class="headerlink" href="#id32" title="Permalink to this heading">¶</a></h3>
 <table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -3445,8 +3483,8 @@ the backbone of a retriever, but there are other types of retrievers as well.</p
 </tbody>
 </table>
 </section>
-<section id="id32">
-<h3>Functions<a class="headerlink" href="#id32" title="Permalink to this heading">¶</a></h3>
+<section id="id33">
+<h3>Functions<a class="headerlink" href="#id33" title="Permalink to this heading">¶</a></h3>
 <table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -3494,8 +3532,8 @@ to a simple key-value interface.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">BaseStore</span> <span class="o">--&gt;</span> <span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span><span class="n">Store</span>  <span class="c1"># Examples: MongoDBStore, RedisStore</span>
 </pre></div>
 </div>
-<section id="id33">
-<h3>Classes<a class="headerlink" href="#id33" title="Permalink to this heading">¶</a></h3>
+<section id="id34">
+<h3>Classes<a class="headerlink" href="#id34" title="Permalink to this heading">¶</a></h3>
 <table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -3544,8 +3582,8 @@ tool for the job.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CallbackManagerForToolRun</span><span class="p">,</span> <span class="n">AsyncCallbackManagerForToolRun</span>
 </pre></div>
 </div>
-<section id="id34">
-<h3>Classes<a class="headerlink" href="#id34" title="Permalink to this heading">¶</a></h3>
+<section id="id35">
+<h3>Classes<a class="headerlink" href="#id35" title="Permalink to this heading">¶</a></h3>
 <table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -4218,8 +4256,8 @@ tool for the job.</p>
 </tbody>
 </table>
 </section>
-<section id="id35">
-<h3>Functions<a class="headerlink" href="#id35" title="Permalink to this heading">¶</a></h3>
+<section id="id36">
+<h3>Functions<a class="headerlink" href="#id36" title="Permalink to this heading">¶</a></h3>
 <table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -4328,8 +4366,8 @@ tool for the job.</p>
 <p><strong>Utilities</strong> are the integrations with third-part systems and packages.</p>
 <p>Other LangChain classes use <strong>Utilities</strong> to interact with third-part systems
 and packages.</p>
-<section id="id36">
-<h3>Classes<a class="headerlink" href="#id36" title="Permalink to this heading">¶</a></h3>
+<section id="id37">
+<h3>Classes<a class="headerlink" href="#id37" title="Permalink to this heading">¶</a></h3>
 <table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -4618,8 +4656,8 @@ and packages.</p>
 </tbody>
 </table>
 </section>
-<section id="id37">
-<h3>Functions<a class="headerlink" href="#id37" title="Permalink to this heading">¶</a></h3>
+<section id="id38">
+<h3>Functions<a class="headerlink" href="#id38" title="Permalink to this heading">¶</a></h3>
 <table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -4717,8 +4755,8 @@ and packages.</p>
 <section id="module-langchain_community.utils">
 <span id="langchain-community-utils"></span><h2><a class="reference internal" href="#module-langchain_community.utils" title="langchain_community.utils"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_community.utils</span></code></a><a class="headerlink" href="#module-langchain_community.utils" title="Permalink to this heading">¶</a></h2>
 <p><strong>Utility functions</strong> for LangChain.</p>
-<section id="id38">
-<h3>Classes<a class="headerlink" href="#id38" title="Permalink to this heading">¶</a></h3>
+<section id="id39">
+<h3>Classes<a class="headerlink" href="#id39" title="Permalink to this heading">¶</a></h3>
 <table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -4734,8 +4772,8 @@ and packages.</p>
 </tbody>
 </table>
 </section>
-<section id="id39">
-<h3>Functions<a class="headerlink" href="#id39" title="Permalink to this heading">¶</a></h3>
+<section id="id40">
+<h3>Functions<a class="headerlink" href="#id40" title="Permalink to this heading">¶</a></h3>
 <table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -4780,8 +4818,8 @@ and retrieve the data that are ‘most similar’ to the embedded query.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Embeddings</span><span class="p">,</span> <span class="n">Document</span>
 </pre></div>
 </div>
-<section id="id40">
-<h3>Classes<a class="headerlink" href="#id40" title="Permalink to this heading">¶</a></h3>
+<section id="id41">
+<h3>Classes<a class="headerlink" href="#id41" title="Permalink to this heading">¶</a></h3>
 <table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -4913,6 +4951,18 @@ and retrieve the data that are ‘most similar’ to the embedded query.</p>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="vectorstores/langchain_community.vectorstores.kdbai.KDBAI.html#langchain_community.vectorstores.kdbai.KDBAI" title="langchain_community.vectorstores.kdbai.KDBAI"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vectorstores.kdbai.KDBAI</span></code></a>(table, embedding[, ...])</p></td>
 <td><p><cite>KDB.AI</cite> vector store.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="vectorstores/langchain_community.vectorstores.kinetica.Dimension.html#langchain_community.vectorstores.kinetica.Dimension" title="langchain_community.vectorstores.kinetica.Dimension"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vectorstores.kinetica.Dimension</span></code></a>(value)</p></td>
+<td><p>Some default dimensions for known embeddings.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="vectorstores/langchain_community.vectorstores.kinetica.DistanceStrategy.html#langchain_community.vectorstores.kinetica.DistanceStrategy" title="langchain_community.vectorstores.kinetica.DistanceStrategy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vectorstores.kinetica.DistanceStrategy</span></code></a>(value)</p></td>
+<td><p>Enumerator of the Distance strategies.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="vectorstores/langchain_community.vectorstores.kinetica.Kinetica.html#langchain_community.vectorstores.kinetica.Kinetica" title="langchain_community.vectorstores.kinetica.Kinetica"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vectorstores.kinetica.Kinetica</span></code></a>(config, ...)</p></td>
+<td><p><cite>Kinetica</cite> vector store.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="vectorstores/langchain_community.vectorstores.kinetica.KineticaSettings.html#langchain_community.vectorstores.kinetica.KineticaSettings" title="langchain_community.vectorstores.kinetica.KineticaSettings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vectorstores.kinetica.KineticaSettings</span></code></a></p></td>
+<td><p><cite>Kinetica</cite> client configuration.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="vectorstores/langchain_community.vectorstores.lancedb.LanceDB.html#langchain_community.vectorstores.lancedb.LanceDB" title="langchain_community.vectorstores.lancedb.LanceDB"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vectorstores.lancedb.LanceDB</span></code></a>([connection, ...])</p></td>
 <td><p><cite>LanceDB</cite> vector store.</p></td>
@@ -5193,8 +5243,8 @@ and retrieve the data that are ‘most similar’ to the embedded query.</p>
 </tbody>
 </table>
 </section>
-<section id="id41">
-<h3>Functions<a class="headerlink" href="#id41" title="Permalink to this heading">¶</a></h3>
+<section id="id42">
+<h3>Functions<a class="headerlink" href="#id42" title="Permalink to this heading">¶</a></h3>
 <table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -5290,7 +5340,7 @@ and retrieve the data that are ‘most similar’ to the embedded query.</p>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Feb 26, 2024.
+          Last updated on Feb 29, 2024.
           <a href="_sources/community_api_reference.rst.txt" rel="nofollow">Show this page source</a>
       </footer>
     </div>

@@ -1,22 +1,20 @@
 """Wrapper around Google VertexAI chat-based models."""
 from __future__ import annotations
 
-import base64
 import json
 import logging
-import re
 from dataclasses import dataclass, field
-from typing import Any, Dict, Iterator, List, Optional, Union, cast
-from urllib.parse import urlparse
+from operator import itemgetter
+from typing import Any, AsyncIterator, Dict, Iterator, List, Optional, Type, Union, cast
 
 import proto  # type: ignore[import-untyped]
-import requests
 from google.cloud.aiplatform_v1beta1.types.content import Part as GapicPart
 from google.cloud.aiplatform_v1beta1.types.tool import FunctionCall
 from langchain_core.callbacks import (
     AsyncCallbackManagerForLLMRun,
     CallbackManagerForLLMRun,
 )
+from langchain_core.language_models import LanguageModelInput
 from langchain_core.language_models.chat_models import (
     BaseChatModel,
     generate_from_stream,
@@ -29,8 +27,21 @@ from langchain_core.messages import (
     HumanMessage,
     SystemMessage,
 )
+from langchain_core.output_parsers.base import OutputParserLike
+from langchain_core.output_parsers.openai_functions import (
+    JsonOutputFunctionsParser,
+    PydanticOutputFunctionsParser,
+)
 from langchain_core.outputs import ChatGeneration, ChatGenerationChunk, ChatResult
-from langchain_core.pydantic_v1 import root_validator
+from langchain_core.pydantic_v1 import BaseModel, root_validator
+from langchain_core.runnables import Runnable, RunnablePassthrough
+from vertexai.generative_models import (  # type: ignore
+    Candidate,
+    Content,
+    GenerativeModel,
+    Image,
+    Part,
+)
 from vertexai.language_models import (  # type: ignore
     ChatMessage,
     ChatModel,
@@ -39,13 +50,6 @@ from vertexai.language_models import (  # type: ignore
     CodeChatSession,
     InputOutputTextPair,
 )
-from vertexai.preview.generative_models import (  # type: ignore
-    Candidate,
-    Content,
-    GenerativeModel,
-    Image,
-    Part,
-)
 from vertexai.preview.language_models import (  # type: ignore
     ChatModel as PreviewChatModel,
 )
@@ -53,17 +57,17 @@ from vertexai.preview.language_models import (
     CodeChatModel as PreviewCodeChatModel,
 )
 
+from langchain_google_vertexai._base import (
+    _VertexAICommon,
+)
+from langchain_google_vertexai._image_utils import ImageBytesLoader
 from langchain_google_vertexai._utils import (
     get_generation_info,
     is_codey_model,
     is_gemini_model,
-    load_image_from_gcs,
 )
 from langchain_google_vertexai.functions_utils import (
     _format_tools_to_vertex_tool,
-)
-from langchain_google_vertexai.llms import (
-    _VertexAICommon,
 )
 
 logger = logging.getLogger(__name__)
@@ -108,15 +112,6 @@ def _parse_chat_history(history: List[BaseMessage]) -> _ChatHistory:
     return chat_history
 
 
-def _is_url(s: str) -> bool:
-    try:
-        result = urlparse(s)
-        return all([result.scheme, result.netloc])
-    except Exception as e:
-        logger.debug(f"Unable to parse URL: {e}")
-        return False
-
-
 def _parse_chat_history_gemini(
     history: List[BaseMessage],
     project: Optional[str] = None,
@@ -134,25 +129,8 @@ def _parse_chat_history_gemini(
             return Part.from_text(part["text"])
         elif part["type"] == "image_url":
             path = part["image_url"]["url"]
-            if path.startswith("gs://"):
-                image = load_image_from_gcs(path=path, project=project)
-            elif path.startswith("data:image/"):
-                # extract base64 component from image uri
-                try:
-                    regexp = r"data:image/\w{2,4};base64,(.*)"
-                    encoded = re.search(regexp, path).group(1)  # type: ignore
-                except AttributeError:
-                    raise ValueError(
-                        "Invalid image uri. It should be in the format "
-                        "data:image/<image_type>;base64,<base64_encoded_image>."
-                    )
-                image = Image.from_bytes(base64.b64decode(encoded))
-            elif _is_url(path):
-                response = requests.get(path)
-                response.raise_for_status()
-                image = Image.from_bytes(response.content)
-            else:
-                image = Image.load_from_file(path)
+            image_bytes = ImageBytesLoader(project=project).load_bytes(path)
+            image = Image.from_bytes(image_bytes)
         else:
             raise ValueError("Only text and image_url types are supported!")
         return Part.from_image(image)
@@ -397,10 +375,14 @@ class ChatVertexAI(_VertexAICommon, BaseChatModel):
             )
             generations = [
                 ChatGeneration(
-                    message=_parse_response_candidate(c),
-                    generation_info=get_generation_info(c, self._is_gemini_model),
+                    message=_parse_response_candidate(candidate),
+                    generation_info=get_generation_info(
+                        candidate,
+                        self._is_gemini_model,
+                        usage_metadata=response.to_dict().get("usage_metadata"),
+                    ),
                 )
-                for c in response.candidates
+                for candidate in response.candidates
             ]
         else:
             question = _get_question(messages)
@@ -412,10 +394,14 @@ class ChatVertexAI(_VertexAICommon, BaseChatModel):
             response = chat.send_message(question.content, **msg_params)
             generations = [
                 ChatGeneration(
-                    message=AIMessage(content=r.text),
-                    generation_info=get_generation_info(r, self._is_gemini_model),
+                    message=AIMessage(content=candidate.text),
+                    generation_info=get_generation_info(
+                        candidate,
+                        self._is_gemini_model,
+                        usage_metadata=response.raw_prediction_response.metadata,
+                    ),
                 )
-                for r in response.candidates
+                for candidate in response.candidates
             ]
         return ChatResult(generations=generations)
 
@@ -470,7 +456,11 @@ class ChatVertexAI(_VertexAICommon, BaseChatModel):
             generations = [
                 ChatGeneration(
                     message=_parse_response_candidate(c),
-                    generation_info=get_generation_info(c, self._is_gemini_model),
+                    generation_info=get_generation_info(
+                        c,
+                        self._is_gemini_model,
+                        usage_metadata=response.to_dict().get("usage_metadata"),
+                    ),
                 )
                 for c in response.candidates
             ]
@@ -485,7 +475,11 @@ class ChatVertexAI(_VertexAICommon, BaseChatModel):
             generations = [
                 ChatGeneration(
                     message=AIMessage(content=r.text),
-                    generation_info=get_generation_info(r, self._is_gemini_model),
+                    generation_info=get_generation_info(
+                        r,
+                        self._is_gemini_model,
+                        usage_metadata=response.raw_prediction_response.metadata,
+                    ),
                 )
                 for r in response.candidates
             ]
@@ -526,7 +520,12 @@ class ChatVertexAI(_VertexAICommon, BaseChatModel):
                     message=AIMessageChunk(
                         content=message.content,
                         additional_kwargs=message.additional_kwargs,
-                    )
+                    ),
+                    generation_info=get_generation_info(
+                        response.candidates[0],
+                        self._is_gemini_model,
+                        usage_metadata=response.to_dict().get("usage_metadata"),
+                    ),
                 )
         else:
             question = _get_question(messages)
@@ -536,13 +535,173 @@ class ChatVertexAI(_VertexAICommon, BaseChatModel):
                 params["examples"] = _parse_examples(examples)
             chat = self._start_chat(history, **params)
             responses = chat.send_message_streaming(question.content, **params)
-        for response in responses:
+            for response in responses:
+                if run_manager:
+                    run_manager.on_llm_new_token(response.text)
+                yield ChatGenerationChunk(
+                    message=AIMessageChunk(content=response.text),
+                    generation_info=get_generation_info(
+                        response,
+                        self._is_gemini_model,
+                        usage_metadata=response.raw_prediction_response.metadata,
+                    ),
+                )
+
+    async def _astream(
+        self,
+        messages: List[BaseMessage],
+        stop: Optional[List[str]] = None,
+        run_manager: Optional[AsyncCallbackManagerForLLMRun] = None,
+        **kwargs: Any,
+    ) -> AsyncIterator[ChatGenerationChunk]:
+        if not self._is_gemini_model:
+            raise NotImplementedError()
+        params = self._prepare_params(stop=stop, stream=True, **kwargs)
+        history_gemini = _parse_chat_history_gemini(
+            messages,
+            project=self.project,
+            convert_system_message_to_human=self.convert_system_message_to_human,
+        )
+        message = history_gemini.pop()
+        chat = self.client.start_chat(history=history_gemini)
+        raw_tools = params.pop("functions") if "functions" in params else None
+        tools = _format_tools_to_vertex_tool(raw_tools) if raw_tools else None
+        safety_settings = params.pop("safety_settings", None)
+        async for chunk in await chat.send_message_async(
+            message,
+            stream=True,
+            generation_config=params,
+            safety_settings=safety_settings,
+            tools=tools,
+        ):
+            message = _parse_response_candidate(chunk.candidates[0])
             if run_manager:
-                run_manager.on_llm_new_token(response.text)
+                await run_manager.on_llm_new_token(message.content)
             yield ChatGenerationChunk(
-                message=AIMessageChunk(content=response.text),
-                generation_info=get_generation_info(response, self._is_gemini_model),
+                message=AIMessageChunk(
+                    content=message.content,
+                    additional_kwargs=message.additional_kwargs,
+                ),
+                generation_info=get_generation_info(
+                    chunk.candidates[0],
+                    self._is_gemini_model,
+                    usage_metadata=chunk.to_dict().get("usage_metadata"),
+                ),
             )
+
+    def with_structured_output(
+        self,
+        schema: Union[Dict, Type[BaseModel]],
+        *,
+        include_raw: bool = False,
+        **kwargs: Any,
+    ) -> Runnable[LanguageModelInput, Union[Dict, BaseModel]]:
+        """Model wrapper that returns outputs formatted to match the given schema.
+
+        Args:
+            schema: The output schema as a dict or a Pydantic class. If a Pydantic class
+                then the model output will be an object of that class. If a dict then
+                the model output will be a dict. With a Pydantic class the returned
+                attributes will be validated, whereas with a dict they will not be. If
+                `method` is "function_calling" and `schema` is a dict, then the dict
+                must match the OpenAI function-calling spec.
+            include_raw: If False then only the parsed structured output is returned. If
+                an error occurs during model output parsing it will be raised. If True
+                then both the raw model response (a BaseMessage) and the parsed model
+                response will be returned. If an error occurs during output parsing it
+                will be caught and returned as well. The final output is always a dict
+                with keys "raw", "parsed", and "parsing_error".
+
+        Returns:
+            A Runnable that takes any ChatModel input. If include_raw is True then a
+            dict with keys — raw: BaseMessage, parsed: Optional[_DictOrPydantic],
+            parsing_error: Optional[BaseException]. If include_raw is False then just
+            _DictOrPydantic is returned, where _DictOrPydantic depends on the schema.
+            If schema is a Pydantic class then _DictOrPydantic is the Pydantic class.
+            If schema is a dict then _DictOrPydantic is a dict.
+
+        Example: Pydantic schema, exclude raw:
+            .. code-block:: python
+
+                from langchain_core.pydantic_v1 import BaseModel
+                from langchain_google_vertexai import ChatVertexAI
+
+                class AnswerWithJustification(BaseModel):
+                    '''An answer to the user question along with justification for the answer.'''
+                    answer: str
+                    justification: str
+
+                llm = ChatVertexAI(model="gemini-pro", temperature=0)
+                structured_llm = llm.with_structured_output(AnswerWithJustification)
+
+                structured_llm.invoke("What weighs more a pound of bricks or a pound of feathers")
+                # -> AnswerWithJustification(
+                #     answer='They weigh the same.', justification='A pound is a pound.'
+                # )
+
+        Example: Pydantic schema, include raw:
+            .. code-block:: python
+
+                from langchain_core.pydantic_v1 import BaseModel
+                from langchain_google_vertexai import ChatVertexAI
+
+                class AnswerWithJustification(BaseModel):
+                    '''An answer to the user question along with justification for the answer.'''
+                    answer: str
+                    justification: str
+
+                llm = ChatVertexAI(model="gemini-pro", temperature=0)
+                structured_llm = llm.with_structured_output(AnswerWithJustification, include_raw=True)
+
+                structured_llm.invoke("What weighs more a pound of bricks or a pound of feathers")
+                # -> {
+                #     'raw': AIMessage(content='', additional_kwargs={'tool_calls': [{'id': 'call_Ao02pnFYXD6GN1yzc0uXPsvF', 'function': {'arguments': '{"answer":"They weigh the same.","justification":"Both a pound of bricks and a pound of feathers weigh one pound. The weight is the same, but the volume or density of the objects may differ."}', 'name': 'AnswerWithJustification'}, 'type': 'function'}]}),
+                #     'parsed': AnswerWithJustification(answer='They weigh the same.', justification='Both a pound of bricks and a pound of feathers weigh one pound. The weight is the same, but the volume or density of the objects may differ.'),
+                #     'parsing_error': None
+                # }
+
+        Example: Dict schema, exclude raw:
+            .. code-block:: python
+
+                from langchain_core.pydantic_v1 import BaseModel
+                from langchain_core.utils.function_calling import convert_to_openai_tool
+                from langchain_google_vertexai import ChatVertexAI
+
+                class AnswerWithJustification(BaseModel):
+                    '''An answer to the user question along with justification for the answer.'''
+                    answer: str
+                    justification: str
+
+                dict_schema = convert_to_openai_tool(AnswerWithJustification)
+                llm = ChatVertexAI(model="gemini-pro", temperature=0)
+                structured_llm = llm.with_structured_output(dict_schema)
+
+                structured_llm.invoke("What weighs more a pound of bricks or a pound of feathers")
+                # -> {
+                #     'answer': 'They weigh the same',
+                #     'justification': 'Both a pound of bricks and a pound of feathers weigh one pound. The weight is the same, but the volume and density of the two substances differ.'
+                # }
+
+        """  # noqa: E501
+        if kwargs:
+            raise ValueError(f"Received unsupported arguments {kwargs}")
+        if isinstance(schema, type) and issubclass(schema, BaseModel):
+            parser: OutputParserLike = PydanticOutputFunctionsParser(
+                pydantic_schema=schema
+            )
+        else:
+            parser = JsonOutputFunctionsParser()
+        llm = self.bind(functions=[schema])
+        if include_raw:
+            parser_with_fallback = RunnablePassthrough.assign(
+                parsed=itemgetter("raw") | parser, parsing_error=lambda _: None
+            ).with_fallbacks(
+                [RunnablePassthrough.assign(parsed=lambda _: None)],
+                exception_key="parsing_error",
+            )
+            return {"raw": llm} | parser_with_fallback
+        else:
+            return llm | parser
 
     def _start_chat(
         self, history: _ChatHistory, **kwargs: Any

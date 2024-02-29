@@ -1,0 +1,88 @@
+﻿:mod:`langchain_google_vertexai.vectorstores.vectorstores`.VectorSearchVectorStore
+=========================================================================================
+
+.. currentmodule:: langchain_google_vertexai.vectorstores.vectorstores
+
+.. autoclass:: VectorSearchVectorStore
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~VectorSearchVectorStore.embbedings
+      ~VectorSearchVectorStore.embeddings
+   
+   
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~VectorSearchVectorStore.__init__
+      ~VectorSearchVectorStore.aadd_documents
+      ~VectorSearchVectorStore.aadd_texts
+      ~VectorSearchVectorStore.add_documents
+      ~VectorSearchVectorStore.add_texts
+      ~VectorSearchVectorStore.adelete
+      ~VectorSearchVectorStore.afrom_documents
+      ~VectorSearchVectorStore.afrom_texts
+      ~VectorSearchVectorStore.amax_marginal_relevance_search
+      ~VectorSearchVectorStore.amax_marginal_relevance_search_by_vector
+      ~VectorSearchVectorStore.as_retriever
+      ~VectorSearchVectorStore.asearch
+      ~VectorSearchVectorStore.asimilarity_search
+      ~VectorSearchVectorStore.asimilarity_search_by_vector
+      ~VectorSearchVectorStore.asimilarity_search_with_relevance_scores
+      ~VectorSearchVectorStore.asimilarity_search_with_score
+      ~VectorSearchVectorStore.delete
+      ~VectorSearchVectorStore.from_components
+      ~VectorSearchVectorStore.from_documents
+      ~VectorSearchVectorStore.from_texts
+      ~VectorSearchVectorStore.max_marginal_relevance_search
+      ~VectorSearchVectorStore.max_marginal_relevance_search_by_vector
+      ~VectorSearchVectorStore.search
+      ~VectorSearchVectorStore.similarity_search
+      ~VectorSearchVectorStore.similarity_search_by_vector
+      ~VectorSearchVectorStore.similarity_search_by_vector_with_score
+      ~VectorSearchVectorStore.similarity_search_with_relevance_scores
+      ~VectorSearchVectorStore.similarity_search_with_score
+
+   
+   .. automethod:: VectorSearchVectorStore.__init__
+   .. automethod:: VectorSearchVectorStore.aadd_documents
+   .. automethod:: VectorSearchVectorStore.aadd_texts
+   .. automethod:: VectorSearchVectorStore.add_documents
+   .. automethod:: VectorSearchVectorStore.add_texts
+   .. automethod:: VectorSearchVectorStore.adelete
+   .. automethod:: VectorSearchVectorStore.afrom_documents
+   .. automethod:: VectorSearchVectorStore.afrom_texts
+   .. automethod:: VectorSearchVectorStore.amax_marginal_relevance_search
+   .. automethod:: VectorSearchVectorStore.amax_marginal_relevance_search_by_vector
+   .. automethod:: VectorSearchVectorStore.as_retriever
+   .. automethod:: VectorSearchVectorStore.asearch
+   .. automethod:: VectorSearchVectorStore.asimilarity_search
+   .. automethod:: VectorSearchVectorStore.asimilarity_search_by_vector
+   .. automethod:: VectorSearchVectorStore.asimilarity_search_with_relevance_scores
+   .. automethod:: VectorSearchVectorStore.asimilarity_search_with_score
+   .. automethod:: VectorSearchVectorStore.delete
+   .. automethod:: VectorSearchVectorStore.from_components
+   .. automethod:: VectorSearchVectorStore.from_documents
+   .. automethod:: VectorSearchVectorStore.from_texts
+   .. automethod:: VectorSearchVectorStore.max_marginal_relevance_search
+   .. automethod:: VectorSearchVectorStore.max_marginal_relevance_search_by_vector
+   .. automethod:: VectorSearchVectorStore.search
+   .. automethod:: VectorSearchVectorStore.similarity_search
+   .. automethod:: VectorSearchVectorStore.similarity_search_by_vector
+   .. automethod:: VectorSearchVectorStore.similarity_search_by_vector_with_score
+   .. automethod:: VectorSearchVectorStore.similarity_search_with_relevance_scores
+   .. automethod:: VectorSearchVectorStore.similarity_search_with_score
+
+   
+   
+
+
+.. example_links:: VectorSearchVectorStore

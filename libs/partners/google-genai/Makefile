@@ -6,17 +6,13 @@ all: help
 # Define a variable for the test file path.
 TEST_FILE ?= tests/unit_tests/
 
-test:
-	poetry run pytest $(TEST_FILE)
+integration_test integration_tests: TEST_FILE = tests/integration_tests/
 
-tests:
+test tests integration_test integration_tests:
 	poetry run pytest $(TEST_FILE)
 
 check_imports: $(shell find langchain_google_genai -name '*.py')
 	poetry run python ./scripts/check_imports.py $^
-
-integration_tests:
-	poetry run pytest tests/integration_tests
 
 ######################
 # LINTING AND FORMATTING
@@ -26,7 +22,7 @@ integration_tests:
 PYTHON_FILES=.
 MYPY_CACHE=.mypy_cache
 lint format: PYTHON_FILES=.
-lint_diff format_diff: PYTHON_FILES=$(shell git diff --name-only --diff-filter=d master | grep -E '\.py$$|\.ipynb$$')
+lint_diff format_diff: PYTHON_FILES=$(shell git diff --name-only --diff-filter=d main | grep -E '\.py$$|\.ipynb$$')
 lint_package: PYTHON_FILES=langchain_google_genai
 lint_tests: PYTHON_FILES=tests
 lint_tests: MYPY_CACHE=.mypy_cache_test

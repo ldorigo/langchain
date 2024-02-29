@@ -1110,18 +1110,6 @@ Classes
     
     :template: pydantic.rst
     
-    output_parsers.openai_tools.JsonOutputKeyToolsParser
-    
-    :template: pydantic.rst
-    
-    output_parsers.openai_tools.JsonOutputToolsParser
-    
-    :template: pydantic.rst
-    
-    output_parsers.openai_tools.PydanticToolsParser
-    
-    :template: pydantic.rst
-    
     output_parsers.pandas_dataframe.PandasDataFrameOutputParser
     
     :template: pydantic.rst
@@ -1178,10 +1166,6 @@ Classes
     :template: pydantic.rst
     
     retrievers.contextual_compression.ContextualCompressionRetriever
-    
-    :template: pydantic.rst
-    
-    retrievers.document_compressors.base.BaseDocumentCompressor
     
     :template: pydantic.rst
     

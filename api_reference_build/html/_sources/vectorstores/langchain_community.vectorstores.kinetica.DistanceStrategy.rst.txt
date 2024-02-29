@@ -1,0 +1,18 @@
+﻿:mod:`langchain_community.vectorstores.kinetica`.DistanceStrategy
+========================================================================
+
+.. currentmodule:: langchain_community.vectorstores.kinetica
+
+.. autoclass:: DistanceStrategy
+
+    
+    
+    .. autoattribute:: EUCLIDEAN
+    
+    .. autoattribute:: COSINE
+    
+    .. autoattribute:: MAX_INNER_PRODUCT
+    
+    
+
+.. example_links:: DistanceStrategy

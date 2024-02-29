@@ -18,6 +18,7 @@ from langchain_google_vertexai.chat_models import ChatVertexAI
 model_names_to_test = [None, "codechat-bison", "chat-bison", "gemini-pro"]
 
 
+@pytest.mark.release
 @pytest.mark.parametrize("model_name", model_names_to_test)
 def test_initialization(model_name: Optional[str]) -> None:
     """Test chat model initialization."""
@@ -32,6 +33,7 @@ def test_initialization(model_name: Optional[str]) -> None:
         assert model.model_name == model.client._model_name.split("/")[-1]
 
 
+@pytest.mark.release
 @pytest.mark.parametrize("model_name", model_names_to_test)
 def test_vertexai_single_call(model_name: Optional[str]) -> None:
     if model_name:
@@ -44,6 +46,7 @@ def test_vertexai_single_call(model_name: Optional[str]) -> None:
     assert isinstance(response.content, str)
 
 
+@pytest.mark.release
 # mark xfail because Vertex API randomly doesn't respect
 # the n/candidate_count parameter
 @pytest.mark.xfail
@@ -56,6 +59,7 @@ def test_candidates() -> None:
     assert len(response.generations[0]) == 2
 
 
+@pytest.mark.release
 @pytest.mark.parametrize("model_name", ["chat-bison@001", "gemini-pro"])
 async def test_vertexai_agenerate(model_name: str) -> None:
     model = ChatVertexAI(temperature=0, model_name=model_name)
@@ -68,16 +72,15 @@ async def test_vertexai_agenerate(model_name: str) -> None:
     sync_generation = cast(ChatGeneration, sync_response.generations[0][0])
     async_generation = cast(ChatGeneration, response.generations[0][0])
 
-    # assert some properties to make debugging easier
-
-    # xfail: this is not equivalent with temp=0 right now
-    # assert sync_generation.message.content == async_generation.message.content
-    assert sync_generation.generation_info == async_generation.generation_info
-
-    # xfail: content is not same right now
-    # assert sync_generation == async_generation
+    usage_metadata = sync_generation.generation_info["usage_metadata"]  # type: ignore
+    assert int(usage_metadata["prompt_token_count"]) > 0
+    assert int(usage_metadata["candidates_token_count"]) > 0
+    usage_metadata = async_generation.generation_info["usage_metadata"]  # type: ignore
+    assert int(usage_metadata["prompt_token_count"]) > 0
+    assert int(usage_metadata["candidates_token_count"]) > 0
 
 
+@pytest.mark.release
 @pytest.mark.parametrize("model_name", ["chat-bison@001", "gemini-pro"])
 def test_vertexai_stream(model_name: str) -> None:
     model = ChatVertexAI(temperature=0, model_name=model_name)
@@ -88,10 +91,20 @@ def test_vertexai_stream(model_name: str) -> None:
         assert isinstance(chunk, AIMessageChunk)
 
 
+@pytest.mark.release
+async def test_vertexai_astream() -> None:
+    model = ChatVertexAI(temperature=0, model_name="gemini-pro")
+    message = HumanMessage(content="Hello")
+
+    async for chunk in model.astream([message]):
+        assert isinstance(chunk, AIMessageChunk)
+
+
+@pytest.mark.release
 def test_vertexai_single_call_with_context() -> None:
     model = ChatVertexAI()
     raw_context = (
-        "My name is Ned. You are my personal assistant. My favorite movies "
+        "My name is Peter. You are my personal assistant. My favorite movies "
         "are Lord of the Rings and Hobbit."
     )
     question = (
@@ -104,6 +117,7 @@ def test_vertexai_single_call_with_context() -> None:
     assert isinstance(response.content, str)
 
 
+@pytest.mark.release
 def test_multimodal() -> None:
     llm = ChatVertexAI(model_name="gemini-pro-vision")
     gcs_url = (
@@ -123,6 +137,7 @@ def test_multimodal() -> None:
     assert isinstance(output.content, str)
 
 
+@pytest.mark.release
 @pytest.mark.xfail(reason="problem on vertex side")
 def test_multimodal_history() -> None:
     llm = ChatVertexAI(model_name="gemini-pro-vision")
@@ -152,9 +167,10 @@ def test_multimodal_history() -> None:
     assert isinstance(response.content, str)
 
 
+@pytest.mark.release
 def test_vertexai_single_call_with_examples() -> None:
     model = ChatVertexAI()
-    raw_context = "My name is Ned. You are my personal assistant."
+    raw_context = "My name is Peter. You are my personal assistant."
     question = "2+2"
     text_question, text_answer = "4+4", "8"
     inp = HumanMessage(content=text_question)
@@ -166,6 +182,7 @@ def test_vertexai_single_call_with_examples() -> None:
     assert isinstance(response.content, str)
 
 
+@pytest.mark.release
 @pytest.mark.parametrize("model_name", model_names_to_test)
 def test_vertexai_single_call_with_history(model_name: Optional[str]) -> None:
     if model_name:
@@ -182,6 +199,7 @@ def test_vertexai_single_call_with_history(model_name: Optional[str]) -> None:
     assert isinstance(response.content, str)
 
 
+@pytest.mark.release
 def test_vertexai_single_call_fails_no_message() -> None:
     chat = ChatVertexAI()
     with pytest.raises(ValueError) as exc_info:
@@ -192,6 +210,7 @@ def test_vertexai_single_call_fails_no_message() -> None:
     )
 
 
+@pytest.mark.release
 @pytest.mark.parametrize("model_name", ["gemini-pro"])
 def test_chat_vertexai_gemini_system_message_error(model_name: str) -> None:
     model = ChatVertexAI(model_name=model_name)
@@ -205,6 +224,7 @@ def test_chat_vertexai_gemini_system_message_error(model_name: str) -> None:
         model([system_message, message1, message2, message3])
 
 
+@pytest.mark.release
 @pytest.mark.parametrize("model_name", model_names_to_test)
 def test_chat_vertexai_system_message(model_name: Optional[str]) -> None:
     if model_name:
@@ -225,6 +245,7 @@ def test_chat_vertexai_system_message(model_name: Optional[str]) -> None:
     assert isinstance(response.content, str)
 
 
+@pytest.mark.release
 @pytest.mark.parametrize("model_name", model_names_to_test)
 def test_get_num_tokens_from_messages(model_name: str) -> None:
     if model_name:
@@ -237,6 +258,7 @@ def test_get_num_tokens_from_messages(model_name: str) -> None:
     assert token == 3
 
 
+@pytest.mark.release
 def test_chat_vertexai_gemini_function_calling() -> None:
     class MyModel(BaseModel):
         name: str

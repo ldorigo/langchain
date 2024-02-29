@@ -2,6 +2,12 @@ from langchain_google_vertexai import __all__
 
 EXPECTED_ALL = [
     "ChatVertexAI",
+    "GemmaVertexAIModelGarden",
+    "GemmaChatVertexAIModelGarden",
+    "GemmaLocalKaggle",
+    "GemmaChatLocalKaggle",
+    "GemmaChatLocalHF",
+    "GemmaLocalHF",
     "VertexAIEmbeddings",
     "VertexAI",
     "VertexAIModelGarden",
@@ -9,6 +15,12 @@ EXPECTED_ALL = [
     "HarmCategory",
     "PydanticFunctionsOutputParser",
     "create_structured_runnable",
+    "VectorSearchVectorStore",
+    "VertexAIImageCaptioning",
+    "VertexAIImageCaptioningChat",
+    "VertexAIImageEditorChat",
+    "VertexAIImageGeneratorChat",
+    "VertexAIVisualQnAChat",
 ]
 
 

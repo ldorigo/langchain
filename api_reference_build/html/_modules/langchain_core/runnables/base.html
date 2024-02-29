@@ -63,10 +63,16 @@
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../ai21_api_reference.html">ai21</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../airbyte_api_reference.html">airbyte</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../anthropic_api_reference.html">anthropic</a>
         </li>
         <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../astradb_api_reference.html">astradb</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../elasticsearch_api_reference.html">elasticsearch</a>
         </li>
         <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../exa_api_reference.html">exa</a>
@@ -114,8 +120,10 @@
           <a class="sk-nav-link nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Partner libs</a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../ai21_api_reference.html">ai21</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../../airbyte_api_reference.html">airbyte</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../anthropic_api_reference.html">anthropic</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../astradb_api_reference.html">astradb</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../../elasticsearch_api_reference.html">elasticsearch</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../exa_api_reference.html">exa</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../fireworks_api_reference.html">fireworks</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../google_genai_api_reference.html">google-genai</a>
@@ -273,17 +281,17 @@
 <span class="sd">     Key Methods</span>
 <span class="sd">     ===========</span>
 
-<span class="sd">    * invoke/ainvoke: Transforms a single input into an output.</span>
-<span class="sd">    * batch/abatch: Efficiently transforms multiple inputs into outputs.</span>
-<span class="sd">    * stream/astream: Streams output from a single input as it&#39;s produced.</span>
-<span class="sd">    * astream_log: Streams output and selected intermediate results from an input.</span>
+<span class="sd">    - **invoke/ainvoke**: Transforms a single input into an output.</span>
+<span class="sd">    - **batch/abatch**: Efficiently transforms multiple inputs into outputs.</span>
+<span class="sd">    - **stream/astream**: Streams output from a single input as it&#39;s produced.</span>
+<span class="sd">    - **astream_log**: Streams output and selected intermediate results from an input.</span>
 
 <span class="sd">    Built-in optimizations:</span>
 
-<span class="sd">    * Batch: By default, batch runs invoke() in parallel using a thread pool executor.</span>
+<span class="sd">    - **Batch**: By default, batch runs invoke() in parallel using a thread pool executor.</span>
 <span class="sd">             Override to optimize batching.</span>
 
-<span class="sd">    * Async: Methods with &quot;a&quot; suffix are asynchronous. By default, they execute</span>
+<span class="sd">    - **Async**: Methods with &quot;a&quot; suffix are asynchronous. By default, they execute</span>
 <span class="sd">             the sync counterpart using asyncio&#39;s thread pool.</span>
 <span class="sd">             Override for native async.</span>
 
@@ -395,7 +403,7 @@
 <span class="sd">            )</span>
 
 <span class="sd">    For a UI (and much more) checkout LangSmith: https://docs.smith.langchain.com/</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    &quot;&quot;&quot;</span>  <span class="c1"># noqa: E501</span>
 
     <span class="n">name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;The name of the runnable. Used for debugging and tracing.&quot;&quot;&quot;</span>
@@ -874,78 +882,97 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AsyncIterator</span><span class="p">[</span><span class="n">StreamEvent</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate a stream of events.</span>
 
-<span class="sd">        Use to create an iterator ove StreamEvents that provide real-time information</span>
+<span class="sd">        Use to create an iterator over StreamEvents that provide real-time information</span>
 <span class="sd">        about the progress of the runnable, including StreamEvents from intermediate</span>
 <span class="sd">        results.</span>
 
 <span class="sd">        A StreamEvent is a dictionary with the following schema:</span>
 
-<span class="sd">        * ``event``: str - Event names are of the</span>
+<span class="sd">        - ``event``: **str** - Event names are of the</span>
 <span class="sd">            format: on_[runnable_type]_(start|stream|end).</span>
-<span class="sd">        * ``name``: str - The name of the runnable that generated the event.</span>
-<span class="sd">        * ``run_id``: str - randomly generated ID associated with the given execution of</span>
+<span class="sd">        - ``name``: **str** - The name of the runnable that generated the event.</span>
+<span class="sd">        - ``run_id``: **str** - randomly generated ID associated with the given execution of</span>
 <span class="sd">            the runnable that emitted the event.</span>
 <span class="sd">            A child runnable that gets invoked as part of the execution of a</span>
 <span class="sd">            parent runnable is assigned its own unique ID.</span>
-<span class="sd">        * ``tags``: Optional[List[str]] - The tags of the runnable that generated</span>
+<span class="sd">        - ``tags``: **Optional[List[str]]** - The tags of the runnable that generated</span>
 <span class="sd">            the event.</span>
-<span class="sd">        * ``metadata``: Optional[Dict[str, Any]] - The metadata of the runnable</span>
+<span class="sd">        - ``metadata``: **Optional[Dict[str, Any]]** - The metadata of the runnable</span>
 <span class="sd">            that generated the event.</span>
-<span class="sd">        * ``data``: Dict[str, Any]</span>
+<span class="sd">        - ``data``: **Dict[str, Any]**</span>
 
 
 <span class="sd">        Below is a table that illustrates some evens that might be emitted by various</span>
 <span class="sd">        chains. Metadata fields have been omitted from the table for brevity.</span>
 <span class="sd">        Chain definitions have been included after the table.</span>
 
+<span class="sd">        +----------------------+------------------+---------------------------------+-----------------------------------------------+-------------------------------------------------+</span>
 <span class="sd">        | event                | name             | chunk                           | input                                         | output                                          |</span>
-<span class="sd">        |----------------------|------------------|---------------------------------|-----------------------------------------------|-------------------------------------------------|</span>
+<span class="sd">        +======================+==================+=================================+===============================================+=================================================+</span>
 <span class="sd">        | on_chat_model_start  | [model name]     |                                 | {&quot;messages&quot;: [[SystemMessage, HumanMessage]]} |                                                 |</span>
+<span class="sd">        +----------------------+------------------+---------------------------------+-----------------------------------------------+-------------------------------------------------+</span>
 <span class="sd">        | on_chat_model_stream | [model name]     | AIMessageChunk(content=&quot;hello&quot;) |                                               |                                                 |</span>
+<span class="sd">        +----------------------+------------------+---------------------------------+-----------------------------------------------+-------------------------------------------------+</span>
 <span class="sd">        | on_chat_model_end    | [model name]     |                                 | {&quot;messages&quot;: [[SystemMessage, HumanMessage]]} | {&quot;generations&quot;: [...], &quot;llm_output&quot;: None, ...} |</span>
+<span class="sd">        +----------------------+------------------+---------------------------------+-----------------------------------------------+-------------------------------------------------+</span>
 <span class="sd">        | on_llm_start         | [model name]     |                                 | {&#39;input&#39;: &#39;hello&#39;}                            |                                                 |</span>
+<span class="sd">        +----------------------+------------------+---------------------------------+-----------------------------------------------+-------------------------------------------------+</span>
 <span class="sd">        | on_llm_stream        | [model name]     | &#39;Hello&#39;                         |                                               |                                                 |</span>
-<span class="sd">        | on_llm_end           | [model name]     |                                 | &#39;Hello human!&#39;                                |</span>
+<span class="sd">        +----------------------+------------------+---------------------------------+-----------------------------------------------+-------------------------------------------------+</span>
+<span class="sd">        | on_llm_end           | [model name]     |                                 | &#39;Hello human!&#39;                                |                                                 |</span>
+<span class="sd">        +----------------------+------------------+---------------------------------+-----------------------------------------------+-------------------------------------------------+</span>
 <span class="sd">        | on_chain_start       | format_docs      |                                 |                                               |                                                 |</span>
+<span class="sd">        +----------------------+------------------+---------------------------------+-----------------------------------------------+-------------------------------------------------+</span>
 <span class="sd">        | on_chain_stream      | format_docs      | &quot;hello world!, goodbye world!&quot;  |                                               |                                                 |</span>
+<span class="sd">        +----------------------+------------------+---------------------------------+-----------------------------------------------+-------------------------------------------------+</span>
 <span class="sd">        | on_chain_end         | format_docs      |                                 | [Document(...)]                               | &quot;hello world!, goodbye world!&quot;                  |</span>
+<span class="sd">        +----------------------+------------------+---------------------------------+-----------------------------------------------+-------------------------------------------------+</span>
 <span class="sd">        | on_tool_start        | some_tool        |                                 | {&quot;x&quot;: 1, &quot;y&quot;: &quot;2&quot;}                            |                                                 |</span>
+<span class="sd">        +----------------------+------------------+---------------------------------+-----------------------------------------------+-------------------------------------------------+</span>
 <span class="sd">        | on_tool_stream       | some_tool        | {&quot;x&quot;: 1, &quot;y&quot;: &quot;2&quot;}              |                                               |                                                 |</span>
+<span class="sd">        +----------------------+------------------+---------------------------------+-----------------------------------------------+-------------------------------------------------+</span>
 <span class="sd">        | on_tool_end          | some_tool        |                                 |                                               | {&quot;x&quot;: 1, &quot;y&quot;: &quot;2&quot;}                              |</span>
+<span class="sd">        +----------------------+------------------+---------------------------------+-----------------------------------------------+-------------------------------------------------+</span>
 <span class="sd">        | on_retriever_start   | [retriever name] |                                 | {&quot;query&quot;: &quot;hello&quot;}                            |                                                 |</span>
+<span class="sd">        +----------------------+------------------+---------------------------------+-----------------------------------------------+-------------------------------------------------+</span>
 <span class="sd">        | on_retriever_chunk   | [retriever name] | {documents: [...]}              |                                               |                                                 |</span>
+<span class="sd">        +----------------------+------------------+---------------------------------+-----------------------------------------------+-------------------------------------------------+</span>
 <span class="sd">        | on_retriever_end     | [retriever name] |                                 | {&quot;query&quot;: &quot;hello&quot;}                            | {documents: [...]}                              |</span>
+<span class="sd">        +----------------------+------------------+---------------------------------+-----------------------------------------------+-------------------------------------------------+</span>
 <span class="sd">        | on_prompt_start      | [template_name]  |                                 | {&quot;question&quot;: &quot;hello&quot;}                         |                                                 |</span>
+<span class="sd">        +----------------------+------------------+---------------------------------+-----------------------------------------------+-------------------------------------------------+</span>
 <span class="sd">        | on_prompt_end        | [template_name]  |                                 | {&quot;question&quot;: &quot;hello&quot;}                         | ChatPromptValue(messages: [SystemMessage, ...]) |</span>
+<span class="sd">        +----------------------+------------------+---------------------------------+-----------------------------------------------+-------------------------------------------------+</span>
 
 <span class="sd">        Here are declarations associated with the events shown above:</span>
 
 <span class="sd">        `format_docs`:</span>
 
-<span class="sd">        ```python</span>
-<span class="sd">        def format_docs(docs: List[Document]) -&gt; str:</span>
-<span class="sd">            &#39;&#39;&#39;Format the docs.&#39;&#39;&#39;</span>
-<span class="sd">            return &quot;, &quot;.join([doc.page_content for doc in docs])</span>
+<span class="sd">        .. code-block:: python</span>
 
-<span class="sd">        format_docs = RunnableLambda(format_docs)</span>
-<span class="sd">        ```</span>
+<span class="sd">            def format_docs(docs: List[Document]) -&gt; str:</span>
+<span class="sd">                &#39;&#39;&#39;Format the docs.&#39;&#39;&#39;</span>
+<span class="sd">                return &quot;, &quot;.join([doc.page_content for doc in docs])</span>
+
+<span class="sd">            format_docs = RunnableLambda(format_docs)</span>
 
 <span class="sd">        `some_tool`:</span>
 
-<span class="sd">        ```python</span>
-<span class="sd">        @tool</span>
-<span class="sd">        def some_tool(x: int, y: str) -&gt; dict:</span>
-<span class="sd">            &#39;&#39;&#39;Some_tool.&#39;&#39;&#39;</span>
-<span class="sd">            return {&quot;x&quot;: x, &quot;y&quot;: y}</span>
-<span class="sd">        ```</span>
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            @tool</span>
+<span class="sd">            def some_tool(x: int, y: str) -&gt; dict:</span>
+<span class="sd">                &#39;&#39;&#39;Some_tool.&#39;&#39;&#39;</span>
+<span class="sd">                return {&quot;x&quot;: x, &quot;y&quot;: y}</span>
 
 <span class="sd">        `prompt`:</span>
 
-<span class="sd">        ```python</span>
-<span class="sd">        template = ChatPromptTemplate.from_messages(</span>
-<span class="sd">            [(&quot;system&quot;, &quot;You are Cat Agent 007&quot;), (&quot;human&quot;, &quot;{question}&quot;)]</span>
-<span class="sd">        ).with_config({&quot;run_name&quot;: &quot;my_template&quot;, &quot;tags&quot;: [&quot;my_template&quot;]})</span>
-<span class="sd">        ```</span>
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            template = ChatPromptTemplate.from_messages(</span>
+<span class="sd">                [(&quot;system&quot;, &quot;You are Cat Agent 007&quot;), (&quot;human&quot;, &quot;{question}&quot;)]</span>
+<span class="sd">            ).with_config({&quot;run_name&quot;: &quot;my_template&quot;, &quot;tags&quot;: [&quot;my_template&quot;]})</span>
+
 
 <span class="sd">        Example:</span>
 
@@ -4143,16 +4170,6 @@
 <span class="sd">                runnable with a custom type.</span>
 <span class="sd">            **other_kwargs: Unpacked into the base class.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">config</span> <span class="o">=</span> <span class="n">config</span> <span class="ow">or</span> <span class="p">{}</span>
-        <span class="c1"># config_specs contains the list of valid `configurable` keys</span>
-        <span class="k">if</span> <span class="n">configurable</span> <span class="o">:=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;configurable&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">):</span>
-            <span class="n">allowed_keys</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">id</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">bound</span><span class="o">.</span><span class="n">config_specs</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">configurable</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">allowed_keys</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                        <span class="sa">f</span><span class="s2">&quot;Configurable key &#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">&#39; not found in runnable with&quot;</span>
-                        <span class="sa">f</span><span class="s2">&quot; config keys: </span><span class="si">{</span><span class="n">allowed_keys</span><span class="si">}</span><span class="s2">&quot;</span>
-                    <span class="p">)</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">bound</span><span class="o">=</span><span class="n">bound</span><span class="p">,</span>
             <span class="n">kwargs</span><span class="o">=</span><span class="n">kwargs</span> <span class="ow">or</span> <span class="p">{},</span>
@@ -4606,7 +4623,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Feb 26, 2024.
+          Last updated on Feb 29, 2024.
       </footer>
     </div>
   </div>

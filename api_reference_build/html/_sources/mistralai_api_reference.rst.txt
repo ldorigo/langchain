@@ -1,7 +1,7 @@
 .. mistralai_api_reference:
 
 =======================
-``langchain_mistralai`` 0.0.4
+``langchain_mistralai`` 0.0.5
 =======================
 
 :mod:`langchain_mistralai.chat_models`

@@ -1,8 +1,9 @@
 """Utilities to init Vertex AI."""
 
 import dataclasses
+import re
 from importlib import metadata
-from typing import Any, Callable, Dict, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, Union
 
 import google.api_core
 import proto  # type: ignore[import-untyped]
@@ -13,13 +14,13 @@ from langchain_core.callbacks import (
     CallbackManagerForLLMRun,
 )
 from langchain_core.language_models.llms import create_base_retry_decorator
-from vertexai.generative_models._generative_models import (  # type: ignore[import-untyped]
+from vertexai.generative_models import (  # type: ignore[import-untyped]
     Candidate,
+    Image,
 )
 from vertexai.language_models import (  # type: ignore[import-untyped]
     TextGenerationResponse,
 )
-from vertexai.preview.generative_models import Image  # type: ignore[import-untyped]
 
 
 def create_retry_decorator(
@@ -102,6 +103,7 @@ def get_generation_info(
     is_gemini: bool,
     *,
     stream: bool = False,
+    usage_metadata: Optional[Dict] = None,
 ) -> Dict[str, Any]:
     if is_gemini:
         # https://cloud.google.com/vertex-ai/docs/generative-ai/model-reference/gemini#response_body
@@ -121,12 +123,48 @@ def get_generation_info(
                 else None
             ),
         }
+        if usage_metadata:
+            info["usage_metadata"] = usage_metadata
     # https://cloud.google.com/vertex-ai/docs/generative-ai/model-reference/text-chat#response_body
     else:
         info = dataclasses.asdict(candidate)
         info.pop("text")
         info = {k: v for k, v in info.items() if not k.startswith("_")}
+        if usage_metadata:
+            info_usage_metadata = {}
+            output_usage = usage_metadata.get("tokenMetadata", {}).get(
+                "outputTokenCount", {}
+            )
+            info_usage_metadata["candidates_billable_characters"] = output_usage.get(
+                "totalBillableCharacters"
+            )
+            info_usage_metadata["candidates_token_count"] = output_usage.get(
+                "totalTokens"
+            )
+            input_usage = usage_metadata.get("tokenMetadata", {}).get(
+                "inputTokenCount", {}
+            )
+            info_usage_metadata["prompt_billable_characters"] = input_usage.get(
+                "totalBillableCharacters"
+            )
+            info_usage_metadata["prompt_token_count"] = input_usage.get("totalTokens")
+            info["usage_metadata"] = {k: v for k, v in info_usage_metadata.items() if v}
+
+            # NOTE:
+            # "safety_attributes" can contain different values for the same keys
+            # for each generation. Put it in a list, so it can be merged later by
+            # merge_dicts().
+            #
+            safety_attributes = info.get("safety_attributes") or {}
+            info["safety_attributes"] = [safety_attributes]
+
     if stream:
         # Remove non-streamable types, like bools.
         info.pop("is_blocked")
+
     return info
+
+
+def enforce_stop_tokens(text: str, stop: List[str]) -> str:
+    """Cut off the text as soon as any stop words occur."""
+    return re.split("|".join(stop), text, maxsplit=1)[0]

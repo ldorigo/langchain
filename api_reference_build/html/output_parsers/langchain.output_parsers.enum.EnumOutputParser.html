@@ -64,10 +64,16 @@
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../ai21_api_reference.html">ai21</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../airbyte_api_reference.html">airbyte</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../anthropic_api_reference.html">anthropic</a>
         </li>
         <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../astradb_api_reference.html">astradb</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../elasticsearch_api_reference.html">elasticsearch</a>
         </li>
         <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../exa_api_reference.html">exa</a>
@@ -115,8 +121,10 @@
           <a class="sk-nav-link nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Partner libs</a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="sk-nav-dropdown-item dropdown-item" href="../ai21_api_reference.html">ai21</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../airbyte_api_reference.html">airbyte</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../anthropic_api_reference.html">anthropic</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../astradb_api_reference.html">astradb</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../elasticsearch_api_reference.html">elasticsearch</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../exa_api_reference.html">exa</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../fireworks_api_reference.html">fireworks</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../google_genai_api_reference.html">google-genai</a>
@@ -370,87 +378,182 @@ Subclasses should override this method if they support streaming output.</p>
 <dt class="sig sig-object py" id="langchain.output_parsers.enum.EnumOutputParser.astream_events">
 <span class="sig-name descname"><span class="pre">astream_events</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../runnables/langchain_core.runnables.config.RunnableConfig.html#langchain_core.runnables.config.RunnableConfig" title="langchain_core.runnables.config.RunnableConfig"><span class="pre">RunnableConfig</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'v1'</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_types</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_tags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude_types</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude_tags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">AsyncIterator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../runnables/langchain_core.runnables.schema.StreamEvent.html#langchain_core.runnables.schema.StreamEvent" title="langchain_core.runnables.schema.StreamEvent"><span class="pre">StreamEvent</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#langchain.output_parsers.enum.EnumOutputParser.astream_events" title="Permalink to this definition">¶</a></dt>
 <dd><p>[<em>Beta</em>] Generate a stream of events.</p>
-<p>Use to create an iterator ove StreamEvents that provide real-time information
+<p>Use to create an iterator over StreamEvents that provide real-time information
 about the progress of the runnable, including StreamEvents from intermediate
 results.</p>
 <p>A StreamEvent is a dictionary with the following schema:</p>
 <ul class="simple">
 <li><dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="pre">event</span></code>: str - Event names are of the</dt><dd><p>format: on_[runnable_type]_(start|stream|end).</p>
+<dt><code class="docutils literal notranslate"><span class="pre">event</span></code>: <strong>str</strong> - Event names are of the</dt><dd><p>format: on_[runnable_type]_(start|stream|end).</p>
 </dd>
 </dl>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: str - The name of the runnable that generated the event.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: <strong>str</strong> - The name of the runnable that generated the event.</p></li>
 <li><dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="pre">run_id</span></code>: str - randomly generated ID associated with the given execution of</dt><dd><p>the runnable that emitted the event.
+<dt><code class="docutils literal notranslate"><span class="pre">run_id</span></code>: <strong>str</strong> - randomly generated ID associated with the given execution of</dt><dd><p>the runnable that emitted the event.
 A child runnable that gets invoked as part of the execution of a
 parent runnable is assigned its own unique ID.</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="pre">tags</span></code>: Optional[List[str]] - The tags of the runnable that generated</dt><dd><p>the event.</p>
+<dt><code class="docutils literal notranslate"><span class="pre">tags</span></code>: <strong>Optional[List[str]]</strong> - The tags of the runnable that generated</dt><dd><p>the event.</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="pre">metadata</span></code>: Optional[Dict[str, Any]] - The metadata of the runnable</dt><dd><p>that generated the event.</p>
+<dt><code class="docutils literal notranslate"><span class="pre">metadata</span></code>: <strong>Optional[Dict[str, Any]]</strong> - The metadata of the runnable</dt><dd><p>that generated the event.</p>
 </dd>
 </dl>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code>: Dict[str, Any]</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code>: <strong>Dict[str, Any]</strong></p></li>
 </ul>
 <p>Below is a table that illustrates some evens that might be emitted by various
 chains. Metadata fields have been omitted from the table for brevity.
 Chain definitions have been included after the table.</p>
-<div class="line-block">
-<div class="line">event                | name             | chunk                           | input                                         | output                                          |</div>
-</div>
-<p><a href="#id25"><span class="problematic" id="id26">|----------------------|</span></a>——————<a href="#id27"><span class="problematic" id="id28">|---------------------------------|</span></a>———————————————–<a href="#id29"><span class="problematic" id="id30">|-------------------------------------------------|</span></a>
-| on_chat_model_start  | [model name]     |                                 | {“messages”: [[SystemMessage, HumanMessage]]} |                                                 |
-| on_chat_model_stream | [model name]     | AIMessageChunk(content=”hello”) |                                               |                                                 |
-| on_chat_model_end    | [model name]     |                                 | {“messages”: [[SystemMessage, HumanMessage]]} | {“generations”: […], “llm_output”: None, …} |
-| on_llm_start         | [model name]     |                                 | {‘input’: ‘hello’}                            |                                                 |
-| on_llm_stream        | [model name]     | ‘Hello’                         |                                               |                                                 |
-| on_llm_end           | [model name]     |                                 | ‘Hello human!’                                |
-| on_chain_start       | format_docs      |                                 |                                               |                                                 |
-| on_chain_stream      | format_docs      | “hello world!, goodbye world!”  |                                               |                                                 |
-| on_chain_end         | format_docs      |                                 | [Document(…)]                               | “hello world!, goodbye world!”                  |
-| on_tool_start        | some_tool        |                                 | {“x”: 1, “y”: “2”}                            |                                                 |
-| on_tool_stream       | some_tool        | {“x”: 1, “y”: “2”}              |                                               |                                                 |
-| on_tool_end          | some_tool        |                                 |                                               | {“x”: 1, “y”: “2”}                              |
-| on_retriever_start   | [retriever name] |                                 | {“query”: “hello”}                            |                                                 |
-| on_retriever_chunk   | [retriever name] | {documents: […]}              |                                               |                                                 |
-| on_retriever_end     | [retriever name] |                                 | {“query”: “hello”}                            | {documents: […]}                              |
-| on_prompt_start      | [template_name]  |                                 | {“question”: “hello”}                         |                                                 |
-| on_prompt_end        | [template_name]  |                                 | {“question”: “hello”}                         | ChatPromptValue(messages: [SystemMessage, …]) |</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 11%" />
+<col style="width: 20%" />
+<col style="width: 28%" />
+<col style="width: 29%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>event</p></th>
+<th class="head"><p>name</p></th>
+<th class="head"><p>chunk</p></th>
+<th class="head"><p>input</p></th>
+<th class="head"><p>output</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>on_chat_model_start</p></td>
+<td><p>[model name]</p></td>
+<td></td>
+<td><p>{“messages”: [[SystemMessage, HumanMessage]]}</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>on_chat_model_stream</p></td>
+<td><p>[model name]</p></td>
+<td><p>AIMessageChunk(content=”hello”)</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>on_chat_model_end</p></td>
+<td><p>[model name]</p></td>
+<td></td>
+<td><p>{“messages”: [[SystemMessage, HumanMessage]]}</p></td>
+<td><p>{“generations”: […], “llm_output”: None, …}</p></td>
+</tr>
+<tr class="row-odd"><td><p>on_llm_start</p></td>
+<td><p>[model name]</p></td>
+<td></td>
+<td><p>{‘input’: ‘hello’}</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>on_llm_stream</p></td>
+<td><p>[model name]</p></td>
+<td><p>‘Hello’</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>on_llm_end</p></td>
+<td><p>[model name]</p></td>
+<td></td>
+<td><p>‘Hello human!’</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>on_chain_start</p></td>
+<td><p>format_docs</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>on_chain_stream</p></td>
+<td><p>format_docs</p></td>
+<td><p>“hello world!, goodbye world!”</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>on_chain_end</p></td>
+<td><p>format_docs</p></td>
+<td></td>
+<td><p>[Document(…)]</p></td>
+<td><p>“hello world!, goodbye world!”</p></td>
+</tr>
+<tr class="row-odd"><td><p>on_tool_start</p></td>
+<td><p>some_tool</p></td>
+<td></td>
+<td><p>{“x”: 1, “y”: “2”}</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>on_tool_stream</p></td>
+<td><p>some_tool</p></td>
+<td><p>{“x”: 1, “y”: “2”}</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>on_tool_end</p></td>
+<td><p>some_tool</p></td>
+<td></td>
+<td></td>
+<td><p>{“x”: 1, “y”: “2”}</p></td>
+</tr>
+<tr class="row-even"><td><p>on_retriever_start</p></td>
+<td><p>[retriever name]</p></td>
+<td></td>
+<td><p>{“query”: “hello”}</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>on_retriever_chunk</p></td>
+<td><p>[retriever name]</p></td>
+<td><p>{documents: […]}</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>on_retriever_end</p></td>
+<td><p>[retriever name]</p></td>
+<td></td>
+<td><p>{“query”: “hello”}</p></td>
+<td><p>{documents: […]}</p></td>
+</tr>
+<tr class="row-odd"><td><p>on_prompt_start</p></td>
+<td><p>[template_name]</p></td>
+<td></td>
+<td><p>{“question”: “hello”}</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>on_prompt_end</p></td>
+<td><p>[template_name]</p></td>
+<td></td>
+<td><p>{“question”: “hello”}</p></td>
+<td><p>ChatPromptValue(messages: [SystemMessage, …])</p></td>
+</tr>
+</tbody>
+</table>
 <p>Here are declarations associated with the events shown above:</p>
 <p><cite>format_docs</cite>:</p>
-<p><a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a>python
-def format_docs(docs: List[Document]) -&gt; str:</p>
-<blockquote>
-<div><p>‘’’Format the docs.’’’
-return “, “.join([doc.page_content for doc in docs])</p>
-</div></blockquote>
-<p>format_docs = RunnableLambda(format_docs)
-<a href="#id5"><span class="problematic" id="id6">``</span></a><a href="#id7"><span class="problematic" id="id8">`</span></a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">format_docs</span><span class="p">(</span><span class="n">docs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Document</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Format the docs.&#39;&#39;&#39;</span>
+    <span class="k">return</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">doc</span><span class="o">.</span><span class="n">page_content</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">docs</span><span class="p">])</span>
+
+<span class="n">format_docs</span> <span class="o">=</span> <span class="n">RunnableLambda</span><span class="p">(</span><span class="n">format_docs</span><span class="p">)</span>
+</pre></div>
+</div>
 <p><cite>some_tool</cite>:</p>
-<p><a href="#id9"><span class="problematic" id="id10">``</span></a><a href="#id11"><span class="problematic" id="id12">`</span></a>python
-&#64;tool
-def some_tool(x: int, y: str) -&gt; dict:</p>
-<blockquote>
-<div><p>‘’’Some_tool.’’’
-return {“x”: x, “y”: y}</p>
-</div></blockquote>
-<p><a href="#id13"><span class="problematic" id="id14">``</span></a><a href="#id15"><span class="problematic" id="id16">`</span></a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@tool</span>
+<span class="k">def</span> <span class="nf">some_tool</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Some_tool.&#39;&#39;&#39;</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="n">y</span><span class="p">}</span>
+</pre></div>
+</div>
 <p><cite>prompt</cite>:</p>
-<p><a href="#id17"><span class="problematic" id="id18">``</span></a><a href="#id19"><span class="problematic" id="id20">`</span></a>python
-template = ChatPromptTemplate.from_messages(</p>
-<blockquote>
-<div><p>[(“system”, “You are Cat Agent 007”), (“human”, “{question}”)]</p>
-</div></blockquote>
-<p>).with_config({“run_name”: “my_template”, “tags”: [“my_template”]})
-<a href="#id21"><span class="problematic" id="id22">``</span></a><a href="#id23"><span class="problematic" id="id24">`</span></a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">template</span> <span class="o">=</span> <span class="n">ChatPromptTemplate</span><span class="o">.</span><span class="n">from_messages</span><span class="p">(</span>
+    <span class="p">[(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;You are Cat Agent 007&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;human&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">{question}</span><span class="s2">&quot;</span><span class="p">)]</span>
+<span class="p">)</span><span class="o">.</span><span class="n">with_config</span><span class="p">({</span><span class="s2">&quot;run_name&quot;</span><span class="p">:</span> <span class="s2">&quot;my_template&quot;</span><span class="p">,</span> <span class="s2">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;my_template&quot;</span><span class="p">]})</span>
+</pre></div>
+</div>
 <p>Example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">langchain_core.runnables</span> <span class="kn">import</span> <span class="n">RunnableLambda</span>
 
@@ -1363,7 +1466,7 @@ between retries</p></li>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Feb 26, 2024.
+          Last updated on Feb 29, 2024.
           <a href="../_sources/output_parsers/langchain.output_parsers.enum.EnumOutputParser.rst.txt" rel="nofollow">Show this page source</a>
       </footer>
     </div>

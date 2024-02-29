@@ -6,13 +6,10 @@ all: help
 # Define a variable for the test file path.
 TEST_FILE ?= tests/unit_tests/
 
-integration_tests: TEST_FILE = tests/integration_tests/
+integration_test integration_tests: TEST_FILE = tests/integration_tests/
 
-test integration_tests:
-	poetry run pytest $(TEST_FILE)
-
-tests:
-	poetry run pytest $(TEST_FILE)
+test tests integration_test integration_tests:
+	poetry run pytest --release $(TEST_FILE)
 
 
 ######################
@@ -23,7 +20,7 @@ tests:
 PYTHON_FILES=.
 MYPY_CACHE=.mypy_cache
 lint format: PYTHON_FILES=.
-lint_diff format_diff: PYTHON_FILES=$(shell git diff --relative=libs/partners/google-vertexai --name-only --diff-filter=d master | grep -E '\.py$$|\.ipynb$$')
+lint_diff format_diff: PYTHON_FILES=$(shell git diff --relative=libs/partners/google-vertexai --name-only --diff-filter=d main | grep -E '\.py$$|\.ipynb$$')
 lint_package: PYTHON_FILES=langchain_google_vertexai
 lint_tests: PYTHON_FILES=tests
 lint_tests: MYPY_CACHE=.mypy_cache_test

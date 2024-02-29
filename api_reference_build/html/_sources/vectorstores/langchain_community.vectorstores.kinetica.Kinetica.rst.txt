@@ -1,0 +1,102 @@
+﻿:mod:`langchain_community.vectorstores.kinetica`.Kinetica
+================================================================
+
+.. currentmodule:: langchain_community.vectorstores.kinetica
+
+.. autoclass:: Kinetica
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Kinetica.distance_strategy
+      ~Kinetica.embeddings
+   
+   
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~Kinetica.__init__
+      ~Kinetica.aadd_documents
+      ~Kinetica.aadd_texts
+      ~Kinetica.add_documents
+      ~Kinetica.add_embeddings
+      ~Kinetica.add_texts
+      ~Kinetica.adelete
+      ~Kinetica.afrom_documents
+      ~Kinetica.afrom_texts
+      ~Kinetica.amax_marginal_relevance_search
+      ~Kinetica.amax_marginal_relevance_search_by_vector
+      ~Kinetica.as_retriever
+      ~Kinetica.asearch
+      ~Kinetica.asimilarity_search
+      ~Kinetica.asimilarity_search_by_vector
+      ~Kinetica.asimilarity_search_with_relevance_scores
+      ~Kinetica.asimilarity_search_with_score
+      ~Kinetica.create_schema
+      ~Kinetica.create_tables_if_not_exists
+      ~Kinetica.delete
+      ~Kinetica.delete_schema
+      ~Kinetica.drop_tables
+      ~Kinetica.from_documents
+      ~Kinetica.from_embeddings
+      ~Kinetica.from_texts
+      ~Kinetica.max_marginal_relevance_search
+      ~Kinetica.max_marginal_relevance_search_by_vector
+      ~Kinetica.max_marginal_relevance_search_with_score
+      ~Kinetica.max_marginal_relevance_search_with_score_by_vector
+      ~Kinetica.search
+      ~Kinetica.similarity_search
+      ~Kinetica.similarity_search_by_vector
+      ~Kinetica.similarity_search_with_relevance_scores
+      ~Kinetica.similarity_search_with_score
+      ~Kinetica.similarity_search_with_score_by_vector
+
+   
+   .. automethod:: Kinetica.__init__
+   .. automethod:: Kinetica.aadd_documents
+   .. automethod:: Kinetica.aadd_texts
+   .. automethod:: Kinetica.add_documents
+   .. automethod:: Kinetica.add_embeddings
+   .. automethod:: Kinetica.add_texts
+   .. automethod:: Kinetica.adelete
+   .. automethod:: Kinetica.afrom_documents
+   .. automethod:: Kinetica.afrom_texts
+   .. automethod:: Kinetica.amax_marginal_relevance_search
+   .. automethod:: Kinetica.amax_marginal_relevance_search_by_vector
+   .. automethod:: Kinetica.as_retriever
+   .. automethod:: Kinetica.asearch
+   .. automethod:: Kinetica.asimilarity_search
+   .. automethod:: Kinetica.asimilarity_search_by_vector
+   .. automethod:: Kinetica.asimilarity_search_with_relevance_scores
+   .. automethod:: Kinetica.asimilarity_search_with_score
+   .. automethod:: Kinetica.create_schema
+   .. automethod:: Kinetica.create_tables_if_not_exists
+   .. automethod:: Kinetica.delete
+   .. automethod:: Kinetica.delete_schema
+   .. automethod:: Kinetica.drop_tables
+   .. automethod:: Kinetica.from_documents
+   .. automethod:: Kinetica.from_embeddings
+   .. automethod:: Kinetica.from_texts
+   .. automethod:: Kinetica.max_marginal_relevance_search
+   .. automethod:: Kinetica.max_marginal_relevance_search_by_vector
+   .. automethod:: Kinetica.max_marginal_relevance_search_with_score
+   .. automethod:: Kinetica.max_marginal_relevance_search_with_score_by_vector
+   .. automethod:: Kinetica.search
+   .. automethod:: Kinetica.similarity_search
+   .. automethod:: Kinetica.similarity_search_by_vector
+   .. automethod:: Kinetica.similarity_search_with_relevance_scores
+   .. automethod:: Kinetica.similarity_search_with_score
+   .. automethod:: Kinetica.similarity_search_with_score_by_vector
+
+   
+   
+
+
+.. example_links:: Kinetica

@@ -1,0 +1,16 @@
+﻿:mod:`langchain_google_vertexai.embeddings`.GoogleEmbeddingModelType
+===========================================================================
+
+.. currentmodule:: langchain_google_vertexai.embeddings
+
+.. autoclass:: GoogleEmbeddingModelType
+
+    
+    
+    .. autoattribute:: TEXT
+    
+    .. autoattribute:: MULTIMODAL
+    
+    
+
+.. example_links:: GoogleEmbeddingModelType

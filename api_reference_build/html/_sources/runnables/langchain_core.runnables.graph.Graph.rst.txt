@@ -26,6 +26,7 @@
       ~Graph.add_edge
       ~Graph.add_node
       ~Graph.draw_ascii
+      ~Graph.draw_png
       ~Graph.extend
       ~Graph.first_node
       ~Graph.last_node
@@ -41,6 +42,7 @@
    .. automethod:: Graph.add_edge
    .. automethod:: Graph.add_node
    .. automethod:: Graph.draw_ascii
+   .. automethod:: Graph.draw_png
    .. automethod:: Graph.extend
    .. automethod:: Graph.first_node
    .. automethod:: Graph.last_node

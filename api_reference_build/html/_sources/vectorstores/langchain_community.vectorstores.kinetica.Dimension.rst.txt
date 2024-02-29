@@ -1,0 +1,14 @@
+﻿:mod:`langchain_community.vectorstores.kinetica`.Dimension
+=================================================================
+
+.. currentmodule:: langchain_community.vectorstores.kinetica
+
+.. autoclass:: Dimension
+
+    
+    
+    .. autoattribute:: OPENAI
+    
+    
+
+.. example_links:: Dimension

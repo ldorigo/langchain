@@ -63,10 +63,16 @@
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../ai21_api_reference.html">ai21</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../airbyte_api_reference.html">airbyte</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../anthropic_api_reference.html">anthropic</a>
         </li>
         <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../astradb_api_reference.html">astradb</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../elasticsearch_api_reference.html">elasticsearch</a>
         </li>
         <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../exa_api_reference.html">exa</a>
@@ -114,8 +120,10 @@
           <a class="sk-nav-link nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Partner libs</a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="sk-nav-dropdown-item dropdown-item" href="../../ai21_api_reference.html">ai21</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../airbyte_api_reference.html">airbyte</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../anthropic_api_reference.html">anthropic</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../astradb_api_reference.html">astradb</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../elasticsearch_api_reference.html">elasticsearch</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../exa_api_reference.html">exa</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../fireworks_api_reference.html">fireworks</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../google_genai_api_reference.html">google-genai</a>
@@ -170,6 +178,7 @@
 <span class="kn">import</span> <span class="nn">string</span>
 <span class="kn">import</span> <span class="nn">threading</span>
 <span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="kn">import</span> <span class="n">ThreadPoolExecutor</span><span class="p">,</span> <span class="n">wait</span>
+<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span><span class="p">,</span> <span class="n">auto</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Type</span>
 
 <span class="kn">from</span> <span class="nn">google.api_core.exceptions</span> <span class="kn">import</span> <span class="p">(</span>
@@ -186,14 +195,32 @@
     <span class="n">TextEmbeddingInput</span><span class="p">,</span>
     <span class="n">TextEmbeddingModel</span><span class="p">,</span>
 <span class="p">)</span>
+<span class="kn">from</span> <span class="nn">vertexai.vision_models</span> <span class="kn">import</span> <span class="p">(</span>  <span class="c1"># type: ignore</span>
+    <span class="n">Image</span><span class="p">,</span>
+    <span class="n">MultiModalEmbeddingModel</span><span class="p">,</span>
+    <span class="n">MultiModalEmbeddingResponse</span><span class="p">,</span>
+<span class="p">)</span>
 
-<span class="kn">from</span> <span class="nn">langchain_google_vertexai.llms</span> <span class="kn">import</span> <span class="n">_VertexAICommon</span>
+<span class="kn">from</span> <span class="nn">langchain_google_vertexai._base</span> <span class="kn">import</span> <span class="n">_VertexAICommon</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 <span class="n">_MAX_TOKENS_PER_BATCH</span> <span class="o">=</span> <span class="mi">20000</span>
 <span class="n">_MAX_BATCH_SIZE</span> <span class="o">=</span> <span class="mi">250</span>
 <span class="n">_MIN_BATCH_SIZE</span> <span class="o">=</span> <span class="mi">5</span>
+
+
+<div class="viewcode-block" id="GoogleEmbeddingModelType"><a class="viewcode-back" href="../../embeddings/langchain_google_vertexai.embeddings.GoogleEmbeddingModelType.html#langchain_google_vertexai.embeddings.GoogleEmbeddingModelType">[docs]</a><span class="k">class</span> <span class="nc">GoogleEmbeddingModelType</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
+    <span class="n">TEXT</span> <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
+    <span class="n">MULTIMODAL</span> <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">_missing_</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="s2">&quot;GoogleEmbeddingModelType&quot;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="s2">&quot;textembedding-gecko&quot;</span> <span class="ow">in</span> <span class="n">value</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+            <span class="k">return</span> <span class="n">GoogleEmbeddingModelType</span><span class="o">.</span><span class="n">TEXT</span>
+        <span class="k">elif</span> <span class="s2">&quot;multimodalembedding&quot;</span> <span class="ow">in</span> <span class="n">value</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+            <span class="k">return</span> <span class="n">GoogleEmbeddingModelType</span><span class="o">.</span><span class="n">MULTIMODAL</span>
+        <span class="k">return</span> <span class="kc">None</span></div>
 
 
 <div class="viewcode-block" id="VertexAIEmbeddings"><a class="viewcode-back" href="../../embeddings/langchain_google_vertexai.embeddings.VertexAIEmbeddings.html#langchain_google_vertexai.embeddings.VertexAIEmbeddings">[docs]</a><span class="k">class</span> <span class="nc">VertexAIEmbeddings</span><span class="p">(</span><span class="n">_VertexAICommon</span><span class="p">,</span> <span class="n">Embeddings</span><span class="p">):</span>
@@ -213,7 +240,15 @@
                 <span class="s2">&quot;textembedding-gecko@001&quot;</span>
             <span class="p">)</span>
             <span class="n">values</span><span class="p">[</span><span class="s2">&quot;model_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;textembedding-gecko@001&quot;</span>
-        <span class="n">values</span><span class="p">[</span><span class="s2">&quot;client&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">TextEmbeddingModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">&quot;model_name&quot;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="n">GoogleEmbeddingModelType</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">&quot;model_name&quot;</span><span class="p">])</span>
+            <span class="o">==</span> <span class="n">GoogleEmbeddingModelType</span><span class="o">.</span><span class="n">MULTIMODAL</span>
+        <span class="p">):</span>
+            <span class="n">values</span><span class="p">[</span><span class="s2">&quot;client&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">MultiModalEmbeddingModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+                <span class="n">values</span><span class="p">[</span><span class="s2">&quot;model_name&quot;</span><span class="p">]</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">values</span><span class="p">[</span><span class="s2">&quot;client&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">TextEmbeddingModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">&quot;model_name&quot;</span><span class="p">])</span>
         <span class="k">return</span> <span class="n">values</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
@@ -249,6 +284,20 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">instance</span><span class="p">[</span>
             <span class="s2">&quot;embeddings_task_type_supported&quot;</span>
         <span class="p">]</span> <span class="o">=</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">_endpoint_name</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;/textembedding-gecko@001&quot;</span><span class="p">)</span>
+
+        <span class="n">retry_errors</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Type</span><span class="p">[</span><span class="ne">BaseException</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">ResourceExhausted</span><span class="p">,</span>
+            <span class="n">ServiceUnavailable</span><span class="p">,</span>
+            <span class="n">Aborted</span><span class="p">,</span>
+            <span class="n">DeadlineExceeded</span><span class="p">,</span>
+        <span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">instance</span><span class="p">[</span><span class="s2">&quot;retry_decorator&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">create_base_retry_decorator</span><span class="p">(</span>
+            <span class="n">error_types</span><span class="o">=</span><span class="n">retry_errors</span><span class="p">,</span> <span class="n">max_retries</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_retries</span>
+        <span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">model_type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">GoogleEmbeddingModelType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_name</span><span class="p">)</span>
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">_split_by_punctuation</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
@@ -488,6 +537,8 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            List of embeddings, one for each text.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_type</span> <span class="o">!=</span> <span class="n">GoogleEmbeddingModelType</span><span class="o">.</span><span class="n">TEXT</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Not supported for multimodal models&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">embed</span><span class="p">(</span><span class="n">texts</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="s2">&quot;RETRIEVAL_DOCUMENT&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="VertexAIEmbeddings.embed_query"><a class="viewcode-back" href="../../embeddings/langchain_google_vertexai.embeddings.VertexAIEmbeddings.html#langchain_google_vertexai.embeddings.VertexAIEmbeddings.embed_query">[docs]</a>    <span class="k">def</span> <span class="nf">embed_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
@@ -499,15 +550,35 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            Embedding for the text.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_type</span> <span class="o">!=</span> <span class="n">GoogleEmbeddingModelType</span><span class="o">.</span><span class="n">TEXT</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Not supported for multimodal models&quot;</span><span class="p">)</span>
         <span class="n">embeddings</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embed</span><span class="p">([</span><span class="n">text</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;RETRIEVAL_QUERY&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">embeddings</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div></div>
+        <span class="k">return</span> <span class="n">embeddings</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="VertexAIEmbeddings.embed_image"><a class="viewcode-back" href="../../embeddings/langchain_google_vertexai.embeddings.VertexAIEmbeddings.html#langchain_google_vertexai.embeddings.VertexAIEmbeddings.embed_image">[docs]</a>    <span class="k">def</span> <span class="nf">embed_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Embed an image.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            image_path: Path to image (local or Google Cloud Storage) to generate</span>
+<span class="sd">            embeddings for.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Embedding for the image.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_type</span> <span class="o">!=</span> <span class="n">GoogleEmbeddingModelType</span><span class="o">.</span><span class="n">MULTIMODAL</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Only supported for multimodal models&quot;</span><span class="p">)</span>
+
+        <span class="n">embed_with_retry</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">instance</span><span class="p">[</span><span class="s2">&quot;retry_decorator&quot;</span><span class="p">](</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get_embeddings</span><span class="p">)</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">load_from_file</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
+        <span class="n">result</span><span class="p">:</span> <span class="n">MultiModalEmbeddingResponse</span> <span class="o">=</span> <span class="n">embed_with_retry</span><span class="p">(</span><span class="n">image</span><span class="o">=</span><span class="n">image</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">image_embedding</span></div></div>
 </pre></div>
 
       </div>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Feb 26, 2024.
+          Last updated on Feb 29, 2024.
       </footer>
     </div>
   </div>

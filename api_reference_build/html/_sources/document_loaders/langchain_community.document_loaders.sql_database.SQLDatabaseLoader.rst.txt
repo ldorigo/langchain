@@ -1,0 +1,39 @@
+﻿:mod:`langchain_community.document_loaders.sql_database`.SQLDatabaseLoader
+=================================================================================
+
+.. currentmodule:: langchain_community.document_loaders.sql_database
+
+.. autoclass:: SQLDatabaseLoader
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~SQLDatabaseLoader.__init__
+      ~SQLDatabaseLoader.alazy_load
+      ~SQLDatabaseLoader.lazy_load
+      ~SQLDatabaseLoader.load
+      ~SQLDatabaseLoader.load_and_split
+      ~SQLDatabaseLoader.metadata_default_mapper
+      ~SQLDatabaseLoader.page_content_default_mapper
+
+   
+   .. automethod:: SQLDatabaseLoader.__init__
+   .. automethod:: SQLDatabaseLoader.alazy_load
+   .. automethod:: SQLDatabaseLoader.lazy_load
+   .. automethod:: SQLDatabaseLoader.load
+   .. automethod:: SQLDatabaseLoader.load_and_split
+   .. automethod:: SQLDatabaseLoader.metadata_default_mapper
+   .. automethod:: SQLDatabaseLoader.page_content_default_mapper
+
+   
+   
+
+
+.. example_links:: SQLDatabaseLoader

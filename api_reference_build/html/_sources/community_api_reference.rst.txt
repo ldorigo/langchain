@@ -1081,6 +1081,23 @@ Classes
     
     docstore.wikipedia.Wikipedia
     
+:mod:`langchain_community.document_compressors`
+================================================
+
+.. automodule:: langchain_community.document_compressors
+    :no-members:
+    :no-inherited-members:
+
+Classes
+--------------
+.. currentmodule:: langchain_community
+
+.. autosummary::
+    :toctree: document_compressors
+    :template: pydantic.rst
+    
+    document_compressors.llmlingua_filter.LLMLinguaCompressor
+    
 :mod:`langchain_community.document_loaders`
 ============================================
 
@@ -1461,6 +1478,10 @@ Classes
     :template: class.rst
     
     document_loaders.hugging_face_dataset.HuggingFaceDatasetLoader
+    
+    :template: class.rst
+    
+    document_loaders.hugging_face_model.HuggingFaceModelLoader
     
     :template: class.rst
     
@@ -1900,6 +1921,10 @@ Classes
     
     :template: class.rst
     
+    document_loaders.sql_database.SQLDatabaseLoader
+    
+    :template: class.rst
+    
     document_loaders.srt.SRTLoader
     
     :template: class.rst
@@ -2303,6 +2328,10 @@ Classes
     :template: pydantic.rst
     
     embeddings.johnsnowlabs.JohnSnowLabsEmbeddings
+    
+    :template: pydantic.rst
+    
+    embeddings.laser.LaserEmbeddings
     
     :template: pydantic.rst
     
@@ -5058,6 +5087,22 @@ Classes
     :template: class.rst
     
     vectorstores.kdbai.KDBAI
+    
+    :template: enum.rst
+    
+    vectorstores.kinetica.Dimension
+    
+    :template: enum.rst
+    
+    vectorstores.kinetica.DistanceStrategy
+    
+    :template: class.rst
+    
+    vectorstores.kinetica.Kinetica
+    
+    :template: pydantic.rst
+    
+    vectorstores.kinetica.KineticaSettings
     
     :template: class.rst
     
