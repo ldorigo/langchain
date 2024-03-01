@@ -1,7 +1,7 @@
 .. fireworks_api_reference:
 
 =======================
-``langchain_fireworks`` 0.1.0
+``langchain_fireworks`` 0.1.1
 =======================
 
 :mod:`langchain_fireworks.chat_models`

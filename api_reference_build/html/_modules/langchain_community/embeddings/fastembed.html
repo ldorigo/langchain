@@ -226,8 +226,7 @@
 
     <span class="n">doc_embed_type</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;default&quot;</span><span class="p">,</span> <span class="s2">&quot;passage&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;default&quot;</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Type of embedding to use for documents</span>
-<span class="sd">    &quot;default&quot;: Uses FastEmbed&#39;s default embedding method</span>
-<span class="sd">    &quot;passage&quot;: Prefixes the text with &quot;passage&quot; before embedding.</span>
+<span class="sd">    The available options are: &quot;default&quot; and &quot;passage&quot;</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">_model</span><span class="p">:</span> <span class="n">Any</span>  <span class="c1"># : :meta private:</span>
@@ -241,13 +240,13 @@
     <span class="k">def</span> <span class="nf">validate_environment</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Validate that FastEmbed has been installed.&quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="kn">from</span> <span class="nn">fastembed.embedding</span> <span class="kn">import</span> <span class="n">FlagEmbedding</span>
+            <span class="kn">from</span> <span class="nn">fastembed</span> <span class="kn">import</span> <span class="n">TextEmbedding</span>
 
             <span class="n">model_name</span> <span class="o">=</span> <span class="n">values</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;model_name&quot;</span><span class="p">)</span>
             <span class="n">max_length</span> <span class="o">=</span> <span class="n">values</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;max_length&quot;</span><span class="p">)</span>
             <span class="n">cache_dir</span> <span class="o">=</span> <span class="n">values</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;cache_dir&quot;</span><span class="p">)</span>
             <span class="n">threads</span> <span class="o">=</span> <span class="n">values</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;threads&quot;</span><span class="p">)</span>
-            <span class="n">values</span><span class="p">[</span><span class="s2">&quot;_model&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">FlagEmbedding</span><span class="p">(</span>
+            <span class="n">values</span><span class="p">[</span><span class="s2">&quot;_model&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">TextEmbedding</span><span class="p">(</span>
                 <span class="n">model_name</span><span class="o">=</span><span class="n">model_name</span><span class="p">,</span>
                 <span class="n">max_length</span><span class="o">=</span><span class="n">max_length</span><span class="p">,</span>
                 <span class="n">cache_dir</span><span class="o">=</span><span class="n">cache_dir</span><span class="p">,</span>
@@ -255,7 +254,7 @@
             <span class="p">)</span>
         <span class="k">except</span> <span class="ne">ImportError</span> <span class="k">as</span> <span class="n">ie</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span>
-                <span class="s2">&quot;Could not import &#39;fastembed&#39; Python package. &quot;</span>
+                <span class="s2">&quot;&#39;FastEmbedEmbeddings&#39; requires &#39;fastembed==v0.2.0&#39; or above. &quot;</span>
                 <span class="s2">&quot;Please install it with `pip install fastembed`.&quot;</span>
             <span class="p">)</span> <span class="kn">from</span> <span class="nn">ie</span>
         <span class="k">return</span> <span class="n">values</span>

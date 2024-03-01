@@ -1151,15 +1151,22 @@
     <span class="n">examples</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">client</span><span class="o">.</span><span class="n">list_examples</span><span class="p">(</span><span class="n">dataset_id</span><span class="o">=</span><span class="n">dataset</span><span class="o">.</span><span class="n">id</span><span class="p">))</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">examples</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dataset </span><span class="si">{</span><span class="n">dataset_name</span><span class="si">}</span><span class="s2"> has no example rows.&quot;</span><span class="p">)</span>
+    <span class="n">modified_at</span> <span class="o">=</span> <span class="p">[</span><span class="n">ex</span><span class="o">.</span><span class="n">modified_at</span> <span class="k">for</span> <span class="n">ex</span> <span class="ow">in</span> <span class="n">examples</span> <span class="k">if</span> <span class="n">ex</span><span class="o">.</span><span class="n">modified_at</span><span class="p">]</span>
+    <span class="c1"># Should always be defined in practice when fetched,</span>
+    <span class="c1"># but the typing permits None</span>
+    <span class="n">max_modified_at</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">modified_at</span><span class="p">)</span> <span class="k">if</span> <span class="n">modified_at</span> <span class="k">else</span> <span class="kc">None</span>
+    <span class="n">dataset_version</span> <span class="o">=</span> <span class="n">max_modified_at</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span> <span class="k">if</span> <span class="n">max_modified_at</span> <span class="k">else</span> <span class="kc">None</span>
 
     <span class="k">try</span><span class="p">:</span>
+        <span class="n">project_metadata</span> <span class="o">=</span> <span class="n">project_metadata</span> <span class="ow">or</span> <span class="p">{}</span>
         <span class="n">git_info</span> <span class="o">=</span> <span class="n">get_git_info</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">git_info</span><span class="p">:</span>
-            <span class="n">project_metadata</span> <span class="o">=</span> <span class="n">project_metadata</span> <span class="ow">or</span> <span class="p">{}</span>
             <span class="n">project_metadata</span> <span class="o">=</span> <span class="p">{</span>
                 <span class="o">**</span><span class="n">project_metadata</span><span class="p">,</span>
                 <span class="s2">&quot;git&quot;</span><span class="p">:</span> <span class="n">git_info</span><span class="p">,</span>
             <span class="p">}</span>
+
+        <span class="n">project_metadata</span><span class="p">[</span><span class="s2">&quot;dataset_version&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dataset_version</span>
         <span class="n">project</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">create_project</span><span class="p">(</span>
             <span class="n">project_name</span><span class="p">,</span>
             <span class="n">reference_dataset_id</span><span class="o">=</span><span class="n">dataset</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
