@@ -96,6 +96,9 @@
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../mistralai_api_reference.html">mistralai</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../mongodb_api_reference.html">mongodb</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../nomic_api_reference.html">nomic</a>
         </li>
         <li class="nav-item">
@@ -131,6 +134,7 @@
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../groq_api_reference.html">groq</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../ibm_api_reference.html">ibm</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../mistralai_api_reference.html">mistralai</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../../mongodb_api_reference.html">mongodb</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../nomic_api_reference.html">nomic</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../nvidia_ai_endpoints_api_reference.html">nvidia-ai-endpoints</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../nvidia_trt_api_reference.html">nvidia-trt</a>
@@ -202,6 +206,25 @@
 
         <span class="k">return</span> <span class="n">values</span>
 
+<div class="viewcode-block" id="PolygonAPIWrapper.get_financials"><a class="viewcode-back" href="../../../utilities/langchain_community.utilities.polygon.PolygonAPIWrapper.html#langchain_community.utilities.polygon.PolygonAPIWrapper.get_financials">[docs]</a>    <span class="k">def</span> <span class="nf">get_financials</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ticker</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get fundamental financial data, which is found in balance sheets,</span>
+<span class="sd">        income statements, and cash flow statements for a given ticker.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">POLYGON_BASE_URL</span><span class="si">}</span><span class="s2">vX/reference/financials?&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;ticker=</span><span class="si">{</span><span class="n">ticker</span><span class="si">}</span><span class="s2">&amp;&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;apiKey=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">polygon_api_key</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+        <span class="n">status</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;status&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">status</span> <span class="o">!=</span> <span class="s2">&quot;OK&quot;</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;API Error: </span><span class="si">{</span><span class="n">data</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;results&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span></div>
+
 <div class="viewcode-block" id="PolygonAPIWrapper.get_last_quote"><a class="viewcode-back" href="../../../utilities/langchain_community.utilities.polygon.PolygonAPIWrapper.html#langchain_community.utilities.polygon.PolygonAPIWrapper.get_last_quote">[docs]</a>    <span class="k">def</span> <span class="nf">get_last_quote</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ticker</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the most recent National Best Bid and Offer (Quote) for a ticker.&quot;&quot;&quot;</span>
         <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">POLYGON_BASE_URL</span><span class="si">}</span><span class="s2">v2/last/nbbo/</span><span class="si">{</span><span class="n">ticker</span><span class="si">}</span><span class="s2">?apiKey=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">polygon_api_key</span><span class="si">}</span><span class="s2">&quot;</span>
@@ -234,7 +257,9 @@
         <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;results&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="PolygonAPIWrapper.run"><a class="viewcode-back" href="../../../utilities/langchain_community.utilities.polygon.PolygonAPIWrapper.html#langchain_community.utilities.polygon.PolygonAPIWrapper.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">ticker</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;get_last_quote&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;get_financials&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_financials</span><span class="p">(</span><span class="n">ticker</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;get_last_quote&quot;</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_last_quote</span><span class="p">(</span><span class="n">ticker</span><span class="p">))</span>
         <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;get_ticker_news&quot;</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_ticker_news</span><span class="p">(</span><span class="n">ticker</span><span class="p">))</span>
@@ -246,7 +271,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Feb 29, 2024.
+          Last updated on Mar 01, 2024.
       </footer>
     </div>
   </div>

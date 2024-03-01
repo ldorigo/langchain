@@ -1,0 +1,41 @@
+.. mongodb_api_reference:
+
+=======================
+``langchain_mongodb`` 0.1.0
+=======================
+
+:mod:`langchain_mongodb.utils`
+===============================
+
+.. automodule:: langchain_mongodb.utils
+    :no-members:
+    :no-inherited-members:
+
+Functions
+--------------
+.. currentmodule:: langchain_mongodb
+
+.. autosummary::
+    :toctree: utils
+    :template: function.rst
+
+    utils.cosine_similarity
+    utils.maximal_marginal_relevance
+
+:mod:`langchain_mongodb.vectorstores`
+======================================
+
+.. automodule:: langchain_mongodb.vectorstores
+    :no-members:
+    :no-inherited-members:
+
+Classes
+--------------
+.. currentmodule:: langchain_mongodb
+
+.. autosummary::
+    :toctree: vectorstores
+    :template: class.rst
+    
+    vectorstores.MongoDBAtlasVectorSearch
+    

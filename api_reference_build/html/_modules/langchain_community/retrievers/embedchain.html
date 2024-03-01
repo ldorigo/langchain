@@ -96,6 +96,9 @@
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../mistralai_api_reference.html">mistralai</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../mongodb_api_reference.html">mongodb</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../nomic_api_reference.html">nomic</a>
         </li>
         <li class="nav-item">
@@ -131,6 +134,7 @@
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../groq_api_reference.html">groq</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../ibm_api_reference.html">ibm</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../mistralai_api_reference.html">mistralai</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../../mongodb_api_reference.html">mongodb</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../nomic_api_reference.html">nomic</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../nvidia_ai_endpoints_api_reference.html">nvidia-ai-endpoints</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../nvidia_trt_api_reference.html">nvidia-trt</a>
@@ -240,7 +244,10 @@
             <span class="n">docs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                 <span class="n">Document</span><span class="p">(</span>
                     <span class="n">page_content</span><span class="o">=</span><span class="n">r</span><span class="p">[</span><span class="s2">&quot;context&quot;</span><span class="p">],</span>
-                    <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;source&quot;</span><span class="p">],</span> <span class="s2">&quot;document_id&quot;</span><span class="p">:</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;document_id&quot;</span><span class="p">]},</span>
+                    <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
+                        <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;metadata&quot;</span><span class="p">][</span><span class="s2">&quot;url&quot;</span><span class="p">],</span>
+                        <span class="s2">&quot;document_id&quot;</span><span class="p">:</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;metadata&quot;</span><span class="p">][</span><span class="s2">&quot;doc_id&quot;</span><span class="p">],</span>
+                    <span class="p">},</span>
                 <span class="p">)</span>
             <span class="p">)</span>
         <span class="k">return</span> <span class="n">docs</span></div>
@@ -250,7 +257,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Feb 29, 2024.
+          Last updated on Mar 01, 2024.
       </footer>
     </div>
   </div>

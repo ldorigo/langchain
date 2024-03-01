@@ -96,6 +96,9 @@
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../mistralai_api_reference.html">mistralai</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../mongodb_api_reference.html">mongodb</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../nomic_api_reference.html">nomic</a>
         </li>
         <li class="nav-item">
@@ -131,6 +134,7 @@
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../groq_api_reference.html">groq</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../ibm_api_reference.html">ibm</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../mistralai_api_reference.html">mistralai</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../../mongodb_api_reference.html">mongodb</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../nomic_api_reference.html">nomic</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../nvidia_ai_endpoints_api_reference.html">nvidia-ai-endpoints</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../nvidia_trt_api_reference.html">nvidia-trt</a>
@@ -724,6 +728,7 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="n">params</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{},</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Document</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Run similarity search with Neo4jVector.</span>
@@ -737,13 +742,15 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">embedding</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embedding</span><span class="o">.</span><span class="n">embed_query</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">query</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">similarity_search_by_vector</span><span class="p">(</span>
-            <span class="n">embedding</span><span class="o">=</span><span class="n">embedding</span><span class="p">,</span>
-            <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">,</span>
-            <span class="n">query</span><span class="o">=</span><span class="n">query</span><span class="p">,</span>
+            <span class="n">embedding</span><span class="o">=</span><span class="n">embedding</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">query</span><span class="o">=</span><span class="n">query</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
         <span class="p">)</span></div>
 
 <div class="viewcode-block" id="Neo4jVector.similarity_search_with_score"><a class="viewcode-back" href="../../../vectorstores/langchain_community.vectorstores.neo4j_vector.Neo4jVector.html#langchain_community.vectorstores.neo4j_vector.Neo4jVector.similarity_search_with_score">[docs]</a>    <span class="k">def</span> <span class="nf">similarity_search_with_score</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="n">params</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{},</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Document</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return docs most similar to query.</span>
 
@@ -756,12 +763,16 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">embedding</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embedding</span><span class="o">.</span><span class="n">embed_query</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
         <span class="n">docs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">similarity_search_with_score_by_vector</span><span class="p">(</span>
-            <span class="n">embedding</span><span class="o">=</span><span class="n">embedding</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">query</span><span class="o">=</span><span class="n">query</span>
+            <span class="n">embedding</span><span class="o">=</span><span class="n">embedding</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">query</span><span class="o">=</span><span class="n">query</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
         <span class="p">)</span>
         <span class="k">return</span> <span class="n">docs</span></div>
 
 <div class="viewcode-block" id="Neo4jVector.similarity_search_with_score_by_vector"><a class="viewcode-back" href="../../../vectorstores/langchain_community.vectorstores.neo4j_vector.Neo4jVector.html#langchain_community.vectorstores.neo4j_vector.Neo4jVector.similarity_search_with_score_by_vector">[docs]</a>    <span class="k">def</span> <span class="nf">similarity_search_with_score_by_vector</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">embedding</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">embedding</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span>
+        <span class="n">k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="n">params</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{},</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Document</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Perform a similarity search in the Neo4j database using a</span>
@@ -798,6 +809,7 @@
             <span class="s2">&quot;embedding&quot;</span><span class="p">:</span> <span class="n">embedding</span><span class="p">,</span>
             <span class="s2">&quot;keyword_index&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">keyword_index_name</span><span class="p">,</span>
             <span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="n">remove_lucene_chars</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;query&quot;</span><span class="p">]),</span>
+            <span class="o">**</span><span class="n">params</span><span class="p">,</span>
         <span class="p">}</span>
 
         <span class="n">results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">read_query</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">parameters</span><span class="p">)</span>
@@ -1153,7 +1165,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Feb 29, 2024.
+          Last updated on Mar 01, 2024.
       </footer>
     </div>
   </div>

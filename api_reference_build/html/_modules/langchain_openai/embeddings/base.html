@@ -96,6 +96,9 @@
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../mistralai_api_reference.html">mistralai</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../mongodb_api_reference.html">mongodb</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../nomic_api_reference.html">nomic</a>
         </li>
         <li class="nav-item">
@@ -131,6 +134,7 @@
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../groq_api_reference.html">groq</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../ibm_api_reference.html">ibm</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../mistralai_api_reference.html">mistralai</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../../mongodb_api_reference.html">mongodb</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../nomic_api_reference.html">nomic</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../nvidia_ai_endpoints_api_reference.html">nvidia-ai-endpoints</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../nvidia_trt_api_reference.html">nvidia-trt</a>
@@ -224,7 +228,7 @@
 
 <span class="sd">            from langchain_openai import OpenAIEmbeddings</span>
 
-<span class="sd">            openai = OpenAIEmbeddings(model=&quot;&quot;text-embedding-3-large&quot;)</span>
+<span class="sd">            openai = OpenAIEmbeddings(model=&quot;text-embedding-3-large&quot;)</span>
 
 <span class="sd">    In order to use the library with Microsoft Azure endpoints, use</span>
 <span class="sd">        AzureOpenAIEmbeddings.</span>
@@ -235,7 +239,7 @@
     <span class="n">async_client</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1">#: :meta private:</span>
     <span class="n">model</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;text-embedding-ada-002&quot;</span>
     <span class="n">dimensions</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;The number of dimensions the resulting output embeddings should have. </span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The number of dimensions the resulting output embeddings should have.</span>
 
 <span class="sd">    Only supported in `text-embedding-3` and later models.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -246,7 +250,7 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Automatically inferred from env var `OPENAI_API_VERSION` if not provided.&quot;&quot;&quot;</span>
     <span class="c1"># to support Azure OpenAI Service custom endpoints</span>
     <span class="n">openai_api_base</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;base_url&quot;</span><span class="p">)</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Base URL path for API requests, leave blank if not using a proxy or service </span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Base URL path for API requests, leave blank if not using a proxy or service</span>
 <span class="sd">        emulator.&quot;&quot;&quot;</span>
     <span class="c1"># to support Azure OpenAI Service custom endpoints</span>
     <span class="n">openai_api_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
@@ -267,21 +271,21 @@
     <span class="n">request_timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;timeout&quot;</span>
     <span class="p">)</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Timeout for requests to OpenAI completion API. Can be float, httpx.Timeout or </span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Timeout for requests to OpenAI completion API. Can be float, httpx.Timeout or</span>
 <span class="sd">        None.&quot;&quot;&quot;</span>
     <span class="n">headers</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">tiktoken_enabled</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Set this to False for non-OpenAI implementations of the embeddings API, e.g.</span>
 <span class="sd">    the `--extensions openai` extension for `text-generation-webui`&quot;&quot;&quot;</span>
     <span class="n">tiktoken_model_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;The model name to pass to tiktoken when using this class. </span>
-<span class="sd">    Tiktoken is used to count the number of tokens in documents to constrain </span>
-<span class="sd">    them to be under a certain limit. By default, when set to None, this will </span>
-<span class="sd">    be the same as the embedding model name. However, there are some cases </span>
-<span class="sd">    where you may want to use this Embedding class with a model name not </span>
-<span class="sd">    supported by tiktoken. This can include when using Azure embeddings or </span>
-<span class="sd">    when using one of the many model providers that expose an OpenAI-like </span>
-<span class="sd">    API but with different models. In those cases, in order to avoid erroring </span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The model name to pass to tiktoken when using this class.</span>
+<span class="sd">    Tiktoken is used to count the number of tokens in documents to constrain</span>
+<span class="sd">    them to be under a certain limit. By default, when set to None, this will</span>
+<span class="sd">    be the same as the embedding model name. However, there are some cases</span>
+<span class="sd">    where you may want to use this Embedding class with a model name not</span>
+<span class="sd">    supported by tiktoken. This can include when using Azure embeddings or</span>
+<span class="sd">    when using one of the many model providers that expose an OpenAI-like</span>
+<span class="sd">    API but with different models. In those cases, in order to avoid erroring</span>
 <span class="sd">    when tiktoken is called, you can specify a model name to use here.&quot;&quot;&quot;</span>
     <span class="n">show_progress_bar</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Whether to show a progress bar when embedding.&quot;&quot;&quot;</span>
@@ -728,7 +732,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Feb 29, 2024.
+          Last updated on Mar 01, 2024.
       </footer>
     </div>
   </div>

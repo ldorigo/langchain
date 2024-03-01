@@ -96,6 +96,9 @@
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../../mistralai_api_reference.html">mistralai</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../../mongodb_api_reference.html">mongodb</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../../nomic_api_reference.html">nomic</a>
         </li>
         <li class="nav-item">
@@ -131,6 +134,7 @@
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../../groq_api_reference.html">groq</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../../ibm_api_reference.html">ibm</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../../mistralai_api_reference.html">mistralai</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../../../mongodb_api_reference.html">mongodb</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../../nomic_api_reference.html">nomic</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../../nvidia_ai_endpoints_api_reference.html">nvidia-ai-endpoints</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../../nvidia_trt_api_reference.html">nvidia-trt</a>
@@ -276,14 +280,26 @@
 
     <span class="n">comparator</span><span class="p">:</span> <span class="n">Comparator</span>
     <span class="n">attribute</span><span class="p">:</span> <span class="nb">str</span>
-    <span class="n">value</span><span class="p">:</span> <span class="n">Any</span></div>
+    <span class="n">value</span><span class="p">:</span> <span class="n">Any</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">comparator</span><span class="p">:</span> <span class="n">Comparator</span><span class="p">,</span> <span class="n">attribute</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">comparator</span><span class="o">=</span><span class="n">comparator</span><span class="p">,</span> <span class="n">attribute</span><span class="o">=</span><span class="n">attribute</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">value</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+        <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Operation"><a class="viewcode-back" href="../../../../chains/langchain.chains.query_constructor.ir.Operation.html#langchain.chains.query_constructor.ir.Operation">[docs]</a><span class="k">class</span> <span class="nc">Operation</span><span class="p">(</span><span class="n">FilterDirective</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A logical operation over other directives.&quot;&quot;&quot;</span>
 
     <span class="n">operator</span><span class="p">:</span> <span class="n">Operator</span>
-    <span class="n">arguments</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">FilterDirective</span><span class="p">]</span></div>
+    <span class="n">arguments</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">FilterDirective</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">operator</span><span class="p">:</span> <span class="n">Operator</span><span class="p">,</span> <span class="n">arguments</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">FilterDirective</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">operator</span><span class="o">=</span><span class="n">operator</span><span class="p">,</span> <span class="n">arguments</span><span class="o">=</span><span class="n">arguments</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="StructuredQuery"><a class="viewcode-back" href="../../../../chains/langchain.chains.query_constructor.ir.StructuredQuery.html#langchain.chains.query_constructor.ir.StructuredQuery">[docs]</a><span class="k">class</span> <span class="nc">StructuredQuery</span><span class="p">(</span><span class="n">Expr</span><span class="p">):</span>
@@ -294,14 +310,23 @@
     <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">FilterDirective</span><span class="p">]</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Filtering expression.&quot;&quot;&quot;</span>
     <span class="n">limit</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Limit on the number of results.&quot;&quot;&quot;</span></div>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Limit on the number of results.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">FilterDirective</span><span class="p">],</span>
+        <span class="n">limit</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">query</span><span class="o">=</span><span class="n">query</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="nb">filter</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 </pre></div>
 
       </div>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Feb 29, 2024.
+          Last updated on Mar 01, 2024.
       </footer>
     </div>
   </div>

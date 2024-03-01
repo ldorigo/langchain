@@ -97,6 +97,9 @@
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../mistralai_api_reference.html">mistralai</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../mongodb_api_reference.html">mongodb</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../nomic_api_reference.html">nomic</a>
         </li>
         <li class="nav-item">
@@ -132,6 +135,7 @@
               <a class="sk-nav-dropdown-item dropdown-item" href="../groq_api_reference.html">groq</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../ibm_api_reference.html">ibm</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../mistralai_api_reference.html">mistralai</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../mongodb_api_reference.html">mongodb</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../nomic_api_reference.html">nomic</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../nvidia_ai_endpoints_api_reference.html">nvidia-ai-endpoints</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../nvidia_trt_api_reference.html">nvidia-trt</a>
@@ -184,13 +188,14 @@
 <h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain.agents.react.agent</span></code>.create_react_agent<a class="headerlink" href="#langchain-agents-react-agent-create-react-agent" title="Permalink to this heading">¶</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="langchain.agents.react.agent.create_react_agent">
-<span class="sig-prename descclassname"><span class="pre">langchain.agents.react.agent.</span></span><span class="sig-name descname"><span class="pre">create_react_agent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">llm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../language_models/langchain_core.language_models.base.BaseLanguageModel.html#langchain_core.language_models.base.BaseLanguageModel" title="langchain_core.language_models.base.BaseLanguageModel"><span class="pre">BaseLanguageModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tools</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../tools/langchain_core.tools.BaseTool.html#langchain_core.tools.BaseTool" title="langchain_core.tools.BaseTool"><span class="pre">BaseTool</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../prompts/langchain_core.prompts.base.BasePromptTemplate.html#langchain_core.prompts.base.BasePromptTemplate" title="langchain_core.prompts.base.BasePromptTemplate"><span class="pre">BasePromptTemplate</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../runnables/langchain_core.runnables.base.Runnable.html#langchain_core.runnables.base.Runnable" title="langchain_core.runnables.base.Runnable"><span class="pre">Runnable</span></a></span></span><a class="reference internal" href="../_modules/langchain/agents/react/agent.html#create_react_agent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#langchain.agents.react.agent.create_react_agent" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">langchain.agents.react.agent.</span></span><span class="sig-name descname"><span class="pre">create_react_agent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">llm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../language_models/langchain_core.language_models.base.BaseLanguageModel.html#langchain_core.language_models.base.BaseLanguageModel" title="langchain_core.language_models.base.BaseLanguageModel"><span class="pre">BaseLanguageModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tools</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../tools/langchain_core.tools.BaseTool.html#langchain_core.tools.BaseTool" title="langchain_core.tools.BaseTool"><span class="pre">BaseTool</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../prompts/langchain_core.prompts.base.BasePromptTemplate.html#langchain_core.prompts.base.BasePromptTemplate" title="langchain_core.prompts.base.BasePromptTemplate"><span class="pre">BasePromptTemplate</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_parser</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="langchain.agents.agent.AgentOutputParser.html#langchain.agents.agent.AgentOutputParser" title="langchain.agents.agent.AgentOutputParser"><span class="pre">AgentOutputParser</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../runnables/langchain_core.runnables.base.Runnable.html#langchain_core.runnables.base.Runnable" title="langchain_core.runnables.base.Runnable"><span class="pre">Runnable</span></a></span></span><a class="reference internal" href="../_modules/langchain/agents/react/agent.html#create_react_agent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#langchain.agents.react.agent.create_react_agent" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create an agent that uses ReAct prompting.</p>
 <blockquote>
 <div><dl class="simple">
 <dt>Args:</dt><dd><p>llm: LLM to use as the agent.
 tools: Tools this agent has access to.
-prompt: The prompt to use. See Prompt section below for more.</p>
+prompt: The prompt to use. See Prompt section below for more.
+output_parser: AgentOutputParser for parse the LLM output.</p>
 </dd>
 <dt>Returns:</dt><dd><p>A Runnable sequence representing an agent. It takes as input all the same input
 variables as the prompt passed in does. It returns as output either an
@@ -276,6 +281,7 @@ AgentAction or AgentFinish.</p>
 <li><p><strong>llm</strong> (<a class="reference internal" href="../language_models/langchain_core.language_models.base.BaseLanguageModel.html#langchain_core.language_models.base.BaseLanguageModel" title="langchain_core.language_models.base.BaseLanguageModel"><em>BaseLanguageModel</em></a>) – </p></li>
 <li><p><strong>tools</strong> (<em>Sequence</em><em>[</em><a class="reference internal" href="../tools/langchain_core.tools.BaseTool.html#langchain_core.tools.BaseTool" title="langchain_core.tools.BaseTool"><em>BaseTool</em></a><em>]</em>) – </p></li>
 <li><p><strong>prompt</strong> (<a class="reference internal" href="../prompts/langchain_core.prompts.base.BasePromptTemplate.html#langchain_core.prompts.base.BasePromptTemplate" title="langchain_core.prompts.base.BasePromptTemplate"><em>BasePromptTemplate</em></a>) – </p></li>
+<li><p><strong>output_parser</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="langchain.agents.agent.AgentOutputParser.html#langchain.agents.agent.AgentOutputParser" title="langchain.agents.agent.AgentOutputParser"><em>AgentOutputParser</em></a><em>]</em>) – </p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
@@ -293,7 +299,7 @@ AgentAction or AgentFinish.</p>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Feb 29, 2024.
+          Last updated on Mar 01, 2024.
           <a href="../_sources/agents/langchain.agents.react.agent.create_react_agent.rst.txt" rel="nofollow">Show this page source</a>
       </footer>
     </div>

@@ -96,6 +96,9 @@
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../mistralai_api_reference.html">mistralai</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../mongodb_api_reference.html">mongodb</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../nomic_api_reference.html">nomic</a>
         </li>
         <li class="nav-item">
@@ -131,6 +134,7 @@
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../groq_api_reference.html">groq</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../ibm_api_reference.html">ibm</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../mistralai_api_reference.html">mistralai</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../../mongodb_api_reference.html">mongodb</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../nomic_api_reference.html">nomic</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../nvidia_ai_endpoints_api_reference.html">nvidia-ai-endpoints</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../nvidia_trt_api_reference.html">nvidia-trt</a>
@@ -198,18 +202,18 @@
 
 <span class="sd">            from langchain_openai import AzureOpenAIEmbeddings</span>
 
-<span class="sd">            openai = AzureOpenAIEmbeddings(model=&quot;&quot;text-embedding-3-large&quot;)</span>
+<span class="sd">            openai = AzureOpenAIEmbeddings(model=&quot;text-embedding-3-large&quot;)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">azure_endpoint</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Your Azure endpoint, including the resource.</span>
 
 <span class="sd">        Automatically inferred from env var `AZURE_OPENAI_ENDPOINT` if not provided.</span>
-<span class="sd">        </span>
+
 <span class="sd">        Example: `https://example-resource.azure.openai.com/`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">deployment</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;azure_deployment&quot;</span><span class="p">)</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;A model deployment. </span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A model deployment.</span>
 
 <span class="sd">        If given sets the base client URL to include `/deployments/{azure_deployment}`.</span>
 <span class="sd">        Note: this means you won&#39;t be able to use non-deployment endpoints.</span>
@@ -221,7 +225,7 @@
 
 <span class="sd">        Automatically inferred from env var `AZURE_OPENAI_AD_TOKEN` if not provided.</span>
 
-<span class="sd">        For more: </span>
+<span class="sd">        For more:</span>
 <span class="sd">        https://www.microsoft.com/en-us/security/business/identity-access/microsoft-entra-id.</span>
 <span class="sd">    &quot;&quot;&quot;</span>  <span class="c1"># noqa: E501</span>
     <span class="n">azure_ad_token_provider</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[],</span> <span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
@@ -329,7 +333,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Feb 29, 2024.
+          Last updated on Mar 01, 2024.
       </footer>
     </div>
   </div>

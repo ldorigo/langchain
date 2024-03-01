@@ -96,6 +96,9 @@
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../mistralai_api_reference.html">mistralai</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../mongodb_api_reference.html">mongodb</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../nomic_api_reference.html">nomic</a>
         </li>
         <li class="nav-item">
@@ -131,6 +134,7 @@
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../groq_api_reference.html">groq</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../ibm_api_reference.html">ibm</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../mistralai_api_reference.html">mistralai</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../../mongodb_api_reference.html">mongodb</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../nomic_api_reference.html">nomic</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../nvidia_ai_endpoints_api_reference.html">nvidia-ai-endpoints</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../nvidia_trt_api_reference.html">nvidia-trt</a>
@@ -533,7 +537,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">index_name</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="ElasticKnnSearch"><a class="viewcode-back" href="../../../vectorstores/langchain_community.vectorstores.elastic_vector_search.ElasticKnnSearch.html#langchain_community.vectorstores.elastic_vector_search.ElasticKnnSearch">[docs]</a><span class="nd">@deprecated</span><span class="p">(</span><span class="s2">&quot;0.0.265&quot;</span><span class="p">,</span> <span class="n">alternative</span><span class="o">=</span><span class="s2">&quot;ElasticsearchStore class.&quot;</span><span class="p">,</span> <span class="n">pending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="viewcode-block" id="ElasticKnnSearch"><a class="viewcode-back" href="../../../vectorstores/langchain_community.vectorstores.elastic_vector_search.ElasticKnnSearch.html#langchain_community.vectorstores.elastic_vector_search.ElasticKnnSearch">[docs]</a><span class="nd">@deprecated</span><span class="p">(</span><span class="s2">&quot;0.0.1&quot;</span><span class="p">,</span> <span class="n">alternative</span><span class="o">=</span><span class="s2">&quot;ElasticsearchStore class.&quot;</span><span class="p">,</span> <span class="n">pending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">class</span> <span class="nc">ElasticKnnSearch</span><span class="p">(</span><span class="n">VectorStore</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;[DEPRECATED] `Elasticsearch` with k-nearest neighbor search</span>
 <span class="sd">    (`k-NN`) vector store.</span>
@@ -739,9 +743,11 @@
         <span class="n">docs_and_scores</span> <span class="o">=</span> <span class="p">[</span>
             <span class="p">(</span>
                 <span class="n">Document</span><span class="p">(</span>
-                    <span class="n">page_content</span><span class="o">=</span><span class="n">hit</span><span class="p">[</span><span class="s2">&quot;_source&quot;</span><span class="p">][</span><span class="n">page_content</span><span class="p">]</span>
-                    <span class="k">if</span> <span class="n">source</span>
-                    <span class="k">else</span> <span class="n">hit</span><span class="p">[</span><span class="s2">&quot;fields&quot;</span><span class="p">][</span><span class="n">page_content</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span>
+                    <span class="n">page_content</span><span class="o">=</span><span class="p">(</span>
+                        <span class="n">hit</span><span class="p">[</span><span class="s2">&quot;_source&quot;</span><span class="p">][</span><span class="n">page_content</span><span class="p">]</span>
+                        <span class="k">if</span> <span class="n">source</span>
+                        <span class="k">else</span> <span class="n">hit</span><span class="p">[</span><span class="s2">&quot;fields&quot;</span><span class="p">][</span><span class="n">page_content</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="p">),</span>
                     <span class="n">metadata</span><span class="o">=</span><span class="n">hit</span><span class="p">[</span><span class="s2">&quot;fields&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="n">fields</span> <span class="k">else</span> <span class="p">{},</span>
                 <span class="p">),</span>
                 <span class="n">hit</span><span class="p">[</span><span class="s2">&quot;_score&quot;</span><span class="p">],</span>
@@ -822,9 +828,11 @@
         <span class="n">docs_and_scores</span> <span class="o">=</span> <span class="p">[</span>
             <span class="p">(</span>
                 <span class="n">Document</span><span class="p">(</span>
-                    <span class="n">page_content</span><span class="o">=</span><span class="n">hit</span><span class="p">[</span><span class="s2">&quot;_source&quot;</span><span class="p">][</span><span class="n">page_content</span><span class="p">]</span>
-                    <span class="k">if</span> <span class="n">source</span>
-                    <span class="k">else</span> <span class="n">hit</span><span class="p">[</span><span class="s2">&quot;fields&quot;</span><span class="p">][</span><span class="n">page_content</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span>
+                    <span class="n">page_content</span><span class="o">=</span><span class="p">(</span>
+                        <span class="n">hit</span><span class="p">[</span><span class="s2">&quot;_source&quot;</span><span class="p">][</span><span class="n">page_content</span><span class="p">]</span>
+                        <span class="k">if</span> <span class="n">source</span>
+                        <span class="k">else</span> <span class="n">hit</span><span class="p">[</span><span class="s2">&quot;fields&quot;</span><span class="p">][</span><span class="n">page_content</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="p">),</span>
                     <span class="n">metadata</span><span class="o">=</span><span class="n">hit</span><span class="p">[</span><span class="s2">&quot;fields&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="n">fields</span> <span class="k">else</span> <span class="p">{},</span>
                 <span class="p">),</span>
                 <span class="n">hit</span><span class="p">[</span><span class="s2">&quot;_score&quot;</span><span class="p">],</span>
@@ -977,7 +985,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Feb 29, 2024.
+          Last updated on Mar 01, 2024.
       </footer>
     </div>
   </div>

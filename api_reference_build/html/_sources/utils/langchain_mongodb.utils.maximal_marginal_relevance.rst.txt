@@ -1,0 +1,8 @@
+﻿:mod:`langchain_mongodb.utils`.maximal_marginal_relevance
+================================================================
+
+.. currentmodule:: langchain_mongodb.utils
+
+.. autofunction:: maximal_marginal_relevance
+
+.. example_links:: maximal_marginal_relevance

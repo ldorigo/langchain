@@ -97,6 +97,9 @@
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../mistralai_api_reference.html">mistralai</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../mongodb_api_reference.html">mongodb</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../nomic_api_reference.html">nomic</a>
         </li>
         <li class="nav-item">
@@ -132,6 +135,7 @@
               <a class="sk-nav-dropdown-item dropdown-item" href="../groq_api_reference.html">groq</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../ibm_api_reference.html">ibm</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../mistralai_api_reference.html">mistralai</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../mongodb_api_reference.html">mongodb</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../nomic_api_reference.html">nomic</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../nvidia_ai_endpoints_api_reference.html">nvidia-ai-endpoints</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../nvidia_trt_api_reference.html">nvidia-trt</a>
@@ -175,6 +179,7 @@
 <li><a class="reference internal" href="#langchain_community.utilities.polygon.PolygonAPIWrapper.copy"><code class="docutils literal notranslate"><span class="pre">PolygonAPIWrapper.copy()</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.utilities.polygon.PolygonAPIWrapper.dict"><code class="docutils literal notranslate"><span class="pre">PolygonAPIWrapper.dict()</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.utilities.polygon.PolygonAPIWrapper.from_orm"><code class="docutils literal notranslate"><span class="pre">PolygonAPIWrapper.from_orm()</span></code></a></li>
+<li><a class="reference internal" href="#langchain_community.utilities.polygon.PolygonAPIWrapper.get_financials"><code class="docutils literal notranslate"><span class="pre">PolygonAPIWrapper.get_financials()</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.utilities.polygon.PolygonAPIWrapper.get_last_quote"><code class="docutils literal notranslate"><span class="pre">PolygonAPIWrapper.get_last_quote()</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.utilities.polygon.PolygonAPIWrapper.get_ticker_news"><code class="docutils literal notranslate"><span class="pre">PolygonAPIWrapper.get_ticker_news()</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.utilities.polygon.PolygonAPIWrapper.json"><code class="docutils literal notranslate"><span class="pre">PolygonAPIWrapper.json()</span></code></a></li>
@@ -286,6 +291,21 @@ the new model: you should trust this data</p></li>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p>Model</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="langchain_community.utilities.polygon.PolygonAPIWrapper.get_financials">
+<span class="sig-name descname"><span class="pre">get_financials</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ticker</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/langchain_community/utilities/polygon.html#PolygonAPIWrapper.get_financials"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#langchain_community.utilities.polygon.PolygonAPIWrapper.get_financials" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get fundamental financial data, which is found in balance sheets,
+income statements, and cash flow statements for a given ticker.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>ticker</strong> (<em>str</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><em>Optional</em>[dict]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -483,7 +503,7 @@ including a summary of the article and a link to the original source.</p>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Feb 29, 2024.
+          Last updated on Mar 01, 2024.
           <a href="../_sources/utilities/langchain_community.utilities.polygon.PolygonAPIWrapper.rst.txt" rel="nofollow">Show this page source</a>
       </footer>
     </div>

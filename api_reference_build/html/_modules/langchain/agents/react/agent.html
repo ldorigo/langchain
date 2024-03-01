@@ -96,6 +96,9 @@
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../../mistralai_api_reference.html">mistralai</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../../mongodb_api_reference.html">mongodb</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../../nomic_api_reference.html">nomic</a>
         </li>
         <li class="nav-item">
@@ -131,6 +134,7 @@
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../../groq_api_reference.html">groq</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../../ibm_api_reference.html">ibm</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../../mistralai_api_reference.html">mistralai</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../../../mongodb_api_reference.html">mongodb</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../../nomic_api_reference.html">nomic</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../../nvidia_ai_endpoints_api_reference.html">nvidia-ai-endpoints</a>
               <a class="sk-nav-dropdown-item dropdown-item" href="../../../../nvidia_trt_api_reference.html">nvidia-trt</a>
@@ -175,20 +179,24 @@
   <h1>Source code for langchain.agents.react.agent</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Sequence</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span>
 
 <span class="kn">from</span> <span class="nn">langchain_core.language_models</span> <span class="kn">import</span> <span class="n">BaseLanguageModel</span>
 <span class="kn">from</span> <span class="nn">langchain_core.prompts</span> <span class="kn">import</span> <span class="n">BasePromptTemplate</span>
 <span class="kn">from</span> <span class="nn">langchain_core.runnables</span> <span class="kn">import</span> <span class="n">Runnable</span><span class="p">,</span> <span class="n">RunnablePassthrough</span>
 <span class="kn">from</span> <span class="nn">langchain_core.tools</span> <span class="kn">import</span> <span class="n">BaseTool</span>
 
+<span class="kn">from</span> <span class="nn">langchain.agents</span> <span class="kn">import</span> <span class="n">AgentOutputParser</span>
 <span class="kn">from</span> <span class="nn">langchain.agents.format_scratchpad</span> <span class="kn">import</span> <span class="n">format_log_to_str</span>
 <span class="kn">from</span> <span class="nn">langchain.agents.output_parsers</span> <span class="kn">import</span> <span class="n">ReActSingleInputOutputParser</span>
 <span class="kn">from</span> <span class="nn">langchain.tools.render</span> <span class="kn">import</span> <span class="n">render_text_description</span>
 
 
 <div class="viewcode-block" id="create_react_agent"><a class="viewcode-back" href="../../../../agents/langchain.agents.react.agent.create_react_agent.html#langchain.agents.react.agent.create_react_agent">[docs]</a><span class="k">def</span> <span class="nf">create_react_agent</span><span class="p">(</span>
-    <span class="n">llm</span><span class="p">:</span> <span class="n">BaseLanguageModel</span><span class="p">,</span> <span class="n">tools</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">BaseTool</span><span class="p">],</span> <span class="n">prompt</span><span class="p">:</span> <span class="n">BasePromptTemplate</span>
+    <span class="n">llm</span><span class="p">:</span> <span class="n">BaseLanguageModel</span><span class="p">,</span>
+    <span class="n">tools</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">BaseTool</span><span class="p">],</span>
+    <span class="n">prompt</span><span class="p">:</span> <span class="n">BasePromptTemplate</span><span class="p">,</span>
+    <span class="n">output_parser</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">AgentOutputParser</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Runnable</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Create an agent that uses ReAct prompting.</span>
 
@@ -196,6 +204,7 @@
 <span class="sd">        llm: LLM to use as the agent.</span>
 <span class="sd">        tools: Tools this agent has access to.</span>
 <span class="sd">        prompt: The prompt to use. See Prompt section below for more.</span>
+<span class="sd">        output_parser: AgentOutputParser for parse the LLM output.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        A Runnable sequence representing an agent. It takes as input all the same input</span>
@@ -276,13 +285,14 @@
         <span class="n">tool_names</span><span class="o">=</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">t</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tools</span><span class="p">]),</span>
     <span class="p">)</span>
     <span class="n">llm_with_stop</span> <span class="o">=</span> <span class="n">llm</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">stop</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Observation&quot;</span><span class="p">])</span>
+    <span class="n">output_parser</span> <span class="o">=</span> <span class="n">output_parser</span> <span class="ow">or</span> <span class="n">ReActSingleInputOutputParser</span><span class="p">()</span>
     <span class="n">agent</span> <span class="o">=</span> <span class="p">(</span>
         <span class="n">RunnablePassthrough</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span>
             <span class="n">agent_scratchpad</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">format_log_to_str</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;intermediate_steps&quot;</span><span class="p">]),</span>
         <span class="p">)</span>
         <span class="o">|</span> <span class="n">prompt</span>
         <span class="o">|</span> <span class="n">llm_with_stop</span>
-        <span class="o">|</span> <span class="n">ReActSingleInputOutputParser</span><span class="p">()</span>
+        <span class="o">|</span> <span class="n">output_parser</span>
     <span class="p">)</span>
     <span class="k">return</span> <span class="n">agent</span></div>
 </pre></div>
@@ -291,7 +301,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Feb 29, 2024.
+          Last updated on Mar 01, 2024.
       </footer>
     </div>
   </div>

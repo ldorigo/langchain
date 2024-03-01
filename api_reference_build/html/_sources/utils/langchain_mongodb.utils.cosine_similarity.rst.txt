@@ -1,0 +1,8 @@
+﻿:mod:`langchain_mongodb.utils`.cosine_similarity
+=======================================================
+
+.. currentmodule:: langchain_mongodb.utils
+
+.. autofunction:: cosine_similarity
+
+.. example_links:: cosine_similarity

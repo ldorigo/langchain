@@ -4159,6 +4159,14 @@ Classes
     
     :template: pydantic.rst
     
+    tools.polygon.financials.Inputs
+    
+    :template: pydantic.rst
+    
+    tools.polygon.financials.PolygonFinancials
+    
+    :template: pydantic.rst
+    
     tools.polygon.last_quote.Inputs
     
     :template: pydantic.rst

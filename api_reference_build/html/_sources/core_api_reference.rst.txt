@@ -1,7 +1,7 @@
 .. core_api_reference:
 
 =======================
-``langchain_core`` 0.1.27
+``langchain_core`` 0.1.28
 =======================
 
 :mod:`langchain_core.agents`
