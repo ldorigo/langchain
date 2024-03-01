@@ -1,0 +1,31 @@
+﻿:mod:`langchain_text_splitters.markdown`.MarkdownHeaderTextSplitter
+==========================================================================
+
+.. currentmodule:: langchain_text_splitters.markdown
+
+.. autoclass:: MarkdownHeaderTextSplitter
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~MarkdownHeaderTextSplitter.__init__
+      ~MarkdownHeaderTextSplitter.aggregate_lines_to_chunks
+      ~MarkdownHeaderTextSplitter.split_text
+
+   
+   .. automethod:: MarkdownHeaderTextSplitter.__init__
+   .. automethod:: MarkdownHeaderTextSplitter.aggregate_lines_to_chunks
+   .. automethod:: MarkdownHeaderTextSplitter.split_text
+
+   
+   
+
+
+.. example_links:: MarkdownHeaderTextSplitter

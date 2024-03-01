@@ -61,6 +61,9 @@
           <a class="sk-nav-link nav-link" href="../experimental_api_reference.html">Experimental</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link" href="../text_splitters_api_reference.html">Text splitters</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../ai21_api_reference.html">ai21</a>
         </li>
         <li class="nav-item">
@@ -297,11 +300,12 @@ docs = loader.load()</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="langchain_community.document_loaders.xml.UnstructuredXMLLoader.load_and_split">
-<span class="sig-name descname"><span class="pre">load_and_split</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text_splitter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../text_splitter/langchain.text_splitter.TextSplitter.html#langchain.text_splitter.TextSplitter" title="langchain.text_splitter.TextSplitter"><span class="pre">TextSplitter</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../documents/langchain_core.documents.base.Document.html#langchain_core.documents.base.Document" title="langchain_core.documents.base.Document"><span class="pre">Document</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#langchain_community.document_loaders.xml.UnstructuredXMLLoader.load_and_split" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">load_and_split</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text_splitter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../base/langchain_text_splitters.base.TextSplitter.html#langchain_text_splitters.base.TextSplitter" title="langchain_text_splitters.base.TextSplitter"><span class="pre">TextSplitter</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../documents/langchain_core.documents.base.Document.html#langchain_core.documents.base.Document" title="langchain_core.documents.base.Document"><span class="pre">Document</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#langchain_community.document_loaders.xml.UnstructuredXMLLoader.load_and_split" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load Documents and split into chunks. Chunks are returned as Documents.</p>
+<p>Do not override this method. It should be considered to be deprecated!</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>text_splitter</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="../text_splitter/langchain.text_splitter.TextSplitter.html#langchain.text_splitter.TextSplitter" title="langchain.text_splitter.TextSplitter"><em>TextSplitter</em></a><em>]</em>) – TextSplitter instance to use for splitting documents.
+<dd class="field-odd"><p><strong>text_splitter</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="../base/langchain_text_splitters.base.TextSplitter.html#langchain_text_splitters.base.TextSplitter" title="langchain_text_splitters.base.TextSplitter"><em>TextSplitter</em></a><em>]</em>) – TextSplitter instance to use for splitting documents.
 Defaults to RecursiveCharacterTextSplitter.</p>
 </dd>
 <dt class="field-even">Returns</dt>

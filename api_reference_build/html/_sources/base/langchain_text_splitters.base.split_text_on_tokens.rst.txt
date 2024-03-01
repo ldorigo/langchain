@@ -1,0 +1,8 @@
+﻿:mod:`langchain_text_splitters.base`.split_text_on_tokens
+================================================================
+
+.. currentmodule:: langchain_text_splitters.base
+
+.. autofunction:: split_text_on_tokens
+
+.. example_links:: split_text_on_tokens

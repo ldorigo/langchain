@@ -60,6 +60,9 @@
           <a class="sk-nav-link nav-link" href="../../../experimental_api_reference.html">Experimental</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link" href="../../../text_splitters_api_reference.html">Text splitters</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../ai21_api_reference.html">ai21</a>
         </li>
         <li class="nav-item">
@@ -194,6 +197,7 @@
 <span class="sd">    Example:</span>
 <span class="sd">        .. code-block:: python</span>
 
+<span class="sd">            from langchain_text_splitters import RecursiveCharacterTextSplitter</span>
 <span class="sd">            from langchain_community.document_loaders import MWDumpLoader</span>
 
 <span class="sd">            loader = MWDumpLoader(</span>
@@ -201,7 +205,6 @@
 <span class="sd">                encoding=&quot;utf8&quot;</span>
 <span class="sd">            )</span>
 <span class="sd">            docs = loader.load()</span>
-<span class="sd">            from langchain.text_splitter import RecursiveCharacterTextSplitter</span>
 <span class="sd">            text_splitter = RecursiveCharacterTextSplitter(</span>
 <span class="sd">                chunk_size=1000, chunk_overlap=0</span>
 <span class="sd">            )</span>

@@ -60,6 +60,9 @@
           <a class="sk-nav-link nav-link" href="../../../../experimental_api_reference.html">Experimental</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link" href="../../../../text_splitters_api_reference.html">Text splitters</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../../ai21_api_reference.html">ai21</a>
         </li>
         <li class="nav-item">
@@ -191,9 +194,9 @@
 <span class="kn">from</span> <span class="nn">langchain_core.pydantic_v1</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
 <span class="kn">from</span> <span class="nn">langchain_core.runnables.config</span> <span class="kn">import</span> <span class="n">RunnableConfig</span>
 <span class="kn">from</span> <span class="nn">langchain_core.runnables.utils</span> <span class="kn">import</span> <span class="n">create_model</span>
+<span class="kn">from</span> <span class="nn">langchain_text_splitters</span> <span class="kn">import</span> <span class="n">RecursiveCharacterTextSplitter</span><span class="p">,</span> <span class="n">TextSplitter</span>
 
 <span class="kn">from</span> <span class="nn">langchain.chains.base</span> <span class="kn">import</span> <span class="n">Chain</span>
-<span class="kn">from</span> <span class="nn">langchain.text_splitter</span> <span class="kn">import</span> <span class="n">RecursiveCharacterTextSplitter</span><span class="p">,</span> <span class="n">TextSplitter</span>
 
 <span class="n">DEFAULT_DOCUMENT_SEPARATOR</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span>
 <span class="n">DOCUMENTS_KEY</span> <span class="o">=</span> <span class="s2">&quot;context&quot;</span>

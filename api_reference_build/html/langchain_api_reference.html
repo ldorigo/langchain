@@ -61,6 +61,9 @@
           <a class="sk-nav-link nav-link" href="experimental_api_reference.html">Experimental</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link" href="text_splitters_api_reference.html">Text splitters</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="ai21_api_reference.html">ai21</a>
         </li>
         <li class="nav-item">
@@ -236,18 +239,13 @@
 <li><a class="reference internal" href="#id19">Classes</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#module-langchain.text_splitter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain.text_splitter</span></code></a><ul>
-<li><a class="reference internal" href="#id22">Classes</a></li>
-<li><a class="reference internal" href="#id23">Functions</a></li>
-</ul>
-</li>
 <li><a class="reference internal" href="#module-langchain.tools"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain.tools</span></code></a><ul>
-<li><a class="reference internal" href="#id24">Classes</a></li>
-<li><a class="reference internal" href="#id25">Functions</a></li>
+<li><a class="reference internal" href="#id20">Classes</a></li>
+<li><a class="reference internal" href="#id21">Functions</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-langchain.utils"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain.utils</span></code></a><ul>
-<li><a class="reference internal" href="#id26">Functions</a></li>
+<li><a class="reference internal" href="#id22">Functions</a></li>
 </ul>
 </li>
 </ul>
@@ -1874,102 +1872,6 @@ to a simple key-value interface.</p>
 </table>
 </section>
 </section>
-<section id="module-langchain.text_splitter">
-<span id="langchain-text-splitter"></span><h2><a class="reference internal" href="#module-langchain.text_splitter" title="langchain.text_splitter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain.text_splitter</span></code></a><a class="headerlink" href="#module-langchain.text_splitter" title="Permalink to this heading">¶</a></h2>
-<p><strong>Text Splitters</strong> are classes for splitting text.</p>
-<p><strong>Class hierarchy:</strong></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">BaseDocumentTransformer</span> <span class="o">--&gt;</span> <span class="n">TextSplitter</span> <span class="o">--&gt;</span> <span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span><span class="n">TextSplitter</span>  <span class="c1"># Example: CharacterTextSplitter</span>
-                                             <span class="n">RecursiveCharacterTextSplitter</span> <span class="o">--&gt;</span>  <span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span><span class="n">TextSplitter</span>
-</pre></div>
-</div>
-<p>Note: <strong>MarkdownHeaderTextSplitter</strong> and <a href="#id20"><span class="problematic" id="id21">**</span></a>HTMLHeaderTextSplitter do not derive from TextSplitter.</p>
-<p><strong>Main helpers:</strong></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Document</span><span class="p">,</span> <span class="n">Tokenizer</span><span class="p">,</span> <span class="n">Language</span><span class="p">,</span> <span class="n">LineType</span><span class="p">,</span> <span class="n">HeaderType</span>
-</pre></div>
-</div>
-<section id="id22">
-<h3>Classes<a class="headerlink" href="#id22" title="Permalink to this heading">¶</a></h3>
-<table class="autosummary longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="text_splitter/langchain.text_splitter.CharacterTextSplitter.html#langchain.text_splitter.CharacterTextSplitter" title="langchain.text_splitter.CharacterTextSplitter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">text_splitter.CharacterTextSplitter</span></code></a>([...])</p></td>
-<td><p>Splitting text that looks at characters.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="text_splitter/langchain.text_splitter.ElementType.html#langchain.text_splitter.ElementType" title="langchain.text_splitter.ElementType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">text_splitter.ElementType</span></code></a></p></td>
-<td><p>Element type as typed dict.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="text_splitter/langchain.text_splitter.HTMLHeaderTextSplitter.html#langchain.text_splitter.HTMLHeaderTextSplitter" title="langchain.text_splitter.HTMLHeaderTextSplitter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">text_splitter.HTMLHeaderTextSplitter</span></code></a>(...[, ...])</p></td>
-<td><p>Splitting HTML files based on specified headers.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="text_splitter/langchain.text_splitter.HeaderType.html#langchain.text_splitter.HeaderType" title="langchain.text_splitter.HeaderType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">text_splitter.HeaderType</span></code></a></p></td>
-<td><p>Header type as typed dict.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="text_splitter/langchain.text_splitter.KonlpyTextSplitter.html#langchain.text_splitter.KonlpyTextSplitter" title="langchain.text_splitter.KonlpyTextSplitter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">text_splitter.KonlpyTextSplitter</span></code></a>([separator])</p></td>
-<td><p>Splitting text using Konlpy package.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="text_splitter/langchain.text_splitter.Language.html#langchain.text_splitter.Language" title="langchain.text_splitter.Language"><code class="xref py py-obj docutils literal notranslate"><span class="pre">text_splitter.Language</span></code></a>(value)</p></td>
-<td><p>Enum of the programming languages.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="text_splitter/langchain.text_splitter.LatexTextSplitter.html#langchain.text_splitter.LatexTextSplitter" title="langchain.text_splitter.LatexTextSplitter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">text_splitter.LatexTextSplitter</span></code></a>(**kwargs)</p></td>
-<td><p>Attempts to split the text along Latex-formatted layout elements.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="text_splitter/langchain.text_splitter.LineType.html#langchain.text_splitter.LineType" title="langchain.text_splitter.LineType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">text_splitter.LineType</span></code></a></p></td>
-<td><p>Line type as typed dict.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="text_splitter/langchain.text_splitter.MarkdownHeaderTextSplitter.html#langchain.text_splitter.MarkdownHeaderTextSplitter" title="langchain.text_splitter.MarkdownHeaderTextSplitter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">text_splitter.MarkdownHeaderTextSplitter</span></code></a>(...)</p></td>
-<td><p>Splitting markdown files based on specified headers.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="text_splitter/langchain.text_splitter.MarkdownTextSplitter.html#langchain.text_splitter.MarkdownTextSplitter" title="langchain.text_splitter.MarkdownTextSplitter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">text_splitter.MarkdownTextSplitter</span></code></a>(**kwargs)</p></td>
-<td><p>Attempts to split the text along Markdown-formatted headings.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="text_splitter/langchain.text_splitter.NLTKTextSplitter.html#langchain.text_splitter.NLTKTextSplitter" title="langchain.text_splitter.NLTKTextSplitter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">text_splitter.NLTKTextSplitter</span></code></a>([separator, ...])</p></td>
-<td><p>Splitting text using NLTK package.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="text_splitter/langchain.text_splitter.PythonCodeTextSplitter.html#langchain.text_splitter.PythonCodeTextSplitter" title="langchain.text_splitter.PythonCodeTextSplitter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">text_splitter.PythonCodeTextSplitter</span></code></a>(**kwargs)</p></td>
-<td><p>Attempts to split the text along Python syntax.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="text_splitter/langchain.text_splitter.RecursiveCharacterTextSplitter.html#langchain.text_splitter.RecursiveCharacterTextSplitter" title="langchain.text_splitter.RecursiveCharacterTextSplitter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">text_splitter.RecursiveCharacterTextSplitter</span></code></a>([...])</p></td>
-<td><p>Splitting text by recursively look at characters.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="text_splitter/langchain.text_splitter.RecursiveJsonSplitter.html#langchain.text_splitter.RecursiveJsonSplitter" title="langchain.text_splitter.RecursiveJsonSplitter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">text_splitter.RecursiveJsonSplitter</span></code></a>([...])</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="text_splitter/langchain.text_splitter.SentenceTransformersTokenTextSplitter.html#langchain.text_splitter.SentenceTransformersTokenTextSplitter" title="langchain.text_splitter.SentenceTransformersTokenTextSplitter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">text_splitter.SentenceTransformersTokenTextSplitter</span></code></a>([...])</p></td>
-<td><p>Splitting text to tokens using sentence model tokenizer.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="text_splitter/langchain.text_splitter.SpacyTextSplitter.html#langchain.text_splitter.SpacyTextSplitter" title="langchain.text_splitter.SpacyTextSplitter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">text_splitter.SpacyTextSplitter</span></code></a>([separator, ...])</p></td>
-<td><p>Splitting text using Spacy package.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="text_splitter/langchain.text_splitter.TextSplitter.html#langchain.text_splitter.TextSplitter" title="langchain.text_splitter.TextSplitter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">text_splitter.TextSplitter</span></code></a>(chunk_size, ...)</p></td>
-<td><p>Interface for splitting text into chunks.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="text_splitter/langchain.text_splitter.TokenTextSplitter.html#langchain.text_splitter.TokenTextSplitter" title="langchain.text_splitter.TokenTextSplitter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">text_splitter.TokenTextSplitter</span></code></a>([...])</p></td>
-<td><p>Splitting text to tokens using model tokenizer.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="text_splitter/langchain.text_splitter.Tokenizer.html#langchain.text_splitter.Tokenizer" title="langchain.text_splitter.Tokenizer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">text_splitter.Tokenizer</span></code></a>(chunk_overlap, ...)</p></td>
-<td><p>Tokenizer data class.</p></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="id23">
-<h3>Functions<a class="headerlink" href="#id23" title="Permalink to this heading">¶</a></h3>
-<table class="autosummary longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="text_splitter/langchain.text_splitter.split_text_on_tokens.html#langchain.text_splitter.split_text_on_tokens" title="langchain.text_splitter.split_text_on_tokens"><code class="xref py py-obj docutils literal notranslate"><span class="pre">text_splitter.split_text_on_tokens</span></code></a>(*, text, ...)</p></td>
-<td><p>Split incoming text and return chunks using tokenizer.</p></td>
-</tr>
-</tbody>
-</table>
-</section>
-</section>
 <section id="module-langchain.tools">
 <span id="langchain-tools"></span><h2><a class="reference internal" href="#module-langchain.tools" title="langchain.tools"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain.tools</span></code></a><a class="headerlink" href="#module-langchain.tools" title="Permalink to this heading">¶</a></h2>
 <p><strong>Tools</strong> are classes that an Agent uses to interact with the world.</p>
@@ -1984,8 +1886,8 @@ tool for the job.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CallbackManagerForToolRun</span><span class="p">,</span> <span class="n">AsyncCallbackManagerForToolRun</span>
 </pre></div>
 </div>
-<section id="id24">
-<h3>Classes<a class="headerlink" href="#id24" title="Permalink to this heading">¶</a></h3>
+<section id="id20">
+<h3>Classes<a class="headerlink" href="#id20" title="Permalink to this heading">¶</a></h3>
 <table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -1998,8 +1900,8 @@ tool for the job.</p>
 </tbody>
 </table>
 </section>
-<section id="id25">
-<h3>Functions<a class="headerlink" href="#id25" title="Permalink to this heading">¶</a></h3>
+<section id="id21">
+<h3>Functions<a class="headerlink" href="#id21" title="Permalink to this heading">¶</a></h3>
 <table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -2023,8 +1925,8 @@ tool for the job.</p>
 <span id="langchain-utils"></span><h2><a class="reference internal" href="#module-langchain.utils" title="langchain.utils"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain.utils</span></code></a><a class="headerlink" href="#module-langchain.utils" title="Permalink to this heading">¶</a></h2>
 <p><strong>Utility functions</strong> for LangChain.</p>
 <p>These functions do not depend on any other LangChain module.</p>
-<section id="id26">
-<h3>Functions<a class="headerlink" href="#id26" title="Permalink to this heading">¶</a></h3>
+<section id="id22">
+<h3>Functions<a class="headerlink" href="#id22" title="Permalink to this heading">¶</a></h3>
 <table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />

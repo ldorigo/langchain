@@ -61,6 +61,9 @@
           <a class="sk-nav-link nav-link" href="../experimental_api_reference.html">Experimental</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link" href="../text_splitters_api_reference.html">Text splitters</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../ai21_api_reference.html">ai21</a>
         </li>
         <li class="nav-item">
@@ -193,7 +196,7 @@
 <h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_community.document_loaders.parsers.language.language_parser</span></code>.LanguageParser<a class="headerlink" href="#langchain-community-document-loaders-parsers-language-language-parser-languageparser" title="Permalink to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="langchain_community.document_loaders.parsers.language.language_parser.LanguageParser">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">langchain_community.document_loaders.parsers.language.language_parser.</span></span><span class="sig-name descname"><span class="pre">LanguageParser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">language</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../text_splitter/langchain.text_splitter.Language.html#langchain.text_splitter.Language" title="langchain.text_splitter.Language"><span class="pre">Language</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parser_threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/langchain_community/document_loaders/parsers/language/language_parser.html#LanguageParser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#langchain_community.document_loaders.parsers.language.language_parser.LanguageParser" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">langchain_community.document_loaders.parsers.language.language_parser.</span></span><span class="sig-name descname"><span class="pre">LanguageParser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">language</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'cpp'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'go'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'java'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'kotlin'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'js'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'ts'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'php'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'proto'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'python'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'rst'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'ruby'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'rust'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'scala'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'swift'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'markdown'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'latex'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'html'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'sol'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'csharp'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'cobol'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'c'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'lua'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'perl'</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parser_threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/langchain_community/document_loaders/parsers/language/language_parser.html#LanguageParser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#langchain_community.document_loaders.parsers.language.language_parser.LanguageParser" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parse using the respective programming language syntax.</p>
 <p>Each top-level function and class in the code is loaded into separate documents.
 Furthermore, an extra document is generated, containing the remaining top-level code
@@ -201,21 +204,21 @@ that excludes the already segmented functions and classes.</p>
 <p>This approach can potentially improve the accuracy of QA models over source code.</p>
 <p>The supported languages for code parsing are:</p>
 <ul class="simple">
-<li><p>C (*)</p></li>
-<li><p>C++ (*)</p></li>
-<li><p>C# (*)</p></li>
-<li><p>COBOL</p></li>
-<li><p>Go (*)</p></li>
-<li><p>Java (*)</p></li>
-<li><p>JavaScript (requires package <cite>esprima</cite>)</p></li>
-<li><p>Kotlin (*)</p></li>
-<li><p>Lua (*)</p></li>
-<li><p>Perl (*)</p></li>
-<li><p>Python</p></li>
-<li><p>Ruby (*)</p></li>
-<li><p>Rust (*)</p></li>
-<li><p>Scala (*)</p></li>
-<li><p>TypeScript (*)</p></li>
+<li><p>C: “c” (*)</p></li>
+<li><p>C++: “cpp” (*)</p></li>
+<li><p>C#: “csharp” (*)</p></li>
+<li><p>COBOL: “cobol”</p></li>
+<li><p>Go: “go” (*)</p></li>
+<li><p>Java: “java” (*)</p></li>
+<li><p>JavaScript: “js” (requires package <cite>esprima</cite>)</p></li>
+<li><p>Kotlin: “kotlin” (*)</p></li>
+<li><p>Lua: “lua” (*)</p></li>
+<li><p>Perl: “perl” (*)</p></li>
+<li><p>Python: “python”</p></li>
+<li><p>Ruby: “ruby” (*)</p></li>
+<li><p>Rust: “rust” (*)</p></li>
+<li><p>Scala: “scala” (*)</p></li>
+<li><p>TypeScript: “ts” (*)</p></li>
 </ul>
 <p>Items marked with (*) require the packages <cite>tree_sitter</cite> and
 <cite>tree_sitter_languages</cite>. It is straightforward to add support for additional
@@ -225,8 +228,7 @@ lines required to activate the splitting based on syntax.</p>
 <p>If a language is not explicitly specified, <cite>LanguageParser</cite> will infer one from
 filename extensions, if present.</p>
 <p class="rubric">Examples</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="kn">from</span> <span class="nn">langchain.text_splitter.Language</span>
-    <span class="kn">from</span> <span class="nn">langchain_community.document_loaders.generic</span> <span class="kn">import</span> <span class="n">GenericLoader</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="kn">from</span> <span class="nn">langchain_community.document_loaders.generic</span> <span class="kn">import</span> <span class="n">GenericLoader</span>
     <span class="kn">from</span> <span class="nn">langchain_community.document_loaders.parsers</span> <span class="kn">import</span> <span class="n">LanguageParser</span>
 
     <span class="n">loader</span> <span class="o">=</span> <span class="n">GenericLoader</span><span class="o">.</span><span class="n">from_filesystem</span><span class="p">(</span>
@@ -241,13 +243,12 @@ filename extensions, if present.</p>
 
 <span class="o">..</span> <span class="n">code</span><span class="o">-</span><span class="n">block</span><span class="p">::</span> <span class="n">python</span>
 
-    <span class="kn">from</span> <span class="nn">langchain.text_splitter</span> <span class="kn">import</span> <span class="n">Language</span>
 
     <span class="n">loader</span> <span class="o">=</span> <span class="n">GenericLoader</span><span class="o">.</span><span class="n">from_filesystem</span><span class="p">(</span>
         <span class="s2">&quot;./code&quot;</span><span class="p">,</span>
         <span class="n">glob</span><span class="o">=</span><span class="s2">&quot;**/*&quot;</span><span class="p">,</span>
         <span class="n">suffixes</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;.py&quot;</span><span class="p">],</span>
-        <span class="n">parser</span><span class="o">=</span><span class="n">LanguageParser</span><span class="p">(</span><span class="n">language</span><span class="o">=</span><span class="n">Language</span><span class="o">.</span><span class="n">PYTHON</span><span class="p">)</span>
+        <span class="n">parser</span><span class="o">=</span><span class="n">LanguageParser</span><span class="p">(</span><span class="n">language</span><span class="o">=</span><span class="s2">&quot;python&quot;</span><span class="p">)</span>
     <span class="p">)</span>
 
 <span class="n">Example</span> <span class="n">instantiations</span> <span class="n">to</span> <span class="nb">set</span> <span class="n">number</span> <span class="n">of</span> <span class="n">lines</span> <span class="n">threshold</span><span class="p">:</span>
@@ -266,7 +267,7 @@ filename extensions, if present.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>language</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="../text_splitter/langchain.text_splitter.Language.html#langchain.text_splitter.Language" title="langchain.text_splitter.Language"><em>Language</em></a><em>]</em>) – If None (default), it will try to infer language from source.</p></li>
+<li><p><strong>language</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="../base/langchain_text_splitters.base.Language.html#langchain_text_splitters.base.Language" title="langchain_text_splitters.base.Language"><em>Language</em></a><em>]</em>) – If None (default), it will try to infer language from source.</p></li>
 <li><p><strong>parser_threshold</strong> (<em>int</em>) – Minimum lines needed to activate parsing (0 by default).</p></li>
 </ul>
 </dd>
@@ -291,12 +292,12 @@ filename extensions, if present.</p>
 </table>
 <dl class="py method">
 <dt class="sig sig-object py" id="langchain_community.document_loaders.parsers.language.language_parser.LanguageParser.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">language</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../text_splitter/langchain.text_splitter.Language.html#langchain.text_splitter.Language" title="langchain.text_splitter.Language"><span class="pre">Language</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parser_threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/langchain_community/document_loaders/parsers/language/language_parser.html#LanguageParser.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#langchain_community.document_loaders.parsers.language.language_parser.LanguageParser.__init__" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">language</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'cpp'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'go'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'java'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'kotlin'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'js'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'ts'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'php'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'proto'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'python'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'rst'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'ruby'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'rust'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'scala'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'swift'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'markdown'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'latex'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'html'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'sol'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'csharp'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'cobol'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'c'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'lua'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'perl'</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parser_threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/langchain_community/document_loaders/parsers/language/language_parser.html#LanguageParser.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#langchain_community.document_loaders.parsers.language.language_parser.LanguageParser.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Language parser that split code using the respective language syntax.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>language</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="../text_splitter/langchain.text_splitter.Language.html#langchain.text_splitter.Language" title="langchain.text_splitter.Language"><em>Language</em></a><em>]</em>) – If None (default), it will try to infer language from source.</p></li>
+<li><p><strong>language</strong> (<em>Optional</em><em>[</em><em>Literal</em><em>[</em><em>'cpp'</em><em>, </em><em>'go'</em><em>, </em><em>'java'</em><em>, </em><em>'kotlin'</em><em>, </em><em>'js'</em><em>, </em><em>'ts'</em><em>, </em><em>'php'</em><em>, </em><em>'proto'</em><em>, </em><em>'python'</em><em>, </em><em>'rst'</em><em>, </em><em>'ruby'</em><em>, </em><em>'rust'</em><em>, </em><em>'scala'</em><em>, </em><em>'swift'</em><em>, </em><em>'markdown'</em><em>, </em><em>'latex'</em><em>, </em><em>'html'</em><em>, </em><em>'sol'</em><em>, </em><em>'csharp'</em><em>, </em><em>'cobol'</em><em>, </em><em>'c'</em><em>, </em><em>'lua'</em><em>, </em><em>'perl'</em><em>]</em><em>]</em>) – If None (default), it will try to infer language from source.</p></li>
 <li><p><strong>parser_threshold</strong> (<em>int</em>) – Minimum lines needed to activate parsing (0 by default).</p></li>
 </ul>
 </dd>

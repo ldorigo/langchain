@@ -60,6 +60,9 @@
           <a class="sk-nav-link nav-link" href="../../../../../experimental_api_reference.html">Experimental</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link" href="../../../../../text_splitters_api_reference.html">Text splitters</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../../../../ai21_api_reference.html">ai21</a>
         </li>
         <li class="nav-item">
@@ -179,7 +182,7 @@
   <h1>Source code for langchain_community.document_loaders.parsers.language.language_parser</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Iterator</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Iterator</span><span class="p">,</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">Optional</span>
 
 <span class="kn">from</span> <span class="nn">langchain_core.documents</span> <span class="kn">import</span> <span class="n">Document</span>
 
@@ -205,50 +208,67 @@
     <span class="n">TypeScriptSegmenter</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">langchain.text_splitter</span> <span class="kn">import</span> <span class="n">Language</span>
+<span class="n">LANGUAGE_EXTENSIONS</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;py&quot;</span><span class="p">:</span> <span class="s2">&quot;python&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;js&quot;</span><span class="p">:</span> <span class="s2">&quot;js&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;cobol&quot;</span><span class="p">:</span> <span class="s2">&quot;cobol&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;c&quot;</span><span class="p">:</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;cpp&quot;</span><span class="p">:</span> <span class="s2">&quot;cpp&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;cs&quot;</span><span class="p">:</span> <span class="s2">&quot;csharp&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;rb&quot;</span><span class="p">:</span> <span class="s2">&quot;ruby&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;scala&quot;</span><span class="p">:</span> <span class="s2">&quot;scala&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;rs&quot;</span><span class="p">:</span> <span class="s2">&quot;rust&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;go&quot;</span><span class="p">:</span> <span class="s2">&quot;go&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;kt&quot;</span><span class="p">:</span> <span class="s2">&quot;kotlin&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;lua&quot;</span><span class="p">:</span> <span class="s2">&quot;lua&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;pl&quot;</span><span class="p">:</span> <span class="s2">&quot;perl&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ts&quot;</span><span class="p">:</span> <span class="s2">&quot;ts&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;java&quot;</span><span class="p">:</span> <span class="s2">&quot;java&quot;</span><span class="p">,</span>
+<span class="p">}</span>
 
-<span class="k">try</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">langchain.text_splitter</span> <span class="kn">import</span> <span class="n">Language</span>
+<span class="n">LANGUAGE_SEGMENTERS</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;python&quot;</span><span class="p">:</span> <span class="n">PythonSegmenter</span><span class="p">,</span>
+    <span class="s2">&quot;js&quot;</span><span class="p">:</span> <span class="n">JavaScriptSegmenter</span><span class="p">,</span>
+    <span class="s2">&quot;cobol&quot;</span><span class="p">:</span> <span class="n">CobolSegmenter</span><span class="p">,</span>
+    <span class="s2">&quot;c&quot;</span><span class="p">:</span> <span class="n">CSegmenter</span><span class="p">,</span>
+    <span class="s2">&quot;cpp&quot;</span><span class="p">:</span> <span class="n">CPPSegmenter</span><span class="p">,</span>
+    <span class="s2">&quot;csharp&quot;</span><span class="p">:</span> <span class="n">CSharpSegmenter</span><span class="p">,</span>
+    <span class="s2">&quot;ruby&quot;</span><span class="p">:</span> <span class="n">RubySegmenter</span><span class="p">,</span>
+    <span class="s2">&quot;rust&quot;</span><span class="p">:</span> <span class="n">RustSegmenter</span><span class="p">,</span>
+    <span class="s2">&quot;scala&quot;</span><span class="p">:</span> <span class="n">ScalaSegmenter</span><span class="p">,</span>
+    <span class="s2">&quot;go&quot;</span><span class="p">:</span> <span class="n">GoSegmenter</span><span class="p">,</span>
+    <span class="s2">&quot;kotlin&quot;</span><span class="p">:</span> <span class="n">KotlinSegmenter</span><span class="p">,</span>
+    <span class="s2">&quot;lua&quot;</span><span class="p">:</span> <span class="n">LuaSegmenter</span><span class="p">,</span>
+    <span class="s2">&quot;perl&quot;</span><span class="p">:</span> <span class="n">PerlSegmenter</span><span class="p">,</span>
+    <span class="s2">&quot;ts&quot;</span><span class="p">:</span> <span class="n">TypeScriptSegmenter</span><span class="p">,</span>
+    <span class="s2">&quot;java&quot;</span><span class="p">:</span> <span class="n">JavaSegmenter</span><span class="p">,</span>
+<span class="p">}</span>
 
-    <span class="n">LANGUAGE_EXTENSIONS</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;py&quot;</span><span class="p">:</span> <span class="n">Language</span><span class="o">.</span><span class="n">PYTHON</span><span class="p">,</span>
-        <span class="s2">&quot;js&quot;</span><span class="p">:</span> <span class="n">Language</span><span class="o">.</span><span class="n">JS</span><span class="p">,</span>
-        <span class="s2">&quot;cobol&quot;</span><span class="p">:</span> <span class="n">Language</span><span class="o">.</span><span class="n">COBOL</span><span class="p">,</span>
-        <span class="s2">&quot;c&quot;</span><span class="p">:</span> <span class="n">Language</span><span class="o">.</span><span class="n">C</span><span class="p">,</span>
-        <span class="s2">&quot;cpp&quot;</span><span class="p">:</span> <span class="n">Language</span><span class="o">.</span><span class="n">CPP</span><span class="p">,</span>
-        <span class="s2">&quot;cs&quot;</span><span class="p">:</span> <span class="n">Language</span><span class="o">.</span><span class="n">CSHARP</span><span class="p">,</span>
-        <span class="s2">&quot;rb&quot;</span><span class="p">:</span> <span class="n">Language</span><span class="o">.</span><span class="n">RUBY</span><span class="p">,</span>
-        <span class="s2">&quot;scala&quot;</span><span class="p">:</span> <span class="n">Language</span><span class="o">.</span><span class="n">SCALA</span><span class="p">,</span>
-        <span class="s2">&quot;rs&quot;</span><span class="p">:</span> <span class="n">Language</span><span class="o">.</span><span class="n">RUST</span><span class="p">,</span>
-        <span class="s2">&quot;go&quot;</span><span class="p">:</span> <span class="n">Language</span><span class="o">.</span><span class="n">GO</span><span class="p">,</span>
-        <span class="s2">&quot;kt&quot;</span><span class="p">:</span> <span class="n">Language</span><span class="o">.</span><span class="n">KOTLIN</span><span class="p">,</span>
-        <span class="s2">&quot;lua&quot;</span><span class="p">:</span> <span class="n">Language</span><span class="o">.</span><span class="n">LUA</span><span class="p">,</span>
-        <span class="s2">&quot;pl&quot;</span><span class="p">:</span> <span class="n">Language</span><span class="o">.</span><span class="n">PERL</span><span class="p">,</span>
-        <span class="s2">&quot;ts&quot;</span><span class="p">:</span> <span class="n">Language</span><span class="o">.</span><span class="n">TS</span><span class="p">,</span>
-        <span class="s2">&quot;java&quot;</span><span class="p">:</span> <span class="n">Language</span><span class="o">.</span><span class="n">JAVA</span><span class="p">,</span>
-    <span class="p">}</span>
-
-    <span class="n">LANGUAGE_SEGMENTERS</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="n">Language</span><span class="o">.</span><span class="n">PYTHON</span><span class="p">:</span> <span class="n">PythonSegmenter</span><span class="p">,</span>
-        <span class="n">Language</span><span class="o">.</span><span class="n">JS</span><span class="p">:</span> <span class="n">JavaScriptSegmenter</span><span class="p">,</span>
-        <span class="n">Language</span><span class="o">.</span><span class="n">COBOL</span><span class="p">:</span> <span class="n">CobolSegmenter</span><span class="p">,</span>
-        <span class="n">Language</span><span class="o">.</span><span class="n">C</span><span class="p">:</span> <span class="n">CSegmenter</span><span class="p">,</span>
-        <span class="n">Language</span><span class="o">.</span><span class="n">CPP</span><span class="p">:</span> <span class="n">CPPSegmenter</span><span class="p">,</span>
-        <span class="n">Language</span><span class="o">.</span><span class="n">CSHARP</span><span class="p">:</span> <span class="n">CSharpSegmenter</span><span class="p">,</span>
-        <span class="n">Language</span><span class="o">.</span><span class="n">RUBY</span><span class="p">:</span> <span class="n">RubySegmenter</span><span class="p">,</span>
-        <span class="n">Language</span><span class="o">.</span><span class="n">RUST</span><span class="p">:</span> <span class="n">RustSegmenter</span><span class="p">,</span>
-        <span class="n">Language</span><span class="o">.</span><span class="n">SCALA</span><span class="p">:</span> <span class="n">ScalaSegmenter</span><span class="p">,</span>
-        <span class="n">Language</span><span class="o">.</span><span class="n">GO</span><span class="p">:</span> <span class="n">GoSegmenter</span><span class="p">,</span>
-        <span class="n">Language</span><span class="o">.</span><span class="n">KOTLIN</span><span class="p">:</span> <span class="n">KotlinSegmenter</span><span class="p">,</span>
-        <span class="n">Language</span><span class="o">.</span><span class="n">LUA</span><span class="p">:</span> <span class="n">LuaSegmenter</span><span class="p">,</span>
-        <span class="n">Language</span><span class="o">.</span><span class="n">PERL</span><span class="p">:</span> <span class="n">PerlSegmenter</span><span class="p">,</span>
-        <span class="n">Language</span><span class="o">.</span><span class="n">TS</span><span class="p">:</span> <span class="n">TypeScriptSegmenter</span><span class="p">,</span>
-        <span class="n">Language</span><span class="o">.</span><span class="n">JAVA</span><span class="p">:</span> <span class="n">JavaSegmenter</span><span class="p">,</span>
-    <span class="p">}</span>
-<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-    <span class="n">LANGUAGE_EXTENSIONS</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="n">LANGUAGE_SEGMENTERS</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">Language</span> <span class="o">=</span> <span class="n">Literal</span><span class="p">[</span>
+    <span class="s2">&quot;cpp&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;go&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;java&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;kotlin&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;js&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ts&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;php&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;proto&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;python&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;rst&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ruby&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;rust&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;scala&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;swift&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;markdown&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;latex&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;html&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;sol&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;csharp&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;cobol&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;c&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;lua&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;perl&quot;</span><span class="p">,</span>
+<span class="p">]</span>
 
 
 <div class="viewcode-block" id="LanguageParser"><a class="viewcode-back" href="../../../../../document_loaders/langchain_community.document_loaders.parsers.language.language_parser.LanguageParser.html#langchain_community.document_loaders.parsers.language.language_parser.LanguageParser">[docs]</a><span class="k">class</span> <span class="nc">LanguageParser</span><span class="p">(</span><span class="n">BaseBlobParser</span><span class="p">):</span>
@@ -262,21 +282,21 @@
 
 <span class="sd">    The supported languages for code parsing are:</span>
 
-<span class="sd">    - C (*)</span>
-<span class="sd">    - C++ (*)</span>
-<span class="sd">    - C# (*)</span>
-<span class="sd">    - COBOL</span>
-<span class="sd">    - Go (*)</span>
-<span class="sd">    - Java (*)</span>
-<span class="sd">    - JavaScript (requires package `esprima`)</span>
-<span class="sd">    - Kotlin (*)</span>
-<span class="sd">    - Lua (*)</span>
-<span class="sd">    - Perl (*)</span>
-<span class="sd">    - Python</span>
-<span class="sd">    - Ruby (*)</span>
-<span class="sd">    - Rust (*)</span>
-<span class="sd">    - Scala (*)</span>
-<span class="sd">    - TypeScript (*)</span>
+<span class="sd">    - C: &quot;c&quot; (*)</span>
+<span class="sd">    - C++: &quot;cpp&quot; (*)</span>
+<span class="sd">    - C#: &quot;csharp&quot; (*)</span>
+<span class="sd">    - COBOL: &quot;cobol&quot;</span>
+<span class="sd">    - Go: &quot;go&quot; (*)</span>
+<span class="sd">    - Java: &quot;java&quot; (*)</span>
+<span class="sd">    - JavaScript: &quot;js&quot; (requires package `esprima`)</span>
+<span class="sd">    - Kotlin: &quot;kotlin&quot; (*)</span>
+<span class="sd">    - Lua: &quot;lua&quot; (*)</span>
+<span class="sd">    - Perl: &quot;perl&quot; (*)</span>
+<span class="sd">    - Python: &quot;python&quot;</span>
+<span class="sd">    - Ruby: &quot;ruby&quot; (*)</span>
+<span class="sd">    - Rust: &quot;rust&quot; (*)</span>
+<span class="sd">    - Scala: &quot;scala&quot; (*)</span>
+<span class="sd">    - TypeScript: &quot;ts&quot; (*)</span>
 
 <span class="sd">    Items marked with (*) require the packages `tree_sitter` and</span>
 <span class="sd">    `tree_sitter_languages`. It is straightforward to add support for additional</span>
@@ -292,7 +312,6 @@
 
 <span class="sd">       .. code-block:: python</span>
 
-<span class="sd">            from langchain.text_splitter.Language</span>
 <span class="sd">            from langchain_community.document_loaders.generic import GenericLoader</span>
 <span class="sd">            from langchain_community.document_loaders.parsers import LanguageParser</span>
 
@@ -308,13 +327,12 @@
 
 <span class="sd">        .. code-block:: python</span>
 
-<span class="sd">            from langchain.text_splitter import Language</span>
 
 <span class="sd">            loader = GenericLoader.from_filesystem(</span>
 <span class="sd">                &quot;./code&quot;,</span>
 <span class="sd">                glob=&quot;**/*&quot;,</span>
 <span class="sd">                suffixes=[&quot;.py&quot;],</span>
-<span class="sd">                parser=LanguageParser(language=Language.PYTHON)</span>
+<span class="sd">                parser=LanguageParser(language=&quot;python&quot;)</span>
 <span class="sd">            )</span>
 
 <span class="sd">        Example instantiations to set number of lines threshold:</span>

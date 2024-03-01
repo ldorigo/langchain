@@ -1,0 +1,58 @@
+﻿:mod:`langchain_text_splitters.base`.Language
+====================================================
+
+.. currentmodule:: langchain_text_splitters.base
+
+.. autoclass:: Language
+
+    
+    
+    .. autoattribute:: CPP
+    
+    .. autoattribute:: GO
+    
+    .. autoattribute:: JAVA
+    
+    .. autoattribute:: KOTLIN
+    
+    .. autoattribute:: JS
+    
+    .. autoattribute:: TS
+    
+    .. autoattribute:: PHP
+    
+    .. autoattribute:: PROTO
+    
+    .. autoattribute:: PYTHON
+    
+    .. autoattribute:: RST
+    
+    .. autoattribute:: RUBY
+    
+    .. autoattribute:: RUST
+    
+    .. autoattribute:: SCALA
+    
+    .. autoattribute:: SWIFT
+    
+    .. autoattribute:: MARKDOWN
+    
+    .. autoattribute:: LATEX
+    
+    .. autoattribute:: HTML
+    
+    .. autoattribute:: SOL
+    
+    .. autoattribute:: CSHARP
+    
+    .. autoattribute:: COBOL
+    
+    .. autoattribute:: C
+    
+    .. autoattribute:: LUA
+    
+    .. autoattribute:: PERL
+    
+    
+
+.. example_links:: Language

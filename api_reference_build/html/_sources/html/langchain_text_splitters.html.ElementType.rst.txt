@@ -1,0 +1,20 @@
+﻿:mod:`langchain_text_splitters.html`.ElementType
+=======================================================
+
+.. currentmodule:: langchain_text_splitters.html
+
+.. autoclass:: ElementType
+
+    
+   
+  .. autoattribute:: url
+   
+  .. autoattribute:: xpath
+   
+  .. autoattribute:: content
+   
+  .. autoattribute:: metadata
+   
+   
+
+.. example_links:: ElementType

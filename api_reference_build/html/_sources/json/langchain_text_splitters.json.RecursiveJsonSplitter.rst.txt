@@ -1,0 +1,33 @@
+﻿:mod:`langchain_text_splitters.json`.RecursiveJsonSplitter
+=================================================================
+
+.. currentmodule:: langchain_text_splitters.json
+
+.. autoclass:: RecursiveJsonSplitter
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~RecursiveJsonSplitter.__init__
+      ~RecursiveJsonSplitter.create_documents
+      ~RecursiveJsonSplitter.split_json
+      ~RecursiveJsonSplitter.split_text
+
+   
+   .. automethod:: RecursiveJsonSplitter.__init__
+   .. automethod:: RecursiveJsonSplitter.create_documents
+   .. automethod:: RecursiveJsonSplitter.split_json
+   .. automethod:: RecursiveJsonSplitter.split_text
+
+   
+   
+
+
+.. example_links:: RecursiveJsonSplitter

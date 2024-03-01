@@ -1,0 +1,16 @@
+﻿:mod:`langchain_text_splitters.markdown`.LineType
+========================================================
+
+.. currentmodule:: langchain_text_splitters.markdown
+
+.. autoclass:: LineType
+
+    
+   
+  .. autoattribute:: metadata
+   
+  .. autoattribute:: content
+   
+   
+
+.. example_links:: LineType

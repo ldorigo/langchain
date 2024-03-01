@@ -60,6 +60,9 @@
           <a class="sk-nav-link nav-link" href="../../experimental_api_reference.html">Experimental</a>
         </li>
         <li class="nav-item">
+          <a class="sk-nav-link nav-link" href="../../text_splitters_api_reference.html">Text splitters</a>
+        </li>
+        <li class="nav-item">
           <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../ai21_api_reference.html">ai21</a>
         </li>
         <li class="nav-item">
@@ -804,7 +807,12 @@
                         <span class="s2">&quot;tool_choice can only be True when there is one tool. Received &quot;</span>
                         <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">tools</span><span class="p">)</span><span class="si">}</span><span class="s2"> tools.&quot;</span>
                     <span class="p">)</span>
-                <span class="n">tool_choice</span> <span class="o">=</span> <span class="n">formatted_tools</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">tool_name</span> <span class="o">=</span> <span class="n">formatted_tools</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;function&quot;</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
+                <span class="n">tool_choice</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;function&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;function&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">tool_name</span><span class="p">},</span>
+                <span class="p">}</span>
+
             <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;tool_choice&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tool_choice</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">tools</span><span class="o">=</span><span class="n">formatted_tools</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 

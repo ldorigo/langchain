@@ -1,0 +1,18 @@
+﻿:mod:`langchain_text_splitters.markdown`.HeaderType
+==========================================================
+
+.. currentmodule:: langchain_text_splitters.markdown
+
+.. autoclass:: HeaderType
+
+    
+   
+  .. autoattribute:: level
+   
+  .. autoattribute:: name
+   
+  .. autoattribute:: data
+   
+   
+
+.. example_links:: HeaderType
