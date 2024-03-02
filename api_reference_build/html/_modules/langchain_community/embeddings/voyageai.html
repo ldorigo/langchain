@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   
-  <title>langchain_community.embeddings.voyageai &mdash; 🦜🔗 LangChain 0.1.9</title>
+  <title>langchain_community.embeddings.voyageai &mdash; 🦜🔗 LangChain 0.1.10</title>
   
   <link rel="canonical" href="https://api.python.langchain.com/en/latest/_modules/langchain_community/embeddings/voyageai.html" />
 
@@ -251,15 +251,15 @@
 
 <span class="sd">            from langchain_community.embeddings import VoyageEmbeddings</span>
 
-<span class="sd">            voyage = VoyageEmbeddings(voyage_api_key=&quot;your-api-key&quot;)</span>
+<span class="sd">            voyage = VoyageEmbeddings(voyage_api_key=&quot;your-api-key&quot;, model=&quot;voyage-2&quot;)</span>
 <span class="sd">            text = &quot;This is a test query.&quot;</span>
 <span class="sd">            query_result = voyage.embed_query(text)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">model</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;voyage-01&quot;</span>
+    <span class="n">model</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">voyage_api_base</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;https://api.voyageai.com/v1/embeddings&quot;</span>
     <span class="n">voyage_api_key</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">SecretStr</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">8</span>
+    <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Maximum number of texts to embed in each API request.&quot;&quot;&quot;</span>
     <span class="n">max_retries</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">6</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Maximum number of retries to make when generating.&quot;&quot;&quot;</span>
@@ -268,15 +268,12 @@
     <span class="n">show_progress_bar</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Whether to show a progress bar when embedding. Must have tqdm installed if set </span>
 <span class="sd">        to True.&quot;&quot;&quot;</span>
-    <span class="n">truncation</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">truncation</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Whether to truncate the input texts to fit within the context length.</span>
 <span class="sd">    </span>
 <span class="sd">        If True, over-length input texts will be truncated to fit within the context </span>
 <span class="sd">        length, before vectorized by the embedding model. If False, an error will be </span>
-<span class="sd">        raised if any given text exceeds the context length. If not specified </span>
-<span class="sd">        (defaults to None), we will truncate the input text before sending it to the </span>
-<span class="sd">        embedding model if it slightly exceeds the context window length. If it </span>
-<span class="sd">        significantly exceeds the context window length, an error will be raised.&quot;&quot;&quot;</span>
+<span class="sd">        raised if any given text exceeds the context length.&quot;&quot;&quot;</span>
 
     <span class="k">class</span> <span class="nc">Config</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Configuration for this pydantic object.&quot;&quot;&quot;</span>
@@ -289,6 +286,22 @@
         <span class="n">values</span><span class="p">[</span><span class="s2">&quot;voyage_api_key&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">convert_to_secret_str</span><span class="p">(</span>
             <span class="n">get_from_dict_or_env</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="s2">&quot;voyage_api_key&quot;</span><span class="p">,</span> <span class="s2">&quot;VOYAGE_API_KEY&quot;</span><span class="p">)</span>
         <span class="p">)</span>
+
+        <span class="k">if</span> <span class="s2">&quot;model&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span>
+            <span class="n">values</span><span class="p">[</span><span class="s2">&quot;model&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;voyage-01&quot;</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                <span class="s2">&quot;model will become a required arg for VoyageAIEmbeddings, &quot;</span>
+                <span class="s2">&quot;we recommend to specify it when using this class. &quot;</span>
+                <span class="s2">&quot;Currently the default is set to voyage-01.&quot;</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="s2">&quot;batch_size&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span>
+            <span class="n">values</span><span class="p">[</span><span class="s2">&quot;batch_size&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="mi">72</span>
+                <span class="k">if</span> <span class="s2">&quot;model&quot;</span> <span class="ow">in</span> <span class="n">values</span> <span class="ow">and</span> <span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">&quot;model&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;voyage-2&quot;</span><span class="p">,</span> <span class="s2">&quot;voyage-02&quot;</span><span class="p">])</span>
+                <span class="k">else</span> <span class="mi">7</span>
+            <span class="p">)</span>
+
         <span class="k">return</span> <span class="n">values</span>
 
     <span class="k">def</span> <span class="nf">_invocation_params</span><span class="p">(</span>
@@ -298,11 +311,14 @@
         <span class="n">params</span><span class="p">:</span> <span class="n">Dict</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">voyage_api_base</span><span class="p">,</span>
             <span class="s2">&quot;headers&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Bearer </span><span class="si">{</span><span class="n">api_key</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">},</span>
-            <span class="s2">&quot;json&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="nb">input</span><span class="p">,</span> <span class="s2">&quot;input_type&quot;</span><span class="p">:</span> <span class="n">input_type</span><span class="p">},</span>
+            <span class="s2">&quot;json&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span>
+                <span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="nb">input</span><span class="p">,</span>
+                <span class="s2">&quot;input_type&quot;</span><span class="p">:</span> <span class="n">input_type</span><span class="p">,</span>
+                <span class="s2">&quot;truncation&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">truncation</span><span class="p">,</span>
+            <span class="p">},</span>
             <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">request_timeout</span><span class="p">,</span>
         <span class="p">}</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">truncation</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;json&quot;</span><span class="p">][</span><span class="s2">&quot;truncation&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">truncation</span>
         <span class="k">return</span> <span class="n">params</span>
 
     <span class="k">def</span> <span class="nf">_get_embeddings</span><span class="p">(</span>
@@ -368,7 +384,9 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            Embedding for the text.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_embeddings</span><span class="p">([</span><span class="n">text</span><span class="p">],</span> <span class="n">input_type</span><span class="o">=</span><span class="s2">&quot;query&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_embeddings</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">text</span><span class="p">],</span> <span class="n">batch_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">input_type</span><span class="o">=</span><span class="s2">&quot;query&quot;</span>
+        <span class="p">)[</span><span class="mi">0</span><span class="p">]</span></div>
 
 <div class="viewcode-block" id="VoyageEmbeddings.embed_general_texts"><a class="viewcode-back" href="../../../embeddings/langchain_community.embeddings.voyageai.VoyageEmbeddings.html#langchain_community.embeddings.voyageai.VoyageEmbeddings.embed_general_texts">[docs]</a>    <span class="k">def</span> <span class="nf">embed_general_texts</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">texts</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="o">*</span><span class="p">,</span> <span class="n">input_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
@@ -392,7 +410,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 01, 2024.
+          Last updated on Mar 02, 2024.
       </footer>
     </div>
   </div>

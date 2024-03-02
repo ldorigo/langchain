@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   
-  <title>langchain_community.document_loaders.bibtex &mdash; 🦜🔗 LangChain 0.1.9</title>
+  <title>langchain_community.document_loaders.bibtex &mdash; 🦜🔗 LangChain 0.1.10</title>
   
   <link rel="canonical" href="https://api.python.langchain.com/en/latest/_modules/langchain_community/document_loaders/bibtex.html" />
 
@@ -277,27 +277,14 @@
         <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">entries</span><span class="p">:</span>
             <span class="n">doc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_entry</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">doc</span><span class="p">:</span>
-                <span class="k">yield</span> <span class="n">doc</span></div>
-
-<div class="viewcode-block" id="BibtexLoader.load"><a class="viewcode-back" href="../../../document_loaders/langchain_community.document_loaders.bibtex.BibtexLoader.html#langchain_community.document_loaders.bibtex.BibtexLoader.load">[docs]</a>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Document</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Load bibtex file documents from the given bibtex file path.</span>
-
-<span class="sd">        See https://bibtexparser.readthedocs.io/en/master/</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            file_path: the path to the bibtex file</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            a list of documents with the document.page_content in text format</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lazy_load</span><span class="p">())</span></div></div>
+                <span class="k">yield</span> <span class="n">doc</span></div></div>
 </pre></div>
 
       </div>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 01, 2024.
+          Last updated on Mar 02, 2024.
       </footer>
     </div>
   </div>

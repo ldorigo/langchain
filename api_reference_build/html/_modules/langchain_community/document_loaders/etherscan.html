@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   
-  <title>langchain_community.document_loaders.etherscan &mdash; 🦜🔗 LangChain 0.1.9</title>
+  <title>langchain_community.document_loaders.etherscan &mdash; 🦜🔗 LangChain 0.1.10</title>
   
   <link rel="canonical" href="https://api.python.langchain.com/en/latest/_modules/langchain_community/document_loaders/etherscan.html" />
 
@@ -253,10 +253,6 @@
         <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
             <span class="k">yield</span> <span class="n">doc</span></div>
 
-<div class="viewcode-block" id="EtherscanLoader.load"><a class="viewcode-back" href="../../../document_loaders/langchain_community.document_loaders.etherscan.EtherscanLoader.html#langchain_community.document_loaders.etherscan.EtherscanLoader.load">[docs]</a>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Document</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Load transactions from spcifc account by Etherscan.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lazy_load</span><span class="p">())</span></div>
-
 <div class="viewcode-block" id="EtherscanLoader.getNormTx"><a class="viewcode-back" href="../../../document_loaders/langchain_community.document_loaders.etherscan.EtherscanLoader.html#langchain_community.document_loaders.etherscan.EtherscanLoader.getNormTx">[docs]</a>    <span class="k">def</span> <span class="nf">getNormTx</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Document</span><span class="p">]:</span>
         <span class="n">url</span> <span class="o">=</span> <span class="p">(</span>
             <span class="sa">f</span><span class="s2">&quot;https://api.etherscan.io/api?module=account&amp;action=txlist&amp;address=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">account_address</span><span class="si">}</span><span class="s2">&quot;</span>
@@ -389,7 +385,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 01, 2024.
+          Last updated on Mar 02, 2024.
       </footer>
     </div>
   </div>

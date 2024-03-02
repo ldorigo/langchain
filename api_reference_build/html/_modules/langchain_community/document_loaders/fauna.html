@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   
-  <title>langchain_community.document_loaders.fauna &mdash; 🦜🔗 LangChain 0.1.9</title>
+  <title>langchain_community.document_loaders.fauna &mdash; 🦜🔗 LangChain 0.1.10</title>
   
   <link rel="canonical" href="https://api.python.langchain.com/en/latest/_modules/langchain_community/document_loaders/fauna.html" />
 
@@ -180,7 +180,7 @@
       <div class="sk-page-content container-fluid body px-md-3" role="main">
         
   <h1>Source code for langchain_community.document_loaders.fauna</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Iterator</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Iterator</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span>
 
 <span class="kn">from</span> <span class="nn">langchain_core.documents</span> <span class="kn">import</span> <span class="n">Document</span>
 
@@ -209,9 +209,6 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">page_content_field</span> <span class="o">=</span> <span class="n">page_content_field</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">secret</span> <span class="o">=</span> <span class="n">secret</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">metadata_fields</span> <span class="o">=</span> <span class="n">metadata_fields</span></div>
-
-<div class="viewcode-block" id="FaunaLoader.load"><a class="viewcode-back" href="../../../document_loaders/langchain_community.document_loaders.fauna.FaunaLoader.html#langchain_community.document_loaders.fauna.FaunaLoader.load">[docs]</a>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Document</span><span class="p">]:</span>
-        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lazy_load</span><span class="p">())</span></div>
 
 <div class="viewcode-block" id="FaunaLoader.lazy_load"><a class="viewcode-back" href="../../../document_loaders/langchain_community.document_loaders.fauna.FaunaLoader.html#langchain_community.document_loaders.fauna.FaunaLoader.lazy_load">[docs]</a>    <span class="k">def</span> <span class="nf">lazy_load</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Document</span><span class="p">]:</span>
         <span class="k">try</span><span class="p">:</span>
@@ -251,7 +248,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 01, 2024.
+          Last updated on Mar 02, 2024.
       </footer>
     </div>
   </div>

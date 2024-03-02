@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   
-  <title>langchain_community.vectorstores.deeplake &mdash; 🦜🔗 LangChain 0.1.9</title>
+  <title>langchain_community.vectorstores.deeplake &mdash; 🦜🔗 LangChain 0.1.10</title>
   
   <link rel="canonical" href="https://api.python.langchain.com/en/latest/_modules/langchain_community/vectorstores/deeplake.html" />
 
@@ -191,6 +191,7 @@
     <span class="kn">import</span> <span class="nn">deeplake</span>
     <span class="kn">from</span> <span class="nn">deeplake</span> <span class="kn">import</span> <span class="n">VectorStore</span> <span class="k">as</span> <span class="n">DeepLakeVectorStore</span>
     <span class="kn">from</span> <span class="nn">deeplake.core.fast_forwarding</span> <span class="kn">import</span> <span class="n">version_compare</span>
+    <span class="kn">from</span> <span class="nn">deeplake.util.exceptions</span> <span class="kn">import</span> <span class="n">SampleExtendError</span>
 
     <span class="n">_DEEPLAKE_INSTALLED</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
@@ -437,15 +438,25 @@
         <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">texts</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;`texts` parameter shouldn&#39;t be empty.&quot;</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vectorstore</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
-            <span class="n">text</span><span class="o">=</span><span class="n">texts</span><span class="p">,</span>
-            <span class="n">metadata</span><span class="o">=</span><span class="n">metadatas</span><span class="p">,</span>
-            <span class="n">embedding_data</span><span class="o">=</span><span class="n">texts</span><span class="p">,</span>
-            <span class="n">embedding_tensor</span><span class="o">=</span><span class="s2">&quot;embedding&quot;</span><span class="p">,</span>
-            <span class="n">embedding_function</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_embedding_function</span><span class="o">.</span><span class="n">embed_documents</span><span class="p">,</span>  <span class="c1"># type: ignore</span>
-            <span class="n">return_ids</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-        <span class="p">)</span></div>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vectorstore</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+                <span class="n">text</span><span class="o">=</span><span class="n">texts</span><span class="p">,</span>
+                <span class="n">metadata</span><span class="o">=</span><span class="n">metadatas</span><span class="p">,</span>
+                <span class="n">embedding_data</span><span class="o">=</span><span class="n">texts</span><span class="p">,</span>
+                <span class="n">embedding_tensor</span><span class="o">=</span><span class="s2">&quot;embedding&quot;</span><span class="p">,</span>
+                <span class="n">embedding_function</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_embedding_function</span><span class="o">.</span><span class="n">embed_documents</span><span class="p">,</span>  <span class="c1"># type: ignore</span>
+                <span class="n">return_ids</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">except</span> <span class="n">SampleExtendError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">&quot;Failed to append a sample to the tensor &#39;metadata&#39;&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+                <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="s2">&quot;**Hint: You might be using invalid type of argument in &quot;</span>
+                    <span class="s2">&quot;document loader (e.g. &#39;pathlib.PosixPath&#39; instead of &#39;str&#39;)&quot;</span>
+                <span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">msg</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">e</span></div>
 
     <span class="k">def</span> <span class="nf">_search_tql</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -1133,7 +1144,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 01, 2024.
+          Last updated on Mar 02, 2024.
       </footer>
     </div>
   </div>

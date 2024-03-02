@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   
-  <title>langchain_community.document_loaders.github &mdash; 🦜🔗 LangChain 0.1.9</title>
+  <title>langchain_community.document_loaders.github &mdash; 🦜🔗 LangChain 0.1.10</title>
   
   <link rel="canonical" href="https://api.python.langchain.com/en/latest/_modules/langchain_community/document_loaders/github.html" />
 
@@ -309,32 +309,6 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">url</span> <span class="o">=</span> <span class="kc">None</span></div>
 
-<div class="viewcode-block" id="GitHubIssuesLoader.load"><a class="viewcode-back" href="../../../document_loaders/langchain_community.document_loaders.github.GitHubIssuesLoader.html#langchain_community.document_loaders.github.GitHubIssuesLoader.load">[docs]</a>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Document</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get issues of a GitHub repository.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            A list of Documents with attributes:</span>
-<span class="sd">                - page_content</span>
-<span class="sd">                - metadata</span>
-<span class="sd">                    - url</span>
-<span class="sd">                    - title</span>
-<span class="sd">                    - creator</span>
-<span class="sd">                    - created_at</span>
-<span class="sd">                    - last_update_time</span>
-<span class="sd">                    - closed_time</span>
-<span class="sd">                    - number of comments</span>
-<span class="sd">                    - state</span>
-<span class="sd">                    - labels</span>
-<span class="sd">                    - assignee</span>
-<span class="sd">                    - assignees</span>
-<span class="sd">                    - milestone</span>
-<span class="sd">                    - locked</span>
-<span class="sd">                    - number</span>
-<span class="sd">                    - is_pull_request</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lazy_load</span><span class="p">())</span></div>
-
 <div class="viewcode-block" id="GitHubIssuesLoader.parse_issue"><a class="viewcode-back" href="../../../document_loaders/langchain_community.document_loaders.github.GitHubIssuesLoader.html#langchain_community.document_loaders.github.GitHubIssuesLoader.parse_issue">[docs]</a>    <span class="k">def</span> <span class="nf">parse_issue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">issue</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Document</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create Document objects from a list of GitHub issues.&quot;&quot;&quot;</span>
         <span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span>
@@ -393,7 +367,7 @@
 
 <div class="viewcode-block" id="GithubFileLoader.get_file_paths"><a class="viewcode-back" href="../../../document_loaders/langchain_community.document_loaders.github.GithubFileLoader.html#langchain_community.document_loaders.github.GithubFileLoader.get_file_paths">[docs]</a>    <span class="k">def</span> <span class="nf">get_file_paths</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
         <span class="n">base_url</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">github_api_url</span><span class="si">}</span><span class="s2">/api/v3/repos/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">repo</span><span class="si">}</span><span class="s2">/git/trees/&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">github_api_url</span><span class="si">}</span><span class="s2">/repos/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">repo</span><span class="si">}</span><span class="s2">/git/trees/&quot;</span>
             <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">branch</span><span class="si">}</span><span class="s2">?recursive=1&quot;</span>
         <span class="p">)</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span>
@@ -404,8 +378,8 @@
 <span class="sd">            &#39;path&#39;: &#39;.github&#39;, </span>
 <span class="sd">            &#39;mode&#39;: &#39;040000&#39;, </span>
 <span class="sd">            &#39;type&#39;: &#39;tree&#39;, </span>
-<span class="sd">            &#39;sha&#39;: &#39;89a2ae046e8b59eb96531f123c0c6d4913885df1&#39;, </span>
-<span class="sd">            &#39;url&#39;: &#39;https://github.com/api/v3/repos/shufanhao/langchain/git/trees/89a2ae046e8b59eb96531f123c0c6d4913885dxxx&#39;</span>
+<span class="sd">            &#39;sha&#39;: &#39;5dc46e6b38b22707894ced126270b15e2f22f64e&#39;, </span>
+<span class="sd">            &#39;url&#39;: &#39;https://api.github.com/repos/langchain-ai/langchain/git/blobs/5dc46e6b38b22707894ced126270b15e2f22f64e&#39;</span>
 <span class="sd">        }</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">[</span>
@@ -415,12 +389,15 @@
         <span class="p">]</span></div>
 
 <div class="viewcode-block" id="GithubFileLoader.get_file_content_by_path"><a class="viewcode-back" href="../../../document_loaders/langchain_community.document_loaders.github.GithubFileLoader.html#langchain_community.document_loaders.github.GithubFileLoader.get_file_content_by_path">[docs]</a>    <span class="k">def</span> <span class="nf">get_file_content_by_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="n">base_url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">github_api_url</span><span class="si">}</span><span class="s2">/api/v3/repos/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">repo</span><span class="si">}</span><span class="s2">/contents/</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">base_url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">github_api_url</span><span class="si">}</span><span class="s2">/repos/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">repo</span><span class="si">}</span><span class="s2">/contents/</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span>
         <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
 
-        <span class="n">content_encoded</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;content&quot;</span><span class="p">]</span>
-        <span class="k">return</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">content_encoded</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span></div>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">(),</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="n">content_encoded</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;content&quot;</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">content_encoded</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="s2">&quot;&quot;</span></div>
 
 <div class="viewcode-block" id="GithubFileLoader.load"><a class="viewcode-back" href="../../../document_loaders/langchain_community.document_loaders.github.GithubFileLoader.html#langchain_community.document_loaders.github.GithubFileLoader.load">[docs]</a>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Document</span><span class="p">]:</span>
         <span class="n">documents</span> <span class="o">=</span> <span class="p">[]</span>
@@ -428,6 +405,9 @@
         <span class="n">files</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_file_paths</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
             <span class="n">content</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_file_content_by_path</span><span class="p">(</span><span class="n">file</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">content</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+                <span class="k">continue</span>
+
             <span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span>
                 <span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="n">file</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">],</span>
                 <span class="s2">&quot;sha&quot;</span><span class="p">:</span> <span class="n">file</span><span class="p">[</span><span class="s2">&quot;sha&quot;</span><span class="p">],</span>
@@ -443,7 +423,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 01, 2024.
+          Last updated on Mar 02, 2024.
       </footer>
     </div>
   </div>

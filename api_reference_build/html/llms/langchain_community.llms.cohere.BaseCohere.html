@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   
-  <title>langchain_community.llms.cohere.BaseCohere &mdash; 🦜🔗 LangChain 0.1.9</title>
+  <title>langchain_community.llms.cohere.BaseCohere &mdash; 🦜🔗 LangChain 0.1.10</title>
   
   <link rel="canonical" href="https://api.python.langchain.com/en/latest/llms/langchain_community.llms.cohere.BaseCohere.html" />
 
@@ -225,8 +225,18 @@
 <p>Raises ValidationError if the input data cannot be parsed to form a valid model.</p>
 <dl class="py attribute pydantic_field">
 <dt class="sig sig-object py" id="langchain_community.llms.cohere.BaseCohere.cohere_api_key">
-<em class="property"><span class="pre">param</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cohere_api_key</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#langchain_community.llms.cohere.BaseCohere.cohere_api_key" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<em class="property"><span class="pre">param</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cohere_api_key</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">SecretStr</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#langchain_community.llms.cohere.BaseCohere.cohere_api_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cohere API key. If not provided, will be read from the environment variable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Constraints</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>type</strong> = string</p></li>
+<li><p><strong>writeOnly</strong> = True</p></li>
+<li><p><strong>format</strong> = password</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py attribute pydantic_field">
 <dt class="sig sig-object py" id="langchain_community.llms.cohere.BaseCohere.model">
@@ -557,8 +567,7 @@ to the object.</p>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 01, 2024.
-          <a href="../_sources/llms/langchain_community.llms.cohere.BaseCohere.rst.txt" rel="nofollow">Show this page source</a>
+          Last updated on Mar 02, 2024.
       </footer>
     </div>
   </div>

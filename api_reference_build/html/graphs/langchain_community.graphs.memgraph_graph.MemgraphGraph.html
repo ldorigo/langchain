@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   
-  <title>langchain_community.graphs.memgraph_graph.MemgraphGraph &mdash; 🦜🔗 LangChain 0.1.9</title>
+  <title>langchain_community.graphs.memgraph_graph.MemgraphGraph &mdash; 🦜🔗 LangChain 0.1.10</title>
   
   <link rel="canonical" href="https://api.python.langchain.com/en/latest/graphs/langchain_community.graphs.memgraph_graph.MemgraphGraph.html" />
 
@@ -237,7 +237,7 @@ limit the permissions granted to the credentials used with this tool.</p>
 <td><p>Create a new Memgraph graph wrapper instance.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#langchain_community.graphs.memgraph_graph.MemgraphGraph.add_graph_documents" title="langchain_community.graphs.memgraph_graph.MemgraphGraph.add_graph_documents"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_graph_documents</span></code></a>(graph_documents[, ...])</p></td>
-<td><p>Take GraphDocument as input as uses it to construct a graph.</p></td>
+<td><p>This method constructs nodes and relationships in the graph based on the provided GraphDocument objects.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#langchain_community.graphs.memgraph_graph.MemgraphGraph.query" title="langchain_community.graphs.memgraph_graph.MemgraphGraph.query"><code class="xref py py-obj docutils literal notranslate"><span class="pre">query</span></code></a>(query[, params])</p></td>
 <td><p>Query Neo4j database.</p></td>
@@ -278,13 +278,26 @@ limit the permissions granted to the credentials used with this tool.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="langchain_community.graphs.memgraph_graph.MemgraphGraph.add_graph_documents">
-<span class="sig-name descname"><span class="pre">add_graph_documents</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph_documents</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="langchain_community.graphs.graph_document.GraphDocument.html#langchain_community.graphs.graph_document.GraphDocument" title="langchain_community.graphs.graph_document.GraphDocument"><span class="pre">GraphDocument</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#langchain_community.graphs.memgraph_graph.MemgraphGraph.add_graph_documents" title="Permalink to this definition">¶</a></dt>
-<dd><p>Take GraphDocument as input as uses it to construct a graph.</p>
+<span class="sig-name descname"><span class="pre">add_graph_documents</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph_documents</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="langchain_community.graphs.graph_document.GraphDocument.html#langchain_community.graphs.graph_document.GraphDocument" title="langchain_community.graphs.graph_document.GraphDocument"><span class="pre">GraphDocument</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">baseEntityLabel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#langchain_community.graphs.memgraph_graph.MemgraphGraph.add_graph_documents" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method constructs nodes and relationships in the graph based on the
+provided GraphDocument objects.</p>
+<p>Parameters:
+- graph_documents (List[GraphDocument]): A list of GraphDocument objects
+that contain the nodes and relationships to be added to the graph. Each
+GraphDocument should encapsulate the structure of part of the graph,
+including nodes, relationships, and the source document information.
+- include_source (bool, optional): If True, stores the source document
+and links it to nodes in the graph using the MENTIONS relationship.
+This is useful for tracing back the origin of data. Defaults to False.
+- baseEntityLabel (bool, optional): If True, each newly created node
+gets a secondary __Entity__ label, which is indexed and improves import
+speed and performance. Defaults to False.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>graph_documents</strong> (<em>List</em><em>[</em><a class="reference internal" href="langchain_community.graphs.graph_document.GraphDocument.html#langchain_community.graphs.graph_document.GraphDocument" title="langchain_community.graphs.graph_document.GraphDocument"><em>GraphDocument</em></a><em>]</em>) – </p></li>
 <li><p><strong>include_source</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>baseEntityLabel</strong> (<em>bool</em>) – </p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
@@ -334,8 +347,7 @@ limit the permissions granted to the credentials used with this tool.</p>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 01, 2024.
-          <a href="../_sources/graphs/langchain_community.graphs.memgraph_graph.MemgraphGraph.rst.txt" rel="nofollow">Show this page source</a>
+          Last updated on Mar 02, 2024.
       </footer>
     </div>
   </div>

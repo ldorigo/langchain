@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   
-  <title>langchain_community.document_loaders.bibtex.BibtexLoader &mdash; 🦜🔗 LangChain 0.1.9</title>
+  <title>langchain_community.document_loaders.bibtex.BibtexLoader &mdash; 🦜🔗 LangChain 0.1.10</title>
   
   <link rel="canonical" href="https://api.python.langchain.com/en/latest/document_loaders/langchain_community.document_loaders.bibtex.BibtexLoader.html" />
 
@@ -235,7 +235,7 @@ no limit.</p></li>
 <td><p>Load bibtex file using bibtexparser and get the article texts plus the article metadata.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#langchain_community.document_loaders.bibtex.BibtexLoader.load" title="langchain_community.document_loaders.bibtex.BibtexLoader.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code></a>()</p></td>
-<td><p>Load bibtex file documents from the given bibtex file path.</p></td>
+<td><p>Load data into Document objects.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#langchain_community.document_loaders.bibtex.BibtexLoader.load_and_split" title="langchain_community.document_loaders.bibtex.BibtexLoader.load_and_split"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_and_split</span></code></a>([text_splitter])</p></td>
 <td><p>Load Documents and split into chunks.</p></td>
@@ -290,16 +290,9 @@ See <a class="reference external" href="https://bibtexparser.readthedocs.io/en/m
 
 <dl class="py method">
 <dt class="sig sig-object py" id="langchain_community.document_loaders.bibtex.BibtexLoader.load">
-<span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../documents/langchain_core.documents.base.Document.html#langchain_core.documents.base.Document" title="langchain_core.documents.base.Document"><span class="pre">Document</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/langchain_community/document_loaders/bibtex.html#BibtexLoader.load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#langchain_community.document_loaders.bibtex.BibtexLoader.load" title="Permalink to this definition">¶</a></dt>
-<dd><p>Load bibtex file documents from the given bibtex file path.</p>
-<p>See <a class="reference external" href="https://bibtexparser.readthedocs.io/en/master/">https://bibtexparser.readthedocs.io/en/master/</a></p>
+<span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../documents/langchain_core.documents.base.Document.html#langchain_core.documents.base.Document" title="langchain_core.documents.base.Document"><span class="pre">Document</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#langchain_community.document_loaders.bibtex.BibtexLoader.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load data into Document objects.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>file_path</strong> – the path to the bibtex file</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>a list of documents with the document.page_content in text format</p>
-</dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><em>List</em>[<a class="reference internal" href="../documents/langchain_core.documents.base.Document.html#langchain_core.documents.base.Document" title="langchain_core.documents.base.Document"><em>Document</em></a>]</p>
 </dd>
@@ -338,8 +331,7 @@ Defaults to RecursiveCharacterTextSplitter.</p>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 01, 2024.
-          <a href="../_sources/document_loaders/langchain_community.document_loaders.bibtex.BibtexLoader.rst.txt" rel="nofollow">Show this page source</a>
+          Last updated on Mar 02, 2024.
       </footer>
     </div>
   </div>

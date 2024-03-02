@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   
-  <title>langchain_community.llms.huggingface_pipeline &mdash; 🦜🔗 LangChain 0.1.9</title>
+  <title>langchain_community.llms.huggingface_pipeline &mdash; 🦜🔗 LangChain 0.1.10</title>
   
   <link rel="canonical" href="https://api.python.langchain.com/en/latest/_modules/langchain_community/llms/huggingface_pipeline.html" />
 
@@ -199,7 +199,7 @@
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="HuggingFacePipeline"><a class="viewcode-back" href="../../../llms/langchain_community.llms.huggingface_pipeline.HuggingFacePipeline.html#langchain_experimental.llms.lmformatenforcer_decoder.HuggingFacePipeline">[docs]</a><span class="k">class</span> <span class="nc">HuggingFacePipeline</span><span class="p">(</span><span class="n">BaseLLM</span><span class="p">):</span>
+<div class="viewcode-block" id="HuggingFacePipeline"><a class="viewcode-back" href="../../../llms/langchain_community.llms.huggingface_pipeline.HuggingFacePipeline.html#langchain_experimental.llms.jsonformer_decoder.HuggingFacePipeline">[docs]</a><span class="k">class</span> <span class="nc">HuggingFacePipeline</span><span class="p">(</span><span class="n">BaseLLM</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;HuggingFace Pipeline API.</span>
 
 <span class="sd">    To use, you should have the ``transformers`` python package installed.</span>
@@ -245,11 +245,12 @@
 
         <span class="n">extra</span> <span class="o">=</span> <span class="n">Extra</span><span class="o">.</span><span class="n">forbid</span>
 
-<div class="viewcode-block" id="HuggingFacePipeline.from_model_id"><a class="viewcode-back" href="../../../llms/langchain_community.llms.huggingface_pipeline.HuggingFacePipeline.html#langchain_experimental.llms.lmformatenforcer_decoder.HuggingFacePipeline.from_model_id">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="HuggingFacePipeline.from_model_id"><a class="viewcode-back" href="../../../llms/langchain_community.llms.huggingface_pipeline.HuggingFacePipeline.html#langchain_experimental.llms.jsonformer_decoder.HuggingFacePipeline.from_model_id">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_model_id</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span>
         <span class="n">model_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">task</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">backend</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;default&quot;</span><span class="p">,</span>
         <span class="n">device</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
         <span class="n">device_map</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">model_kwargs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -277,9 +278,57 @@
 
         <span class="k">try</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">task</span> <span class="o">==</span> <span class="s2">&quot;text-generation&quot;</span><span class="p">:</span>
-                <span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForCausalLM</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_id</span><span class="p">,</span> <span class="o">**</span><span class="n">_model_kwargs</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">backend</span> <span class="o">==</span> <span class="s2">&quot;openvino&quot;</span><span class="p">:</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="kn">from</span> <span class="nn">optimum.intel.openvino</span> <span class="kn">import</span> <span class="n">OVModelForCausalLM</span>
+
+                    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+                        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                            <span class="s2">&quot;Could not import optimum-intel python package. &quot;</span>
+                            <span class="s2">&quot;Please install it with: &quot;</span>
+                            <span class="s2">&quot;pip install &#39;optimum[openvino,nncf]&#39; &quot;</span>
+                        <span class="p">)</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="c1"># use local model</span>
+                        <span class="n">model</span> <span class="o">=</span> <span class="n">OVModelForCausalLM</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+                            <span class="n">model_id</span><span class="p">,</span> <span class="o">**</span><span class="n">_model_kwargs</span>
+                        <span class="p">)</span>
+
+                    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                        <span class="c1"># use remote model</span>
+                        <span class="n">model</span> <span class="o">=</span> <span class="n">OVModelForCausalLM</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+                            <span class="n">model_id</span><span class="p">,</span> <span class="n">export</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">_model_kwargs</span>
+                        <span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForCausalLM</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+                        <span class="n">model_id</span><span class="p">,</span> <span class="o">**</span><span class="n">_model_kwargs</span>
+                    <span class="p">)</span>
             <span class="k">elif</span> <span class="n">task</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;text2text-generation&quot;</span><span class="p">,</span> <span class="s2">&quot;summarization&quot;</span><span class="p">):</span>
-                <span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForSeq2SeqLM</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_id</span><span class="p">,</span> <span class="o">**</span><span class="n">_model_kwargs</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">backend</span> <span class="o">==</span> <span class="s2">&quot;openvino&quot;</span><span class="p">:</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="kn">from</span> <span class="nn">optimum.intel.openvino</span> <span class="kn">import</span> <span class="n">OVModelForSeq2SeqLM</span>
+
+                    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+                        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                            <span class="s2">&quot;Could not import optimum-intel python package. &quot;</span>
+                            <span class="s2">&quot;Please install it with: &quot;</span>
+                            <span class="s2">&quot;pip install &#39;optimum[openvino,nncf]&#39; &quot;</span>
+                        <span class="p">)</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="c1"># use local model</span>
+                        <span class="n">model</span> <span class="o">=</span> <span class="n">OVModelForSeq2SeqLM</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+                            <span class="n">model_id</span><span class="p">,</span> <span class="o">**</span><span class="n">_model_kwargs</span>
+                        <span class="p">)</span>
+
+                    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                        <span class="c1"># use remote model</span>
+                        <span class="n">model</span> <span class="o">=</span> <span class="n">OVModelForSeq2SeqLM</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+                            <span class="n">model_id</span><span class="p">,</span> <span class="n">export</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">_model_kwargs</span>
+                        <span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForSeq2SeqLM</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+                        <span class="n">model_id</span><span class="p">,</span> <span class="o">**</span><span class="n">_model_kwargs</span>
+                    <span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
                     <span class="sa">f</span><span class="s2">&quot;Got invalid task </span><span class="si">{</span><span class="n">task</span><span class="si">}</span><span class="s2">, &quot;</span>
@@ -294,9 +343,13 @@
             <span class="n">tokenizer</span><span class="o">.</span><span class="n">pad_token_id</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">eos_token_id</span>
 
         <span class="k">if</span> <span class="p">(</span>
-            <span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;is_loaded_in_4bit&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-            <span class="ow">or</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;is_loaded_in_8bit&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-        <span class="p">)</span> <span class="ow">and</span> <span class="n">device</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="p">(</span>
+                <span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;is_loaded_in_4bit&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+                <span class="ow">or</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;is_loaded_in_8bit&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="ow">and</span> <span class="n">device</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="ow">and</span> <span class="n">backend</span> <span class="o">==</span> <span class="s2">&quot;default&quot;</span>
+        <span class="p">):</span>
             <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
                 <span class="sa">f</span><span class="s2">&quot;Setting the `device` argument to None from </span><span class="si">{</span><span class="n">device</span><span class="si">}</span><span class="s2"> to avoid &quot;</span>
                 <span class="s2">&quot;the error caused by attempting to move the model that was already &quot;</span>
@@ -305,7 +358,11 @@
             <span class="p">)</span>
             <span class="n">device</span> <span class="o">=</span> <span class="kc">None</span>
 
-        <span class="k">if</span> <span class="n">device</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">importlib</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">find_spec</span><span class="p">(</span><span class="s2">&quot;torch&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="n">device</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="ow">and</span> <span class="n">importlib</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">find_spec</span><span class="p">(</span><span class="s2">&quot;torch&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="ow">and</span> <span class="n">backend</span> <span class="o">==</span> <span class="s2">&quot;default&quot;</span>
+        <span class="p">):</span>
             <span class="kn">import</span> <span class="nn">torch</span>
 
             <span class="n">cuda_device_count</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_count</span><span class="p">()</span>
@@ -324,6 +381,8 @@
                     <span class="s2">&quot;can be a positive integer associated with CUDA device id.&quot;</span><span class="p">,</span>
                     <span class="n">cuda_device_count</span><span class="p">,</span>
                 <span class="p">)</span>
+        <span class="k">if</span> <span class="n">device</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">device_map</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">backend</span> <span class="o">==</span> <span class="s2">&quot;openvino&quot;</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Please set device for OpenVINO through: &quot;</span> <span class="s2">&quot;&#39;model_kwargs&#39;&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="s2">&quot;trust_remote_code&quot;</span> <span class="ow">in</span> <span class="n">_model_kwargs</span><span class="p">:</span>
             <span class="n">_model_kwargs</span> <span class="o">=</span> <span class="p">{</span>
                 <span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">_model_kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="o">!=</span> <span class="s2">&quot;trust_remote_code&quot;</span>
@@ -418,7 +477,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 01, 2024.
+          Last updated on Mar 02, 2024.
       </footer>
     </div>
   </div>

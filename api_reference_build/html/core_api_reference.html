@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   
-  <title>langchain_core 0.1.28 &mdash; 🦜🔗 LangChain 0.1.9</title>
+  <title>langchain_core 0.1.28 &mdash; 🦜🔗 LangChain 0.1.10</title>
   
   <link rel="canonical" href="https://api.python.langchain.com/en/latest/core_api_reference.html" />
 
@@ -1312,7 +1312,8 @@ production-grade programs that harness the power of LLMs.</p>
 synchronous, asynchronous, batch, and streaming operations.</p>
 <p>Support for <strong>async</strong> allows servers hosting LCEL based programs to scale better
 for higher concurrent loads.</p>
-<p><strong>Streaming</strong> of intermediate outputs as they’re being generated allows for
+<p><strong>Batch</strong> operations allow for processing multiple inputs in parallel.</p>
+<p><strong>Streaming</strong> of intermediate outputs, as they’re being generated, allows for
 creating more responsive UX.</p>
 <p>This module contains schema and implementation of LangChain Runnables primitives.</p>
 <section id="id26">
@@ -2027,8 +2028,7 @@ and retrieve the data that are ‘most similar’ to the embedded query.</p>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 01, 2024.
-          <a href="_sources/core_api_reference.rst.txt" rel="nofollow">Show this page source</a>
+          Last updated on Mar 02, 2024.
       </footer>
     </div>
   </div>

@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   
-  <title>langchain_community.vectorstores.mongodb_atlas &mdash; 🦜🔗 LangChain 0.1.9</title>
+  <title>langchain_community.vectorstores.mongodb_atlas &mdash; 🦜🔗 LangChain 0.1.10</title>
   
   <link rel="canonical" href="https://api.python.langchain.com/en/latest/_modules/langchain_community/vectorstores/mongodb_atlas.html" />
 
@@ -397,7 +397,6 @@
         <span class="k">for</span> <span class="n">res</span> <span class="ow">in</span> <span class="n">cursor</span><span class="p">:</span>
             <span class="n">text</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_text_key</span><span class="p">)</span>
             <span class="n">score</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;score&quot;</span><span class="p">)</span>
-            <span class="k">del</span> <span class="n">res</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_embedding_key</span><span class="p">]</span>
             <span class="n">docs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">Document</span><span class="p">(</span><span class="n">page_content</span><span class="o">=</span><span class="n">text</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">res</span><span class="p">),</span> <span class="n">score</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">docs</span>
 
@@ -563,7 +562,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 01, 2024.
+          Last updated on Mar 02, 2024.
       </footer>
     </div>
   </div>

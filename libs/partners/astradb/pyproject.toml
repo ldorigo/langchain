@@ -1,9 +1,14 @@
 [tool.poetry]
 name = "langchain-astradb"
-version = "0.0.1"
+version = "0.1.0rc0"
 description = "An integration package connecting Astra DB and LangChain"
 authors = []
 readme = "README.md"
+repository = "https://github.com/langchain-ai/langchain-datastax"
+license = "MIT"
+
+[tool.poetry.urls]
+"Source Code" = "https://github.com/langchain-ai/langchain-datastax/tree/main/libs/astradb"
 
 [tool.poetry.dependencies]
 python = ">=3.8.1,<4.0"
@@ -22,7 +27,7 @@ pytest-mock = "^3.10.0"
 syrupy = "^4.0.2"
 pytest-watcher = "^0.3.4"
 pytest-asyncio = "^0.21.1"
-langchain-core = { path = "../../core", develop = true }
+langchain = "^0.1.9"
 
 [tool.poetry.group.codespell]
 optional = true
@@ -34,9 +39,7 @@ codespell = "^2.2.0"
 optional = true
 
 [tool.poetry.group.test_integration.dependencies]
-langchain = { path = "../../langchain", develop = true }
-langchain-community = { path = "../../community", develop = true }
-langchain-core = { path = "../../core", develop = true }
+langchain = "^0.1.9"
 
 [tool.poetry.group.lint]
 optional = true
@@ -46,13 +49,11 @@ ruff = "^0.1.5"
 
 [tool.poetry.group.typing.dependencies]
 mypy = "^0.991"
-langchain-core = { path = "../../core", develop = true }
 
 [tool.poetry.group.dev]
 optional = true
 
 [tool.poetry.group.dev.dependencies]
-langchain-core = { path = "../../core", develop = true }
 
 [tool.ruff]
 select = [

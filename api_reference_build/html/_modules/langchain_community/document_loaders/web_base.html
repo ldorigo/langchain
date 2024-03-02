@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   
-  <title>langchain_community.document_loaders.web_base &mdash; 🦜🔗 LangChain 0.1.9</title>
+  <title>langchain_community.document_loaders.web_base &mdash; 🦜🔗 LangChain 0.1.10</title>
   
   <link rel="canonical" href="https://api.python.langchain.com/en/latest/_modules/langchain_community/document_loaders/web_base.html" />
 
@@ -433,10 +433,6 @@
             <span class="n">metadata</span> <span class="o">=</span> <span class="n">_build_metadata</span><span class="p">(</span><span class="n">soup</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
             <span class="k">yield</span> <span class="n">Document</span><span class="p">(</span><span class="n">page_content</span><span class="o">=</span><span class="n">text</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="WebBaseLoader.load"><a class="viewcode-back" href="../../../document_loaders/langchain_community.document_loaders.web_base.WebBaseLoader.html#langchain_community.document_loaders.sitemap.WebBaseLoader.load">[docs]</a>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Document</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Load text from the url(s) in web_path.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lazy_load</span><span class="p">())</span></div>
-
 <div class="viewcode-block" id="WebBaseLoader.aload"><a class="viewcode-back" href="../../../document_loaders/langchain_community.document_loaders.web_base.WebBaseLoader.html#langchain_community.document_loaders.sitemap.WebBaseLoader.aload">[docs]</a>    <span class="k">def</span> <span class="nf">aload</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Document</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Load text from the urls in web_path async into Documents.&quot;&quot;&quot;</span>
 
@@ -454,7 +450,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 01, 2024.
+          Last updated on Mar 02, 2024.
       </footer>
     </div>
   </div>

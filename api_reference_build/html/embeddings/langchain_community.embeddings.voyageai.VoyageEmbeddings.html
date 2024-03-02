@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   
-  <title>langchain_community.embeddings.voyageai.VoyageEmbeddings &mdash; 🦜🔗 LangChain 0.1.9</title>
+  <title>langchain_community.embeddings.voyageai.VoyageEmbeddings &mdash; 🦜🔗 LangChain 0.1.10</title>
   
   <link rel="canonical" href="https://api.python.langchain.com/en/latest/embeddings/langchain_community.embeddings.voyageai.VoyageEmbeddings.html" />
 
@@ -226,7 +226,7 @@ your API key or pass it as a named parameter to the constructor.</p>
 <p class="rubric">Example</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">langchain_community.embeddings</span> <span class="kn">import</span> <span class="n">VoyageEmbeddings</span>
 
-<span class="n">voyage</span> <span class="o">=</span> <span class="n">VoyageEmbeddings</span><span class="p">(</span><span class="n">voyage_api_key</span><span class="o">=</span><span class="s2">&quot;your-api-key&quot;</span><span class="p">)</span>
+<span class="n">voyage</span> <span class="o">=</span> <span class="n">VoyageEmbeddings</span><span class="p">(</span><span class="n">voyage_api_key</span><span class="o">=</span><span class="s2">&quot;your-api-key&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;voyage-2&quot;</span><span class="p">)</span>
 <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;This is a test query.&quot;</span>
 <span class="n">query_result</span> <span class="o">=</span> <span class="n">voyage</span><span class="o">.</span><span class="n">embed_query</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
 </pre></div>
@@ -235,7 +235,7 @@ your API key or pass it as a named parameter to the constructor.</p>
 <p>Raises ValidationError if the input data cannot be parsed to form a valid model.</p>
 <dl class="py attribute pydantic_field">
 <dt class="sig sig-object py" id="langchain_community.embeddings.voyageai.VoyageEmbeddings.batch_size">
-<em class="property"><span class="pre">param</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">batch_size</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8</span></em><a class="headerlink" href="#langchain_community.embeddings.voyageai.VoyageEmbeddings.batch_size" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">param</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">batch_size</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"> <span class="pre">[Required]</span></em><a class="headerlink" href="#langchain_community.embeddings.voyageai.VoyageEmbeddings.batch_size" title="Permalink to this definition">¶</a></dt>
 <dd><p>Maximum number of texts to embed in each API request.</p>
 </dd></dl>
 
@@ -247,7 +247,7 @@ your API key or pass it as a named parameter to the constructor.</p>
 
 <dl class="py attribute pydantic_field">
 <dt class="sig sig-object py" id="langchain_community.embeddings.voyageai.VoyageEmbeddings.model">
-<em class="property"><span class="pre">param</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">model</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'voyage-01'</span></em><a class="headerlink" href="#langchain_community.embeddings.voyageai.VoyageEmbeddings.model" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">param</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">model</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><a class="headerlink" href="#langchain_community.embeddings.voyageai.VoyageEmbeddings.model" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute pydantic_field">
@@ -265,14 +265,11 @@ to True.</p>
 
 <dl class="py attribute pydantic_field">
 <dt class="sig sig-object py" id="langchain_community.embeddings.voyageai.VoyageEmbeddings.truncation">
-<em class="property"><span class="pre">param</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">truncation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#langchain_community.embeddings.voyageai.VoyageEmbeddings.truncation" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">param</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">truncation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#langchain_community.embeddings.voyageai.VoyageEmbeddings.truncation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Whether to truncate the input texts to fit within the context length.</p>
 <p>If True, over-length input texts will be truncated to fit within the context
 length, before vectorized by the embedding model. If False, an error will be
-raised if any given text exceeds the context length. If not specified
-(defaults to None), we will truncate the input text before sending it to the
-embedding model if it slightly exceeds the context window length. If it
-significantly exceeds the context window length, an error will be raised.</p>
+raised if any given text exceeds the context length.</p>
 </dd></dl>
 
 <dl class="py attribute pydantic_field">
@@ -603,8 +600,7 @@ unspecified. Other options: query, document.</p></li>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 01, 2024.
-          <a href="../_sources/embeddings/langchain_community.embeddings.voyageai.VoyageEmbeddings.rst.txt" rel="nofollow">Show this page source</a>
+          Last updated on Mar 02, 2024.
       </footer>
     </div>
   </div>
