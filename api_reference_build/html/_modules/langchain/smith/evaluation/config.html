@@ -182,13 +182,15 @@
   <h1>Source code for langchain.smith.evaluation.config</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Configuration for run evaluators.&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Union</span>
 
 <span class="kn">from</span> <span class="nn">langchain_core.embeddings</span> <span class="kn">import</span> <span class="n">Embeddings</span>
 <span class="kn">from</span> <span class="nn">langchain_core.language_models</span> <span class="kn">import</span> <span class="n">BaseLanguageModel</span>
 <span class="kn">from</span> <span class="nn">langchain_core.prompts</span> <span class="kn">import</span> <span class="n">BasePromptTemplate</span>
 <span class="kn">from</span> <span class="nn">langchain_core.pydantic_v1</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
 <span class="kn">from</span> <span class="nn">langsmith</span> <span class="kn">import</span> <span class="n">RunEvaluator</span>
+<span class="kn">from</span> <span class="nn">langsmith.evaluation.evaluator</span> <span class="kn">import</span> <span class="n">EvaluationResult</span><span class="p">,</span> <span class="n">EvaluationResults</span>
+<span class="kn">from</span> <span class="nn">langsmith.schemas</span> <span class="kn">import</span> <span class="n">Example</span><span class="p">,</span> <span class="n">Run</span>
 
 <span class="kn">from</span> <span class="nn">langchain.evaluation.criteria.eval_chain</span> <span class="kn">import</span> <span class="n">CRITERIA_TYPE</span>
 <span class="kn">from</span> <span class="nn">langchain.evaluation.embedding_distance.base</span> <span class="kn">import</span> <span class="p">(</span>
@@ -198,6 +200,14 @@
 <span class="kn">from</span> <span class="nn">langchain.evaluation.string_distance.base</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">StringDistance</span> <span class="k">as</span> <span class="n">StringDistanceEnum</span><span class="p">,</span>
 <span class="p">)</span>
+
+<span class="n">RUN_EVALUATOR_LIKE</span> <span class="o">=</span> <span class="n">Callable</span><span class="p">[</span>
+    <span class="p">[</span><span class="n">Run</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Example</span><span class="p">]],</span> <span class="n">Union</span><span class="p">[</span><span class="n">EvaluationResult</span><span class="p">,</span> <span class="n">EvaluationResults</span><span class="p">,</span> <span class="nb">dict</span><span class="p">]</span>
+<span class="p">]</span>
+<span class="n">BATCH_EVALUATOR_LIKE</span> <span class="o">=</span> <span class="n">Callable</span><span class="p">[</span>
+    <span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Run</span><span class="p">],</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Example</span><span class="p">]]],</span>
+    <span class="n">Union</span><span class="p">[</span><span class="n">EvaluationResult</span><span class="p">,</span> <span class="n">EvaluationResults</span><span class="p">,</span> <span class="nb">dict</span><span class="p">],</span>
+<span class="p">]</span>
 
 
 <div class="viewcode-block" id="EvalConfig"><a class="viewcode-back" href="../../../../smith/langchain.smith.evaluation.config.EvalConfig.html#langchain.smith.evaluation.config.EvalConfig">[docs]</a><span class="k">class</span> <span class="nc">EvalConfig</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
@@ -258,12 +268,16 @@
         <span class="k">return</span> <span class="n">kwargs</span></div></div>
 
 
+<span class="n">CUSTOM_EVALUATOR_TYPE</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="n">RUN_EVALUATOR_LIKE</span><span class="p">,</span> <span class="n">RunEvaluator</span><span class="p">,</span> <span class="n">StringEvaluator</span><span class="p">]</span>
+<span class="n">SINGLE_EVAL_CONFIG_TYPE</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="n">EvaluatorType</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="n">EvalConfig</span><span class="p">]</span>
+
+
 <div class="viewcode-block" id="RunEvalConfig"><a class="viewcode-back" href="../../../../smith/langchain.smith.evaluation.config.RunEvalConfig.html#langchain.smith.evaluation.config.RunEvalConfig">[docs]</a><span class="k">class</span> <span class="nc">RunEvalConfig</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Configuration for a run evaluation.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    evaluators : List[Union[EvaluatorType, EvalConfig]]</span>
+<span class="sd">    evaluators : List[Union[EvaluatorType, EvalConfig, RunEvaluator, Callable]]</span>
 <span class="sd">        Configurations for which evaluators to apply to the dataset run.</span>
 <span class="sd">        Each can be the string of an :class:`EvaluatorType &lt;langchain.evaluation.schema.EvaluatorType&gt;`, such</span>
 <span class="sd">        as EvaluatorType.QA, the evaluator type string (&quot;qa&quot;), or a configuration for a</span>
@@ -289,9 +303,12 @@
 <span class="sd">        The language model to pass to any evaluators that use a language model.</span>
 <span class="sd">    &quot;&quot;&quot;</span>  <span class="c1"># noqa: E501</span>
 
-    <span class="n">evaluators</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">EvaluatorType</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="n">EvalConfig</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="n">default_factory</span><span class="o">=</span><span class="nb">list</span>
-    <span class="p">)</span>
+    <span class="n">evaluators</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span>
+        <span class="n">Union</span><span class="p">[</span>
+            <span class="n">SINGLE_EVAL_CONFIG_TYPE</span><span class="p">,</span>
+            <span class="n">CUSTOM_EVALUATOR_TYPE</span><span class="p">,</span>
+        <span class="p">]</span>
+    <span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Configurations for which evaluators to apply to the dataset run.</span>
 <span class="sd">    Each can be the string of an</span>
 <span class="sd">    :class:`EvaluatorType &lt;langchain.evaluation.schema.EvaluatorType&gt;`, such</span>
@@ -299,8 +316,15 @@
 <span class="sd">    given evaluator</span>
 <span class="sd">    (e.g., </span>
 <span class="sd">    :class:`RunEvalConfig.QA &lt;langchain.smith.evaluation.config.RunEvalConfig.QA&gt;`).&quot;&quot;&quot;</span>  <span class="c1"># noqa: E501</span>
-    <span class="n">custom_evaluators</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">RunEvaluator</span><span class="p">,</span> <span class="n">StringEvaluator</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">custom_evaluators</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">CUSTOM_EVALUATOR_TYPE</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Custom evaluators to apply to the dataset run.&quot;&quot;&quot;</span>
+    <span class="n">batch_evaluators</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">BATCH_EVALUATOR_LIKE</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Evaluators that run on an aggregate/batch level.</span>
+
+<span class="sd">    These generate 1 or more metrics that are assigned to the full test run.</span>
+<span class="sd">    As a result, they are not associated with individual traces.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">reference_key</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;The key in the dataset run to use as the reference string.</span>
 <span class="sd">    If not provided, we will attempt to infer automatically.&quot;&quot;&quot;</span>
@@ -538,7 +562,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 03, 2024.
+          Last updated on Mar 04, 2024.
       </footer>
     </div>
   </div>

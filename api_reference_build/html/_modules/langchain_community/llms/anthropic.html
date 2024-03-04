@@ -491,9 +491,9 @@
             <span class="n">prompt</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_wrap_prompt</span><span class="p">(</span><span class="n">prompt</span><span class="p">),</span> <span class="n">stop_sequences</span><span class="o">=</span><span class="n">stop</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span>
         <span class="p">):</span>
             <span class="n">chunk</span> <span class="o">=</span> <span class="n">GenerationChunk</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">token</span><span class="o">.</span><span class="n">completion</span><span class="p">)</span>
-            <span class="k">yield</span> <span class="n">chunk</span>
             <span class="k">if</span> <span class="n">run_manager</span><span class="p">:</span>
                 <span class="n">run_manager</span><span class="o">.</span><span class="n">on_llm_new_token</span><span class="p">(</span><span class="n">chunk</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="n">chunk</span><span class="o">=</span><span class="n">chunk</span><span class="p">)</span>
+            <span class="k">yield</span> <span class="n">chunk</span>
 
     <span class="k">async</span> <span class="k">def</span> <span class="nf">_astream</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -527,9 +527,9 @@
             <span class="o">**</span><span class="n">params</span><span class="p">,</span>
         <span class="p">):</span>
             <span class="n">chunk</span> <span class="o">=</span> <span class="n">GenerationChunk</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">token</span><span class="o">.</span><span class="n">completion</span><span class="p">)</span>
-            <span class="k">yield</span> <span class="n">chunk</span>
             <span class="k">if</span> <span class="n">run_manager</span><span class="p">:</span>
                 <span class="k">await</span> <span class="n">run_manager</span><span class="o">.</span><span class="n">on_llm_new_token</span><span class="p">(</span><span class="n">chunk</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="n">chunk</span><span class="o">=</span><span class="n">chunk</span><span class="p">)</span>
+            <span class="k">yield</span> <span class="n">chunk</span>
 
 <div class="viewcode-block" id="Anthropic.get_num_tokens"><a class="viewcode-back" href="../../../llms/langchain_community.llms.anthropic.Anthropic.html#langchain_community.llms.anthropic.Anthropic.get_num_tokens">[docs]</a>    <span class="k">def</span> <span class="nf">get_num_tokens</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate number of tokens.&quot;&quot;&quot;</span>
@@ -542,7 +542,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 03, 2024.
+          Last updated on Mar 04, 2024.
       </footer>
     </div>
   </div>

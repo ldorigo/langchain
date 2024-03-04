@@ -190,7 +190,7 @@
 <span class="kn">from</span> <span class="nn">langchain.agents.format_scratchpad</span> <span class="kn">import</span> <span class="n">format_log_to_messages</span>
 <span class="kn">from</span> <span class="nn">langchain.agents.json_chat.prompt</span> <span class="kn">import</span> <span class="n">TEMPLATE_TOOL_RESPONSE</span>
 <span class="kn">from</span> <span class="nn">langchain.agents.output_parsers</span> <span class="kn">import</span> <span class="n">JSONAgentOutputParser</span>
-<span class="kn">from</span> <span class="nn">langchain.tools.render</span> <span class="kn">import</span> <span class="n">render_text_description</span>
+<span class="kn">from</span> <span class="nn">langchain.tools.render</span> <span class="kn">import</span> <span class="n">ToolsRenderer</span><span class="p">,</span> <span class="n">render_text_description</span>
 
 
 <div class="viewcode-block" id="create_json_chat_agent"><a class="viewcode-back" href="../../../../agents/langchain.agents.json_chat.base.create_json_chat_agent.html#langchain.agents.json_chat.base.create_json_chat_agent">[docs]</a><span class="k">def</span> <span class="nf">create_json_chat_agent</span><span class="p">(</span>
@@ -198,6 +198,7 @@
     <span class="n">tools</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">BaseTool</span><span class="p">],</span>
     <span class="n">prompt</span><span class="p">:</span> <span class="n">ChatPromptTemplate</span><span class="p">,</span>
     <span class="n">stop_sequence</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">tools_renderer</span><span class="p">:</span> <span class="n">ToolsRenderer</span> <span class="o">=</span> <span class="n">render_text_description</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Runnable</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Create an agent that uses JSON to format its logic, build for Chat Models.</span>
 
@@ -208,6 +209,9 @@
 <span class="sd">        stop_sequence: Adds a stop token of &quot;Observation:&quot; to avoid hallucinates. </span>
 <span class="sd">            Default is True. You may to set this to False if the LLM you are using</span>
 <span class="sd">            does not support stop sequences.</span>
+<span class="sd">        tools_renderer: This controls how the tools are converted into a string and</span>
+<span class="sd">            then passed into the LLM. Default is `render_text_description`.</span>
+
 <span class="sd">    Returns:</span>
 <span class="sd">        A Runnable sequence representing an agent. It takes as input all the same input</span>
 <span class="sd">        variables as the prompt passed in does. It returns as output either an</span>
@@ -332,7 +336,7 @@
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Prompt missing required variables: </span><span class="si">{</span><span class="n">missing_vars</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
     <span class="n">prompt</span> <span class="o">=</span> <span class="n">prompt</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span>
-        <span class="n">tools</span><span class="o">=</span><span class="n">render_text_description</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">tools</span><span class="p">)),</span>
+        <span class="n">tools</span><span class="o">=</span><span class="n">tools_renderer</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">tools</span><span class="p">)),</span>
         <span class="n">tool_names</span><span class="o">=</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">t</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tools</span><span class="p">]),</span>
     <span class="p">)</span>
     <span class="k">if</span> <span class="n">stop_sequence</span><span class="p">:</span>
@@ -357,7 +361,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 03, 2024.
+          Last updated on Mar 04, 2024.
       </footer>
     </div>
   </div>

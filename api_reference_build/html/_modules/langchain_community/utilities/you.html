@@ -184,7 +184,6 @@
 
 <span class="sd">In order to set this up, follow instructions at:</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">Optional</span>
 
 <span class="kn">import</span> <span class="nn">aiohttp</span>
@@ -295,16 +294,16 @@
 
         <span class="n">docs</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">hit</span> <span class="ow">in</span> <span class="n">raw_search_results</span><span class="p">[</span><span class="s2">&quot;hits&quot;</span><span class="p">]:</span>
-            <span class="n">n_snippets_per_hit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_snippets_per_hit</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">hit</span><span class="p">[</span><span class="s2">&quot;snippets&quot;</span><span class="p">])</span>
-            <span class="k">for</span> <span class="n">snippet</span> <span class="ow">in</span> <span class="n">hit</span><span class="p">[</span><span class="s2">&quot;snippets&quot;</span><span class="p">][:</span><span class="n">n_snippets_per_hit</span><span class="p">]:</span>
+            <span class="n">n_snippets_per_hit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_snippets_per_hit</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">hit</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;snippets&quot;</span><span class="p">))</span>
+            <span class="k">for</span> <span class="n">snippet</span> <span class="ow">in</span> <span class="n">hit</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;snippets&quot;</span><span class="p">)[:</span><span class="n">n_snippets_per_hit</span><span class="p">]:</span>
                 <span class="n">docs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                     <span class="n">Document</span><span class="p">(</span>
                         <span class="n">page_content</span><span class="o">=</span><span class="n">snippet</span><span class="p">,</span>
                         <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
-                            <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="n">hit</span><span class="p">[</span><span class="s2">&quot;url&quot;</span><span class="p">],</span>
-                            <span class="s2">&quot;thumbnail_url&quot;</span><span class="p">:</span> <span class="n">hit</span><span class="p">[</span><span class="s2">&quot;thumbnail_url&quot;</span><span class="p">],</span>
-                            <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">hit</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span>
-                            <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="n">hit</span><span class="p">[</span><span class="s2">&quot;description&quot;</span><span class="p">],</span>
+                            <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="n">hit</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;url&quot;</span><span class="p">),</span>
+                            <span class="s2">&quot;thumbnail_url&quot;</span><span class="p">:</span> <span class="n">hit</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;thumbnail_url&quot;</span><span class="p">),</span>
+                            <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">hit</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">),</span>
+                            <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="n">hit</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;description&quot;</span><span class="p">),</span>
                         <span class="p">},</span>
                     <span class="p">)</span>
                 <span class="p">)</span>
@@ -370,53 +369,57 @@
 <div class="viewcode-block" id="YouSearchAPIWrapper.raw_results_async"><a class="viewcode-back" href="../../../utilities/langchain_community.utilities.you.YouSearchAPIWrapper.html#langchain_community.utilities.you.YouSearchAPIWrapper.raw_results_async">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">raw_results_async</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">num_web_results</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
-        <span class="n">safesearch</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;moderate&quot;</span><span class="p">,</span>
-        <span class="n">country</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;US&quot;</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get results from the you.com Search API asynchronously.&quot;&quot;&quot;</span>
 
-        <span class="c1"># Function to perform the API call</span>
-        <span class="k">async</span> <span class="k">def</span> <span class="nf">fetch</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-            <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
-                <span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="n">query</span><span class="p">,</span>
-                <span class="s2">&quot;num_web_results&quot;</span><span class="p">:</span> <span class="n">num_web_results</span><span class="p">,</span>
-                <span class="s2">&quot;safesearch&quot;</span><span class="p">:</span> <span class="n">safesearch</span><span class="p">,</span>
-                <span class="s2">&quot;country&quot;</span><span class="p">:</span> <span class="n">country</span><span class="p">,</span>
-            <span class="p">}</span>
-            <span class="k">async</span> <span class="k">with</span> <span class="n">aiohttp</span><span class="o">.</span><span class="n">ClientSession</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
-                <span class="k">async</span> <span class="k">with</span> <span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">YOU_API_URL</span><span class="si">}</span><span class="s2">/search&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">params</span><span class="p">)</span> <span class="k">as</span> <span class="n">res</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="n">res</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
-                        <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">res</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
-                        <span class="k">return</span> <span class="n">data</span>
-                    <span class="k">else</span><span class="p">:</span>
-                        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error </span><span class="si">{</span><span class="n">res</span><span class="o">.</span><span class="n">status</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">res</span><span class="o">.</span><span class="n">reason</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;X-API-Key&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">ydc_api_key</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span><span class="p">}</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="n">query</span><span class="p">,</span>
+            <span class="s2">&quot;num_web_results&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_web_results</span><span class="p">,</span>
+            <span class="s2">&quot;safesearch&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">safesearch</span><span class="p">,</span>
+            <span class="s2">&quot;country&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">country</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">params</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">}</span>
+        <span class="c1"># news endpoint expects `q` instead of `query`</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">endpoint_type</span> <span class="o">==</span> <span class="s2">&quot;news&quot;</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;q&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;query&quot;</span><span class="p">]</span>
+            <span class="k">del</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;query&quot;</span><span class="p">]</span>
 
-        <span class="n">results_json_str</span> <span class="o">=</span> <span class="k">await</span> <span class="n">fetch</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">results_json_str</span><span class="p">)</span></div>
+        <span class="c1"># @todo deprecate `snippet`, not part of API</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">endpoint_type</span> <span class="o">==</span> <span class="s2">&quot;snippet&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">endpoint_type</span> <span class="o">=</span> <span class="s2">&quot;search&quot;</span>
+
+        <span class="k">async</span> <span class="k">with</span> <span class="n">aiohttp</span><span class="o">.</span><span class="n">ClientSession</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+            <span class="k">async</span> <span class="k">with</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+                <span class="n">url</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">YOU_API_URL</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">endpoint_type</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span>
+                <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+            <span class="p">)</span> <span class="k">as</span> <span class="n">res</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">res</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+                    <span class="n">results</span> <span class="o">=</span> <span class="k">await</span> <span class="n">res</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+                    <span class="k">return</span> <span class="n">results</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error </span><span class="si">{</span><span class="n">res</span><span class="o">.</span><span class="n">status</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">res</span><span class="o">.</span><span class="n">reason</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="YouSearchAPIWrapper.results_async"><a class="viewcode-back" href="../../../utilities/langchain_community.utilities.you.YouSearchAPIWrapper.html#langchain_community.utilities.you.YouSearchAPIWrapper.results_async">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">results_async</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">num_web_results</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
-        <span class="n">safesearch</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;moderate&quot;</span><span class="p">,</span>
-        <span class="n">country</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;US&quot;</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Document</span><span class="p">]:</span>
-        <span class="n">results_json</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">raw_results_async</span><span class="p">(</span>
-            <span class="n">query</span><span class="o">=</span><span class="n">query</span><span class="p">,</span>
-            <span class="n">num_web_results</span><span class="o">=</span><span class="n">num_web_results</span><span class="p">,</span>
-            <span class="n">safesearch</span><span class="o">=</span><span class="n">safesearch</span><span class="p">,</span>
-            <span class="n">country</span><span class="o">=</span><span class="n">country</span><span class="p">,</span>
+        <span class="n">raw_search_results_async</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">raw_results_async</span><span class="p">(</span>
+            <span class="n">query</span><span class="p">,</span>
+            <span class="o">**</span><span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">value</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">},</span>
         <span class="p">)</span>
-
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_results</span><span class="p">(</span><span class="n">results_json</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">])</span></div></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_results</span><span class="p">(</span><span class="n">raw_search_results_async</span><span class="p">)</span></div></div>
 </pre></div>
 
       </div>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 03, 2024.
+          Last updated on Mar 04, 2024.
       </footer>
     </div>
   </div>

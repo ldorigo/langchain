@@ -184,6 +184,7 @@
 
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 
+<span class="kn">import</span> <span class="nn">concurrent.futures</span>
 <span class="kn">import</span> <span class="nn">dataclasses</span>
 <span class="kn">import</span> <span class="nn">functools</span>
 <span class="kn">import</span> <span class="nn">inspect</span>
@@ -217,9 +218,15 @@
 <span class="kn">from</span> <span class="nn">langchain_core.tracers.langchain</span> <span class="kn">import</span> <span class="n">LangChainTracer</span>
 <span class="kn">from</span> <span class="nn">langsmith.client</span> <span class="kn">import</span> <span class="n">Client</span>
 <span class="kn">from</span> <span class="nn">langsmith.env</span> <span class="kn">import</span> <span class="n">get_git_info</span><span class="p">,</span> <span class="n">get_langchain_env_var_metadata</span>
-<span class="kn">from</span> <span class="nn">langsmith.evaluation</span> <span class="kn">import</span> <span class="n">EvaluationResult</span><span class="p">,</span> <span class="n">RunEvaluator</span>
+<span class="kn">from</span> <span class="nn">langsmith.evaluation</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">EvaluationResult</span><span class="p">,</span>
+    <span class="n">RunEvaluator</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">langsmith.evaluation</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">run_evaluator</span> <span class="k">as</span> <span class="n">run_evaluator_dec</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="kn">from</span> <span class="nn">langsmith.run_helpers</span> <span class="kn">import</span> <span class="n">as_runnable</span><span class="p">,</span> <span class="n">is_traceable_function</span>
-<span class="kn">from</span> <span class="nn">langsmith.schemas</span> <span class="kn">import</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">DataType</span><span class="p">,</span> <span class="n">Example</span><span class="p">,</span> <span class="n">TracerSession</span>
+<span class="kn">from</span> <span class="nn">langsmith.schemas</span> <span class="kn">import</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">DataType</span><span class="p">,</span> <span class="n">Example</span><span class="p">,</span> <span class="n">Run</span><span class="p">,</span> <span class="n">TracerSession</span>
 <span class="kn">from</span> <span class="nn">langsmith.utils</span> <span class="kn">import</span> <span class="n">LangSmithError</span>
 <span class="kn">from</span> <span class="nn">requests</span> <span class="kn">import</span> <span class="n">HTTPError</span>
 <span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">TypedDict</span>
@@ -695,7 +702,10 @@
 
 
 <span class="k">def</span> <span class="nf">_construct_run_evaluator</span><span class="p">(</span>
-    <span class="n">eval_config</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">EvaluatorType</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="n">smith_eval_config</span><span class="o">.</span><span class="n">EvalConfig</span><span class="p">],</span>
+    <span class="n">eval_config</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span>
+        <span class="n">smith_eval_config</span><span class="o">.</span><span class="n">SINGLE_EVAL_CONFIG_TYPE</span><span class="p">,</span>
+        <span class="n">smith_eval_config</span><span class="o">.</span><span class="n">CUSTOM_EVALUATOR_TYPE</span><span class="p">,</span>
+    <span class="p">],</span>
     <span class="n">eval_llm</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">BaseLanguageModel</span><span class="p">],</span>
     <span class="n">run_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">data_type</span><span class="p">:</span> <span class="n">DataType</span><span class="p">,</span>
@@ -704,12 +714,14 @@
     <span class="n">input_key</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
     <span class="n">prediction_key</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RunEvaluator</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">eval_config</span><span class="p">,</span> <span class="n">RunEvaluator</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">eval_config</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">eval_config</span><span class="p">,</span> <span class="p">(</span><span class="n">EvaluatorType</span><span class="p">,</span> <span class="nb">str</span><span class="p">)):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">eval_config</span><span class="p">,</span> <span class="n">EvaluatorType</span><span class="p">):</span>
             <span class="n">eval_config</span> <span class="o">=</span> <span class="n">EvaluatorType</span><span class="p">(</span><span class="n">eval_config</span><span class="p">)</span>
         <span class="n">evaluator_</span> <span class="o">=</span> <span class="n">load_evaluator</span><span class="p">(</span><span class="n">eval_config</span><span class="p">,</span> <span class="n">llm</span><span class="o">=</span><span class="n">eval_llm</span><span class="p">)</span>
         <span class="n">eval_type_tag</span> <span class="o">=</span> <span class="n">eval_config</span><span class="o">.</span><span class="n">value</span>
-    <span class="k">else</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">eval_config</span><span class="p">,</span> <span class="n">smith_eval_config</span><span class="o">.</span><span class="n">EvalConfig</span><span class="p">):</span>
         <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;llm&quot;</span><span class="p">:</span> <span class="n">eval_llm</span><span class="p">,</span> <span class="o">**</span><span class="n">eval_config</span><span class="o">.</span><span class="n">get_kwargs</span><span class="p">()}</span>
         <span class="n">evaluator_</span> <span class="o">=</span> <span class="n">load_evaluator</span><span class="p">(</span><span class="n">eval_config</span><span class="o">.</span><span class="n">evaluator_type</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="n">eval_type_tag</span> <span class="o">=</span> <span class="n">eval_config</span><span class="o">.</span><span class="n">evaluator_type</span><span class="o">.</span><span class="n">value</span>
@@ -718,6 +730,11 @@
             <span class="n">input_key</span> <span class="o">=</span> <span class="n">eval_config</span><span class="o">.</span><span class="n">input_key</span> <span class="ow">or</span> <span class="n">input_key</span>
             <span class="n">prediction_key</span> <span class="o">=</span> <span class="n">eval_config</span><span class="o">.</span><span class="n">prediction_key</span> <span class="ow">or</span> <span class="n">prediction_key</span>
             <span class="n">reference_key</span> <span class="o">=</span> <span class="n">eval_config</span><span class="o">.</span><span class="n">reference_key</span> <span class="ow">or</span> <span class="n">reference_key</span>
+    <span class="k">elif</span> <span class="nb">callable</span><span class="p">(</span><span class="n">eval_config</span><span class="p">):</span>
+        <span class="c1"># Assume we can decorate</span>
+        <span class="k">return</span> <span class="n">run_evaluator_dec</span><span class="p">(</span><span class="n">eval_config</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown evaluator type: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">eval_config</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">evaluator_</span><span class="p">,</span> <span class="n">StringEvaluator</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">evaluator_</span><span class="o">.</span><span class="n">requires_reference</span> <span class="ow">and</span> <span class="n">reference_key</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -782,13 +799,9 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">run_evaluators</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">input_key</span><span class="p">,</span> <span class="n">prediction_key</span><span class="p">,</span> <span class="n">reference_key</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
-    <span class="k">if</span> <span class="p">(</span>
-        <span class="n">config</span><span class="o">.</span><span class="n">evaluators</span>
-        <span class="ow">or</span> <span class="nb">any</span><span class="p">([</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">EvaluatorType</span><span class="p">)</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">config</span><span class="o">.</span><span class="n">evaluators</span><span class="p">])</span>
-        <span class="ow">or</span> <span class="p">(</span>
-            <span class="n">config</span><span class="o">.</span><span class="n">custom_evaluators</span>
-            <span class="ow">and</span> <span class="nb">any</span><span class="p">([</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">StringEvaluator</span><span class="p">)</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">config</span><span class="o">.</span><span class="n">custom_evaluators</span><span class="p">])</span>
-        <span class="p">)</span>
+    <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">evaluators</span> <span class="ow">or</span> <span class="p">(</span>
+        <span class="n">config</span><span class="o">.</span><span class="n">custom_evaluators</span>
+        <span class="ow">and</span> <span class="nb">any</span><span class="p">([</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">StringEvaluator</span><span class="p">)</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">config</span><span class="o">.</span><span class="n">custom_evaluators</span><span class="p">])</span>
     <span class="p">):</span>
         <span class="n">input_key</span><span class="p">,</span> <span class="n">prediction_key</span><span class="p">,</span> <span class="n">reference_key</span> <span class="o">=</span> <span class="n">_get_keys</span><span class="p">(</span>
             <span class="n">config</span><span class="p">,</span> <span class="n">run_inputs</span><span class="p">,</span> <span class="n">run_outputs</span><span class="p">,</span> <span class="n">example_outputs</span>
@@ -820,6 +833,8 @@
                     <span class="n">reference_key</span><span class="o">=</span><span class="n">reference_key</span><span class="p">,</span>
                 <span class="p">)</span>
             <span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">callable</span><span class="p">(</span><span class="n">custom_evaluator</span><span class="p">):</span>
+            <span class="n">run_evaluators</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">run_evaluator_dec</span><span class="p">(</span><span class="n">custom_evaluator</span><span class="p">))</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
                 <span class="sa">f</span><span class="s2">&quot;Unsupported custom evaluator: </span><span class="si">{</span><span class="n">custom_evaluator</span><span class="si">}</span><span class="s2">.&quot;</span>
@@ -1135,9 +1150,6 @@
     <span class="k">return</span> <span class="n">result</span>
 
 
-<span class="c1">## Public API</span>
-
-
 <span class="k">def</span> <span class="nf">_prepare_eval_run</span><span class="p">(</span>
     <span class="n">client</span><span class="p">:</span> <span class="n">Client</span><span class="p">,</span>
     <span class="n">dataset_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -1145,10 +1157,17 @@
     <span class="n">project_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">project_metadata</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">tags</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">dataset_version</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">datetime</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">MCF</span><span class="p">,</span> <span class="n">TracerSession</span><span class="p">,</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">Example</span><span class="p">]]:</span>
     <span class="n">wrapped_model</span> <span class="o">=</span> <span class="n">_wrap_in_chain_factory</span><span class="p">(</span><span class="n">llm_or_chain_factory</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">)</span>
     <span class="n">dataset</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">read_dataset</span><span class="p">(</span><span class="n">dataset_name</span><span class="o">=</span><span class="n">dataset_name</span><span class="p">)</span>
-    <span class="n">examples</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">client</span><span class="o">.</span><span class="n">list_examples</span><span class="p">(</span><span class="n">dataset_id</span><span class="o">=</span><span class="n">dataset</span><span class="o">.</span><span class="n">id</span><span class="p">))</span>
+    <span class="n">as_of</span> <span class="o">=</span> <span class="n">dataset_version</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dataset_version</span><span class="p">,</span> <span class="n">datetime</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dataset_version</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+            <span class="s2">&quot;Selecting dataset_version by tag is not yet supported.&quot;</span>
+            <span class="s2">&quot; Please use a datetime object.&quot;</span>
+        <span class="p">)</span>
+    <span class="n">examples</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">client</span><span class="o">.</span><span class="n">list_examples</span><span class="p">(</span><span class="n">dataset_id</span><span class="o">=</span><span class="n">dataset</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">as_of</span><span class="o">=</span><span class="n">as_of</span><span class="p">))</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">examples</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dataset </span><span class="si">{</span><span class="n">dataset_name</span><span class="si">}</span><span class="s2"> has no example rows.&quot;</span><span class="p">)</span>
     <span class="n">modified_at</span> <span class="o">=</span> <span class="p">[</span><span class="n">ex</span><span class="o">.</span><span class="n">modified_at</span> <span class="k">for</span> <span class="n">ex</span> <span class="ow">in</span> <span class="n">examples</span> <span class="k">if</span> <span class="n">ex</span><span class="o">.</span><span class="n">modified_at</span><span class="p">]</span>
@@ -1214,6 +1233,7 @@
     <span class="n">wrapped_model</span><span class="p">:</span> <span class="n">MCF</span>
     <span class="n">examples</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Example</span><span class="p">]</span>
     <span class="n">configs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">RunnableConfig</span><span class="p">]</span>
+    <span class="n">batch_evaluators</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">smith_eval_config</span><span class="o">.</span><span class="n">BATCH_EVALUATOR_LIKE</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
 
     <span class="k">def</span> <span class="nf">_merge_test_outputs</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -1237,8 +1257,34 @@
                 <span class="n">results</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">example</span><span class="o">.</span><span class="n">id</span><span class="p">)][</span><span class="s2">&quot;reference&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">example</span><span class="o">.</span><span class="n">outputs</span>
         <span class="k">return</span> <span class="n">results</span>
 
-    <span class="k">def</span> <span class="nf">_collect_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">_RowResult</span><span class="p">]:</span>
+    <span class="k">def</span> <span class="nf">_run_batch_evaluators</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">runs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Run</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
+        <span class="n">evaluators</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_evaluators</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">evaluators</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+        <span class="n">runs_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">runs</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">example</span><span class="o">.</span><span class="n">id</span><span class="p">)]</span> <span class="k">for</span> <span class="n">example</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">examples</span><span class="p">]</span>
+        <span class="n">aggregate_feedback</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">with</span> <span class="n">concurrent</span><span class="o">.</span><span class="n">futures</span><span class="o">.</span><span class="n">ThreadPoolExecutor</span><span class="p">()</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">evaluator</span> <span class="ow">in</span> <span class="n">evaluators</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">result</span> <span class="o">=</span> <span class="n">evaluator</span><span class="p">(</span><span class="n">runs_list</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">examples</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">EvaluationResult</span><span class="p">):</span>
+                        <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">dict</span><span class="p">()</span>
+                    <span class="n">aggregate_feedback</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="nb">dict</span><span class="p">,</span> <span class="n">result</span><span class="p">))</span>
+                    <span class="n">executor</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">create_feedback</span><span class="p">,</span>
+                        <span class="o">**</span><span class="n">result</span><span class="p">,</span>
+                        <span class="n">run_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                        <span class="n">project_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+                    <span class="p">)</span>
+                <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;Error running batch evaluator </span><span class="si">{</span><span class="nb">repr</span><span class="p">(</span><span class="n">evaluator</span><span class="p">)</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span>
+                    <span class="p">)</span>
+        <span class="k">return</span> <span class="n">aggregate_feedback</span>
+
+    <span class="k">def</span> <span class="nf">_collect_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">_RowResult</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Run</span><span class="p">]]:</span>
         <span class="n">all_eval_results</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">all_runs</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">configs</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">callback</span> <span class="ow">in</span> <span class="n">cast</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">c</span><span class="p">[</span><span class="s2">&quot;callbacks&quot;</span><span class="p">]):</span>
                 <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">callback</span><span class="p">,</span> <span class="n">EvaluatorCallbackHandler</span><span class="p">):</span>
@@ -1259,20 +1305,28 @@
                         <span class="p">{</span>
                             <span class="s2">&quot;execution_time&quot;</span><span class="p">:</span> <span class="n">execution_time</span><span class="p">,</span>
                             <span class="s2">&quot;run_id&quot;</span><span class="p">:</span> <span class="n">run_id</span><span class="p">,</span>
+                            <span class="s2">&quot;run&quot;</span><span class="p">:</span> <span class="n">run</span><span class="p">,</span>
                         <span class="p">}</span>
                     <span class="p">)</span>
-        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">_RowResult</span><span class="p">],</span> <span class="n">all_eval_results</span><span class="p">)</span>
+                    <span class="n">all_runs</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">callback</span><span class="o">.</span><span class="n">example_id</span><span class="p">)]</span> <span class="o">=</span> <span class="n">run</span>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">_RowResult</span><span class="p">],</span> <span class="n">all_eval_results</span><span class="p">),</span> <span class="n">all_runs</span>
 
     <span class="k">def</span> <span class="nf">_collect_test_results</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">batch_results</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">dict</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="n">LLMResult</span><span class="p">,</span> <span class="n">ChatResult</span><span class="p">]],</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TestResult</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Waiting for evaluators to complete.&quot;</span><span class="p">)</span>
         <span class="n">wait_for_all_evaluators</span><span class="p">()</span>
-        <span class="n">all_eval_results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_collect_metrics</span><span class="p">()</span>
+        <span class="n">all_eval_results</span><span class="p">,</span> <span class="n">all_runs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_collect_metrics</span><span class="p">()</span>
+        <span class="n">aggregate_feedback</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_evaluators</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Running session evaluators.&quot;</span><span class="p">)</span>
+            <span class="n">aggregate_feedback</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_run_batch_evaluators</span><span class="p">(</span><span class="n">all_runs</span><span class="p">)</span>
         <span class="n">results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_merge_test_outputs</span><span class="p">(</span><span class="n">batch_results</span><span class="p">,</span> <span class="n">all_eval_results</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">TestResult</span><span class="p">(</span>
             <span class="n">project_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
             <span class="n">results</span><span class="o">=</span><span class="n">results</span><span class="p">,</span>
+            <span class="n">aggregate_metrics</span><span class="o">=</span><span class="n">aggregate_feedback</span><span class="p">,</span>
         <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">finish</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch_results</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TestResult</span><span class="p">:</span>
@@ -1305,6 +1359,7 @@
         <span class="n">concurrency_level</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
         <span class="n">project_metadata</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">revision_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">dataset_version</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">datetime</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_DatasetRunContainer</span><span class="p">:</span>
         <span class="n">project_name</span> <span class="o">=</span> <span class="n">project_name</span> <span class="ow">or</span> <span class="n">name_generation</span><span class="o">.</span><span class="n">random_name</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">revision_id</span><span class="p">:</span>
@@ -1318,10 +1373,14 @@
             <span class="n">project_name</span><span class="p">,</span>
             <span class="n">project_metadata</span><span class="o">=</span><span class="n">project_metadata</span><span class="p">,</span>
             <span class="n">tags</span><span class="o">=</span><span class="n">tags</span><span class="p">,</span>
+            <span class="n">dataset_version</span><span class="o">=</span><span class="n">dataset_version</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="n">tags</span> <span class="o">=</span> <span class="n">tags</span> <span class="ow">or</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="p">(</span><span class="n">project</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;git&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="p">{})</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="n">tags</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;git:</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">=</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">run_metadata</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;dataset_version&quot;</span><span class="p">:</span> <span class="n">project</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;dataset_version&quot;</span><span class="p">]}</span>
+        <span class="k">if</span> <span class="n">revision_id</span><span class="p">:</span>
+            <span class="n">run_metadata</span><span class="p">[</span><span class="s2">&quot;revision_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">revision_id</span>
         <span class="n">wrapped_model</span> <span class="o">=</span> <span class="n">_wrap_in_chain_factory</span><span class="p">(</span><span class="n">llm_or_chain_factory</span><span class="p">)</span>
         <span class="n">run_evaluators</span> <span class="o">=</span> <span class="n">_setup_evaluation</span><span class="p">(</span>
             <span class="n">wrapped_model</span><span class="p">,</span> <span class="n">examples</span><span class="p">,</span> <span class="n">evaluation</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">data_type</span> <span class="ow">or</span> <span class="n">DataType</span><span class="o">.</span><span class="n">kv</span>
@@ -1346,7 +1405,7 @@
                 <span class="p">],</span>
                 <span class="n">tags</span><span class="o">=</span><span class="n">tags</span><span class="p">,</span>
                 <span class="n">max_concurrency</span><span class="o">=</span><span class="n">concurrency_level</span><span class="p">,</span>
-                <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;revision_id&quot;</span><span class="p">:</span> <span class="n">revision_id</span><span class="p">}</span> <span class="k">if</span> <span class="n">revision_id</span> <span class="k">else</span> <span class="p">{},</span>
+                <span class="n">metadata</span><span class="o">=</span><span class="n">run_metadata</span><span class="p">,</span>
             <span class="p">)</span>
             <span class="k">for</span> <span class="n">example</span> <span class="ow">in</span> <span class="n">examples</span>
         <span class="p">]</span>
@@ -1356,6 +1415,7 @@
             <span class="n">wrapped_model</span><span class="o">=</span><span class="n">wrapped_model</span><span class="p">,</span>
             <span class="n">examples</span><span class="o">=</span><span class="n">examples</span><span class="p">,</span>
             <span class="n">configs</span><span class="o">=</span><span class="n">configs</span><span class="p">,</span>
+            <span class="n">batch_evaluators</span><span class="o">=</span><span class="n">evaluation</span><span class="o">.</span><span class="n">batch_evaluators</span> <span class="k">if</span> <span class="n">evaluation</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
         <span class="p">)</span>
 
 
@@ -1397,6 +1457,8 @@
     <span class="s2">&quot;langchain.schema.runnable.base.RunnableLambda.html)&quot;</span>
 <span class="p">)</span>
 
+<span class="c1">## Public API</span>
+
 
 <div class="viewcode-block" id="arun_on_dataset"><a class="viewcode-back" href="../../../../smith/langchain.smith.evaluation.runner_utils.arun_on_dataset.html#langchain.smith.evaluation.runner_utils.arun_on_dataset">[docs]</a><span class="k">async</span> <span class="k">def</span> <span class="nf">arun_on_dataset</span><span class="p">(</span>
     <span class="n">client</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Client</span><span class="p">],</span>
@@ -1404,11 +1466,11 @@
     <span class="n">llm_or_chain_factory</span><span class="p">:</span> <span class="n">MODEL_OR_CHAIN_FACTORY</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
     <span class="n">evaluation</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">smith_eval</span><span class="o">.</span><span class="n">RunEvalConfig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">dataset_version</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">datetime</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">concurrency_level</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
     <span class="n">project_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">project_metadata</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="n">tags</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">revision_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
@@ -1417,6 +1479,13 @@
         <span class="n">warn_deprecated</span><span class="p">(</span><span class="s2">&quot;0.0.305&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="n">_INPUT_MAPPER_DEP_WARNING</span><span class="p">,</span> <span class="n">pending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">revision_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">revision_id</span> <span class="o">=</span> <span class="n">get_langchain_env_var_metadata</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;revision_id&quot;</span><span class="p">)</span>
+    <span class="n">tags</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;tags&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">tags</span><span class="p">:</span>
+        <span class="n">warn_deprecated</span><span class="p">(</span>
+            <span class="s2">&quot;0.1.9&quot;</span><span class="p">,</span>
+            <span class="n">message</span><span class="o">=</span><span class="s2">&quot;The tags argument is deprecated and will be&quot;</span>
+            <span class="s2">&quot; removed in a future release. Please specify project_metadata instead.&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
 
     <span class="k">if</span> <span class="n">kwargs</span><span class="p">:</span>
         <span class="n">warn_deprecated</span><span class="p">(</span>
@@ -1438,6 +1507,7 @@
         <span class="n">concurrency_level</span><span class="p">,</span>
         <span class="n">project_metadata</span><span class="o">=</span><span class="n">project_metadata</span><span class="p">,</span>
         <span class="n">revision_id</span><span class="o">=</span><span class="n">revision_id</span><span class="p">,</span>
+        <span class="n">dataset_version</span><span class="o">=</span><span class="n">dataset_version</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">batch_results</span> <span class="o">=</span> <span class="k">await</span> <span class="n">runnable_utils</span><span class="o">.</span><span class="n">gather_with_concurrency</span><span class="p">(</span>
         <span class="n">container</span><span class="o">.</span><span class="n">configs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;max_concurrency&quot;</span><span class="p">),</span>
@@ -1460,17 +1530,24 @@
     <span class="n">llm_or_chain_factory</span><span class="p">:</span> <span class="n">MODEL_OR_CHAIN_FACTORY</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
     <span class="n">evaluation</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">smith_eval</span><span class="o">.</span><span class="n">RunEvalConfig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">dataset_version</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">datetime</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">concurrency_level</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
     <span class="n">project_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">project_metadata</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="n">tags</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">revision_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
     <span class="n">input_mapper</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;input_mapper&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">input_mapper</span><span class="p">:</span>
         <span class="n">warn_deprecated</span><span class="p">(</span><span class="s2">&quot;0.0.305&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="n">_INPUT_MAPPER_DEP_WARNING</span><span class="p">,</span> <span class="n">pending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">tags</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;tags&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">tags</span><span class="p">:</span>
+        <span class="n">warn_deprecated</span><span class="p">(</span>
+            <span class="s2">&quot;0.1.9&quot;</span><span class="p">,</span>
+            <span class="n">message</span><span class="o">=</span><span class="s2">&quot;The tags argument is deprecated and will be&quot;</span>
+            <span class="s2">&quot; removed in a future release. Please specify project_metadata instead.&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
     <span class="k">if</span> <span class="n">revision_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">revision_id</span> <span class="o">=</span> <span class="n">get_langchain_env_var_metadata</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;revision_id&quot;</span><span class="p">)</span>
 
@@ -1494,6 +1571,7 @@
         <span class="n">concurrency_level</span><span class="p">,</span>
         <span class="n">project_metadata</span><span class="o">=</span><span class="n">project_metadata</span><span class="p">,</span>
         <span class="n">revision_id</span><span class="o">=</span><span class="n">revision_id</span><span class="p">,</span>
+        <span class="n">dataset_version</span><span class="o">=</span><span class="n">dataset_version</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="k">if</span> <span class="n">concurrency_level</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">batch_results</span> <span class="o">=</span> <span class="p">[</span>
@@ -1586,8 +1664,8 @@
 <span class="s2">    client = Client()</span>
 <span class="s2">    run_on_dataset(</span>
 <span class="s2">        client,</span>
-<span class="s2">        &quot;&lt;my_dataset_name&gt;&quot;,</span>
-<span class="s2">        construct_chain,</span>
+<span class="s2">        dataset_name=&quot;&lt;my_dataset_name&gt;&quot;,</span>
+<span class="s2">        llm_or_chain_factory=construct_chain,</span>
 <span class="s2">        evaluation=evaluation_config,</span>
 <span class="s2">    )</span>
 
@@ -1624,8 +1702,8 @@
 
 <span class="s2">    run_on_dataset(</span>
 <span class="s2">        client,</span>
-<span class="s2">        &quot;&lt;my_dataset_name&gt;&quot;,</span>
-<span class="s2">        construct_chain,</span>
+<span class="s2">        dataset_name=&quot;&lt;my_dataset_name&gt;&quot;,</span>
+<span class="s2">        llm_or_chain_factory=construct_chain,</span>
 <span class="s2">        evaluation=evaluation_config,</span>
 <span class="s2">    )</span>
 <span class="s2">&quot;&quot;&quot;</span>  <span class="c1"># noqa: E501</span>
@@ -1639,7 +1717,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 03, 2024.
+          Last updated on Mar 04, 2024.
       </footer>
     </div>
   </div>
