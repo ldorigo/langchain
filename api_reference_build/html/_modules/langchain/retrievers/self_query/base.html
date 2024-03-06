@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   
-  <title>langchain.retrievers.self_query.base &mdash; 🦜🔗 LangChain 0.1.10</title>
+  <title>langchain.retrievers.self_query.base &mdash; 🦜🔗 LangChain 0.1.11</title>
   
   <link rel="canonical" href="https://api.python.langchain.com/en/latest/_modules/langchain/retrievers/self_query/base.html" />
 
@@ -189,6 +189,7 @@
     <span class="n">Chroma</span><span class="p">,</span>
     <span class="n">DashVector</span><span class="p">,</span>
     <span class="n">DeepLake</span><span class="p">,</span>
+    <span class="n">Dingo</span><span class="p">,</span>
     <span class="n">ElasticsearchStore</span><span class="p">,</span>
     <span class="n">Milvus</span><span class="p">,</span>
     <span class="n">MongoDBAtlasVectorSearch</span><span class="p">,</span>
@@ -221,6 +222,7 @@
 <span class="kn">from</span> <span class="nn">langchain.retrievers.self_query.chroma</span> <span class="kn">import</span> <span class="n">ChromaTranslator</span>
 <span class="kn">from</span> <span class="nn">langchain.retrievers.self_query.dashvector</span> <span class="kn">import</span> <span class="n">DashvectorTranslator</span>
 <span class="kn">from</span> <span class="nn">langchain.retrievers.self_query.deeplake</span> <span class="kn">import</span> <span class="n">DeepLakeTranslator</span>
+<span class="kn">from</span> <span class="nn">langchain.retrievers.self_query.dingo</span> <span class="kn">import</span> <span class="n">DingoDBTranslator</span>
 <span class="kn">from</span> <span class="nn">langchain.retrievers.self_query.elasticsearch</span> <span class="kn">import</span> <span class="n">ElasticsearchTranslator</span>
 <span class="kn">from</span> <span class="nn">langchain.retrievers.self_query.milvus</span> <span class="kn">import</span> <span class="n">MilvusTranslator</span>
 <span class="kn">from</span> <span class="nn">langchain.retrievers.self_query.mongodb_atlas</span> <span class="kn">import</span> <span class="n">MongoDBAtlasTranslator</span>
@@ -247,6 +249,7 @@
         <span class="n">Pinecone</span><span class="p">:</span> <span class="n">PineconeTranslator</span><span class="p">,</span>
         <span class="n">Chroma</span><span class="p">:</span> <span class="n">ChromaTranslator</span><span class="p">,</span>
         <span class="n">DashVector</span><span class="p">:</span> <span class="n">DashvectorTranslator</span><span class="p">,</span>
+        <span class="n">Dingo</span><span class="p">:</span> <span class="n">DingoDBTranslator</span><span class="p">,</span>
         <span class="n">Weaviate</span><span class="p">:</span> <span class="n">WeaviateTranslator</span><span class="p">,</span>
         <span class="n">Vectara</span><span class="p">:</span> <span class="n">VectaraTranslator</span><span class="p">,</span>
         <span class="n">Qdrant</span><span class="p">:</span> <span class="n">QdrantTranslator</span><span class="p">,</span>
@@ -443,7 +446,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 04, 2024.
+          Last updated on Mar 06, 2024.
       </footer>
     </div>
   </div>

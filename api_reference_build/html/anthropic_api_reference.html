@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   
-  <title>langchain_anthropic 0.1.0 &mdash; 🦜🔗 LangChain 0.1.10</title>
+  <title>langchain_anthropic 0.1.3 &mdash; 🦜🔗 LangChain 0.1.11</title>
   
   <link rel="canonical" href="https://api.python.langchain.com/en/latest/anthropic_api_reference.html" />
 
@@ -175,13 +175,18 @@
         </div>
             <div class="sk-sidebar-toc">
               <ul>
-<li><a class="reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">langchain_anthropic</span></code> 0.1.0</a><ul>
+<li><a class="reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">langchain_anthropic</span></code> 0.1.3</a><ul>
 <li><a class="reference internal" href="#module-langchain_anthropic.chat_models"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_anthropic.chat_models</span></code></a><ul>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#module-langchain_anthropic.llms"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_anthropic.llms</span></code></a><ul>
+<li><a class="reference internal" href="#module-langchain_anthropic.experimental"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_anthropic.experimental</span></code></a><ul>
 <li><a class="reference internal" href="#id1">Classes</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-langchain_anthropic.llms"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_anthropic.llms</span></code></a><ul>
+<li><a class="reference internal" href="#id2">Classes</a></li>
 </ul>
 </li>
 </ul>
@@ -194,8 +199,8 @@
     <div id="sk-page-content-wrapper">
       <div class="sk-page-content container-fluid body px-md-3" role="main">
         
-  <section id="langchain-anthropic-0-1-0">
-<h1><code class="docutils literal notranslate"><span class="pre">langchain_anthropic</span></code> 0.1.0<a class="headerlink" href="#langchain-anthropic-0-1-0" title="Permalink to this heading">¶</a></h1>
+  <section id="langchain-anthropic-0-1-3">
+<h1><code class="docutils literal notranslate"><span class="pre">langchain_anthropic</span></code> 0.1.3<a class="headerlink" href="#langchain-anthropic-0-1-3" title="Permalink to this heading">¶</a></h1>
 <section id="module-langchain_anthropic.chat_models">
 <span id="langchain-anthropic-chat-models"></span><h2><a class="reference internal" href="#module-langchain_anthropic.chat_models" title="langchain_anthropic.chat_models"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_anthropic.chat_models</span></code></a><a class="headerlink" href="#module-langchain_anthropic.chat_models" title="Permalink to this heading">¶</a></h2>
 <section id="classes">
@@ -207,7 +212,7 @@
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="chat_models/langchain_anthropic.chat_models.ChatAnthropic.html#langchain_anthropic.chat_models.ChatAnthropic" title="langchain_anthropic.chat_models.ChatAnthropic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">chat_models.ChatAnthropic</span></code></a></p></td>
-<td><p>ChatAnthropicMessages chat model.</p></td>
+<td><p>Anthropic chat model.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="chat_models/langchain_anthropic.chat_models.ChatAnthropicMessages.html#langchain_anthropic.chat_models.ChatAnthropicMessages" title="langchain_anthropic.chat_models.ChatAnthropicMessages"><code class="xref py py-obj docutils literal notranslate"><span class="pre">chat_models.ChatAnthropicMessages</span></code></a></p></td>
 <td><p>[<em>Deprecated</em>]</p></td>
@@ -216,10 +221,41 @@
 </table>
 </section>
 </section>
-<section id="module-langchain_anthropic.llms">
-<span id="langchain-anthropic-llms"></span><h2><a class="reference internal" href="#module-langchain_anthropic.llms" title="langchain_anthropic.llms"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_anthropic.llms</span></code></a><a class="headerlink" href="#module-langchain_anthropic.llms" title="Permalink to this heading">¶</a></h2>
+<section id="module-langchain_anthropic.experimental">
+<span id="langchain-anthropic-experimental"></span><h2><a class="reference internal" href="#module-langchain_anthropic.experimental" title="langchain_anthropic.experimental"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_anthropic.experimental</span></code></a><a class="headerlink" href="#module-langchain_anthropic.experimental" title="Permalink to this heading">¶</a></h2>
 <section id="id1">
 <h3>Classes<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+<table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="experimental/langchain_anthropic.experimental.ChatAnthropicTools.html#langchain_anthropic.experimental.ChatAnthropicTools" title="langchain_anthropic.experimental.ChatAnthropicTools"><code class="xref py py-obj docutils literal notranslate"><span class="pre">experimental.ChatAnthropicTools</span></code></a></p></td>
+<td><p>[<em>Beta</em>] Chat model for interacting with Anthropic functions.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">¶</a></h3>
+<table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="experimental/langchain_anthropic.experimental.get_system_message.html#langchain_anthropic.experimental.get_system_message" title="langchain_anthropic.experimental.get_system_message"><code class="xref py py-obj docutils literal notranslate"><span class="pre">experimental.get_system_message</span></code></a>(tools)</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="module-langchain_anthropic.llms">
+<span id="langchain-anthropic-llms"></span><h2><a class="reference internal" href="#module-langchain_anthropic.llms" title="langchain_anthropic.llms"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_anthropic.llms</span></code></a><a class="headerlink" href="#module-langchain_anthropic.llms" title="Permalink to this heading">¶</a></h2>
+<section id="id2">
+<h3>Classes<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
 <table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -243,7 +279,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 04, 2024.
+          Last updated on Mar 06, 2024.
       </footer>
     </div>
   </div>

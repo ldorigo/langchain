@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   
-  <title>langchain_astradb 0.1.0rc0 &mdash; 🦜🔗 LangChain 0.1.10</title>
+  <title>langchain_astradb 0.1.0rc0 &mdash; 🦜🔗 LangChain 0.1.11</title>
   
   <link rel="canonical" href="https://api.python.langchain.com/en/latest/astradb_api_reference.html" />
 
@@ -176,21 +176,25 @@
             <div class="sk-sidebar-toc">
               <ul>
 <li><a class="reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">langchain_astradb</span></code> 0.1.0rc0</a><ul>
-<li><a class="reference internal" href="#module-langchain_astradb.chat_message_histories"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_astradb.chat_message_histories</span></code></a><ul>
+<li><a class="reference internal" href="#module-langchain_astradb.cache"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_astradb.cache</span></code></a><ul>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#module-langchain_astradb.storage"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_astradb.storage</span></code></a><ul>
+<li><a class="reference internal" href="#module-langchain_astradb.chat_message_histories"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_astradb.chat_message_histories</span></code></a><ul>
 <li><a class="reference internal" href="#id1">Classes</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#module-langchain_astradb.utils"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_astradb.utils</span></code></a><ul>
+<li><a class="reference internal" href="#module-langchain_astradb.storage"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_astradb.storage</span></code></a><ul>
 <li><a class="reference internal" href="#id2">Classes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-langchain_astradb.utils"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_astradb.utils</span></code></a><ul>
+<li><a class="reference internal" href="#id3">Classes</a></li>
 <li><a class="reference internal" href="#functions">Functions</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-langchain_astradb.vectorstores"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_astradb.vectorstores</span></code></a><ul>
-<li><a class="reference internal" href="#id3">Classes</a></li>
+<li><a class="reference internal" href="#id4">Classes</a></li>
 </ul>
 </li>
 </ul>
@@ -205,11 +209,31 @@
         
   <section id="langchain-astradb-0-1-0rc0">
 <h1><code class="docutils literal notranslate"><span class="pre">langchain_astradb</span></code> 0.1.0rc0<a class="headerlink" href="#langchain-astradb-0-1-0rc0" title="Permalink to this heading">¶</a></h1>
+<section id="module-langchain_astradb.cache">
+<span id="langchain-astradb-cache"></span><h2><a class="reference internal" href="#module-langchain_astradb.cache" title="langchain_astradb.cache"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_astradb.cache</span></code></a><a class="headerlink" href="#module-langchain_astradb.cache" title="Permalink to this heading">¶</a></h2>
+<section id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading">¶</a></h3>
+<table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="cache/langchain_astradb.cache.AstraDBCache.html#langchain_astradb.cache.AstraDBCache" title="langchain_astradb.cache.AstraDBCache"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cache.AstraDBCache</span></code></a>(*[, collection_name, ...])</p></td>
+<td><p>Cache that uses Astra DB as a backend.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="cache/langchain_astradb.cache.AstraDBSemanticCache.html#langchain_astradb.cache.AstraDBSemanticCache" title="langchain_astradb.cache.AstraDBSemanticCache"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cache.AstraDBSemanticCache</span></code></a>(*[, ...])</p></td>
+<td><p>Cache that uses Astra DB as a vector-store backend for semantic (i.e.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
 <section id="module-langchain_astradb.chat_message_histories">
 <span id="langchain-astradb-chat-message-histories"></span><h2><a class="reference internal" href="#module-langchain_astradb.chat_message_histories" title="langchain_astradb.chat_message_histories"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_astradb.chat_message_histories</span></code></a><a class="headerlink" href="#module-langchain_astradb.chat_message_histories" title="Permalink to this heading">¶</a></h2>
 <p>Astra DB - based chat message history, based on astrapy.</p>
-<section id="classes">
-<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading">¶</a></h3>
+<section id="id1">
+<h3>Classes<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
 <table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -225,8 +249,8 @@
 </section>
 <section id="module-langchain_astradb.storage">
 <span id="langchain-astradb-storage"></span><h2><a class="reference internal" href="#module-langchain_astradb.storage" title="langchain_astradb.storage"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_astradb.storage</span></code></a><a class="headerlink" href="#module-langchain_astradb.storage" title="Permalink to this heading">¶</a></h2>
-<section id="id1">
-<h3>Classes<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+<section id="id2">
+<h3>Classes<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
 <table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -248,8 +272,8 @@
 </section>
 <section id="module-langchain_astradb.utils">
 <span id="langchain-astradb-utils"></span><h2><a class="reference internal" href="#module-langchain_astradb.utils" title="langchain_astradb.utils"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_astradb.utils</span></code></a><a class="headerlink" href="#module-langchain_astradb.utils" title="Permalink to this heading">¶</a></h2>
-<section id="id2">
-<h3>Classes<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
+<section id="id3">
+<h3>Classes<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
 <table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -282,8 +306,8 @@
 </section>
 <section id="module-langchain_astradb.vectorstores">
 <span id="langchain-astradb-vectorstores"></span><h2><a class="reference internal" href="#module-langchain_astradb.vectorstores" title="langchain_astradb.vectorstores"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_astradb.vectorstores</span></code></a><a class="headerlink" href="#module-langchain_astradb.vectorstores" title="Permalink to this heading">¶</a></h2>
-<section id="id3">
-<h3>Classes<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
+<section id="id4">
+<h3>Classes<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h3>
 <table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -304,7 +328,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 04, 2024.
+          Last updated on Mar 06, 2024.
       </footer>
     </div>
   </div>

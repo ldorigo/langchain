@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   
-  <title>langchain 0.1.10 &mdash; 🦜🔗 LangChain 0.1.10</title>
+  <title>langchain 0.1.11 &mdash; 🦜🔗 LangChain 0.1.11</title>
   
   <link rel="canonical" href="https://api.python.langchain.com/en/latest/langchain_api_reference.html" />
 
@@ -175,7 +175,7 @@
         </div>
             <div class="sk-sidebar-toc">
               <ul>
-<li><a class="reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">langchain</span></code> 0.1.10</a><ul>
+<li><a class="reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">langchain</span></code> 0.1.11</a><ul>
 <li><a class="reference internal" href="#module-langchain.agents"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain.agents</span></code></a><ul>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 <li><a class="reference internal" href="#functions">Functions</a></li>
@@ -258,8 +258,8 @@
     <div id="sk-page-content-wrapper">
       <div class="sk-page-content container-fluid body px-md-3" role="main">
         
-  <section id="langchain-0-1-10">
-<h1><code class="docutils literal notranslate"><span class="pre">langchain</span></code> 0.1.10<a class="headerlink" href="#langchain-0-1-10" title="Permalink to this heading">¶</a></h1>
+  <section id="langchain-0-1-11">
+<h1><code class="docutils literal notranslate"><span class="pre">langchain</span></code> 0.1.11<a class="headerlink" href="#langchain-0-1-11" title="Permalink to this heading">¶</a></h1>
 <section id="module-langchain.agents">
 <span id="langchain-agents"></span><h2><a class="reference internal" href="#module-langchain.agents" title="langchain.agents"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain.agents</span></code></a><a class="headerlink" href="#module-langchain.agents" title="Permalink to this heading">¶</a></h2>
 <p><strong>Agent</strong> is a class that uses an LLM to choose a sequence of actions to take.</p>
@@ -1591,55 +1591,58 @@ the backbone of a retriever, but there are other types of retrievers as well.</p
 <tr class="row-odd"><td><p><a class="reference internal" href="retrievers/langchain.retrievers.self_query.deeplake.DeepLakeTranslator.html#langchain.retrievers.self_query.deeplake.DeepLakeTranslator" title="langchain.retrievers.self_query.deeplake.DeepLakeTranslator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">retrievers.self_query.deeplake.DeepLakeTranslator</span></code></a>()</p></td>
 <td><p>Translate <cite>DeepLake</cite> internal query language elements to valid filters.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="retrievers/langchain.retrievers.self_query.elasticsearch.ElasticsearchTranslator.html#langchain.retrievers.self_query.elasticsearch.ElasticsearchTranslator" title="langchain.retrievers.self_query.elasticsearch.ElasticsearchTranslator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">retrievers.self_query.elasticsearch.ElasticsearchTranslator</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="retrievers/langchain.retrievers.self_query.dingo.DingoDBTranslator.html#langchain.retrievers.self_query.dingo.DingoDBTranslator" title="langchain.retrievers.self_query.dingo.DingoDBTranslator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">retrievers.self_query.dingo.DingoDBTranslator</span></code></a>()</p></td>
+<td><p>Translate <cite>DingoDB</cite> internal query language elements to valid filters.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="retrievers/langchain.retrievers.self_query.elasticsearch.ElasticsearchTranslator.html#langchain.retrievers.self_query.elasticsearch.ElasticsearchTranslator" title="langchain.retrievers.self_query.elasticsearch.ElasticsearchTranslator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">retrievers.self_query.elasticsearch.ElasticsearchTranslator</span></code></a>()</p></td>
 <td><p>Translate <cite>Elasticsearch</cite> internal query language elements to valid filters.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="retrievers/langchain.retrievers.self_query.milvus.MilvusTranslator.html#langchain.retrievers.self_query.milvus.MilvusTranslator" title="langchain.retrievers.self_query.milvus.MilvusTranslator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">retrievers.self_query.milvus.MilvusTranslator</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="retrievers/langchain.retrievers.self_query.milvus.MilvusTranslator.html#langchain.retrievers.self_query.milvus.MilvusTranslator" title="langchain.retrievers.self_query.milvus.MilvusTranslator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">retrievers.self_query.milvus.MilvusTranslator</span></code></a>()</p></td>
 <td><p>Translate Milvus internal query language elements to valid filters.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="retrievers/langchain.retrievers.self_query.mongodb_atlas.MongoDBAtlasTranslator.html#langchain.retrievers.self_query.mongodb_atlas.MongoDBAtlasTranslator" title="langchain.retrievers.self_query.mongodb_atlas.MongoDBAtlasTranslator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">retrievers.self_query.mongodb_atlas.MongoDBAtlasTranslator</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="retrievers/langchain.retrievers.self_query.mongodb_atlas.MongoDBAtlasTranslator.html#langchain.retrievers.self_query.mongodb_atlas.MongoDBAtlasTranslator" title="langchain.retrievers.self_query.mongodb_atlas.MongoDBAtlasTranslator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">retrievers.self_query.mongodb_atlas.MongoDBAtlasTranslator</span></code></a>()</p></td>
 <td><p>Translate Mongo internal query language elements to valid filters.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="retrievers/langchain.retrievers.self_query.myscale.MyScaleTranslator.html#langchain.retrievers.self_query.myscale.MyScaleTranslator" title="langchain.retrievers.self_query.myscale.MyScaleTranslator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">retrievers.self_query.myscale.MyScaleTranslator</span></code></a>([...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="retrievers/langchain.retrievers.self_query.myscale.MyScaleTranslator.html#langchain.retrievers.self_query.myscale.MyScaleTranslator" title="langchain.retrievers.self_query.myscale.MyScaleTranslator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">retrievers.self_query.myscale.MyScaleTranslator</span></code></a>([...])</p></td>
 <td><p>Translate <cite>MyScale</cite> internal query language elements to valid filters.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="retrievers/langchain.retrievers.self_query.opensearch.OpenSearchTranslator.html#langchain.retrievers.self_query.opensearch.OpenSearchTranslator" title="langchain.retrievers.self_query.opensearch.OpenSearchTranslator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">retrievers.self_query.opensearch.OpenSearchTranslator</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="retrievers/langchain.retrievers.self_query.opensearch.OpenSearchTranslator.html#langchain.retrievers.self_query.opensearch.OpenSearchTranslator" title="langchain.retrievers.self_query.opensearch.OpenSearchTranslator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">retrievers.self_query.opensearch.OpenSearchTranslator</span></code></a>()</p></td>
 <td><p>Translate <cite>OpenSearch</cite> internal query domain-specific language elements to valid filters.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="retrievers/langchain.retrievers.self_query.pgvector.PGVectorTranslator.html#langchain.retrievers.self_query.pgvector.PGVectorTranslator" title="langchain.retrievers.self_query.pgvector.PGVectorTranslator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">retrievers.self_query.pgvector.PGVectorTranslator</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="retrievers/langchain.retrievers.self_query.pgvector.PGVectorTranslator.html#langchain.retrievers.self_query.pgvector.PGVectorTranslator" title="langchain.retrievers.self_query.pgvector.PGVectorTranslator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">retrievers.self_query.pgvector.PGVectorTranslator</span></code></a>()</p></td>
 <td><p>Translate <cite>PGVector</cite> internal query language elements to valid filters.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="retrievers/langchain.retrievers.self_query.pinecone.PineconeTranslator.html#langchain.retrievers.self_query.pinecone.PineconeTranslator" title="langchain.retrievers.self_query.pinecone.PineconeTranslator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">retrievers.self_query.pinecone.PineconeTranslator</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="retrievers/langchain.retrievers.self_query.pinecone.PineconeTranslator.html#langchain.retrievers.self_query.pinecone.PineconeTranslator" title="langchain.retrievers.self_query.pinecone.PineconeTranslator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">retrievers.self_query.pinecone.PineconeTranslator</span></code></a>()</p></td>
 <td><p>Translate <cite>Pinecone</cite> internal query language elements to valid filters.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="retrievers/langchain.retrievers.self_query.qdrant.QdrantTranslator.html#langchain.retrievers.self_query.qdrant.QdrantTranslator" title="langchain.retrievers.self_query.qdrant.QdrantTranslator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">retrievers.self_query.qdrant.QdrantTranslator</span></code></a>(...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="retrievers/langchain.retrievers.self_query.qdrant.QdrantTranslator.html#langchain.retrievers.self_query.qdrant.QdrantTranslator" title="langchain.retrievers.self_query.qdrant.QdrantTranslator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">retrievers.self_query.qdrant.QdrantTranslator</span></code></a>(...)</p></td>
 <td><p>Translate <cite>Qdrant</cite> internal query language elements to valid filters.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="retrievers/langchain.retrievers.self_query.redis.RedisTranslator.html#langchain.retrievers.self_query.redis.RedisTranslator" title="langchain.retrievers.self_query.redis.RedisTranslator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">retrievers.self_query.redis.RedisTranslator</span></code></a>(schema)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="retrievers/langchain.retrievers.self_query.redis.RedisTranslator.html#langchain.retrievers.self_query.redis.RedisTranslator" title="langchain.retrievers.self_query.redis.RedisTranslator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">retrievers.self_query.redis.RedisTranslator</span></code></a>(schema)</p></td>
 <td><p>Visitor for translating structured queries to Redis filter expressions.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="retrievers/langchain.retrievers.self_query.supabase.SupabaseVectorTranslator.html#langchain.retrievers.self_query.supabase.SupabaseVectorTranslator" title="langchain.retrievers.self_query.supabase.SupabaseVectorTranslator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">retrievers.self_query.supabase.SupabaseVectorTranslator</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="retrievers/langchain.retrievers.self_query.supabase.SupabaseVectorTranslator.html#langchain.retrievers.self_query.supabase.SupabaseVectorTranslator" title="langchain.retrievers.self_query.supabase.SupabaseVectorTranslator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">retrievers.self_query.supabase.SupabaseVectorTranslator</span></code></a>()</p></td>
 <td><p>Translate Langchain filters to Supabase PostgREST filters.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="retrievers/langchain.retrievers.self_query.timescalevector.TimescaleVectorTranslator.html#langchain.retrievers.self_query.timescalevector.TimescaleVectorTranslator" title="langchain.retrievers.self_query.timescalevector.TimescaleVectorTranslator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">retrievers.self_query.timescalevector.TimescaleVectorTranslator</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="retrievers/langchain.retrievers.self_query.timescalevector.TimescaleVectorTranslator.html#langchain.retrievers.self_query.timescalevector.TimescaleVectorTranslator" title="langchain.retrievers.self_query.timescalevector.TimescaleVectorTranslator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">retrievers.self_query.timescalevector.TimescaleVectorTranslator</span></code></a>()</p></td>
 <td><p>Translate the internal query language elements to valid filters.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="retrievers/langchain.retrievers.self_query.vectara.VectaraTranslator.html#langchain.retrievers.self_query.vectara.VectaraTranslator" title="langchain.retrievers.self_query.vectara.VectaraTranslator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">retrievers.self_query.vectara.VectaraTranslator</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="retrievers/langchain.retrievers.self_query.vectara.VectaraTranslator.html#langchain.retrievers.self_query.vectara.VectaraTranslator" title="langchain.retrievers.self_query.vectara.VectaraTranslator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">retrievers.self_query.vectara.VectaraTranslator</span></code></a>()</p></td>
 <td><p>Translate <cite>Vectara</cite> internal query language elements to valid filters.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="retrievers/langchain.retrievers.self_query.weaviate.WeaviateTranslator.html#langchain.retrievers.self_query.weaviate.WeaviateTranslator" title="langchain.retrievers.self_query.weaviate.WeaviateTranslator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">retrievers.self_query.weaviate.WeaviateTranslator</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="retrievers/langchain.retrievers.self_query.weaviate.WeaviateTranslator.html#langchain.retrievers.self_query.weaviate.WeaviateTranslator" title="langchain.retrievers.self_query.weaviate.WeaviateTranslator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">retrievers.self_query.weaviate.WeaviateTranslator</span></code></a>()</p></td>
 <td><p>Translate <cite>Weaviate</cite> internal query language elements to valid filters.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="retrievers/langchain.retrievers.time_weighted_retriever.TimeWeightedVectorStoreRetriever.html#langchain.retrievers.time_weighted_retriever.TimeWeightedVectorStoreRetriever" title="langchain.retrievers.time_weighted_retriever.TimeWeightedVectorStoreRetriever"><code class="xref py py-obj docutils literal notranslate"><span class="pre">retrievers.time_weighted_retriever.TimeWeightedVectorStoreRetriever</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="retrievers/langchain.retrievers.time_weighted_retriever.TimeWeightedVectorStoreRetriever.html#langchain.retrievers.time_weighted_retriever.TimeWeightedVectorStoreRetriever" title="langchain.retrievers.time_weighted_retriever.TimeWeightedVectorStoreRetriever"><code class="xref py py-obj docutils literal notranslate"><span class="pre">retrievers.time_weighted_retriever.TimeWeightedVectorStoreRetriever</span></code></a></p></td>
 <td><p>Retriever that combines embedding similarity with recency in retrieving values.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="retrievers/langchain.retrievers.web_research.QuestionListOutputParser.html#langchain.retrievers.web_research.QuestionListOutputParser" title="langchain.retrievers.web_research.QuestionListOutputParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">retrievers.web_research.QuestionListOutputParser</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="retrievers/langchain.retrievers.web_research.QuestionListOutputParser.html#langchain.retrievers.web_research.QuestionListOutputParser" title="langchain.retrievers.web_research.QuestionListOutputParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">retrievers.web_research.QuestionListOutputParser</span></code></a></p></td>
 <td><p>Output parser for a list of numbered questions.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="retrievers/langchain.retrievers.web_research.SearchQueries.html#langchain.retrievers.web_research.SearchQueries" title="langchain.retrievers.web_research.SearchQueries"><code class="xref py py-obj docutils literal notranslate"><span class="pre">retrievers.web_research.SearchQueries</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="retrievers/langchain.retrievers.web_research.SearchQueries.html#langchain.retrievers.web_research.SearchQueries" title="langchain.retrievers.web_research.SearchQueries"><code class="xref py py-obj docutils literal notranslate"><span class="pre">retrievers.web_research.SearchQueries</span></code></a></p></td>
 <td><p>Search queries to research for the user's goal.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="retrievers/langchain.retrievers.web_research.WebResearchRetriever.html#langchain.retrievers.web_research.WebResearchRetriever" title="langchain.retrievers.web_research.WebResearchRetriever"><code class="xref py py-obj docutils literal notranslate"><span class="pre">retrievers.web_research.WebResearchRetriever</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="retrievers/langchain.retrievers.web_research.WebResearchRetriever.html#langchain.retrievers.web_research.WebResearchRetriever" title="langchain.retrievers.web_research.WebResearchRetriever"><code class="xref py py-obj docutils literal notranslate"><span class="pre">retrievers.web_research.WebResearchRetriever</span></code></a></p></td>
 <td><p><cite>Google Search API</cite> retriever.</p></td>
 </tr>
 </tbody>
@@ -1964,7 +1967,7 @@ tool for the job.</p>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 04, 2024.
+          Last updated on Mar 06, 2024.
       </footer>
     </div>
   </div>

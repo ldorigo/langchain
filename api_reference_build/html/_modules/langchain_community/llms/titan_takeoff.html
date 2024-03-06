@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   
-  <title>langchain_community.llms.titan_takeoff &mdash; 🦜🔗 LangChain 0.1.10</title>
+  <title>langchain_community.llms.titan_takeoff &mdash; 🦜🔗 LangChain 0.1.11</title>
   
   <link rel="canonical" href="https://api.python.langchain.com/en/latest/_modules/langchain_community/llms/titan_takeoff.html" />
 
@@ -333,9 +333,9 @@
         <span class="k">for</span> <span class="n">text</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">iter_content</span><span class="p">(</span><span class="n">chunk_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">decode_unicode</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">text</span><span class="p">:</span>
                 <span class="n">chunk</span> <span class="o">=</span> <span class="n">GenerationChunk</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">text</span><span class="p">)</span>
-                <span class="k">yield</span> <span class="n">chunk</span>
                 <span class="k">if</span> <span class="n">run_manager</span><span class="p">:</span>
                     <span class="n">run_manager</span><span class="o">.</span><span class="n">on_llm_new_token</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="n">chunk</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+                <span class="k">yield</span> <span class="n">chunk</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">_identifying_params</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
@@ -347,7 +347,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 04, 2024.
+          Last updated on Mar 06, 2024.
       </footer>
     </div>
   </div>

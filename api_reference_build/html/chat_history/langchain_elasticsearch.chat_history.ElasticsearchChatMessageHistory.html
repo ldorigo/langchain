@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   
-  <title>langchain_elasticsearch.chat_history.ElasticsearchChatMessageHistory &mdash; 🦜🔗 LangChain 0.1.10</title>
+  <title>langchain_elasticsearch.chat_history.ElasticsearchChatMessageHistory &mdash; 🦜🔗 LangChain 0.1.11</title>
   
   <link rel="canonical" href="https://api.python.langchain.com/en/latest/chat_history/langchain_elasticsearch.chat_history.ElasticsearchChatMessageHistory.html" />
 
@@ -186,8 +186,6 @@
 <li><a class="reference internal" href="#langchain_elasticsearch.chat_history.ElasticsearchChatMessageHistory.add_user_message"><code class="docutils literal notranslate"><span class="pre">ElasticsearchChatMessageHistory.add_user_message()</span></code></a></li>
 <li><a class="reference internal" href="#langchain_elasticsearch.chat_history.ElasticsearchChatMessageHistory.aget_messages"><code class="docutils literal notranslate"><span class="pre">ElasticsearchChatMessageHistory.aget_messages()</span></code></a></li>
 <li><a class="reference internal" href="#langchain_elasticsearch.chat_history.ElasticsearchChatMessageHistory.clear"><code class="docutils literal notranslate"><span class="pre">ElasticsearchChatMessageHistory.clear()</span></code></a></li>
-<li><a class="reference internal" href="#langchain_elasticsearch.chat_history.ElasticsearchChatMessageHistory.connect_to_elasticsearch"><code class="docutils literal notranslate"><span class="pre">ElasticsearchChatMessageHistory.connect_to_elasticsearch()</span></code></a></li>
-<li><a class="reference internal" href="#langchain_elasticsearch.chat_history.ElasticsearchChatMessageHistory.get_user_agent"><code class="docutils literal notranslate"><span class="pre">ElasticsearchChatMessageHistory.get_user_agent()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -267,12 +265,6 @@ of a single chat session.</p></li>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#langchain_elasticsearch.chat_history.ElasticsearchChatMessageHistory.clear" title="langchain_elasticsearch.chat_history.ElasticsearchChatMessageHistory.clear"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear</span></code></a>()</p></td>
 <td><p>Clear session memory in Elasticsearch</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#langchain_elasticsearch.chat_history.ElasticsearchChatMessageHistory.connect_to_elasticsearch" title="langchain_elasticsearch.chat_history.ElasticsearchChatMessageHistory.connect_to_elasticsearch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">connect_to_elasticsearch</span></code></a>(*[, es_url, ...])</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#langchain_elasticsearch.chat_history.ElasticsearchChatMessageHistory.get_user_agent" title="langchain_elasticsearch.chat_history.ElasticsearchChatMessageHistory.get_user_agent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_user_agent</span></code></a>()</p></td>
-<td><p></p></td>
 </tr>
 </tbody>
 </table>
@@ -412,35 +404,6 @@ persistence layer.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="langchain_elasticsearch.chat_history.ElasticsearchChatMessageHistory.connect_to_elasticsearch">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">connect_to_elasticsearch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">es_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cloud_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Elasticsearch</span></span></span><a class="reference internal" href="../_modules/langchain_elasticsearch/chat_history.html#ElasticsearchChatMessageHistory.connect_to_elasticsearch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#langchain_elasticsearch.chat_history.ElasticsearchChatMessageHistory.connect_to_elasticsearch" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>es_url</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – </p></li>
-<li><p><strong>cloud_id</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – </p></li>
-<li><p><strong>api_key</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – </p></li>
-<li><p><strong>username</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – </p></li>
-<li><p><strong>password</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – </p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>Elasticsearch</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="langchain_elasticsearch.chat_history.ElasticsearchChatMessageHistory.get_user_agent">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_user_agent</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../_modules/langchain_elasticsearch/chat_history.html#ElasticsearchChatMessageHistory.get_user_agent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#langchain_elasticsearch.chat_history.ElasticsearchChatMessageHistory.get_user_agent" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>str</p>
-</dd>
-</dl>
-</dd></dl>
-
 </dd></dl>
 
 <ul class="simple">
@@ -452,7 +415,7 @@ persistence layer.</p>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 04, 2024.
+          Last updated on Mar 06, 2024.
       </footer>
     </div>
   </div>

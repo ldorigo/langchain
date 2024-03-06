@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   
-  <title>langchain_mongodb 0.1.0 &mdash; 🦜🔗 LangChain 0.1.10</title>
+  <title>langchain_mongodb 0.1.0 &mdash; 🦜🔗 LangChain 0.1.11</title>
   
   <link rel="canonical" href="https://api.python.langchain.com/en/latest/mongodb_api_reference.html" />
 
@@ -176,12 +176,20 @@
             <div class="sk-sidebar-toc">
               <ul>
 <li><a class="reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">langchain_mongodb</span></code> 0.1.0</a><ul>
+<li><a class="reference internal" href="#module-langchain_mongodb.cache"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_mongodb.cache</span></code></a><ul>
+<li><a class="reference internal" href="#classes">Classes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-langchain_mongodb.chat_message_histories"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_mongodb.chat_message_histories</span></code></a><ul>
+<li><a class="reference internal" href="#id1">Classes</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#module-langchain_mongodb.utils"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_mongodb.utils</span></code></a><ul>
 <li><a class="reference internal" href="#functions">Functions</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-langchain_mongodb.vectorstores"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_mongodb.vectorstores</span></code></a><ul>
-<li><a class="reference internal" href="#classes">Classes</a></li>
+<li><a class="reference internal" href="#id2">Classes</a></li>
 </ul>
 </li>
 </ul>
@@ -196,6 +204,51 @@
         
   <section id="langchain-mongodb-0-1-0">
 <h1><code class="docutils literal notranslate"><span class="pre">langchain_mongodb</span></code> 0.1.0<a class="headerlink" href="#langchain-mongodb-0-1-0" title="Permalink to this heading">¶</a></h1>
+<section id="module-langchain_mongodb.cache">
+<span id="langchain-mongodb-cache"></span><h2><a class="reference internal" href="#module-langchain_mongodb.cache" title="langchain_mongodb.cache"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_mongodb.cache</span></code></a><a class="headerlink" href="#module-langchain_mongodb.cache" title="Permalink to this heading">¶</a></h2>
+<p>LangChain MongoDB Caches</p>
+<p>Functions “_loads_generations” and “_dumps_generations”
+are duplicated in this utility from modules:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>“libs/community/langchain_community/cache.py”</p></li>
+</ul>
+</div></blockquote>
+<section id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading">¶</a></h3>
+<table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="cache/langchain_mongodb.cache.MongoDBAtlasSemanticCache.html#langchain_mongodb.cache.MongoDBAtlasSemanticCache" title="langchain_mongodb.cache.MongoDBAtlasSemanticCache"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cache.MongoDBAtlasSemanticCache</span></code></a>(...[, ...])</p></td>
+<td><p>MongoDB Atlas Semantic cache.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="cache/langchain_mongodb.cache.MongoDBCache.html#langchain_mongodb.cache.MongoDBCache" title="langchain_mongodb.cache.MongoDBCache"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cache.MongoDBCache</span></code></a>(connection_string[, ...])</p></td>
+<td><p>MongoDB Atlas cache</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="module-langchain_mongodb.chat_message_histories">
+<span id="langchain-mongodb-chat-message-histories"></span><h2><a class="reference internal" href="#module-langchain_mongodb.chat_message_histories" title="langchain_mongodb.chat_message_histories"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_mongodb.chat_message_histories</span></code></a><a class="headerlink" href="#module-langchain_mongodb.chat_message_histories" title="Permalink to this heading">¶</a></h2>
+<section id="id1">
+<h3>Classes<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+<table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="chat_message_histories/langchain_mongodb.chat_message_histories.MongoDBChatMessageHistory.html#langchain_mongodb.chat_message_histories.MongoDBChatMessageHistory" title="langchain_mongodb.chat_message_histories.MongoDBChatMessageHistory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">chat_message_histories.MongoDBChatMessageHistory</span></code></a>(...)</p></td>
+<td><p>Chat message history that stores history in MongoDB.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
 <section id="module-langchain_mongodb.utils">
 <span id="langchain-mongodb-utils"></span><h2><a class="reference internal" href="#module-langchain_mongodb.utils" title="langchain_mongodb.utils"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_mongodb.utils</span></code></a><a class="headerlink" href="#module-langchain_mongodb.utils" title="Permalink to this heading">¶</a></h2>
 <p>Tools for the Maximal Marginal Relevance (MMR) reranking.
@@ -228,8 +281,8 @@ are duplicated in this utility respectively from modules:</p>
 </section>
 <section id="module-langchain_mongodb.vectorstores">
 <span id="langchain-mongodb-vectorstores"></span><h2><a class="reference internal" href="#module-langchain_mongodb.vectorstores" title="langchain_mongodb.vectorstores"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_mongodb.vectorstores</span></code></a><a class="headerlink" href="#module-langchain_mongodb.vectorstores" title="Permalink to this heading">¶</a></h2>
-<section id="classes">
-<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading">¶</a></h3>
+<section id="id2">
+<h3>Classes<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
 <table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -250,7 +303,7 @@ are duplicated in this utility respectively from modules:</p>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 04, 2024.
+          Last updated on Mar 06, 2024.
       </footer>
     </div>
   </div>

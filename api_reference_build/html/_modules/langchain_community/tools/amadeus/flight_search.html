@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   
-  <title>langchain_community.tools.amadeus.flight_search &mdash; 🦜🔗 LangChain 0.1.10</title>
+  <title>langchain_community.tools.amadeus.flight_search &mdash; 🦜🔗 LangChain 0.1.11</title>
   
   <link rel="canonical" href="https://api.python.langchain.com/en/latest/_modules/langchain_community/tools/amadeus/flight_search.html" />
 
@@ -213,7 +213,7 @@
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
             <span class="s2">&quot; The earliest departure datetime from the origin airport &quot;</span>
             <span class="s2">&quot; for the flight search in the following format: &quot;</span>
-            <span class="s1">&#39; &quot;YYYY-MM-DDTHH:MM&quot;, where &quot;T&quot; separates the date and time &#39;</span>
+            <span class="s1">&#39; &quot;YYYY-MM-DDTHH:MM:SS&quot;, where &quot;T&quot; separates the date and time &#39;</span>
             <span class="s1">&#39; components. For example: &quot;2023-06-09T10:30:00&quot; represents &#39;</span>
             <span class="s2">&quot; June 9th, 2023, at 10:30 AM. &quot;</span>
         <span class="p">)</span>
@@ -222,7 +222,7 @@
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
             <span class="s2">&quot; The latest departure datetime from the origin airport &quot;</span>
             <span class="s2">&quot; for the flight search in the following format: &quot;</span>
-            <span class="s1">&#39; &quot;YYYY-MM-DDTHH:MM&quot;, where &quot;T&quot; separates the date and time &#39;</span>
+            <span class="s1">&#39; &quot;YYYY-MM-DDTHH:MM:SS&quot;, where &quot;T&quot; separates the date and time &#39;</span>
             <span class="s1">&#39; components. For example: &quot;2023-06-09T10:30:00&quot; represents &#39;</span>
             <span class="s2">&quot; June 9th, 2023, at 10:30 AM. &quot;</span>
         <span class="p">)</span>
@@ -279,6 +279,7 @@
             <span class="k">return</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span>
 
         <span class="c1"># Collect all results from the Amadeus Flight Offers Search API</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">shopping</span><span class="o">.</span><span class="n">flight_offers_search</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
                 <span class="n">originLocationCode</span><span class="o">=</span><span class="n">originLocationCode</span><span class="p">,</span>
@@ -291,32 +292,32 @@
 
         <span class="c1"># Generate output dictionary</span>
         <span class="n">output</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">response</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">offer</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
+                <span class="n">itinerary</span><span class="p">:</span> <span class="n">Dict</span> <span class="o">=</span> <span class="p">{}</span>
+                <span class="n">itinerary</span><span class="p">[</span><span class="s2">&quot;price&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+                <span class="n">itinerary</span><span class="p">[</span><span class="s2">&quot;price&quot;</span><span class="p">][</span><span class="s2">&quot;total&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">offer</span><span class="p">[</span><span class="s2">&quot;price&quot;</span><span class="p">][</span><span class="s2">&quot;total&quot;</span><span class="p">]</span>
+                <span class="n">currency</span> <span class="o">=</span> <span class="n">offer</span><span class="p">[</span><span class="s2">&quot;price&quot;</span><span class="p">][</span><span class="s2">&quot;currency&quot;</span><span class="p">]</span>
+                <span class="n">currency</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;dictionaries&quot;</span><span class="p">][</span><span class="s2">&quot;currencies&quot;</span><span class="p">][</span><span class="n">currency</span><span class="p">]</span>
+                <span class="n">itinerary</span><span class="p">[</span><span class="s2">&quot;price&quot;</span><span class="p">][</span><span class="s2">&quot;currency&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+                <span class="n">itinerary</span><span class="p">[</span><span class="s2">&quot;price&quot;</span><span class="p">][</span><span class="s2">&quot;currency&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">currency</span>
 
-        <span class="k">for</span> <span class="n">offer</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
-            <span class="n">itinerary</span><span class="p">:</span> <span class="n">Dict</span> <span class="o">=</span> <span class="p">{}</span>
-            <span class="n">itinerary</span><span class="p">[</span><span class="s2">&quot;price&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
-            <span class="n">itinerary</span><span class="p">[</span><span class="s2">&quot;price&quot;</span><span class="p">][</span><span class="s2">&quot;total&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">offer</span><span class="p">[</span><span class="s2">&quot;price&quot;</span><span class="p">][</span><span class="s2">&quot;total&quot;</span><span class="p">]</span>
-            <span class="n">currency</span> <span class="o">=</span> <span class="n">offer</span><span class="p">[</span><span class="s2">&quot;price&quot;</span><span class="p">][</span><span class="s2">&quot;currency&quot;</span><span class="p">]</span>
-            <span class="n">currency</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;dictionaries&quot;</span><span class="p">][</span><span class="s2">&quot;currencies&quot;</span><span class="p">][</span><span class="n">currency</span><span class="p">]</span>
-            <span class="n">itinerary</span><span class="p">[</span><span class="s2">&quot;price&quot;</span><span class="p">][</span><span class="s2">&quot;currency&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
-            <span class="n">itinerary</span><span class="p">[</span><span class="s2">&quot;price&quot;</span><span class="p">][</span><span class="s2">&quot;currency&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">currency</span>
+                <span class="n">segments</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">for</span> <span class="n">segment</span> <span class="ow">in</span> <span class="n">offer</span><span class="p">[</span><span class="s2">&quot;itineraries&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;segments&quot;</span><span class="p">]:</span>
+                    <span class="n">flight</span> <span class="o">=</span> <span class="p">{}</span>
+                    <span class="n">flight</span><span class="p">[</span><span class="s2">&quot;departure&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">segment</span><span class="p">[</span><span class="s2">&quot;departure&quot;</span><span class="p">]</span>
+                    <span class="n">flight</span><span class="p">[</span><span class="s2">&quot;arrival&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">segment</span><span class="p">[</span><span class="s2">&quot;arrival&quot;</span><span class="p">]</span>
+                    <span class="n">flight</span><span class="p">[</span><span class="s2">&quot;flightNumber&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">segment</span><span class="p">[</span><span class="s2">&quot;number&quot;</span><span class="p">]</span>
+                    <span class="n">carrier</span> <span class="o">=</span> <span class="n">segment</span><span class="p">[</span><span class="s2">&quot;carrierCode&quot;</span><span class="p">]</span>
+                    <span class="n">carrier</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;dictionaries&quot;</span><span class="p">][</span><span class="s2">&quot;carriers&quot;</span><span class="p">][</span><span class="n">carrier</span><span class="p">]</span>
+                    <span class="n">flight</span><span class="p">[</span><span class="s2">&quot;carrier&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">carrier</span>
 
-            <span class="n">segments</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="k">for</span> <span class="n">segment</span> <span class="ow">in</span> <span class="n">offer</span><span class="p">[</span><span class="s2">&quot;itineraries&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;segments&quot;</span><span class="p">]:</span>
-                <span class="n">flight</span> <span class="o">=</span> <span class="p">{}</span>
-                <span class="n">flight</span><span class="p">[</span><span class="s2">&quot;departure&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">segment</span><span class="p">[</span><span class="s2">&quot;departure&quot;</span><span class="p">]</span>
-                <span class="n">flight</span><span class="p">[</span><span class="s2">&quot;arrival&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">segment</span><span class="p">[</span><span class="s2">&quot;arrival&quot;</span><span class="p">]</span>
-                <span class="n">flight</span><span class="p">[</span><span class="s2">&quot;flightNumber&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">segment</span><span class="p">[</span><span class="s2">&quot;number&quot;</span><span class="p">]</span>
-                <span class="n">carrier</span> <span class="o">=</span> <span class="n">segment</span><span class="p">[</span><span class="s2">&quot;carrierCode&quot;</span><span class="p">]</span>
-                <span class="n">carrier</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;dictionaries&quot;</span><span class="p">][</span><span class="s2">&quot;carriers&quot;</span><span class="p">][</span><span class="n">carrier</span><span class="p">]</span>
-                <span class="n">flight</span><span class="p">[</span><span class="s2">&quot;carrier&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">carrier</span>
+                    <span class="n">segments</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">flight</span><span class="p">)</span>
 
-                <span class="n">segments</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">flight</span><span class="p">)</span>
+                <span class="n">itinerary</span><span class="p">[</span><span class="s2">&quot;segments&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="n">itinerary</span><span class="p">[</span><span class="s2">&quot;segments&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">segments</span>
 
-            <span class="n">itinerary</span><span class="p">[</span><span class="s2">&quot;segments&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="n">itinerary</span><span class="p">[</span><span class="s2">&quot;segments&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">segments</span>
-
-            <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">itinerary</span><span class="p">)</span>
+                <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">itinerary</span><span class="p">)</span>
 
         <span class="c1"># Filter out flights after latest departure time</span>
         <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">offer</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">output</span><span class="p">):</span>
@@ -338,7 +339,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 04, 2024.
+          Last updated on Mar 06, 2024.
       </footer>
     </div>
   </div>

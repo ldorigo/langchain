@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   
-  <title>langchain_core.utils.loading &mdash; 🦜🔗 LangChain 0.1.10</title>
+  <title>langchain_core.utils.loading &mdash; 🦜🔗 LangChain 0.1.11</title>
   
   <link rel="canonical" href="https://api.python.langchain.com/en/latest/_modules/langchain_core/utils/loading.html" />
 
@@ -191,17 +191,29 @@
 
 <span class="kn">import</span> <span class="nn">requests</span>
 
+<span class="kn">from</span> <span class="nn">langchain_core._api.deprecation</span> <span class="kn">import</span> <span class="n">deprecated</span>
+
 <span class="n">DEFAULT_REF</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;LANGCHAIN_HUB_DEFAULT_REF&quot;</span><span class="p">,</span> <span class="s2">&quot;master&quot;</span><span class="p">)</span>
+<span class="n">LANGCHAINHUB_REPO</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/hwchase17/langchain-hub/&quot;</span>
 <span class="n">URL_BASE</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
     <span class="s2">&quot;LANGCHAIN_HUB_URL_BASE&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;https://raw.githubusercontent.com/hwchase17/langchain-hub/</span><span class="si">{ref}</span><span class="s2">/&quot;</span><span class="p">,</span>
+    <span class="n">LANGCHAINHUB_REPO</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="si">{ref}</span><span class="s2">/&quot;</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="n">HUB_PATH_RE</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;lc(?P&lt;ref&gt;@[^:]+)?://(?P&lt;path&gt;.*)&quot;</span><span class="p">)</span>
 
 <span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="try_load_from_hub"><a class="viewcode-back" href="../../../utils/langchain_core.utils.loading.try_load_from_hub.html#langchain_core.utils.loading.try_load_from_hub">[docs]</a><span class="k">def</span> <span class="nf">try_load_from_hub</span><span class="p">(</span>
+<div class="viewcode-block" id="try_load_from_hub"><a class="viewcode-back" href="../../../utils/langchain_core.utils.loading.try_load_from_hub.html#langchain_core.utils.loading.try_load_from_hub">[docs]</a><span class="nd">@deprecated</span><span class="p">(</span>
+    <span class="n">since</span><span class="o">=</span><span class="s2">&quot;0.1.30&quot;</span><span class="p">,</span>
+    <span class="n">removal</span><span class="o">=</span><span class="s2">&quot;0.2&quot;</span><span class="p">,</span>
+    <span class="n">message</span><span class="o">=</span><span class="p">(</span>
+        <span class="s2">&quot;Using the hwchase17/langchain-hub &quot;</span>
+        <span class="s2">&quot;repo for prompts is deprecated. Please use &quot;</span>
+        <span class="s2">&quot;https://smith.langchain.com/hub instead.&quot;</span>
+    <span class="p">),</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">try_load_from_hub</span><span class="p">(</span>
     <span class="n">path</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Path</span><span class="p">],</span>
     <span class="n">loader</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="n">T</span><span class="p">],</span>
     <span class="n">valid_prefix</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -225,6 +237,8 @@
     <span class="c1"># Instead, use PurePosixPath to ensure that forward slashes are used as the</span>
     <span class="c1"># path separator, regardless of the operating system.</span>
     <span class="n">full_url</span> <span class="o">=</span> <span class="n">urljoin</span><span class="p">(</span><span class="n">URL_BASE</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="n">ref</span><span class="p">),</span> <span class="n">PurePosixPath</span><span class="p">(</span><span class="n">remote_path</span><span class="p">)</span><span class="o">.</span><span class="fm">__str__</span><span class="p">())</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">full_url</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">LANGCHAINHUB_REPO</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid hub path: </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
     <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">full_url</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
@@ -240,7 +254,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 04, 2024.
+          Last updated on Mar 06, 2024.
       </footer>
     </div>
   </div>

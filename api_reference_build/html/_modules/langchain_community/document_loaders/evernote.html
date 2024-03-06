@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   
-  <title>langchain_community.document_loaders.evernote &mdash; 🦜🔗 LangChain 0.1.10</title>
+  <title>langchain_community.document_loaders.evernote &mdash; 🦜🔗 LangChain 0.1.11</title>
   
   <link rel="canonical" href="https://api.python.langchain.com/en/latest/_modules/langchain_community/document_loaders/evernote.html" />
 
@@ -222,33 +222,32 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">file_path</span> <span class="o">=</span> <span class="n">file_path</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">load_single_document</span> <span class="o">=</span> <span class="n">load_single_document</span></div>
 
-<div class="viewcode-block" id="EverNoteLoader.load"><a class="viewcode-back" href="../../../document_loaders/langchain_community.document_loaders.evernote.EverNoteLoader.html#langchain_community.document_loaders.evernote.EverNoteLoader.load">[docs]</a>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Document</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Load documents from EverNote export file.&quot;&quot;&quot;</span>
-        <span class="n">documents</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="n">Document</span><span class="p">(</span>
-                <span class="n">page_content</span><span class="o">=</span><span class="n">note</span><span class="p">[</span><span class="s2">&quot;content&quot;</span><span class="p">],</span>
-                <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
-                    <span class="o">**</span><span class="p">{</span>
-                        <span class="n">key</span><span class="p">:</span> <span class="n">value</span>
-                        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">note</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-                        <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;content&quot;</span><span class="p">,</span> <span class="s2">&quot;content-raw&quot;</span><span class="p">,</span> <span class="s2">&quot;resource&quot;</span><span class="p">]</span>
+    <span class="k">def</span> <span class="nf">_lazy_load</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Document</span><span class="p">]:</span>
+        <span class="k">for</span> <span class="n">note</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_note_xml</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_path</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">note</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;content&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">yield</span> <span class="n">Document</span><span class="p">(</span>
+                    <span class="n">page_content</span><span class="o">=</span><span class="n">note</span><span class="p">[</span><span class="s2">&quot;content&quot;</span><span class="p">],</span>
+                    <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
+                        <span class="o">**</span><span class="p">{</span>
+                            <span class="n">key</span><span class="p">:</span> <span class="n">value</span>
+                            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">note</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                            <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;content&quot;</span><span class="p">,</span> <span class="s2">&quot;content-raw&quot;</span><span class="p">,</span> <span class="s2">&quot;resource&quot;</span><span class="p">]</span>
+                        <span class="p">},</span>
+                        <span class="o">**</span><span class="p">{</span><span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_path</span><span class="p">},</span>
                     <span class="p">},</span>
-                    <span class="o">**</span><span class="p">{</span><span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_path</span><span class="p">},</span>
-                <span class="p">},</span>
-            <span class="p">)</span>
-            <span class="k">for</span> <span class="n">note</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_note_xml</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_path</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">note</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;content&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-        <span class="p">]</span>
+                <span class="p">)</span>
 
+<div class="viewcode-block" id="EverNoteLoader.lazy_load"><a class="viewcode-back" href="../../../document_loaders/langchain_community.document_loaders.evernote.EverNoteLoader.html#langchain_community.document_loaders.evernote.EverNoteLoader.lazy_load">[docs]</a>    <span class="k">def</span> <span class="nf">lazy_load</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Document</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Load documents from EverNote export file.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_single_document</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">documents</span>
-
-        <span class="k">return</span> <span class="p">[</span>
-            <span class="n">Document</span><span class="p">(</span>
-                <span class="n">page_content</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">document</span><span class="o">.</span><span class="n">page_content</span> <span class="k">for</span> <span class="n">document</span> <span class="ow">in</span> <span class="n">documents</span><span class="p">]),</span>
+            <span class="k">yield from</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lazy_load</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">Document</span><span class="p">(</span>
+                <span class="n">page_content</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                    <span class="p">[</span><span class="n">document</span><span class="o">.</span><span class="n">page_content</span> <span class="k">for</span> <span class="n">document</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lazy_load</span><span class="p">()]</span>
+                <span class="p">),</span>
                 <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_path</span><span class="p">},</span>
-            <span class="p">)</span>
-        <span class="p">]</span></div>
+            <span class="p">)</span></div>
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">_parse_content</span><span class="p">(</span><span class="n">content</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
@@ -337,7 +336,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 04, 2024.
+          Last updated on Mar 06, 2024.
       </footer>
     </div>
   </div>

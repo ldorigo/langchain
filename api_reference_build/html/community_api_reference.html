@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   
-  <title>langchain_community 0.0.25 &mdash; 🦜🔗 LangChain 0.1.10</title>
+  <title>langchain_community 0.0.25 &mdash; 🦜🔗 LangChain 0.1.11</title>
   
   <link rel="canonical" href="https://api.python.langchain.com/en/latest/community_api_reference.html" />
 
@@ -1025,7 +1025,7 @@ WhatsApp. The loaded chat messages can be used for fine-tuning models.</p>
 <td><p>Chat message history cache that uses Momento as a backend.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="chat_message_histories/langchain_community.chat_message_histories.mongodb.MongoDBChatMessageHistory.html#langchain_community.chat_message_histories.mongodb.MongoDBChatMessageHistory" title="langchain_community.chat_message_histories.mongodb.MongoDBChatMessageHistory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">chat_message_histories.mongodb.MongoDBChatMessageHistory</span></code></a>(...)</p></td>
-<td><p>Chat message history that stores history in MongoDB.</p></td>
+<td><p>[<em>Deprecated</em>] Chat message history that stores history in MongoDB.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="chat_message_histories/langchain_community.chat_message_histories.neo4j.Neo4jChatMessageHistory.html#langchain_community.chat_message_histories.neo4j.Neo4jChatMessageHistory" title="langchain_community.chat_message_histories.neo4j.Neo4jChatMessageHistory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">chat_message_histories.neo4j.Neo4jChatMessageHistory</span></code></a>(...)</p></td>
 <td><p>Chat message history stored in a Neo4j database.</p></td>
@@ -1170,7 +1170,7 @@ an interface where “chat messages” are the inputs and outputs.</p>
 <td><p>Fake ChatModel for testing purposes.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="chat_models/langchain_community.chat_models.fireworks.ChatFireworks.html#langchain_community.chat_models.fireworks.ChatFireworks" title="langchain_community.chat_models.fireworks.ChatFireworks"><code class="xref py py-obj docutils literal notranslate"><span class="pre">chat_models.fireworks.ChatFireworks</span></code></a></p></td>
-<td><p>Fireworks Chat models.</p></td>
+<td><p>[<em>Deprecated</em>] Fireworks Chat models.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="chat_models/langchain_community.chat_models.gigachat.GigaChat.html#langchain_community.chat_models.gigachat.GigaChat" title="langchain_community.chat_models.gigachat.GigaChat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">chat_models.gigachat.GigaChat</span></code></a></p></td>
 <td><p><cite>GigaChat</cite> large language models API.</p></td>
@@ -2184,6 +2184,9 @@ an interface where “chat messages” are the inputs and outputs.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.youtube.YoutubeLoader.html#langchain_community.document_loaders.youtube.YoutubeLoader" title="langchain_community.document_loaders.youtube.YoutubeLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.youtube.YoutubeLoader</span></code></a>(video_id)</p></td>
 <td><p>Load <cite>YouTube</cite> transcripts.</p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.yuque.YuqueLoader.html#langchain_community.document_loaders.yuque.YuqueLoader" title="langchain_community.document_loaders.yuque.YuqueLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.yuque.YuqueLoader</span></code></a>(access_token)</p></td>
+<td><p>Load documents from <cite>Yuque</cite>.</p></td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -2920,7 +2923,7 @@ access to the large language model (<strong>LLM</strong>) APIs and services.</p>
 <td><p>Fake streaming list LLM for testing purposes.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="llms/langchain_community.llms.fireworks.Fireworks.html#langchain_community.llms.fireworks.Fireworks" title="langchain_community.llms.fireworks.Fireworks"><code class="xref py py-obj docutils literal notranslate"><span class="pre">llms.fireworks.Fireworks</span></code></a></p></td>
-<td><p>Fireworks models.</p></td>
+<td><p>[<em>Deprecated</em>] Fireworks models.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="llms/langchain_community.llms.forefrontai.ForefrontAI.html#langchain_community.llms.forefrontai.ForefrontAI" title="langchain_community.llms.forefrontai.ForefrontAI"><code class="xref py py-obj docutils literal notranslate"><span class="pre">llms.forefrontai.ForefrontAI</span></code></a></p></td>
 <td><p>ForefrontAI large language models.</p></td>
@@ -5029,7 +5032,7 @@ and retrieve the data that are ‘most similar’ to the embedded query.</p>
 <td><p><cite>Marqo</cite> vector store.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="vectorstores/langchain_community.vectorstores.matching_engine.MatchingEngine.html#langchain_community.vectorstores.matching_engine.MatchingEngine" title="langchain_community.vectorstores.matching_engine.MatchingEngine"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vectorstores.matching_engine.MatchingEngine</span></code></a>(...)</p></td>
-<td><p><cite>Google Vertex AI Vector Search</cite> (previously Matching Engine) vector store.</p></td>
+<td><p>[<em>Deprecated</em>] <cite>Google Vertex AI Vector Search</cite> (previously Matching Engine) vector store.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="vectorstores/langchain_community.vectorstores.meilisearch.Meilisearch.html#langchain_community.vectorstores.meilisearch.Meilisearch" title="langchain_community.vectorstores.meilisearch.Meilisearch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vectorstores.meilisearch.Meilisearch</span></code></a>(embedding)</p></td>
 <td><p><cite>Meilisearch</cite> vector store.</p></td>
@@ -5380,7 +5383,7 @@ and retrieve the data that are ‘most similar’ to the embedded query.</p>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 04, 2024.
+          Last updated on Mar 06, 2024.
       </footer>
     </div>
   </div>

@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   
-  <title>langchain.smith.evaluation.runner_utils &mdash; 🦜🔗 LangChain 0.1.10</title>
+  <title>langchain.smith.evaluation.runner_utils &mdash; 🦜🔗 LangChain 0.1.11</title>
   
   <link rel="canonical" href="https://api.python.langchain.com/en/latest/_modules/langchain/smith/evaluation/runner_utils.html" />
 
@@ -1161,20 +1161,15 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">MCF</span><span class="p">,</span> <span class="n">TracerSession</span><span class="p">,</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">Example</span><span class="p">]]:</span>
     <span class="n">wrapped_model</span> <span class="o">=</span> <span class="n">_wrap_in_chain_factory</span><span class="p">(</span><span class="n">llm_or_chain_factory</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">)</span>
     <span class="n">dataset</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">read_dataset</span><span class="p">(</span><span class="n">dataset_name</span><span class="o">=</span><span class="n">dataset_name</span><span class="p">)</span>
-    <span class="n">as_of</span> <span class="o">=</span> <span class="n">dataset_version</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dataset_version</span><span class="p">,</span> <span class="n">datetime</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dataset_version</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
-            <span class="s2">&quot;Selecting dataset_version by tag is not yet supported.&quot;</span>
-            <span class="s2">&quot; Please use a datetime object.&quot;</span>
-        <span class="p">)</span>
-    <span class="n">examples</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">client</span><span class="o">.</span><span class="n">list_examples</span><span class="p">(</span><span class="n">dataset_id</span><span class="o">=</span><span class="n">dataset</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">as_of</span><span class="o">=</span><span class="n">as_of</span><span class="p">))</span>
+
+    <span class="n">examples</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">client</span><span class="o">.</span><span class="n">list_examples</span><span class="p">(</span><span class="n">dataset_id</span><span class="o">=</span><span class="n">dataset</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">as_of</span><span class="o">=</span><span class="n">dataset_version</span><span class="p">))</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">examples</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dataset </span><span class="si">{</span><span class="n">dataset_name</span><span class="si">}</span><span class="s2"> has no example rows.&quot;</span><span class="p">)</span>
     <span class="n">modified_at</span> <span class="o">=</span> <span class="p">[</span><span class="n">ex</span><span class="o">.</span><span class="n">modified_at</span> <span class="k">for</span> <span class="n">ex</span> <span class="ow">in</span> <span class="n">examples</span> <span class="k">if</span> <span class="n">ex</span><span class="o">.</span><span class="n">modified_at</span><span class="p">]</span>
     <span class="c1"># Should always be defined in practice when fetched,</span>
     <span class="c1"># but the typing permits None</span>
     <span class="n">max_modified_at</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">modified_at</span><span class="p">)</span> <span class="k">if</span> <span class="n">modified_at</span> <span class="k">else</span> <span class="kc">None</span>
-    <span class="n">dataset_version</span> <span class="o">=</span> <span class="n">max_modified_at</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span> <span class="k">if</span> <span class="n">max_modified_at</span> <span class="k">else</span> <span class="kc">None</span>
+    <span class="n">inferred_version</span> <span class="o">=</span> <span class="n">max_modified_at</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span> <span class="k">if</span> <span class="n">max_modified_at</span> <span class="k">else</span> <span class="kc">None</span>
 
     <span class="k">try</span><span class="p">:</span>
         <span class="n">project_metadata</span> <span class="o">=</span> <span class="n">project_metadata</span> <span class="ow">or</span> <span class="p">{}</span>
@@ -1185,7 +1180,7 @@
                 <span class="s2">&quot;git&quot;</span><span class="p">:</span> <span class="n">git_info</span><span class="p">,</span>
             <span class="p">}</span>
 
-        <span class="n">project_metadata</span><span class="p">[</span><span class="s2">&quot;dataset_version&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dataset_version</span>
+        <span class="n">project_metadata</span><span class="p">[</span><span class="s2">&quot;dataset_version&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">inferred_version</span>
         <span class="n">project</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">create_project</span><span class="p">(</span>
             <span class="n">project_name</span><span class="p">,</span>
             <span class="n">reference_dataset_id</span><span class="o">=</span><span class="n">dataset</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
@@ -1485,6 +1480,7 @@
             <span class="s2">&quot;0.1.9&quot;</span><span class="p">,</span>
             <span class="n">message</span><span class="o">=</span><span class="s2">&quot;The tags argument is deprecated and will be&quot;</span>
             <span class="s2">&quot; removed in a future release. Please specify project_metadata instead.&quot;</span><span class="p">,</span>
+            <span class="n">pending</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="p">)</span>
 
     <span class="k">if</span> <span class="n">kwargs</span><span class="p">:</span>
@@ -1547,6 +1543,7 @@
             <span class="s2">&quot;0.1.9&quot;</span><span class="p">,</span>
             <span class="n">message</span><span class="o">=</span><span class="s2">&quot;The tags argument is deprecated and will be&quot;</span>
             <span class="s2">&quot; removed in a future release. Please specify project_metadata instead.&quot;</span><span class="p">,</span>
+            <span class="n">pending</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="p">)</span>
     <span class="k">if</span> <span class="n">revision_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">revision_id</span> <span class="o">=</span> <span class="n">get_langchain_env_var_metadata</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;revision_id&quot;</span><span class="p">)</span>
@@ -1717,7 +1714,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 04, 2024.
+          Last updated on Mar 06, 2024.
       </footer>
     </div>
   </div>

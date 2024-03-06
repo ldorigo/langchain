@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   
-  <title>langchain_google_genai 0.0.10rc0 &mdash; 🦜🔗 LangChain 0.1.10</title>
+  <title>langchain_google_genai 0.0.10rc0 &mdash; 🦜🔗 LangChain 0.1.11</title>
   
   <link rel="canonical" href="https://api.python.langchain.com/en/latest/google_genai_api_reference.html" />
 
@@ -184,8 +184,16 @@
 <li><a class="reference internal" href="#id1">Classes</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#module-langchain_google_genai.llms"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_google_genai.llms</span></code></a><ul>
+<li><a class="reference internal" href="#module-langchain_google_genai.genai_aqa"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_google_genai.genai_aqa</span></code></a><ul>
 <li><a class="reference internal" href="#id2">Classes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-langchain_google_genai.google_vector_store"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_google_genai.google_vector_store</span></code></a><ul>
+<li><a class="reference internal" href="#id3">Classes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-langchain_google_genai.llms"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_google_genai.llms</span></code></a><ul>
+<li><a class="reference internal" href="#id4">Classes</a></li>
 </ul>
 </li>
 </ul>
@@ -237,10 +245,66 @@
 </table>
 </section>
 </section>
-<section id="module-langchain_google_genai.llms">
-<span id="langchain-google-genai-llms"></span><h2><a class="reference internal" href="#module-langchain_google_genai.llms" title="langchain_google_genai.llms"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_google_genai.llms</span></code></a><a class="headerlink" href="#module-langchain_google_genai.llms" title="Permalink to this heading">¶</a></h2>
+<section id="module-langchain_google_genai.genai_aqa">
+<span id="langchain-google-genai-genai-aqa"></span><h2><a class="reference internal" href="#module-langchain_google_genai.genai_aqa" title="langchain_google_genai.genai_aqa"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_google_genai.genai_aqa</span></code></a><a class="headerlink" href="#module-langchain_google_genai.genai_aqa" title="Permalink to this heading">¶</a></h2>
+<p>Google GenerativeAI Attributed Question and Answering (AQA) service.</p>
+<p>The GenAI Semantic AQA API is a managed end to end service that allows
+developers to create responses grounded on specified passages based on
+a user query. For more information visit:
+<a class="reference external" href="https://developers.generativeai.google/guide">https://developers.generativeai.google/guide</a></p>
 <section id="id2">
 <h3>Classes<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
+<table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="genai_aqa/langchain_google_genai.genai_aqa.AqaInput.html#langchain_google_genai.genai_aqa.AqaInput" title="langchain_google_genai.genai_aqa.AqaInput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">genai_aqa.AqaInput</span></code></a></p></td>
+<td><p>Input to <cite>GenAIAqa.invoke</cite>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="genai_aqa/langchain_google_genai.genai_aqa.AqaOutput.html#langchain_google_genai.genai_aqa.AqaOutput" title="langchain_google_genai.genai_aqa.AqaOutput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">genai_aqa.AqaOutput</span></code></a></p></td>
+<td><p>Output from <cite>GenAIAqa.invoke</cite>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="genai_aqa/langchain_google_genai.genai_aqa.GenAIAqa.html#langchain_google_genai.genai_aqa.GenAIAqa" title="langchain_google_genai.genai_aqa.GenAIAqa"><code class="xref py py-obj docutils literal notranslate"><span class="pre">genai_aqa.GenAIAqa</span></code></a></p></td>
+<td><p>Google's Attributed Question and Answering service.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="module-langchain_google_genai.google_vector_store">
+<span id="langchain-google-genai-google-vector-store"></span><h2><a class="reference internal" href="#module-langchain_google_genai.google_vector_store" title="langchain_google_genai.google_vector_store"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_google_genai.google_vector_store</span></code></a><a class="headerlink" href="#module-langchain_google_genai.google_vector_store" title="Permalink to this heading">¶</a></h2>
+<p>Google Generative AI Vector Store.</p>
+<p>The GenAI Semantic Retriever API is a managed end-to-end service that allows
+developers to create a corpus of documents to perform semantic search on
+related passages given a user query. For more information visit:
+<a class="reference external" href="https://developers.generativeai.google/guide">https://developers.generativeai.google/guide</a></p>
+<section id="id3">
+<h3>Classes<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
+<table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="google_vector_store/langchain_google_genai.google_vector_store.DoesNotExistsException.html#langchain_google_genai.google_vector_store.DoesNotExistsException" title="langchain_google_genai.google_vector_store.DoesNotExistsException"><code class="xref py py-obj docutils literal notranslate"><span class="pre">google_vector_store.DoesNotExistsException</span></code></a>(*, ...)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="google_vector_store/langchain_google_genai.google_vector_store.GoogleVectorStore.html#langchain_google_genai.google_vector_store.GoogleVectorStore" title="langchain_google_genai.google_vector_store.GoogleVectorStore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">google_vector_store.GoogleVectorStore</span></code></a>(*, ...)</p></td>
+<td><p>Google GenerativeAI Vector Store.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="google_vector_store/langchain_google_genai.google_vector_store.ServerSideEmbedding.html#langchain_google_genai.google_vector_store.ServerSideEmbedding" title="langchain_google_genai.google_vector_store.ServerSideEmbedding"><code class="xref py py-obj docutils literal notranslate"><span class="pre">google_vector_store.ServerSideEmbedding</span></code></a>()</p></td>
+<td><p>Do nothing embedding model where the embedding is done by the server.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="module-langchain_google_genai.llms">
+<span id="langchain-google-genai-llms"></span><h2><a class="reference internal" href="#module-langchain_google_genai.llms" title="langchain_google_genai.llms"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_google_genai.llms</span></code></a><a class="headerlink" href="#module-langchain_google_genai.llms" title="Permalink to this heading">¶</a></h2>
+<section id="id4">
+<h3>Classes<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h3>
 <table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -264,7 +328,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 04, 2024.
+          Last updated on Mar 06, 2024.
       </footer>
     </div>
   </div>

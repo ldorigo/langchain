@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   
-  <title>langchain_nvidia_trt.llms.TritonTensorRTLLM &mdash; 🦜🔗 LangChain 0.1.10</title>
+  <title>langchain_nvidia_trt.llms.TritonTensorRTLLM &mdash; 🦜🔗 LangChain 0.1.11</title>
   
   <link rel="canonical" href="https://api.python.langchain.com/en/latest/llms/langchain_nvidia_trt.llms.TritonTensorRTLLM.html" />
 
@@ -196,6 +196,7 @@
 <li><a class="reference internal" href="#langchain_nvidia_trt.llms.TritonTensorRTLLM.top_k"><code class="docutils literal notranslate"><span class="pre">TritonTensorRTLLM.top_k</span></code></a></li>
 <li><a class="reference internal" href="#langchain_nvidia_trt.llms.TritonTensorRTLLM.top_p"><code class="docutils literal notranslate"><span class="pre">TritonTensorRTLLM.top_p</span></code></a></li>
 <li><a class="reference internal" href="#langchain_nvidia_trt.llms.TritonTensorRTLLM.verbose"><code class="docutils literal notranslate"><span class="pre">TritonTensorRTLLM.verbose</span></code></a></li>
+<li><a class="reference internal" href="#langchain_nvidia_trt.llms.TritonTensorRTLLM.verbose_client"><code class="docutils literal notranslate"><span class="pre">TritonTensorRTLLM.verbose_client</span></code></a></li>
 <li><a class="reference internal" href="#langchain_nvidia_trt.llms.TritonTensorRTLLM.__call__"><code class="docutils literal notranslate"><span class="pre">TritonTensorRTLLM.__call__()</span></code></a></li>
 <li><a class="reference internal" href="#langchain_nvidia_trt.llms.TritonTensorRTLLM.abatch"><code class="docutils literal notranslate"><span class="pre">TritonTensorRTLLM.abatch()</span></code></a></li>
 <li><a class="reference internal" href="#langchain_nvidia_trt.llms.TritonTensorRTLLM.agenerate"><code class="docutils literal notranslate"><span class="pre">TritonTensorRTLLM.agenerate()</span></code></a></li>
@@ -297,6 +298,7 @@
 <li><p><strong>length_penalty</strong> – (float) The penalty to apply repeated tokens</p></li>
 <li><p><strong>tokens</strong> – (int) The maximum number of tokens to generate.</p></li>
 <li><p><strong>client</strong> – The client object used to communicate with the inference server</p></li>
+<li><p><strong>verbose_client</strong> – flag to pass to the client on creation</p></li>
 </ul>
 </dd>
 </dl>
@@ -412,6 +414,11 @@
 <em class="property"><span class="pre">param</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">verbose</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"> <span class="pre">[Optional]</span></em><a class="headerlink" href="#langchain_nvidia_trt.llms.TritonTensorRTLLM.verbose" title="Permalink to this definition">¶</a></dt>
 <dd><p>Whether to print out response text.</p>
 </dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="langchain_nvidia_trt.llms.TritonTensorRTLLM.verbose_client">
+<em class="property"><span class="pre">param</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">verbose_client</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#langchain_nvidia_trt.llms.TritonTensorRTLLM.verbose_client" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="langchain_nvidia_trt.llms.TritonTensorRTLLM.__call__">
@@ -1926,7 +1933,7 @@ between retries</p></li>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 04, 2024.
+          Last updated on Mar 06, 2024.
       </footer>
     </div>
   </div>

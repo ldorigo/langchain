@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   
-  <title>langchain_community.document_loaders.github &mdash; 🦜🔗 LangChain 0.1.10</title>
+  <title>langchain_community.document_loaders.github &mdash; 🦜🔗 LangChain 0.1.11</title>
   
   <link rel="canonical" href="https://api.python.langchain.com/en/latest/_modules/langchain_community/document_loaders/github.html" />
 
@@ -399,9 +399,7 @@
 
         <span class="k">return</span> <span class="s2">&quot;&quot;</span></div>
 
-<div class="viewcode-block" id="GithubFileLoader.load"><a class="viewcode-back" href="../../../document_loaders/langchain_community.document_loaders.github.GithubFileLoader.html#langchain_community.document_loaders.github.GithubFileLoader.load">[docs]</a>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Document</span><span class="p">]:</span>
-        <span class="n">documents</span> <span class="o">=</span> <span class="p">[]</span>
-
+<div class="viewcode-block" id="GithubFileLoader.lazy_load"><a class="viewcode-back" href="../../../document_loaders/langchain_community.document_loaders.github.GithubFileLoader.html#langchain_community.document_loaders.github.GithubFileLoader.lazy_load">[docs]</a>    <span class="k">def</span> <span class="nf">lazy_load</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Document</span><span class="p">]:</span>
         <span class="n">files</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_file_paths</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
             <span class="n">content</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_file_content_by_path</span><span class="p">(</span><span class="n">file</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">])</span>
@@ -414,16 +412,14 @@
                 <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">github_api_url</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">repo</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">file</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">/&quot;</span>
                 <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">branch</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">file</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
             <span class="p">}</span>
-            <span class="n">documents</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Document</span><span class="p">(</span><span class="n">page_content</span><span class="o">=</span><span class="n">content</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">))</span>
-
-        <span class="k">return</span> <span class="n">documents</span></div></div>
+            <span class="k">yield</span> <span class="n">Document</span><span class="p">(</span><span class="n">page_content</span><span class="o">=</span><span class="n">content</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">)</span></div></div>
 </pre></div>
 
       </div>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 04, 2024.
+          Last updated on Mar 06, 2024.
       </footer>
     </div>
   </div>

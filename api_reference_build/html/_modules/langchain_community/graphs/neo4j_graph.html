@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   
-  <title>langchain_community.graphs.neo4j_graph &mdash; 🦜🔗 LangChain 0.1.10</title>
+  <title>langchain_community.graphs.neo4j_graph &mdash; 🦜🔗 LangChain 0.1.11</title>
   
   <link rel="canonical" href="https://api.python.langchain.com/en/latest/_modules/langchain_community/graphs/neo4j_graph.html" />
 
@@ -182,18 +182,20 @@
   <h1>Source code for langchain_community.graphs.neo4j_graph</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
 
-<span class="kn">from</span> <span class="nn">langchain_core.utils</span> <span class="kn">import</span> <span class="n">get_from_env</span>
+<span class="kn">from</span> <span class="nn">langchain_core.utils</span> <span class="kn">import</span> <span class="n">get_from_dict_or_env</span>
 
 <span class="kn">from</span> <span class="nn">langchain_community.graphs.graph_document</span> <span class="kn">import</span> <span class="n">GraphDocument</span>
 <span class="kn">from</span> <span class="nn">langchain_community.graphs.graph_store</span> <span class="kn">import</span> <span class="n">GraphStore</span>
 
 <span class="n">BASE_ENTITY_LABEL</span> <span class="o">=</span> <span class="s2">&quot;__Entity__&quot;</span>
+<span class="n">EXCLUDED_LABELS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;_Bloom_Perspective_&quot;</span><span class="p">,</span> <span class="s2">&quot;_Bloom_Scene_&quot;</span><span class="p">]</span>
+<span class="n">EXCLUDED_RELS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;_Bloom_HAS_SCENE_&quot;</span><span class="p">]</span>
 
 <span class="n">node_properties_query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">CALL apoc.meta.data()</span>
 <span class="s2">YIELD label, other, elementType, type, property</span>
 <span class="s2">WHERE NOT type = &quot;RELATIONSHIP&quot; AND elementType = &quot;node&quot; </span>
-<span class="s2">  AND NOT label IN [$BASE_ENTITY_LABEL]</span>
+<span class="s2">  AND NOT label IN $EXCLUDED_LABELS</span>
 <span class="s2">WITH label AS nodeLabels, collect({property:property, type:type}) AS properties</span>
 <span class="s2">RETURN {labels: nodeLabels, properties: properties} AS output</span>
 
@@ -203,6 +205,7 @@
 <span class="s2">CALL apoc.meta.data()</span>
 <span class="s2">YIELD label, other, elementType, type, property</span>
 <span class="s2">WHERE NOT type = &quot;RELATIONSHIP&quot; AND elementType = &quot;relationship&quot;</span>
+<span class="s2">      AND NOT label in $EXCLUDED_LABELS</span>
 <span class="s2">WITH label AS nodeLabels, collect({property:property, type:type}) AS properties</span>
 <span class="s2">RETURN {type: nodeLabels, properties: properties} AS output</span>
 <span class="s2">&quot;&quot;&quot;</span>
@@ -212,8 +215,8 @@
 <span class="s2">YIELD label, other, elementType, type, property</span>
 <span class="s2">WHERE type = &quot;RELATIONSHIP&quot; AND elementType = &quot;node&quot;</span>
 <span class="s2">UNWIND other AS other_node</span>
-<span class="s2">WITH * WHERE NOT label IN [$BASE_ENTITY_LABEL] </span>
-<span class="s2">    AND NOT other_node IN [$BASE_ENTITY_LABEL]</span>
+<span class="s2">WITH * WHERE NOT label IN $EXCLUDED_LABELS</span>
+<span class="s2">    AND NOT other_node IN $EXCLUDED_LABELS</span>
 <span class="s2">RETURN {start: label, type: property, end: toString(other_node)} AS output</span>
 <span class="s2">&quot;&quot;&quot;</span>
 
@@ -336,7 +339,7 @@
         <span class="n">url</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">username</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">password</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">database</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;neo4j&quot;</span><span class="p">,</span>
+        <span class="n">database</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">sanitize</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -349,10 +352,16 @@
                 <span class="s2">&quot;Please install it with `pip install neo4j`.&quot;</span>
             <span class="p">)</span>
 
-        <span class="n">url</span> <span class="o">=</span> <span class="n">get_from_env</span><span class="p">(</span><span class="s2">&quot;url&quot;</span><span class="p">,</span> <span class="s2">&quot;NEO4J_URI&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
-        <span class="n">username</span> <span class="o">=</span> <span class="n">get_from_env</span><span class="p">(</span><span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="s2">&quot;NEO4J_USERNAME&quot;</span><span class="p">,</span> <span class="n">username</span><span class="p">)</span>
-        <span class="n">password</span> <span class="o">=</span> <span class="n">get_from_env</span><span class="p">(</span><span class="s2">&quot;password&quot;</span><span class="p">,</span> <span class="s2">&quot;NEO4J_PASSWORD&quot;</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
-        <span class="n">database</span> <span class="o">=</span> <span class="n">get_from_env</span><span class="p">(</span><span class="s2">&quot;database&quot;</span><span class="p">,</span> <span class="s2">&quot;NEO4J_DATABASE&quot;</span><span class="p">,</span> <span class="n">database</span><span class="p">)</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">get_from_dict_or_env</span><span class="p">({</span><span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="n">url</span><span class="p">},</span> <span class="s2">&quot;url&quot;</span><span class="p">,</span> <span class="s2">&quot;NEO4J_URI&quot;</span><span class="p">)</span>
+        <span class="n">username</span> <span class="o">=</span> <span class="n">get_from_dict_or_env</span><span class="p">(</span>
+            <span class="p">{</span><span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="n">username</span><span class="p">},</span> <span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="s2">&quot;NEO4J_USERNAME&quot;</span>
+        <span class="p">)</span>
+        <span class="n">password</span> <span class="o">=</span> <span class="n">get_from_dict_or_env</span><span class="p">(</span>
+            <span class="p">{</span><span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="n">password</span><span class="p">},</span> <span class="s2">&quot;password&quot;</span><span class="p">,</span> <span class="s2">&quot;NEO4J_PASSWORD&quot;</span>
+        <span class="p">)</span>
+        <span class="n">database</span> <span class="o">=</span> <span class="n">get_from_dict_or_env</span><span class="p">(</span>
+            <span class="p">{</span><span class="s2">&quot;database&quot;</span><span class="p">:</span> <span class="n">database</span><span class="p">},</span> <span class="s2">&quot;database&quot;</span><span class="p">,</span> <span class="s2">&quot;NEO4J_DATABASE&quot;</span><span class="p">,</span> <span class="s2">&quot;neo4j&quot;</span>
+        <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_driver</span> <span class="o">=</span> <span class="n">neo4j</span><span class="o">.</span><span class="n">GraphDatabase</span><span class="o">.</span><span class="n">driver</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_database</span> <span class="o">=</span> <span class="n">database</span>
@@ -419,19 +428,21 @@
         <span class="n">node_properties</span> <span class="o">=</span> <span class="p">[</span>
             <span class="n">el</span><span class="p">[</span><span class="s2">&quot;output&quot;</span><span class="p">]</span>
             <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
-                <span class="n">node_properties_query</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;BASE_ENTITY_LABEL&quot;</span><span class="p">:</span> <span class="n">BASE_ENTITY_LABEL</span><span class="p">}</span>
+                <span class="n">node_properties_query</span><span class="p">,</span>
+                <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;EXCLUDED_LABELS&quot;</span><span class="p">:</span> <span class="n">EXCLUDED_LABELS</span> <span class="o">+</span> <span class="p">[</span><span class="n">BASE_ENTITY_LABEL</span><span class="p">]},</span>
             <span class="p">)</span>
         <span class="p">]</span>
         <span class="n">rel_properties</span> <span class="o">=</span> <span class="p">[</span>
             <span class="n">el</span><span class="p">[</span><span class="s2">&quot;output&quot;</span><span class="p">]</span>
             <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
-                <span class="n">rel_properties_query</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;BASE_ENTITY_LABEL&quot;</span><span class="p">:</span> <span class="n">BASE_ENTITY_LABEL</span><span class="p">}</span>
+                <span class="n">rel_properties_query</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;EXCLUDED_LABELS&quot;</span><span class="p">:</span> <span class="n">EXCLUDED_RELS</span><span class="p">}</span>
             <span class="p">)</span>
         <span class="p">]</span>
         <span class="n">relationships</span> <span class="o">=</span> <span class="p">[</span>
             <span class="n">el</span><span class="p">[</span><span class="s2">&quot;output&quot;</span><span class="p">]</span>
             <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
-                <span class="n">rel_query</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;BASE_ENTITY_LABEL&quot;</span><span class="p">:</span> <span class="n">BASE_ENTITY_LABEL</span><span class="p">}</span>
+                <span class="n">rel_query</span><span class="p">,</span>
+                <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;EXCLUDED_LABELS&quot;</span><span class="p">:</span> <span class="n">EXCLUDED_LABELS</span> <span class="o">+</span> <span class="p">[</span><span class="n">BASE_ENTITY_LABEL</span><span class="p">]},</span>
             <span class="p">)</span>
         <span class="p">]</span>
 
@@ -558,7 +569,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 04, 2024.
+          Last updated on Mar 06, 2024.
       </footer>
     </div>
   </div>

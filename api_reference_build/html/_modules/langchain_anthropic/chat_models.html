@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   
-  <title>langchain_anthropic.chat_models &mdash; 🦜🔗 LangChain 0.1.10</title>
+  <title>langchain_anthropic.chat_models &mdash; 🦜🔗 LangChain 0.1.11</title>
   
   <link rel="canonical" href="https://api.python.langchain.com/en/latest/_modules/langchain_anthropic/chat_models.html" />
 
@@ -181,7 +181,8 @@
         
   <h1>Source code for langchain_anthropic.chat_models</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">AsyncIterator</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Iterator</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">AsyncIterator</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Iterator</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
 
 <span class="kn">import</span> <span class="nn">anthropic</span>
 <span class="kn">from</span> <span class="nn">langchain_core._api.deprecation</span> <span class="kn">import</span> <span class="n">deprecated</span>
@@ -206,6 +207,33 @@
 <span class="n">_message_type_lookups</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;human&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;ai&quot;</span><span class="p">:</span> <span class="s2">&quot;assistant&quot;</span><span class="p">}</span>
 
 
+<span class="k">def</span> <span class="nf">_format_image</span><span class="p">(</span><span class="n">image_url</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Formats an image of format data:image/jpeg;base64,{b64_string}</span>
+<span class="sd">    to a dict for anthropic api</span>
+
+<span class="sd">    {</span>
+<span class="sd">      &quot;type&quot;: &quot;base64&quot;,</span>
+<span class="sd">      &quot;media_type&quot;: &quot;image/jpeg&quot;,</span>
+<span class="sd">      &quot;data&quot;: &quot;/9j/4AAQSkZJRg...&quot;,</span>
+<span class="sd">    }</span>
+
+<span class="sd">    And throws an error if it&#39;s not a b64 image</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">regex</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;^data:(?P&lt;media_type&gt;image/.+);base64,(?P&lt;data&gt;.+)$&quot;</span>
+    <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">regex</span><span class="p">,</span> <span class="n">image_url</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">match</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;Anthropic only supports base64-encoded images currently.&quot;</span>
+            <span class="s2">&quot; Example: data:image/png;base64,&#39;/9j/4AAQSk&#39;...&quot;</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;base64&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;media_type&quot;</span><span class="p">:</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s2">&quot;media_type&quot;</span><span class="p">),</span>
+        <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">),</span>
+    <span class="p">}</span>
+
+
 <span class="k">def</span> <span class="nf">_format_messages</span><span class="p">(</span><span class="n">messages</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">BaseMessage</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Format messages for anthropic.&quot;&quot;&quot;</span>
 
@@ -218,34 +246,82 @@
 <span class="sd">                for m in messages</span>
 <span class="sd">            ]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">system</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="n">formatted_messages</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">system</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">formatted_messages</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">message</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">messages</span><span class="p">):</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Anthropic Messages API only supports text generation.&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">message</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&quot;system&quot;</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;System message must be at beginning of message list.&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">&quot;System message must be a string, &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;instead was: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="p">)</span>
             <span class="n">system</span> <span class="o">=</span> <span class="n">message</span><span class="o">.</span><span class="n">content</span>
+            <span class="k">continue</span>
+
+        <span class="n">role</span> <span class="o">=</span> <span class="n">_message_type_lookups</span><span class="p">[</span><span class="n">message</span><span class="o">.</span><span class="n">type</span><span class="p">]</span>
+        <span class="n">content</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]]</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="c1"># parse as dict</span>
+            <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span>
+                <span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="nb">list</span>
+            <span class="p">),</span> <span class="s2">&quot;Anthropic message content must be str or list of dicts&quot;</span>
+
+            <span class="c1"># populate content</span>
+            <span class="n">content</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                    <span class="n">content</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                        <span class="p">{</span>
+                            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span>
+                            <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="n">item</span><span class="p">,</span>
+                        <span class="p">}</span>
+                    <span class="p">)</span>
+                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="s2">&quot;type&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">item</span><span class="p">:</span>
+                        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Dict content item must have a type key&quot;</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;image_url&quot;</span><span class="p">:</span>
+                        <span class="c1"># convert format</span>
+                        <span class="n">source</span> <span class="o">=</span> <span class="n">_format_image</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;image_url&quot;</span><span class="p">][</span><span class="s2">&quot;url&quot;</span><span class="p">])</span>
+                        <span class="n">content</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                            <span class="p">{</span>
+                                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;image&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="n">source</span><span class="p">,</span>
+                            <span class="p">}</span>
+                        <span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">content</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;Content items must be str or dict, instead was: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">item</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+                    <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">formatted_messages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                <span class="p">{</span>
-                    <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="n">_message_type_lookups</span><span class="p">[</span><span class="n">message</span><span class="o">.</span><span class="n">type</span><span class="p">],</span>
-                    <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">,</span>
-                <span class="p">}</span>
-            <span class="p">)</span>
+            <span class="n">content</span> <span class="o">=</span> <span class="n">message</span><span class="o">.</span><span class="n">content</span>
+
+        <span class="n">formatted_messages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="n">role</span><span class="p">,</span>
+                <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">content</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
     <span class="k">return</span> <span class="n">system</span><span class="p">,</span> <span class="n">formatted_messages</span>
 
 
 <div class="viewcode-block" id="ChatAnthropic"><a class="viewcode-back" href="../../chat_models/langchain_anthropic.chat_models.ChatAnthropic.html#langchain_anthropic.chat_models.ChatAnthropic">[docs]</a><span class="k">class</span> <span class="nc">ChatAnthropic</span><span class="p">(</span><span class="n">BaseChatModel</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;ChatAnthropicMessages chat model.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Anthropic chat model.</span>
+
+<span class="sd">    To use, you should have the packages ``anthropic`` and ``langchain-anthropic``</span>
+<span class="sd">    installed, and the environment variable ANTHROPIC_API_KEY set with your API key,</span>
+<span class="sd">    or pass it as a named parameter to the constructor.</span>
 
 <span class="sd">    Example:</span>
 <span class="sd">        .. code-block:: python</span>
 
-<span class="sd">            from langchain_anthropic import ChatAnthropicMessages</span>
+<span class="sd">            from langchain_anthropic import ChatAnthropic</span>
 
-<span class="sd">            model = ChatAnthropicMessages()</span>
+<span class="sd">            model = ChatAnthropic()</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">class</span> <span class="nc">Config</span><span class="p">:</span>
@@ -259,7 +335,7 @@
     <span class="n">model</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">alias</span><span class="o">=</span><span class="s2">&quot;model_name&quot;</span><span class="p">)</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Model name to use.&quot;&quot;&quot;</span>
 
-    <span class="n">max_tokens</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;max_tokens_to_sample&quot;</span><span class="p">)</span>
+    <span class="n">max_tokens</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;max_tokens_to_sample&quot;</span><span class="p">)</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Denotes the number of tokens to predict per generation.&quot;&quot;&quot;</span>
 
     <span class="n">temperature</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
@@ -283,7 +359,7 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">_llm_type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return type of chat model.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="s2">&quot;chat-anthropic-messages&quot;</span>
+        <span class="k">return</span> <span class="s2">&quot;anthropic-chat&quot;</span>
 
     <span class="nd">@root_validator</span><span class="p">(</span><span class="n">pre</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">build_extra</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
@@ -362,6 +438,14 @@
                     <span class="k">await</span> <span class="n">run_manager</span><span class="o">.</span><span class="n">on_llm_new_token</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">chunk</span><span class="o">=</span><span class="n">chunk</span><span class="p">)</span>
                 <span class="k">yield</span> <span class="n">chunk</span>
 
+    <span class="k">def</span> <span class="nf">_format_output</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ChatResult</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">ChatResult</span><span class="p">(</span>
+            <span class="n">generations</span><span class="o">=</span><span class="p">[</span>
+                <span class="n">ChatGeneration</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="n">AIMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">content</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>
+            <span class="p">],</span>
+            <span class="n">llm_output</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+        <span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">_generate</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">messages</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">BaseMessage</span><span class="p">],</span>
@@ -371,12 +455,7 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ChatResult</span><span class="p">:</span>
         <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_params</span><span class="p">(</span><span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="n">stop</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">messages</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">ChatResult</span><span class="p">(</span>
-            <span class="n">generations</span><span class="o">=</span><span class="p">[</span>
-                <span class="n">ChatGeneration</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="n">AIMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">content</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>
-            <span class="p">],</span>
-            <span class="n">llm_output</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
-        <span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_output</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
     <span class="k">async</span> <span class="k">def</span> <span class="nf">_agenerate</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -387,12 +466,7 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ChatResult</span><span class="p">:</span>
         <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_params</span><span class="p">(</span><span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="n">stop</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_async_client</span><span class="o">.</span><span class="n">messages</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">ChatResult</span><span class="p">(</span>
-            <span class="n">generations</span><span class="o">=</span><span class="p">[</span>
-                <span class="n">ChatGeneration</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="n">AIMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">content</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>
-            <span class="p">],</span>
-            <span class="n">llm_output</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
-        <span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_output</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="ChatAnthropicMessages"><a class="viewcode-back" href="../../chat_models/langchain_anthropic.chat_models.ChatAnthropicMessages.html#langchain_anthropic.chat_models.ChatAnthropicMessages">[docs]</a><span class="nd">@deprecated</span><span class="p">(</span><span class="n">since</span><span class="o">=</span><span class="s2">&quot;0.1.0&quot;</span><span class="p">,</span> <span class="n">removal</span><span class="o">=</span><span class="s2">&quot;0.2.0&quot;</span><span class="p">,</span> <span class="n">alternative</span><span class="o">=</span><span class="s2">&quot;ChatAnthropic&quot;</span><span class="p">)</span>
@@ -404,7 +478,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 04, 2024.
+          Last updated on Mar 06, 2024.
       </footer>
     </div>
   </div>
