@@ -269,9 +269,28 @@
         <span class="n">docs_array_uri</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
         <span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">timestamp</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">allow_dangerous_deserialization</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize with necessary components.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize with necessary components.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            allow_dangerous_deserialization: whether to allow deserialization</span>
+<span class="sd">                of the data which involves loading data using pickle.</span>
+<span class="sd">                data can be modified by malicious actors to deliver a</span>
+<span class="sd">                malicious payload that results in execution of</span>
+<span class="sd">                arbitrary code on your machine.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">allow_dangerous_deserialization</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;TileDB relies on pickle for serialization and deserialization. &quot;</span>
+                <span class="s2">&quot;This can be dangerous if the data is intercepted and/or modified &quot;</span>
+                <span class="s2">&quot;by malicious actors prior to being de-serialized. &quot;</span>
+                <span class="s2">&quot;If you are sure that the data is safe from modification, you can &quot;</span>
+                <span class="s2">&quot; set allow_dangerous_deserialization=True to proceed. &quot;</span>
+                <span class="s2">&quot;Loading of compromised data using pickle can result in execution of &quot;</span>
+                <span class="s2">&quot;arbitrary code on your machine.&quot;</span>
+            <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">embedding</span> <span class="o">=</span> <span class="n">embedding</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">embedding_function</span> <span class="o">=</span> <span class="n">embedding</span><span class="o">.</span><span class="n">embed_query</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">index_uri</span> <span class="o">=</span> <span class="n">index_uri</span>
@@ -986,7 +1005,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 06, 2024.
+          Last updated on Mar 07, 2024.
       </footer>
     </div>
   </div>

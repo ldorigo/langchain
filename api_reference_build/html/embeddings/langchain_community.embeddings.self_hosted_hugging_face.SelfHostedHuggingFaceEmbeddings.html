@@ -177,6 +177,7 @@
               <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_community.embeddings.self_hosted_hugging_face</span></code>.SelfHostedHuggingFaceEmbeddings</a><ul>
 <li><a class="reference internal" href="#langchain_community.embeddings.self_hosted_hugging_face.SelfHostedHuggingFaceEmbeddings"><code class="docutils literal notranslate"><span class="pre">SelfHostedHuggingFaceEmbeddings</span></code></a><ul>
+<li><a class="reference internal" href="#langchain_community.embeddings.self_hosted_hugging_face.SelfHostedHuggingFaceEmbeddings.allow_dangerous_deserialization"><code class="docutils literal notranslate"><span class="pre">SelfHostedHuggingFaceEmbeddings.allow_dangerous_deserialization</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.embeddings.self_hosted_hugging_face.SelfHostedHuggingFaceEmbeddings.cache"><code class="docutils literal notranslate"><span class="pre">SelfHostedHuggingFaceEmbeddings.cache</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.embeddings.self_hosted_hugging_face.SelfHostedHuggingFaceEmbeddings.callback_manager"><code class="docutils literal notranslate"><span class="pre">SelfHostedHuggingFaceEmbeddings.callback_manager</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.embeddings.self_hosted_hugging_face.SelfHostedHuggingFaceEmbeddings.callbacks"><code class="docutils literal notranslate"><span class="pre">SelfHostedHuggingFaceEmbeddings.callbacks</span></code></a></li>
@@ -295,6 +296,13 @@ like Paperspace, Coreweave, etc.).</p>
 </pre></div>
 </div>
 <p>Initialize the remote inference function.</p>
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="langchain_community.embeddings.self_hosted_hugging_face.SelfHostedHuggingFaceEmbeddings.allow_dangerous_deserialization">
+<em class="property"><span class="pre">param</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">allow_dangerous_deserialization</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#langchain_community.embeddings.self_hosted_hugging_face.SelfHostedHuggingFaceEmbeddings.allow_dangerous_deserialization" title="Permalink to this definition">¶</a></dt>
+<dd><p>Allow deserialization using pickle which can be dangerous if
+loading compromised data.</p>
+</dd></dl>
+
 <dl class="py attribute pydantic_field">
 <dt class="sig sig-object py" id="langchain_community.embeddings.self_hosted_hugging_face.SelfHostedHuggingFaceEmbeddings.cache">
 <em class="property"><span class="pre">param</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cache</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#langchain_community.embeddings.self_hosted_hugging_face.SelfHostedHuggingFaceEmbeddings.cache" title="Permalink to this definition">¶</a></dt>
@@ -1941,7 +1949,7 @@ between retries</p></li>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 06, 2024.
+          Last updated on Mar 07, 2024.
       </footer>
     </div>
   </div>

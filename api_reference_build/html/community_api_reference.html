@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   
-  <title>langchain_community 0.0.25 &mdash; 🦜🔗 LangChain 0.1.11</title>
+  <title>langchain_community 0.0.27 &mdash; 🦜🔗 LangChain 0.1.11</title>
   
   <link rel="canonical" href="https://api.python.langchain.com/en/latest/community_api_reference.html" />
 
@@ -175,7 +175,7 @@
         </div>
             <div class="sk-sidebar-toc">
               <ul>
-<li><a class="reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">langchain_community</span></code> 0.0.25</a><ul>
+<li><a class="reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">langchain_community</span></code> 0.0.27</a><ul>
 <li><a class="reference internal" href="#module-langchain_community.adapters"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_community.adapters</span></code></a><ul>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 <li><a class="reference internal" href="#functions">Functions</a></li>
@@ -295,8 +295,8 @@
     <div id="sk-page-content-wrapper">
       <div class="sk-page-content container-fluid body px-md-3" role="main">
         
-  <section id="langchain-community-0-0-25">
-<h1><code class="docutils literal notranslate"><span class="pre">langchain_community</span></code> 0.0.25<a class="headerlink" href="#langchain-community-0-0-25" title="Permalink to this heading">¶</a></h1>
+  <section id="langchain-community-0-0-27">
+<h1><code class="docutils literal notranslate"><span class="pre">langchain_community</span></code> 0.0.27<a class="headerlink" href="#langchain-community-0-0-27" title="Permalink to this heading">¶</a></h1>
 <section id="module-langchain_community.adapters">
 <span id="langchain-community-adapters"></span><h2><a class="reference internal" href="#module-langchain_community.adapters" title="langchain_community.adapters"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_community.adapters</span></code></a><a class="headerlink" href="#module-langchain_community.adapters" title="Permalink to this heading">¶</a></h2>
 <p><strong>Adapters</strong> are used to adapt LangChain models to other APIs.</p>
@@ -1010,7 +1010,7 @@ WhatsApp. The loaded chat messages can be used for fine-tuning models.</p>
 <td><p>Chat message history that stores history in AWS DynamoDB.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="chat_message_histories/langchain_community.chat_message_histories.elasticsearch.ElasticsearchChatMessageHistory.html#langchain_community.chat_message_histories.elasticsearch.ElasticsearchChatMessageHistory" title="langchain_community.chat_message_histories.elasticsearch.ElasticsearchChatMessageHistory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">chat_message_histories.elasticsearch.ElasticsearchChatMessageHistory</span></code></a>(...)</p></td>
-<td><p>Chat message history that stores history in Elasticsearch.</p></td>
+<td><p>[<em>Deprecated</em>] Chat message history that stores history in Elasticsearch.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="chat_message_histories/langchain_community.chat_message_histories.file.FileChatMessageHistory.html#langchain_community.chat_message_histories.file.FileChatMessageHistory" title="langchain_community.chat_message_histories.file.FileChatMessageHistory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">chat_message_histories.file.FileChatMessageHistory</span></code></a>(...)</p></td>
 <td><p>Chat message history that stores history in a local file.</p></td>
@@ -1539,12 +1539,6 @@ an interface where “chat messages” are the inputs and outputs.</p>
 <tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.baiducloud_bos_file.BaiduBOSFileLoader.html#langchain_community.document_loaders.baiducloud_bos_file.BaiduBOSFileLoader" title="langchain_community.document_loaders.baiducloud_bos_file.BaiduBOSFileLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.baiducloud_bos_file.BaiduBOSFileLoader</span></code></a>(...)</p></td>
 <td><p>Load from <cite>Baidu Cloud BOS</cite> file.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.base.BaseBlobParser.html#langchain_community.document_loaders.base.BaseBlobParser" title="langchain_community.document_loaders.base.BaseBlobParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.base.BaseBlobParser</span></code></a>()</p></td>
-<td><p>Abstract interface for blob parsers.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.base.BaseLoader.html#langchain_community.document_loaders.base.BaseLoader" title="langchain_community.document_loaders.base.BaseLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.base.BaseLoader</span></code></a>()</p></td>
-<td><p>Interface for Document Loader.</p></td>
-</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.base_o365.O365BaseLoader.html#langchain_community.document_loaders.base_o365.O365BaseLoader" title="langchain_community.document_loaders.base_o365.O365BaseLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.base_o365.O365BaseLoader</span></code></a></p></td>
 <td><p>Base class for all loaders that uses O365 Package</p></td>
 </tr>
@@ -1562,12 +1556,6 @@ an interface where “chat messages” are the inputs and outputs.</p>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.blob_loaders.file_system.FileSystemBlobLoader.html#langchain_community.document_loaders.blob_loaders.file_system.FileSystemBlobLoader" title="langchain_community.document_loaders.blob_loaders.file_system.FileSystemBlobLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.blob_loaders.file_system.FileSystemBlobLoader</span></code></a>(path, *)</p></td>
 <td><p>Load blobs in the local file system.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.blob_loaders.schema.Blob.html#langchain_community.document_loaders.blob_loaders.schema.Blob" title="langchain_community.document_loaders.blob_loaders.schema.Blob"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.blob_loaders.schema.Blob</span></code></a></p></td>
-<td><p>Blob represents raw data by either reference or value.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.blob_loaders.schema.BlobLoader.html#langchain_community.document_loaders.blob_loaders.schema.BlobLoader" title="langchain_community.document_loaders.blob_loaders.schema.BlobLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.blob_loaders.schema.BlobLoader</span></code></a>()</p></td>
-<td><p>Abstract interface for blob loaders implementation.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="document_loaders/langchain_community.document_loaders.blob_loaders.youtube_audio.YoutubeAudioLoader.html#langchain_community.document_loaders.blob_loaders.youtube_audio.YoutubeAudioLoader" title="langchain_community.document_loaders.blob_loaders.youtube_audio.YoutubeAudioLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">document_loaders.blob_loaders.youtube_audio.YoutubeAudioLoader</span></code></a>(...)</p></td>
 <td><p>Load YouTube urls as audio file(s).</p></td>
@@ -2387,7 +2375,7 @@ from different APIs and services.</p>
 <td><p>EdenAI embedding.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.elasticsearch.ElasticsearchEmbeddings.html#langchain_community.embeddings.elasticsearch.ElasticsearchEmbeddings" title="langchain_community.embeddings.elasticsearch.ElasticsearchEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.elasticsearch.ElasticsearchEmbeddings</span></code></a>(...)</p></td>
-<td><p>Elasticsearch embedding models.</p></td>
+<td><p>[<em>Deprecated</em>] Elasticsearch embedding models.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="embeddings/langchain_community.embeddings.embaas.EmbaasEmbeddings.html#langchain_community.embeddings.embaas.EmbaasEmbeddings" title="langchain_community.embeddings.embaas.EmbaasEmbeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embeddings.embaas.EmbaasEmbeddings</span></code></a></p></td>
 <td><p>Embaas's embedding service.</p></td>
@@ -4953,26 +4941,32 @@ and retrieve the data that are ‘most similar’ to the embedded query.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="vectorstores/langchain_community.vectorstores.docarray.in_memory.DocArrayInMemorySearch.html#langchain_community.vectorstores.docarray.in_memory.DocArrayInMemorySearch" title="langchain_community.vectorstores.docarray.in_memory.DocArrayInMemorySearch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vectorstores.docarray.in_memory.DocArrayInMemorySearch</span></code></a>(...)</p></td>
 <td><p>In-memory <cite>DocArray</cite> storage for exact search.</p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="vectorstores/langchain_community.vectorstores.documentdb.DocumentDBSimilarityType.html#langchain_community.vectorstores.documentdb.DocumentDBSimilarityType" title="langchain_community.vectorstores.documentdb.DocumentDBSimilarityType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vectorstores.documentdb.DocumentDBSimilarityType</span></code></a>(value)</p></td>
+<td><p>DocumentDB Similarity Type as enumerator.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="vectorstores/langchain_community.vectorstores.documentdb.DocumentDBVectorSearch.html#langchain_community.vectorstores.documentdb.DocumentDBVectorSearch" title="langchain_community.vectorstores.documentdb.DocumentDBVectorSearch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vectorstores.documentdb.DocumentDBVectorSearch</span></code></a>(...)</p></td>
+<td><p><cite>Amazon DocumentDB (with MongoDB compatibility)</cite> vector store.</p></td>
+</tr>
 <tr class="row-even"><td><p><a class="reference internal" href="vectorstores/langchain_community.vectorstores.elastic_vector_search.ElasticKnnSearch.html#langchain_community.vectorstores.elastic_vector_search.ElasticKnnSearch" title="langchain_community.vectorstores.elastic_vector_search.ElasticKnnSearch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vectorstores.elastic_vector_search.ElasticKnnSearch</span></code></a>(...)</p></td>
 <td><p>[<em>Deprecated</em>] [DEPRECATED] <cite>Elasticsearch</cite> with k-nearest neighbor search (<cite>k-NN</cite>) vector store.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="vectorstores/langchain_community.vectorstores.elastic_vector_search.ElasticVectorSearch.html#langchain_community.vectorstores.elastic_vector_search.ElasticVectorSearch" title="langchain_community.vectorstores.elastic_vector_search.ElasticVectorSearch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vectorstores.elastic_vector_search.ElasticVectorSearch</span></code></a>(...)</p></td>
-<td><p>ElasticVectorSearch uses the brute force method of searching on vectors.</p></td>
+<td><p>[<em>Deprecated</em>] ElasticVectorSearch uses the brute force method of searching on vectors.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="vectorstores/langchain_community.vectorstores.elasticsearch.ApproxRetrievalStrategy.html#langchain_community.vectorstores.elasticsearch.ApproxRetrievalStrategy" title="langchain_community.vectorstores.elasticsearch.ApproxRetrievalStrategy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vectorstores.elasticsearch.ApproxRetrievalStrategy</span></code></a>([...])</p></td>
-<td><p>Approximate retrieval strategy using the <cite>HNSW</cite> algorithm.</p></td>
+<td><p>[<em>Deprecated</em>] Approximate retrieval strategy using the <cite>HNSW</cite> algorithm.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="vectorstores/langchain_community.vectorstores.elasticsearch.BaseRetrievalStrategy.html#langchain_community.vectorstores.elasticsearch.BaseRetrievalStrategy" title="langchain_community.vectorstores.elasticsearch.BaseRetrievalStrategy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vectorstores.elasticsearch.BaseRetrievalStrategy</span></code></a>()</p></td>
 <td><p>Base class for <cite>Elasticsearch</cite> retrieval strategies.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="vectorstores/langchain_community.vectorstores.elasticsearch.ElasticsearchStore.html#langchain_community.vectorstores.elasticsearch.ElasticsearchStore" title="langchain_community.vectorstores.elasticsearch.ElasticsearchStore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vectorstores.elasticsearch.ElasticsearchStore</span></code></a>(...)</p></td>
-<td><p><cite>Elasticsearch</cite> vector store.</p></td>
+<td><p>[<em>Deprecated</em>] <cite>Elasticsearch</cite> vector store.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="vectorstores/langchain_community.vectorstores.elasticsearch.ExactRetrievalStrategy.html#langchain_community.vectorstores.elasticsearch.ExactRetrievalStrategy" title="langchain_community.vectorstores.elasticsearch.ExactRetrievalStrategy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vectorstores.elasticsearch.ExactRetrievalStrategy</span></code></a>()</p></td>
-<td><p>Exact retrieval strategy using the <cite>script_score</cite> query.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="vectorstores/langchain_community.vectorstores.elasticsearch.ExactRetrievalStrategy.html#langchain_community.vectorstores.elasticsearch.ExactRetrievalStrategy" title="langchain_community.vectorstores.elasticsearch.ExactRetrievalStrategy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vectorstores.elasticsearch.ExactRetrievalStrategy</span></code></a>(...)</p></td>
+<td><p>[<em>Deprecated</em>] Exact retrieval strategy using the <cite>script_score</cite> query.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="vectorstores/langchain_community.vectorstores.elasticsearch.SparseRetrievalStrategy.html#langchain_community.vectorstores.elasticsearch.SparseRetrievalStrategy" title="langchain_community.vectorstores.elasticsearch.SparseRetrievalStrategy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vectorstores.elasticsearch.SparseRetrievalStrategy</span></code></a>([...])</p></td>
-<td><p>Sparse retrieval strategy using the <cite>text_expansion</cite> processor.</p></td>
+<td><p>[<em>Deprecated</em>] Sparse retrieval strategy using the <cite>text_expansion</cite> processor.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="vectorstores/langchain_community.vectorstores.epsilla.Epsilla.html#langchain_community.vectorstores.epsilla.Epsilla" title="langchain_community.vectorstores.epsilla.Epsilla"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vectorstores.epsilla.Epsilla</span></code></a>(client, embeddings)</p></td>
 <td><p>Wrapper around Epsilla vector database.</p></td>
@@ -4988,6 +4982,12 @@ and retrieve the data that are ‘most similar’ to the embedded query.</p>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="vectorstores/langchain_community.vectorstores.hologres.Hologres.html#langchain_community.vectorstores.hologres.Hologres" title="langchain_community.vectorstores.hologres.Hologres"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vectorstores.hologres.Hologres</span></code></a>(...[, ndims, ...])</p></td>
 <td><p><cite>Hologres API</cite> vector store.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="vectorstores/langchain_community.vectorstores.infinispanvs.Infinispan.html#langchain_community.vectorstores.infinispanvs.Infinispan" title="langchain_community.vectorstores.infinispanvs.Infinispan"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vectorstores.infinispanvs.Infinispan</span></code></a>(**kwargs)</p></td>
+<td><p>Helper class for <cite>Infinispan</cite> REST interface.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="vectorstores/langchain_community.vectorstores.infinispanvs.InfinispanVS.html#langchain_community.vectorstores.infinispanvs.InfinispanVS" title="langchain_community.vectorstores.infinispanvs.InfinispanVS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vectorstores.infinispanvs.InfinispanVS</span></code></a>([...])</p></td>
+<td><p><cite>Infinispan</cite> VectorStore interface.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="vectorstores/langchain_community.vectorstores.jaguar.Jaguar.html#langchain_community.vectorstores.jaguar.Jaguar" title="langchain_community.vectorstores.jaguar.Jaguar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vectorstores.jaguar.Jaguar</span></code></a>(pod, store, ...)</p></td>
 <td><p><cite>Jaguar API</cite> vector store.</p></td>
@@ -5383,7 +5383,7 @@ and retrieve the data that are ‘most similar’ to the embedded query.</p>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 06, 2024.
+          Last updated on Mar 07, 2024.
       </footer>
     </div>
   </div>

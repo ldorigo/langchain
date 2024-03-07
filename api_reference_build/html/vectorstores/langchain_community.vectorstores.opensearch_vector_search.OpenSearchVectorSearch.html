@@ -304,8 +304,8 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#langchain_community.vectorstores.opensearch_vector_search.OpenSearchVectorSearch.asimilarity_search_with_score" title="langchain_community.vectorstores.opensearch_vector_search.OpenSearchVectorSearch.asimilarity_search_with_score"><code class="xref py py-obj docutils literal notranslate"><span class="pre">asimilarity_search_with_score</span></code></a>(*args, **kwargs)</p></td>
 <td><p>Run similarity search with distance asynchronously.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#langchain_community.vectorstores.opensearch_vector_search.OpenSearchVectorSearch.delete" title="langchain_community.vectorstores.opensearch_vector_search.OpenSearchVectorSearch.delete"><code class="xref py py-obj docutils literal notranslate"><span class="pre">delete</span></code></a>([ids])</p></td>
-<td><p>Delete by vector ID or other criteria.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#langchain_community.vectorstores.opensearch_vector_search.OpenSearchVectorSearch.delete" title="langchain_community.vectorstores.opensearch_vector_search.OpenSearchVectorSearch.delete"><code class="xref py py-obj docutils literal notranslate"><span class="pre">delete</span></code></a>([ids, refresh_indices])</p></td>
+<td><p>Delete documents from the Opensearch index.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#langchain_community.vectorstores.opensearch_vector_search.OpenSearchVectorSearch.from_documents" title="langchain_community.vectorstores.opensearch_vector_search.OpenSearchVectorSearch.from_documents"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_documents</span></code></a>(documents, embedding, **kwargs)</p></td>
 <td><p>Return VectorStore initialized from documents and embeddings.</p></td>
@@ -757,21 +757,19 @@ score_threshold: Optional, a floating point value between 0 to 1 to</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="langchain_community.vectorstores.opensearch_vector_search.OpenSearchVectorSearch.delete">
-<span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#langchain_community.vectorstores.opensearch_vector_search.OpenSearchVectorSearch.delete" title="Permalink to this definition">¶</a></dt>
-<dd><p>Delete by vector ID or other criteria.</p>
+<span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">refresh_indices</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/langchain_community/vectorstores/opensearch_vector_search.html#OpenSearchVectorSearch.delete"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#langchain_community.vectorstores.opensearch_vector_search.OpenSearchVectorSearch.delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete documents from the Opensearch index.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>ids</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em>) – List of ids to delete.</p></li>
-<li><p><strong>**kwargs</strong> (<em>Any</em>) – Other keyword arguments that subclasses might use.</p></li>
+<li><p><strong>ids</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em>) – List of ids of documents to delete.</p></li>
+<li><p><strong>refresh_indices</strong> (<em>Optional</em><em>[</em><em>bool</em><em>]</em>) – Whether to refresh the index
+after deleting documents. Defaults to True.</p></li>
+<li><p><strong>kwargs</strong> (<em>Any</em>) – </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>True if deletion is successful,
-False otherwise, None if not implemented.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>Optional[bool]</p>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><em>Optional</em>[bool]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1147,7 +1145,7 @@ Also supports Script Scoring and Painless Scripting.</p>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 06, 2024.
+          Last updated on Mar 07, 2024.
       </footer>
     </div>
   </div>

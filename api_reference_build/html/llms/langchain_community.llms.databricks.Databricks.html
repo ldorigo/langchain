@@ -177,6 +177,7 @@
               <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_community.llms.databricks</span></code>.Databricks</a><ul>
 <li><a class="reference internal" href="#langchain_community.llms.databricks.Databricks"><code class="docutils literal notranslate"><span class="pre">Databricks</span></code></a><ul>
+<li><a class="reference internal" href="#langchain_community.llms.databricks.Databricks.allow_dangerous_deserialization"><code class="docutils literal notranslate"><span class="pre">Databricks.allow_dangerous_deserialization</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.llms.databricks.Databricks.api_token"><code class="docutils literal notranslate"><span class="pre">Databricks.api_token</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.llms.databricks.Databricks.cache"><code class="docutils literal notranslate"><span class="pre">Databricks.cache</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.llms.databricks.Databricks.callback_manager"><code class="docutils literal notranslate"><span class="pre">Databricks.callback_manager</span></code></a></li>
@@ -334,6 +335,16 @@ you can use <cite>transform_input_fn</cite> and <cite>transform_output_fn</cite>
 transformations before and after the query.</p>
 <p>Create a new model by parsing and validating input data from keyword arguments.</p>
 <p>Raises ValidationError if the input data cannot be parsed to form a valid model.</p>
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="langchain_community.llms.databricks.Databricks.allow_dangerous_deserialization">
+<em class="property"><span class="pre">param</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">allow_dangerous_deserialization</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#langchain_community.llms.databricks.Databricks.allow_dangerous_deserialization" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to allow dangerous deserialization of the data which
+involves loading data using pickle.</p>
+<p>If the data has been modified by a malicious actor, it can deliver a
+malicious payload that results in execution of arbitrary code on the target
+machine.</p>
+</dd></dl>
+
 <dl class="py attribute pydantic_field">
 <dt class="sig sig-object py" id="langchain_community.llms.databricks.Databricks.api_token">
 <em class="property"><span class="pre">param</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">api_token</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Optional]</span></em><a class="headerlink" href="#langchain_community.llms.databricks.Databricks.api_token" title="Permalink to this definition">¶</a></dt>
@@ -1972,7 +1983,7 @@ between retries</p></li>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 06, 2024.
+          Last updated on Mar 07, 2024.
       </footer>
     </div>
   </div>

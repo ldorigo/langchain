@@ -177,6 +177,7 @@
               <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_community.llms.self_hosted</span></code>.SelfHostedPipeline</a><ul>
 <li><a class="reference internal" href="#langchain_community.llms.self_hosted.SelfHostedPipeline"><code class="docutils literal notranslate"><span class="pre">SelfHostedPipeline</span></code></a><ul>
+<li><a class="reference internal" href="#langchain_community.llms.self_hosted.SelfHostedPipeline.allow_dangerous_deserialization"><code class="docutils literal notranslate"><span class="pre">SelfHostedPipeline.allow_dangerous_deserialization</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.llms.self_hosted.SelfHostedPipeline.cache"><code class="docutils literal notranslate"><span class="pre">SelfHostedPipeline.cache</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.llms.self_hosted.SelfHostedPipeline.callback_manager"><code class="docutils literal notranslate"><span class="pre">SelfHostedPipeline.callback_manager</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.llms.self_hosted.SelfHostedPipeline.callbacks"><code class="docutils literal notranslate"><span class="pre">SelfHostedPipeline.callbacks</span></code></a></li>
@@ -337,6 +338,13 @@ cloud like Paperspace, Coreweave, etc.).</p>
 <p>The load function must be in global scope to be imported
 and run on the server, i.e. in a module and not a REPL or closure.
 Then, initialize the remote inference function.</p>
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="langchain_community.llms.self_hosted.SelfHostedPipeline.allow_dangerous_deserialization">
+<em class="property"><span class="pre">param</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">allow_dangerous_deserialization</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#langchain_community.llms.self_hosted.SelfHostedPipeline.allow_dangerous_deserialization" title="Permalink to this definition">¶</a></dt>
+<dd><p>Allow deserialization using pickle which can be dangerous if
+loading compromised data.</p>
+</dd></dl>
+
 <dl class="py attribute pydantic_field">
 <dt class="sig sig-object py" id="langchain_community.llms.self_hosted.SelfHostedPipeline.cache">
 <em class="property"><span class="pre">param</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cache</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#langchain_community.llms.self_hosted.SelfHostedPipeline.cache" title="Permalink to this definition">¶</a></dt>
@@ -1909,7 +1917,7 @@ between retries</p></li>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 06, 2024.
+          Last updated on Mar 07, 2024.
       </footer>
     </div>
   </div>

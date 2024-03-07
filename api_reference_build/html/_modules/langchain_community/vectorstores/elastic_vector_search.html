@@ -232,7 +232,12 @@
     <span class="p">}</span>
 
 
-<div class="viewcode-block" id="ElasticVectorSearch"><a class="viewcode-back" href="../../../vectorstores/langchain_community.vectorstores.elastic_vector_search.ElasticVectorSearch.html#langchain_community.vectorstores.elastic_vector_search.ElasticVectorSearch">[docs]</a><span class="k">class</span> <span class="nc">ElasticVectorSearch</span><span class="p">(</span><span class="n">VectorStore</span><span class="p">):</span>
+<div class="viewcode-block" id="ElasticVectorSearch"><a class="viewcode-back" href="../../../vectorstores/langchain_community.vectorstores.elastic_vector_search.ElasticVectorSearch.html#langchain_community.vectorstores.elastic_vector_search.ElasticVectorSearch">[docs]</a><span class="nd">@deprecated</span><span class="p">(</span>
+    <span class="s2">&quot;0.0.27&quot;</span><span class="p">,</span>
+    <span class="n">alternative</span><span class="o">=</span><span class="s2">&quot;Use ElasticsearchStore class in langchain-elasticsearch package&quot;</span><span class="p">,</span>
+    <span class="n">pending</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">class</span> <span class="nc">ElasticVectorSearch</span><span class="p">(</span><span class="n">VectorStore</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">    ElasticVectorSearch uses the brute force method of searching on vectors.</span>
@@ -540,7 +545,11 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">index_name</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="ElasticKnnSearch"><a class="viewcode-back" href="../../../vectorstores/langchain_community.vectorstores.elastic_vector_search.ElasticKnnSearch.html#langchain_community.vectorstores.elastic_vector_search.ElasticKnnSearch">[docs]</a><span class="nd">@deprecated</span><span class="p">(</span><span class="s2">&quot;0.0.1&quot;</span><span class="p">,</span> <span class="n">alternative</span><span class="o">=</span><span class="s2">&quot;ElasticsearchStore class.&quot;</span><span class="p">,</span> <span class="n">pending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="viewcode-block" id="ElasticKnnSearch"><a class="viewcode-back" href="../../../vectorstores/langchain_community.vectorstores.elastic_vector_search.ElasticKnnSearch.html#langchain_community.vectorstores.elastic_vector_search.ElasticKnnSearch">[docs]</a><span class="nd">@deprecated</span><span class="p">(</span>
+    <span class="s2">&quot;0.0.1&quot;</span><span class="p">,</span>
+    <span class="n">alternative</span><span class="o">=</span><span class="s2">&quot;Use ElasticsearchStore class in langchain-elasticsearch package&quot;</span><span class="p">,</span>
+    <span class="n">pending</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="k">class</span> <span class="nc">ElasticKnnSearch</span><span class="p">(</span><span class="n">VectorStore</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;[DEPRECATED] `Elasticsearch` with k-nearest neighbor search</span>
 <span class="sd">    (`k-NN`) vector store.</span>
@@ -988,7 +997,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 06, 2024.
+          Last updated on Mar 07, 2024.
       </footer>
     </div>
   </div>

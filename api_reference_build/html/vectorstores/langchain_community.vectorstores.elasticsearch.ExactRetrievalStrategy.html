@@ -198,8 +198,12 @@
 <h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_community.vectorstores.elasticsearch</span></code>.ExactRetrievalStrategy<a class="headerlink" href="#langchain-community-vectorstores-elasticsearch-exactretrievalstrategy" title="Permalink to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="langchain_community.vectorstores.elasticsearch.ExactRetrievalStrategy">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">langchain_community.vectorstores.elasticsearch.</span></span><span class="sig-name descname"><span class="pre">ExactRetrievalStrategy</span></span><a class="reference internal" href="../_modules/langchain_community/vectorstores/elasticsearch.html#ExactRetrievalStrategy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#langchain_community.vectorstores.elasticsearch.ExactRetrievalStrategy" title="Permalink to this definition">¶</a></dt>
-<dd><p>Exact retrieval strategy using the <cite>script_score</cite> query.</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">langchain_community.vectorstores.elasticsearch.</span></span><span class="sig-name descname"><span class="pre">ExactRetrievalStrategy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/langchain_community/vectorstores/elasticsearch.html#ExactRetrievalStrategy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#langchain_community.vectorstores.elasticsearch.ExactRetrievalStrategy" title="Permalink to this definition">¶</a></dt>
+<dd><p>[<em>Deprecated</em>] Exact retrieval strategy using the <cite>script_score</cite> query.</p>
+<p class="rubric">Notes</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version langchain-community==0.0.27: </span>Use Use class in langchain-elasticsearch package instead.</p>
+</div>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
 <colgroup>
@@ -207,7 +211,7 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#langchain_community.vectorstores.elasticsearch.ExactRetrievalStrategy.__init__" title="langchain_community.vectorstores.elasticsearch.ExactRetrievalStrategy.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#langchain_community.vectorstores.elasticsearch.ExactRetrievalStrategy.__init__" title="langchain_community.vectorstores.elasticsearch.ExactRetrievalStrategy.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*args, **kwargs)</p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#langchain_community.vectorstores.elasticsearch.ExactRetrievalStrategy.before_index_setup" title="langchain_community.vectorstores.elasticsearch.ExactRetrievalStrategy.before_index_setup"><code class="xref py py-obj docutils literal notranslate"><span class="pre">before_index_setup</span></code></a>(client, text_field, ...)</p></td>
@@ -226,8 +230,20 @@
 </table>
 <dl class="py method">
 <dt class="sig sig-object py" id="langchain_community.vectorstores.elasticsearch.ExactRetrievalStrategy.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#langchain_community.vectorstores.elasticsearch.ExactRetrievalStrategy.__init__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="headerlink" href="#langchain_community.vectorstores.elasticsearch.ExactRetrievalStrategy.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>self</strong> (<em>Any</em>) – </p></li>
+<li><p><strong>args</strong> (<em>Any</em>) – </p></li>
+<li><p><strong>kwargs</strong> (<em>Any</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><em>Any</em></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="langchain_community.vectorstores.elasticsearch.ExactRetrievalStrategy.before_index_setup">
@@ -322,7 +338,7 @@ to be performed on the text before it is added to the index.</p>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 06, 2024.
+          Last updated on Mar 07, 2024.
       </footer>
     </div>
   </div>

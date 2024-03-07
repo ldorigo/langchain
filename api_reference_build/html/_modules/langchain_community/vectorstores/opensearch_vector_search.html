@@ -636,6 +636,38 @@
             <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
         <span class="p">)</span></div>
 
+<div class="viewcode-block" id="OpenSearchVectorSearch.delete"><a class="viewcode-back" href="../../../vectorstores/langchain_community.vectorstores.opensearch_vector_search.OpenSearchVectorSearch.html#langchain_community.vectorstores.opensearch_vector_search.OpenSearchVectorSearch.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">ids</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">refresh_indices</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete documents from the Opensearch index.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ids: List of ids of documents to delete.</span>
+<span class="sd">            refresh_indices: Whether to refresh the index</span>
+<span class="sd">                            after deleting documents. Defaults to True.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">bulk</span> <span class="o">=</span> <span class="n">_import_bulk</span><span class="p">()</span>
+
+        <span class="n">body</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">if</span> <span class="n">ids</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;ids must be provided.&quot;</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">_id</span> <span class="ow">in</span> <span class="n">ids</span><span class="p">:</span>
+            <span class="n">body</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;_op_type&quot;</span><span class="p">:</span> <span class="s2">&quot;delete&quot;</span><span class="p">,</span> <span class="s2">&quot;_index&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">index_name</span><span class="p">,</span> <span class="s2">&quot;_id&quot;</span><span class="p">:</span> <span class="n">_id</span><span class="p">})</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">body</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">bulk</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">body</span><span class="p">,</span> <span class="n">refresh</span><span class="o">=</span><span class="n">refresh_indices</span><span class="p">,</span> <span class="n">ignore_status</span><span class="o">=</span><span class="mi">404</span><span class="p">)</span>
+                <span class="k">return</span> <span class="kc">True</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">e</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span></div>
+
 <div class="viewcode-block" id="OpenSearchVectorSearch.similarity_search"><a class="viewcode-back" href="../../../vectorstores/langchain_community.vectorstores.opensearch_vector_search.OpenSearchVectorSearch.html#langchain_community.vectorstores.opensearch_vector_search.OpenSearchVectorSearch.similarity_search">[docs]</a>    <span class="k">def</span> <span class="nf">similarity_search</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Document</span><span class="p">]:</span>
@@ -1135,7 +1167,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 06, 2024.
+          Last updated on Mar 07, 2024.
       </footer>
     </div>
   </div>

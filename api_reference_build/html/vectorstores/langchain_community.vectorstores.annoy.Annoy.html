@@ -314,7 +314,7 @@
 <tr class="row-even"><td><p><a class="reference internal" href="#langchain_community.vectorstores.annoy.Annoy.from_texts" title="langchain_community.vectorstores.annoy.Annoy.from_texts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_texts</span></code></a>(texts, embedding[, metadatas, ...])</p></td>
 <td><p>Construct Annoy wrapper from raw documents.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#langchain_community.vectorstores.annoy.Annoy.load_local" title="langchain_community.vectorstores.annoy.Annoy.load_local"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_local</span></code></a>(folder_path, embeddings)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#langchain_community.vectorstores.annoy.Annoy.load_local" title="langchain_community.vectorstores.annoy.Annoy.load_local"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_local</span></code></a>(folder_path, embeddings, *[, ...])</p></td>
 <td><p>Load Annoy index, docstore, and index_to_docstore_id to disk.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#langchain_community.vectorstores.annoy.Annoy.max_marginal_relevance_search" title="langchain_community.vectorstores.annoy.Annoy.max_marginal_relevance_search"><code class="xref py py-obj docutils literal notranslate"><span class="pre">max_marginal_relevance_search</span></code></a>(query[, k, ...])</p></td>
@@ -848,7 +848,7 @@ False otherwise, None if not implemented.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="langchain_community.vectorstores.annoy.Annoy.load_local">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">load_local</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">embeddings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../embeddings/langchain_core.embeddings.Embeddings.html#langchain_core.embeddings.Embeddings" title="langchain_core.embeddings.Embeddings"><span class="pre">Embeddings</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#langchain_community.vectorstores.annoy.Annoy" title="langchain_community.vectorstores.annoy.Annoy"><span class="pre">Annoy</span></a></span></span><a class="reference internal" href="../_modules/langchain_community/vectorstores/annoy.html#Annoy.load_local"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#langchain_community.vectorstores.annoy.Annoy.load_local" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">load_local</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">embeddings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../embeddings/langchain_core.embeddings.Embeddings.html#langchain_core.embeddings.Embeddings" title="langchain_core.embeddings.Embeddings"><span class="pre">Embeddings</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_dangerous_deserialization</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#langchain_community.vectorstores.annoy.Annoy" title="langchain_community.vectorstores.annoy.Annoy"><span class="pre">Annoy</span></a></span></span><a class="reference internal" href="../_modules/langchain_community/vectorstores/annoy.html#Annoy.load_local"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#langchain_community.vectorstores.annoy.Annoy.load_local" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load Annoy index, docstore, and index_to_docstore_id to disk.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -856,6 +856,11 @@ False otherwise, None if not implemented.</p>
 <li><p><strong>folder_path</strong> (<em>str</em>) – folder path to load index, docstore,
 and index_to_docstore_id from.</p></li>
 <li><p><strong>embeddings</strong> (<a class="reference internal" href="../embeddings/langchain_core.embeddings.Embeddings.html#langchain_core.embeddings.Embeddings" title="langchain_core.embeddings.Embeddings"><em>Embeddings</em></a>) – Embeddings to use when generating queries.</p></li>
+<li><p><strong>allow_dangerous_deserialization</strong> (<em>bool</em>) – whether to allow deserialization
+of the data which involves loading a pickle file.
+Pickle files can be modified by malicious actors to deliver a
+malicious payload that results in execution of
+arbitrary code on your machine.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
@@ -1153,7 +1158,7 @@ to n_trees * n if not provided</p></li>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 06, 2024.
+          Last updated on Mar 07, 2024.
       </footer>
     </div>
   </div>

@@ -642,6 +642,8 @@
         <span class="n">folder_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">embedding</span><span class="p">:</span> <span class="n">Embeddings</span><span class="p">,</span>
         <span class="n">index_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;index&quot;</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">allow_dangerous_deserialization</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ScaNN</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Load ScaNN index, docstore, and index_to_docstore_id from disk.</span>
@@ -651,7 +653,25 @@
 <span class="sd">                and index_to_docstore_id from.</span>
 <span class="sd">            embeddings: Embeddings to use when generating queries</span>
 <span class="sd">            index_name: for saving with a specific index file name</span>
+<span class="sd">            allow_dangerous_deserialization: whether to allow deserialization</span>
+<span class="sd">                of the data which involves loading a pickle file.</span>
+<span class="sd">                Pickle files can be modified by malicious actors to deliver a</span>
+<span class="sd">                malicious payload that results in execution of</span>
+<span class="sd">                arbitrary code on your machine.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">allow_dangerous_deserialization</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;The de-serialization relies loading a pickle file. &quot;</span>
+                <span class="s2">&quot;Pickle files can be modified to deliver a malicious payload that &quot;</span>
+                <span class="s2">&quot;results in execution of arbitrary code on your machine.&quot;</span>
+                <span class="s2">&quot;You will need to set `allow_dangerous_deserialization` to `True` to &quot;</span>
+                <span class="s2">&quot;enable deserialization. If you do this, make sure that you &quot;</span>
+                <span class="s2">&quot;trust the source of the data. For example, if you are loading a &quot;</span>
+                <span class="s2">&quot;file that you created, and no that no one else has modified the file, &quot;</span>
+                <span class="s2">&quot;then this is safe to do. Do not set this to `True` if you are loading &quot;</span>
+                <span class="s2">&quot;a file from an untrusted source (e.g., some random site on the &quot;</span>
+                <span class="s2">&quot;internet.).&quot;</span>
+            <span class="p">)</span>
         <span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">folder_path</span><span class="p">)</span>
         <span class="n">scann_path</span> <span class="o">=</span> <span class="n">path</span> <span class="o">/</span> <span class="s2">&quot;</span><span class="si">{index_name}</span><span class="s2">.scann&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">index_name</span><span class="o">=</span><span class="n">index_name</span><span class="p">)</span>
         <span class="n">scann_path</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -730,7 +750,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 06, 2024.
+          Last updated on Mar 07, 2024.
       </footer>
     </div>
   </div>

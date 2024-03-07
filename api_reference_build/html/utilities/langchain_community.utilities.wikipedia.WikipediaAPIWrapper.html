@@ -186,6 +186,7 @@
 <li><a class="reference internal" href="#langchain_community.utilities.wikipedia.WikipediaAPIWrapper.dict"><code class="docutils literal notranslate"><span class="pre">WikipediaAPIWrapper.dict()</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.utilities.wikipedia.WikipediaAPIWrapper.from_orm"><code class="docutils literal notranslate"><span class="pre">WikipediaAPIWrapper.from_orm()</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.utilities.wikipedia.WikipediaAPIWrapper.json"><code class="docutils literal notranslate"><span class="pre">WikipediaAPIWrapper.json()</span></code></a></li>
+<li><a class="reference internal" href="#langchain_community.utilities.wikipedia.WikipediaAPIWrapper.lazy_load"><code class="docutils literal notranslate"><span class="pre">WikipediaAPIWrapper.lazy_load()</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.utilities.wikipedia.WikipediaAPIWrapper.load"><code class="docutils literal notranslate"><span class="pre">WikipediaAPIWrapper.load()</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.utilities.wikipedia.WikipediaAPIWrapper.parse_file"><code class="docutils literal notranslate"><span class="pre">WikipediaAPIWrapper.parse_file()</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.utilities.wikipedia.WikipediaAPIWrapper.parse_obj"><code class="docutils literal notranslate"><span class="pre">WikipediaAPIWrapper.parse_obj()</span></code></a></li>
@@ -346,6 +347,22 @@ the new model: you should trust this data</p></li>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="langchain_community.utilities.wikipedia.WikipediaAPIWrapper.lazy_load">
+<span class="sig-name descname"><span class="pre">lazy_load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../documents/langchain_core.documents.base.Document.html#langchain_core.documents.base.Document" title="langchain_core.documents.base.Document"><span class="pre">Document</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/langchain_community/utilities/wikipedia.html#WikipediaAPIWrapper.lazy_load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#langchain_community.utilities.wikipedia.WikipediaAPIWrapper.lazy_load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run Wikipedia search and get the article text plus the meta information.
+See</p>
+<p>Returns: a list of documents.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>query</strong> (<em>str</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><em>Iterator</em>[<a class="reference internal" href="../documents/langchain_core.documents.base.Document.html#langchain_core.documents.base.Document" title="langchain_core.documents.base.Document"><em>Document</em></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="langchain_community.utilities.wikipedia.WikipediaAPIWrapper.load">
 <span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../documents/langchain_core.documents.base.Document.html#langchain_core.documents.base.Document" title="langchain_core.documents.base.Document"><span class="pre">Document</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/langchain_community/utilities/wikipedia.html#WikipediaAPIWrapper.load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#langchain_community.utilities.wikipedia.WikipediaAPIWrapper.load" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run Wikipedia search and get the article text plus the meta information.
@@ -500,7 +517,7 @@ See</p>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 06, 2024.
+          Last updated on Mar 07, 2024.
       </footer>
     </div>
   </div>

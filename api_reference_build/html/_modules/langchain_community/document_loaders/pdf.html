@@ -364,10 +364,6 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">parser</span> <span class="o">=</span> <span class="n">PyPDFium2Parser</span><span class="p">(</span><span class="n">extract_images</span><span class="o">=</span><span class="n">extract_images</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="PyPDFium2Loader.load"><a class="viewcode-back" href="../../../document_loaders/langchain_community.document_loaders.pdf.PyPDFium2Loader.html#langchain_community.document_loaders.pdf.PyPDFium2Loader.load">[docs]</a>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Document</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Load given path as pages.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lazy_load</span><span class="p">())</span></div>
-
 <div class="viewcode-block" id="PyPDFium2Loader.lazy_load"><a class="viewcode-back" href="../../../document_loaders/langchain_community.document_loaders.pdf.PyPDFium2Loader.html#langchain_community.document_loaders.pdf.PyPDFium2Loader.lazy_load">[docs]</a>    <span class="k">def</span> <span class="nf">lazy_load</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Document</span><span class="p">]:</span>
@@ -457,10 +453,6 @@
             <span class="n">extract_images</span><span class="o">=</span><span class="n">extract_images</span><span class="p">,</span> <span class="n">concatenate_pages</span><span class="o">=</span><span class="n">concatenate_pages</span>
         <span class="p">)</span></div>
 
-<div class="viewcode-block" id="PDFMinerLoader.load"><a class="viewcode-back" href="../../../document_loaders/langchain_community.document_loaders.pdf.PDFMinerLoader.html#langchain_community.document_loaders.pdf.PDFMinerLoader.load">[docs]</a>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Document</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Eagerly load the content.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lazy_load</span><span class="p">())</span></div>
-
 <div class="viewcode-block" id="PDFMinerLoader.lazy_load"><a class="viewcode-back" href="../../../document_loaders/langchain_community.document_loaders.pdf.PDFMinerLoader.html#langchain_community.document_loaders.pdf.PDFMinerLoader.lazy_load">[docs]</a>    <span class="k">def</span> <span class="nf">lazy_load</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Document</span><span class="p">]:</span>
@@ -487,7 +479,7 @@
 
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="PDFMinerPDFasHTMLLoader.load"><a class="viewcode-back" href="../../../document_loaders/langchain_community.document_loaders.pdf.PDFMinerPDFasHTMLLoader.html#langchain_community.document_loaders.pdf.PDFMinerPDFasHTMLLoader.load">[docs]</a>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Document</span><span class="p">]:</span>
+<div class="viewcode-block" id="PDFMinerPDFasHTMLLoader.lazy_load"><a class="viewcode-back" href="../../../document_loaders/langchain_community.document_loaders.pdf.PDFMinerPDFasHTMLLoader.html#langchain_community.document_loaders.pdf.PDFMinerPDFasHTMLLoader.lazy_load">[docs]</a>    <span class="k">def</span> <span class="nf">lazy_load</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Document</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Load file.&quot;&quot;&quot;</span>
         <span class="kn">from</span> <span class="nn">pdfminer.high_level</span> <span class="kn">import</span> <span class="n">extract_text_to_fp</span>
         <span class="kn">from</span> <span class="nn">pdfminer.layout</span> <span class="kn">import</span> <span class="n">LAParams</span>
@@ -505,7 +497,7 @@
         <span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_path</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">web_path</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">web_path</span>
         <span class="p">}</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">Document</span><span class="p">(</span><span class="n">page_content</span><span class="o">=</span><span class="n">output_string</span><span class="o">.</span><span class="n">getvalue</span><span class="p">(),</span> <span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">)]</span></div></div>
+        <span class="k">yield</span> <span class="n">Document</span><span class="p">(</span><span class="n">page_content</span><span class="o">=</span><span class="n">output_string</span><span class="o">.</span><span class="n">getvalue</span><span class="p">(),</span> <span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="PyMuPDFLoader"><a class="viewcode-back" href="../../../document_loaders/langchain_community.document_loaders.pdf.PyMuPDFLoader.html#langchain_community.document_loaders.pdf.PyMuPDFLoader">[docs]</a><span class="k">class</span> <span class="nc">PyMuPDFLoader</span><span class="p">(</span><span class="n">BasePDFLoader</span><span class="p">):</span>
@@ -531,8 +523,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">extract_images</span> <span class="o">=</span> <span class="n">extract_images</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">text_kwargs</span> <span class="o">=</span> <span class="n">kwargs</span></div>
 
-<div class="viewcode-block" id="PyMuPDFLoader.load"><a class="viewcode-back" href="../../../document_loaders/langchain_community.document_loaders.pdf.PyMuPDFLoader.html#langchain_community.document_loaders.pdf.PyMuPDFLoader.load">[docs]</a>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Document</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Load file.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">_lazy_load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Document</span><span class="p">]:</span>
         <span class="k">if</span> <span class="n">kwargs</span><span class="p">:</span>
             <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
                 <span class="sa">f</span><span class="s2">&quot;Received runtime arguments </span><span class="si">{</span><span class="n">kwargs</span><span class="si">}</span><span class="s2">. Passing runtime args to `load`&quot;</span>
@@ -547,7 +538,13 @@
             <span class="n">blob</span> <span class="o">=</span> <span class="n">Blob</span><span class="o">.</span><span class="n">from_data</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="n">path</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">web_path</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">blob</span> <span class="o">=</span> <span class="n">Blob</span><span class="o">.</span><span class="n">from_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_path</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">blob</span><span class="p">)</span></div></div>
+        <span class="k">yield from</span> <span class="n">parser</span><span class="o">.</span><span class="n">lazy_parse</span><span class="p">(</span><span class="n">blob</span><span class="p">)</span>
+
+<div class="viewcode-block" id="PyMuPDFLoader.load"><a class="viewcode-back" href="../../../document_loaders/langchain_community.document_loaders.pdf.PyMuPDFLoader.html#langchain_community.document_loaders.pdf.PyMuPDFLoader.load">[docs]</a>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Document</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_lazy_load</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="PyMuPDFLoader.lazy_load"><a class="viewcode-back" href="../../../document_loaders/langchain_community.document_loaders.pdf.PyMuPDFLoader.html#langchain_community.document_loaders.pdf.PyMuPDFLoader.lazy_load">[docs]</a>    <span class="k">def</span> <span class="nf">lazy_load</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Document</span><span class="p">]:</span>
+        <span class="k">yield from</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lazy_load</span><span class="p">()</span></div></div>
 
 
 <span class="c1"># MathpixPDFLoader implementation taken largely from Daniel Gross&#39;s:</span>
@@ -938,7 +935,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 06, 2024.
+          Last updated on Mar 07, 2024.
       </footer>
     </div>
   </div>

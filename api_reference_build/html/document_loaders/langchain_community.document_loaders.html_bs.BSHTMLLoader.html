@@ -226,10 +226,10 @@ to pass to the BeautifulSoup object.</p>
 <td><p>A lazy loader for Documents.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#langchain_community.document_loaders.html_bs.BSHTMLLoader.lazy_load" title="langchain_community.document_loaders.html_bs.BSHTMLLoader.lazy_load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">lazy_load</span></code></a>()</p></td>
-<td><p>A lazy loader for Documents.</p></td>
+<td><p>Load HTML document into document objects.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#langchain_community.document_loaders.html_bs.BSHTMLLoader.load" title="langchain_community.document_loaders.html_bs.BSHTMLLoader.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code></a>()</p></td>
-<td><p>Load HTML document into document objects.</p></td>
+<td><p>Load data into Document objects.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#langchain_community.document_loaders.html_bs.BSHTMLLoader.load_and_split" title="langchain_community.document_loaders.html_bs.BSHTMLLoader.load_and_split"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_and_split</span></code></a>([text_splitter])</p></td>
 <td><p>Load Documents and split into chunks.</p></td>
@@ -269,8 +269,8 @@ to pass to the BeautifulSoup object.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="langchain_community.document_loaders.html_bs.BSHTMLLoader.lazy_load">
-<span class="sig-name descname"><span class="pre">lazy_load</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../documents/langchain_core.documents.base.Document.html#langchain_core.documents.base.Document" title="langchain_core.documents.base.Document"><span class="pre">Document</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#langchain_community.document_loaders.html_bs.BSHTMLLoader.lazy_load" title="Permalink to this definition">¶</a></dt>
-<dd><p>A lazy loader for Documents.</p>
+<span class="sig-name descname"><span class="pre">lazy_load</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../documents/langchain_core.documents.base.Document.html#langchain_core.documents.base.Document" title="langchain_core.documents.base.Document"><span class="pre">Document</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/langchain_community/document_loaders/html_bs.html#BSHTMLLoader.lazy_load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#langchain_community.document_loaders.html_bs.BSHTMLLoader.lazy_load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load HTML document into document objects.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><em>Iterator</em>[<a class="reference internal" href="../documents/langchain_core.documents.base.Document.html#langchain_core.documents.base.Document" title="langchain_core.documents.base.Document"><em>Document</em></a>]</p>
@@ -280,8 +280,8 @@ to pass to the BeautifulSoup object.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="langchain_community.document_loaders.html_bs.BSHTMLLoader.load">
-<span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../documents/langchain_core.documents.base.Document.html#langchain_core.documents.base.Document" title="langchain_core.documents.base.Document"><span class="pre">Document</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/langchain_community/document_loaders/html_bs.html#BSHTMLLoader.load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#langchain_community.document_loaders.html_bs.BSHTMLLoader.load" title="Permalink to this definition">¶</a></dt>
-<dd><p>Load HTML document into document objects.</p>
+<span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../documents/langchain_core.documents.base.Document.html#langchain_core.documents.base.Document" title="langchain_core.documents.base.Document"><span class="pre">Document</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#langchain_community.document_loaders.html_bs.BSHTMLLoader.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load data into Document objects.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><em>List</em>[<a class="reference internal" href="../documents/langchain_core.documents.base.Document.html#langchain_core.documents.base.Document" title="langchain_core.documents.base.Document"><em>Document</em></a>]</p>
@@ -319,7 +319,7 @@ Defaults to RecursiveCharacterTextSplitter.</p>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 06, 2024.
+          Last updated on Mar 07, 2024.
       </footer>
     </div>
   </div>

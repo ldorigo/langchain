@@ -319,6 +319,11 @@
     <span class="n">model_reqs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;./&quot;</span><span class="p">,</span> <span class="s2">&quot;torch&quot;</span><span class="p">]</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Requirements to install on hardware to inference the model.&quot;&quot;&quot;</span>
 
+    <span class="n">allow_dangerous_deserialization</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Allow deserialization using pickle which can be dangerous if </span>
+<span class="sd">    loading compromised data.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">class</span> <span class="nc">Config</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Configuration for this pydantic object.&quot;&quot;&quot;</span>
 
@@ -331,6 +336,16 @@
 <span class="sd">        and run on the server, i.e. in a module and not a REPL or closure.</span>
 <span class="sd">        Then, initialize the remote inference function.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;allow_dangerous_deserialization&quot;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;SelfHostedPipeline relies on the pickle module. &quot;</span>
+                <span class="s2">&quot;You will need to set allow_dangerous_deserialization=True &quot;</span>
+                <span class="s2">&quot;if you want to opt-in to allow deserialization of data using pickle.&quot;</span>
+                <span class="s2">&quot;Data can be compromised by a malicious actor if &quot;</span>
+                <span class="s2">&quot;not handled properly to include &quot;</span>
+                <span class="s2">&quot;a malicious payload that when deserialized with &quot;</span>
+                <span class="s2">&quot;pickle can execute arbitrary code. &quot;</span>
+            <span class="p">)</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="kn">import</span> <span class="nn">runhouse</span> <span class="k">as</span> <span class="nn">rh</span>
@@ -406,7 +421,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 06, 2024.
+          Last updated on Mar 07, 2024.
       </footer>
     </div>
   </div>

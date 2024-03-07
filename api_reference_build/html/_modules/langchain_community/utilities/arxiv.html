@@ -184,7 +184,7 @@
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Iterator</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
 
 <span class="kn">from</span> <span class="nn">langchain_core.documents</span> <span class="kn">import</span> <span class="n">Document</span>
 <span class="kn">from</span> <span class="nn">langchain_core.pydantic_v1</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">root_validator</span>
@@ -359,7 +359,22 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            query: a plaintext search query</span>
-<span class="sd">        &quot;&quot;&quot;</span>  <span class="c1"># noqa: E501</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lazy_load</span><span class="p">(</span><span class="n">query</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="ArxivAPIWrapper.lazy_load"><a class="viewcode-back" href="../../../utilities/langchain_community.utilities.arxiv.ArxivAPIWrapper.html#langchain_community.utilities.arxiv.ArxivAPIWrapper.lazy_load">[docs]</a>    <span class="k">def</span> <span class="nf">lazy_load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Document</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Run Arxiv search and get the article texts plus the article meta information.</span>
+<span class="sd">        See https://lukasschwab.me/arxiv.py/index.html#Search</span>
+
+<span class="sd">        Returns: documents with the document.page_content in text format</span>
+
+<span class="sd">        Performs an arxiv search, downloads the top k results as PDFs, loads</span>
+<span class="sd">        them as Documents, and returns them.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            query: a plaintext search query</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="kn">import</span> <span class="nn">fitz</span>
         <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
@@ -382,9 +397,8 @@
                 <span class="p">)</span><span class="o">.</span><span class="n">results</span><span class="p">()</span>
         <span class="k">except</span> <span class="bp">self</span><span class="o">.</span><span class="n">arxiv_exceptions</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
             <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Error on arxiv: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ex</span><span class="p">)</span>
-            <span class="k">return</span> <span class="p">[]</span>
+            <span class="k">return</span>
 
-        <span class="n">docs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Document</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">doc_file_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">download_pdf</span><span class="p">()</span>
@@ -413,19 +427,17 @@
                 <span class="s2">&quot;Summary&quot;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">summary</span><span class="p">,</span>
                 <span class="o">**</span><span class="n">extra_metadata</span><span class="p">,</span>
             <span class="p">}</span>
-            <span class="n">doc</span> <span class="o">=</span> <span class="n">Document</span><span class="p">(</span>
+            <span class="k">yield</span> <span class="n">Document</span><span class="p">(</span>
                 <span class="n">page_content</span><span class="o">=</span><span class="n">text</span><span class="p">[:</span> <span class="bp">self</span><span class="o">.</span><span class="n">doc_content_chars_max</span><span class="p">],</span> <span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span>
             <span class="p">)</span>
-            <span class="n">docs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
-            <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">doc_file_name</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">docs</span></div></div>
+            <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">doc_file_name</span><span class="p">)</span></div></div>
 </pre></div>
 
       </div>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 06, 2024.
+          Last updated on Mar 07, 2024.
       </footer>
     </div>
   </div>

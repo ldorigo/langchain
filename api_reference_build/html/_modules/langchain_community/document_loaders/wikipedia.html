@@ -180,7 +180,7 @@
       <div class="sk-page-content container-fluid body px-md-3" role="main">
         
   <h1>Source code for langchain_community.document_loaders.wikipedia</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Iterator</span><span class="p">,</span> <span class="n">Optional</span>
 
 <span class="kn">from</span> <span class="nn">langchain_core.documents</span> <span class="kn">import</span> <span class="n">Document</span>
 
@@ -224,12 +224,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">load_all_available_meta</span> <span class="o">=</span> <span class="n">load_all_available_meta</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">doc_content_chars_max</span> <span class="o">=</span> <span class="n">doc_content_chars_max</span></div>
 
-<div class="viewcode-block" id="WikipediaLoader.load"><a class="viewcode-back" href="../../../document_loaders/langchain_community.document_loaders.wikipedia.WikipediaLoader.html#langchain_community.document_loaders.wikipedia.WikipediaLoader.load">[docs]</a>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Document</span><span class="p">]:</span>
+<div class="viewcode-block" id="WikipediaLoader.lazy_load"><a class="viewcode-back" href="../../../document_loaders/langchain_community.document_loaders.wikipedia.WikipediaLoader.html#langchain_community.document_loaders.wikipedia.WikipediaLoader.lazy_load">[docs]</a>    <span class="k">def</span> <span class="nf">lazy_load</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Document</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Loads the query result from Wikipedia into a list of Documents.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            List[Document]: A list of Document objects representing the loaded</span>
+<span class="sd">            A list of Document objects representing the loaded</span>
 <span class="sd">                Wikipedia pages.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">client</span> <span class="o">=</span> <span class="n">WikipediaAPIWrapper</span><span class="p">(</span>
@@ -238,15 +238,14 @@
             <span class="n">load_all_available_meta</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">load_all_available_meta</span><span class="p">,</span>
             <span class="n">doc_content_chars_max</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">doc_content_chars_max</span><span class="p">,</span>
         <span class="p">)</span>
-        <span class="n">docs</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">docs</span></div></div>
+        <span class="k">yield from</span> <span class="n">client</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">)</span></div></div>
 </pre></div>
 
       </div>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 06, 2024.
+          Last updated on Mar 07, 2024.
       </footer>
     </div>
   </div>

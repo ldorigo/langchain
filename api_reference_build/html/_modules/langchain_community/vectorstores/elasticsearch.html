@@ -197,6 +197,7 @@
 <span class="p">)</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">langchain_core._api</span> <span class="kn">import</span> <span class="n">deprecated</span>
 <span class="kn">from</span> <span class="nn">langchain_core.documents</span> <span class="kn">import</span> <span class="n">Document</span>
 <span class="kn">from</span> <span class="nn">langchain_core.embeddings</span> <span class="kn">import</span> <span class="n">Embeddings</span>
 <span class="kn">from</span> <span class="nn">langchain_core.vectorstores</span> <span class="kn">import</span> <span class="n">VectorStore</span>
@@ -295,7 +296,10 @@
         <span class="k">return</span> <span class="kc">True</span></div></div>
 
 
-<div class="viewcode-block" id="ApproxRetrievalStrategy"><a class="viewcode-back" href="../../../vectorstores/langchain_community.vectorstores.elasticsearch.ApproxRetrievalStrategy.html#langchain_community.vectorstores.elasticsearch.ApproxRetrievalStrategy">[docs]</a><span class="k">class</span> <span class="nc">ApproxRetrievalStrategy</span><span class="p">(</span><span class="n">BaseRetrievalStrategy</span><span class="p">):</span>
+<div class="viewcode-block" id="ApproxRetrievalStrategy"><a class="viewcode-back" href="../../../vectorstores/langchain_community.vectorstores.elasticsearch.ApproxRetrievalStrategy.html#langchain_community.vectorstores.elasticsearch.ApproxRetrievalStrategy">[docs]</a><span class="nd">@deprecated</span><span class="p">(</span>
+    <span class="s2">&quot;0.0.27&quot;</span><span class="p">,</span> <span class="n">alternative</span><span class="o">=</span><span class="s2">&quot;Use class in langchain-elasticsearch package&quot;</span><span class="p">,</span> <span class="n">pending</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="k">class</span> <span class="nc">ApproxRetrievalStrategy</span><span class="p">(</span><span class="n">BaseRetrievalStrategy</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Approximate retrieval strategy using the `HNSW` algorithm.&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="ApproxRetrievalStrategy.__init__"><a class="viewcode-back" href="../../../vectorstores/langchain_community.vectorstores.elasticsearch.ApproxRetrievalStrategy.html#langchain_community.vectorstores.elasticsearch.ApproxRetrievalStrategy.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
@@ -415,7 +419,10 @@
         <span class="p">}</span></div></div>
 
 
-<div class="viewcode-block" id="ExactRetrievalStrategy"><a class="viewcode-back" href="../../../vectorstores/langchain_community.vectorstores.elasticsearch.ExactRetrievalStrategy.html#langchain_community.vectorstores.elasticsearch.ExactRetrievalStrategy">[docs]</a><span class="k">class</span> <span class="nc">ExactRetrievalStrategy</span><span class="p">(</span><span class="n">BaseRetrievalStrategy</span><span class="p">):</span>
+<div class="viewcode-block" id="ExactRetrievalStrategy"><a class="viewcode-back" href="../../../vectorstores/langchain_community.vectorstores.elasticsearch.ExactRetrievalStrategy.html#langchain_community.vectorstores.elasticsearch.ExactRetrievalStrategy">[docs]</a><span class="nd">@deprecated</span><span class="p">(</span>
+    <span class="s2">&quot;0.0.27&quot;</span><span class="p">,</span> <span class="n">alternative</span><span class="o">=</span><span class="s2">&quot;Use class in langchain-elasticsearch package&quot;</span><span class="p">,</span> <span class="n">pending</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="k">class</span> <span class="nc">ExactRetrievalStrategy</span><span class="p">(</span><span class="n">BaseRetrievalStrategy</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Exact retrieval strategy using the `script_score` query.&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="ExactRetrievalStrategy.query"><a class="viewcode-back" href="../../../vectorstores/langchain_community.vectorstores.elasticsearch.ExactRetrievalStrategy.html#langchain_community.vectorstores.elasticsearch.ExactRetrievalStrategy.query">[docs]</a>    <span class="k">def</span> <span class="nf">query</span><span class="p">(</span>
@@ -482,7 +489,10 @@
         <span class="p">}</span></div></div>
 
 
-<div class="viewcode-block" id="SparseRetrievalStrategy"><a class="viewcode-back" href="../../../vectorstores/langchain_community.vectorstores.elasticsearch.SparseRetrievalStrategy.html#langchain_community.vectorstores.elasticsearch.SparseRetrievalStrategy">[docs]</a><span class="k">class</span> <span class="nc">SparseRetrievalStrategy</span><span class="p">(</span><span class="n">BaseRetrievalStrategy</span><span class="p">):</span>
+<div class="viewcode-block" id="SparseRetrievalStrategy"><a class="viewcode-back" href="../../../vectorstores/langchain_community.vectorstores.elasticsearch.SparseRetrievalStrategy.html#langchain_community.vectorstores.elasticsearch.SparseRetrievalStrategy">[docs]</a><span class="nd">@deprecated</span><span class="p">(</span>
+    <span class="s2">&quot;0.0.27&quot;</span><span class="p">,</span> <span class="n">alternative</span><span class="o">=</span><span class="s2">&quot;Use class in langchain-elasticsearch package&quot;</span><span class="p">,</span> <span class="n">pending</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="k">class</span> <span class="nc">SparseRetrievalStrategy</span><span class="p">(</span><span class="n">BaseRetrievalStrategy</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Sparse retrieval strategy using the `text_expansion` processor.&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="SparseRetrievalStrategy.__init__"><a class="viewcode-back" href="../../../vectorstores/langchain_community.vectorstores.elasticsearch.SparseRetrievalStrategy.html#langchain_community.vectorstores.elasticsearch.SparseRetrievalStrategy.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
@@ -563,7 +573,10 @@
         <span class="k">return</span> <span class="kc">False</span></div></div>
 
 
-<div class="viewcode-block" id="ElasticsearchStore"><a class="viewcode-back" href="../../../vectorstores/langchain_community.vectorstores.elasticsearch.ElasticsearchStore.html#langchain_community.vectorstores.elasticsearch.ElasticsearchStore">[docs]</a><span class="k">class</span> <span class="nc">ElasticsearchStore</span><span class="p">(</span><span class="n">VectorStore</span><span class="p">):</span>
+<div class="viewcode-block" id="ElasticsearchStore"><a class="viewcode-back" href="../../../vectorstores/langchain_community.vectorstores.elasticsearch.ElasticsearchStore.html#langchain_community.vectorstores.elasticsearch.ElasticsearchStore">[docs]</a><span class="nd">@deprecated</span><span class="p">(</span>
+    <span class="s2">&quot;0.0.27&quot;</span><span class="p">,</span> <span class="n">alternative</span><span class="o">=</span><span class="s2">&quot;Use class in langchain-elasticsearch package&quot;</span><span class="p">,</span> <span class="n">pending</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="k">class</span> <span class="nc">ElasticsearchStore</span><span class="p">(</span><span class="n">VectorStore</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;`Elasticsearch` vector store.</span>
 
 <span class="sd">    Example:</span>
@@ -1495,7 +1508,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 06, 2024.
+          Last updated on Mar 07, 2024.
       </footer>
     </div>
   </div>

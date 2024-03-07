@@ -432,7 +432,6 @@
 
 
 <div class="viewcode-block" id="Databricks"><a class="viewcode-back" href="../../../llms/langchain_community.llms.databricks.Databricks.html#langchain_community.llms.databricks.Databricks">[docs]</a><span class="k">class</span> <span class="nc">Databricks</span><span class="p">(</span><span class="n">LLM</span><span class="p">):</span>
-
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Databricks serving endpoint or a cluster driver proxy app for LLM.</span>
 
 <span class="sd">    It supports two endpoint types:</span>
@@ -556,6 +555,15 @@
 <span class="sd">    If not provided, the task is automatically inferred from the endpoint.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
+    <span class="n">allow_dangerous_deserialization</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Whether to allow dangerous deserialization of the data which </span>
+<span class="sd">    involves loading data using pickle.</span>
+<span class="sd">    </span>
+<span class="sd">    If the data has been modified by a malicious actor, it can deliver a</span>
+<span class="sd">    malicious payload that results in execution of arbitrary code on the target</span>
+<span class="sd">    machine.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">_client</span><span class="p">:</span> <span class="n">_DatabricksClientBase</span> <span class="o">=</span> <span class="n">PrivateAttr</span><span class="p">()</span>
 
     <span class="k">class</span> <span class="nc">Config</span><span class="p">:</span>
@@ -617,6 +625,16 @@
         <span class="k">return</span> <span class="n">v</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">data</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;allow_dangerous_deserialization&quot;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;This code relies on the pickle module. &quot;</span>
+                <span class="s2">&quot;You will need to set allow_dangerous_deserialization=True &quot;</span>
+                <span class="s2">&quot;if you want to opt-in to allow deserialization of data using pickle.&quot;</span>
+                <span class="s2">&quot;Data can be compromised by a malicious actor if &quot;</span>
+                <span class="s2">&quot;not handled properly to include &quot;</span>
+                <span class="s2">&quot;a malicious payload that when deserialized with &quot;</span>
+                <span class="s2">&quot;pickle can execute arbitrary code on your machine.&quot;</span>
+            <span class="p">)</span>
         <span class="k">if</span> <span class="s2">&quot;transform_input_fn&quot;</span> <span class="ow">in</span> <span class="n">data</span> <span class="ow">and</span> <span class="n">_is_hex_string</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;transform_input_fn&quot;</span><span class="p">]):</span>
             <span class="n">data</span><span class="p">[</span><span class="s2">&quot;transform_input_fn&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_load_pickled_fn_from_hex_string</span><span class="p">(</span>
                 <span class="n">data</span><span class="p">[</span><span class="s2">&quot;transform_input_fn&quot;</span><span class="p">]</span>
@@ -719,7 +737,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 06, 2024.
+          Last updated on Mar 07, 2024.
       </footer>
     </div>
   </div>

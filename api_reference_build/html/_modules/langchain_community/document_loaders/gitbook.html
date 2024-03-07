@@ -180,7 +180,7 @@
       <div class="sk-page-content container-fluid body px-md-3" role="main">
         
   <h1>Source code for langchain_community.document_loaders.gitbook</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Iterator</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
 <span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="kn">import</span> <span class="n">urljoin</span><span class="p">,</span> <span class="n">urlparse</span>
 
 <span class="kn">from</span> <span class="nn">langchain_core.documents</span> <span class="kn">import</span> <span class="n">Document</span>
@@ -229,23 +229,23 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">load_all_paths</span> <span class="o">=</span> <span class="n">load_all_paths</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">content_selector</span> <span class="o">=</span> <span class="n">content_selector</span></div>
 
-<div class="viewcode-block" id="GitbookLoader.load"><a class="viewcode-back" href="../../../document_loaders/langchain_community.document_loaders.gitbook.GitbookLoader.html#langchain_community.document_loaders.gitbook.GitbookLoader.load">[docs]</a>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Document</span><span class="p">]:</span>
+<div class="viewcode-block" id="GitbookLoader.lazy_load"><a class="viewcode-back" href="../../../document_loaders/langchain_community.document_loaders.gitbook.GitbookLoader.html#langchain_community.document_loaders.gitbook.GitbookLoader.lazy_load">[docs]</a>    <span class="k">def</span> <span class="nf">lazy_load</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Document</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Fetch text from one single GitBook page.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_all_paths</span><span class="p">:</span>
             <span class="n">soup_info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scrape</span><span class="p">()</span>
             <span class="n">relative_paths</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_paths</span><span class="p">(</span><span class="n">soup_info</span><span class="p">)</span>
             <span class="n">urls</span> <span class="o">=</span> <span class="p">[</span><span class="n">urljoin</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span> <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">relative_paths</span><span class="p">]</span>
             <span class="n">soup_infos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scrape_all</span><span class="p">(</span><span class="n">urls</span><span class="p">)</span>
-            <span class="n">_documents</span> <span class="o">=</span> <span class="p">[</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_get_document</span><span class="p">(</span><span class="n">soup_info</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
-                <span class="k">for</span> <span class="n">soup_info</span><span class="p">,</span> <span class="n">url</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">soup_infos</span><span class="p">,</span> <span class="n">urls</span><span class="p">)</span>
-            <span class="p">]</span>
+            <span class="k">for</span> <span class="n">soup_info</span><span class="p">,</span> <span class="n">url</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">soup_infos</span><span class="p">,</span> <span class="n">urls</span><span class="p">):</span>
+                <span class="n">doc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_document</span><span class="p">(</span><span class="n">soup_info</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">doc</span><span class="p">:</span>
+                    <span class="k">yield</span> <span class="n">doc</span>
+
         <span class="k">else</span><span class="p">:</span>
             <span class="n">soup_info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scrape</span><span class="p">()</span>
-            <span class="n">_documents</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_document</span><span class="p">(</span><span class="n">soup_info</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">web_path</span><span class="p">)]</span>
-        <span class="n">documents</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">_documents</span> <span class="k">if</span> <span class="n">d</span><span class="p">]</span>
-
-        <span class="k">return</span> <span class="n">documents</span></div>
+            <span class="n">doc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_document</span><span class="p">(</span><span class="n">soup_info</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">web_path</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">doc</span><span class="p">:</span>
+                <span class="k">yield</span> <span class="n">doc</span></div>
 
     <span class="k">def</span> <span class="nf">_get_document</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">soup</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">custom_url</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
@@ -269,7 +269,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 06, 2024.
+          Last updated on Mar 07, 2024.
       </footer>
     </div>
   </div>

@@ -223,7 +223,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="langchain_community.vectorstores.elastic_vector_search.ElasticVectorSearch">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">langchain_community.vectorstores.elastic_vector_search.</span></span><span class="sig-name descname"><span class="pre">ElasticVectorSearch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elasticsearch_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">embedding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../embeddings/langchain_core.embeddings.Embeddings.html#langchain_core.embeddings.Embeddings" title="langchain_core.embeddings.Embeddings"><span class="pre">Embeddings</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ssl_verify</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/langchain_community/vectorstores/elastic_vector_search.html#ElasticVectorSearch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#langchain_community.vectorstores.elastic_vector_search.ElasticVectorSearch" title="Permalink to this definition">¶</a></dt>
-<dd><p>ElasticVectorSearch uses the brute force method of searching on vectors.</p>
+<dd><p>[<em>Deprecated</em>] ElasticVectorSearch uses the brute force method of searching on vectors.</p>
 <p>Recommended to use ElasticsearchStore instead, which gives you the option
 to uses the approx  HNSW algorithm which performs better on large datasets.</p>
 <p>ElasticsearchStore also supports metadata filtering, customising the
@@ -294,6 +294,10 @@ abstract base class, such as OpenAIEmbeddings()</p></li>
 <dd class="field-even"><p><strong>ValueError</strong> – If the elasticsearch python package is not installed.</p>
 </dd>
 </dl>
+<p class="rubric">Notes</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version langchain-community==0.0.27: </span>Use Use ElasticsearchStore class in langchain-elasticsearch package instead.</p>
+</div>
 <p>Initialize with necessary components.</p>
 <p class="rubric">Attributes</p>
 <table class="autosummary longtable docutils align-default">
@@ -1072,7 +1076,7 @@ score_threshold: Optional, a floating point value between 0 to 1 to</p>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 06, 2024.
+          Last updated on Mar 07, 2024.
       </footer>
     </div>
   </div>

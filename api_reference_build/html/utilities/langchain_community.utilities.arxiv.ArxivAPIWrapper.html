@@ -195,6 +195,7 @@
 <li><a class="reference internal" href="#langchain_community.utilities.arxiv.ArxivAPIWrapper.get_summaries_as_docs"><code class="docutils literal notranslate"><span class="pre">ArxivAPIWrapper.get_summaries_as_docs()</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.utilities.arxiv.ArxivAPIWrapper.is_arxiv_identifier"><code class="docutils literal notranslate"><span class="pre">ArxivAPIWrapper.is_arxiv_identifier()</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.utilities.arxiv.ArxivAPIWrapper.json"><code class="docutils literal notranslate"><span class="pre">ArxivAPIWrapper.json()</span></code></a></li>
+<li><a class="reference internal" href="#langchain_community.utilities.arxiv.ArxivAPIWrapper.lazy_load"><code class="docutils literal notranslate"><span class="pre">ArxivAPIWrapper.lazy_load()</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.utilities.arxiv.ArxivAPIWrapper.load"><code class="docutils literal notranslate"><span class="pre">ArxivAPIWrapper.load()</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.utilities.arxiv.ArxivAPIWrapper.parse_file"><code class="docutils literal notranslate"><span class="pre">ArxivAPIWrapper.parse_file()</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.utilities.arxiv.ArxivAPIWrapper.parse_obj"><code class="docutils literal notranslate"><span class="pre">ArxivAPIWrapper.parse_obj()</span></code></a></li>
@@ -448,6 +449,24 @@ is returned instead. Wrapper for
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="langchain_community.utilities.arxiv.ArxivAPIWrapper.lazy_load">
+<span class="sig-name descname"><span class="pre">lazy_load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../documents/langchain_core.documents.base.Document.html#langchain_core.documents.base.Document" title="langchain_core.documents.base.Document"><span class="pre">Document</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/langchain_community/utilities/arxiv.html#ArxivAPIWrapper.lazy_load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#langchain_community.utilities.arxiv.ArxivAPIWrapper.lazy_load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run Arxiv search and get the article texts plus the article meta information.
+See <a class="reference external" href="https://lukasschwab.me/arxiv.py/index.html#Search">https://lukasschwab.me/arxiv.py/index.html#Search</a></p>
+<p>Returns: documents with the document.page_content in text format</p>
+<p>Performs an arxiv search, downloads the top k results as PDFs, loads
+them as Documents, and returns them.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>query</strong> (<em>str</em>) – a plaintext search query</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><em>Iterator</em>[<a class="reference internal" href="../documents/langchain_core.documents.base.Document.html#langchain_core.documents.base.Document" title="langchain_core.documents.base.Document"><em>Document</em></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="langchain_community.utilities.arxiv.ArxivAPIWrapper.load">
 <span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../documents/langchain_core.documents.base.Document.html#langchain_core.documents.base.Document" title="langchain_core.documents.base.Document"><span class="pre">Document</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/langchain_community/utilities/arxiv.html#ArxivAPIWrapper.load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#langchain_community.utilities.arxiv.ArxivAPIWrapper.load" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run Arxiv search and get the article texts plus the article meta information.
@@ -608,7 +627,7 @@ is returned instead. Wrapper for
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 06, 2024.
+          Last updated on Mar 07, 2024.
       </footer>
     </div>
   </div>

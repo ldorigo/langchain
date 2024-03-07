@@ -184,6 +184,7 @@
 
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
 
+<span class="kn">from</span> <span class="nn">langchain_core._api</span> <span class="kn">import</span> <span class="n">deprecated</span>
 <span class="kn">from</span> <span class="nn">langchain_core.utils</span> <span class="kn">import</span> <span class="n">get_from_env</span>
 
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
@@ -193,7 +194,10 @@
 <span class="kn">from</span> <span class="nn">langchain_core.embeddings</span> <span class="kn">import</span> <span class="n">Embeddings</span>
 
 
-<div class="viewcode-block" id="ElasticsearchEmbeddings"><a class="viewcode-back" href="../../../embeddings/langchain_community.embeddings.elasticsearch.ElasticsearchEmbeddings.html#langchain_community.embeddings.elasticsearch.ElasticsearchEmbeddings">[docs]</a><span class="k">class</span> <span class="nc">ElasticsearchEmbeddings</span><span class="p">(</span><span class="n">Embeddings</span><span class="p">):</span>
+<div class="viewcode-block" id="ElasticsearchEmbeddings"><a class="viewcode-back" href="../../../embeddings/langchain_community.embeddings.elasticsearch.ElasticsearchEmbeddings.html#langchain_community.embeddings.elasticsearch.ElasticsearchEmbeddings">[docs]</a><span class="nd">@deprecated</span><span class="p">(</span>
+    <span class="s2">&quot;0.1.11&quot;</span><span class="p">,</span> <span class="n">alternative</span><span class="o">=</span><span class="s2">&quot;Use class in langchain-elasticsearch package&quot;</span><span class="p">,</span> <span class="n">pending</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="k">class</span> <span class="nc">ElasticsearchEmbeddings</span><span class="p">(</span><span class="n">Embeddings</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Elasticsearch embedding models.</span>
 
 <span class="sd">    This class provides an interface to generate embeddings using a model deployed</span>
@@ -408,7 +412,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 06, 2024.
+          Last updated on Mar 07, 2024.
       </footer>
     </div>
   </div>

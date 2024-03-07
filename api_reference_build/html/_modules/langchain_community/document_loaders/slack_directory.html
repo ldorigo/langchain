@@ -183,7 +183,7 @@
 <span></span><span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">zipfile</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Iterator</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
 
 <span class="kn">from</span> <span class="nn">langchain_core.documents</span> <span class="kn">import</span> <span class="n">Document</span>
 
@@ -217,9 +217,8 @@
             <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
                 <span class="k">return</span> <span class="p">{}</span>
 
-<div class="viewcode-block" id="SlackDirectoryLoader.load"><a class="viewcode-back" href="../../../document_loaders/langchain_community.document_loaders.slack_directory.SlackDirectoryLoader.html#langchain_community.document_loaders.slack_directory.SlackDirectoryLoader.load">[docs]</a>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Document</span><span class="p">]:</span>
+<div class="viewcode-block" id="SlackDirectoryLoader.lazy_load"><a class="viewcode-back" href="../../../document_loaders/langchain_community.document_loaders.slack_directory.SlackDirectoryLoader.html#langchain_community.document_loaders.slack_directory.SlackDirectoryLoader.lazy_load">[docs]</a>    <span class="k">def</span> <span class="nf">lazy_load</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Document</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Load and return documents from the Slack directory dump.&quot;&quot;&quot;</span>
-        <span class="n">docs</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">zip_path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">zip_file</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">channel_path</span> <span class="ow">in</span> <span class="n">zip_file</span><span class="o">.</span><span class="n">namelist</span><span class="p">():</span>
                 <span class="n">channel_name</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">channel_path</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">name</span>
@@ -228,11 +227,7 @@
                 <span class="k">if</span> <span class="n">channel_path</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.json&quot;</span><span class="p">):</span>
                     <span class="n">messages</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_read_json</span><span class="p">(</span><span class="n">zip_file</span><span class="p">,</span> <span class="n">channel_path</span><span class="p">)</span>
                     <span class="k">for</span> <span class="n">message</span> <span class="ow">in</span> <span class="n">messages</span><span class="p">:</span>
-                        <span class="n">document</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_convert_message_to_document</span><span class="p">(</span>
-                            <span class="n">message</span><span class="p">,</span> <span class="n">channel_name</span>
-                        <span class="p">)</span>
-                        <span class="n">docs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">document</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">docs</span></div>
+                        <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">_convert_message_to_document</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">channel_name</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">_read_json</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">zip_file</span><span class="p">:</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">,</span> <span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Read JSON data from a zip subfile.&quot;&quot;&quot;</span>
@@ -298,7 +293,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 06, 2024.
+          Last updated on Mar 07, 2024.
       </footer>
     </div>
   </div>

@@ -211,7 +211,20 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Base class for the DataStax AstraDB data store.&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="AstraDBBaseStore.__init__"><a class="viewcode-back" href="../../storage/langchain_astradb.storage.AstraDBBaseStore.html#langchain_astradb.storage.AstraDBBaseStore.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">astra_env</span> <span class="o">=</span> <span class="n">_AstraDBCollectionEnvironment</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s2">&quot;requested_indexing_policy&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;Do not pass &#39;requested_indexing_policy&#39; to AstraDBBaseStore init&quot;</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="s2">&quot;default_indexing_policy&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;Do not pass &#39;default_indexing_policy&#39; to AstraDBBaseStore init&quot;</span>
+            <span class="p">)</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;requested_indexing_policy&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;allow&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;_id&quot;</span><span class="p">]}</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;default_indexing_policy&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;allow&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;_id&quot;</span><span class="p">]}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">astra_env</span> <span class="o">=</span> <span class="n">_AstraDBCollectionEnvironment</span><span class="p">(</span>
+            <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">collection</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">astra_env</span><span class="o">.</span><span class="n">collection</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">async_collection</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">astra_env</span><span class="o">.</span><span class="n">async_collection</span></div>
 
@@ -403,7 +416,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 06, 2024.
+          Last updated on Mar 07, 2024.
       </footer>
     </div>
   </div>
