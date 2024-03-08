@@ -223,15 +223,32 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">requests_wrapper</span><span class="p">:</span> <span class="n">TextRequestsWrapper</span>
+    <span class="n">allow_dangerous_requests</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Allow dangerous requests. See documentation for details.&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="RequestsToolkit.get_tools"><a class="viewcode-back" href="../../../../agent_toolkits/langchain_community.agent_toolkits.openapi.toolkit.RequestsToolkit.html#langchain_community.agent_toolkits.openapi.toolkit.RequestsToolkit.get_tools">[docs]</a>    <span class="k">def</span> <span class="nf">get_tools</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">BaseTool</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a list of tools.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">[</span>
-            <span class="n">RequestsGetTool</span><span class="p">(</span><span class="n">requests_wrapper</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">requests_wrapper</span><span class="p">),</span>
-            <span class="n">RequestsPostTool</span><span class="p">(</span><span class="n">requests_wrapper</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">requests_wrapper</span><span class="p">),</span>
-            <span class="n">RequestsPatchTool</span><span class="p">(</span><span class="n">requests_wrapper</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">requests_wrapper</span><span class="p">),</span>
-            <span class="n">RequestsPutTool</span><span class="p">(</span><span class="n">requests_wrapper</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">requests_wrapper</span><span class="p">),</span>
-            <span class="n">RequestsDeleteTool</span><span class="p">(</span><span class="n">requests_wrapper</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">requests_wrapper</span><span class="p">),</span>
+            <span class="n">RequestsGetTool</span><span class="p">(</span>
+                <span class="n">requests_wrapper</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">requests_wrapper</span><span class="p">,</span>
+                <span class="n">allow_dangerous_requests</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">allow_dangerous_requests</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="n">RequestsPostTool</span><span class="p">(</span>
+                <span class="n">requests_wrapper</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">requests_wrapper</span><span class="p">,</span>
+                <span class="n">allow_dangerous_requests</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">allow_dangerous_requests</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="n">RequestsPatchTool</span><span class="p">(</span>
+                <span class="n">requests_wrapper</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">requests_wrapper</span><span class="p">,</span>
+                <span class="n">allow_dangerous_requests</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">allow_dangerous_requests</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="n">RequestsPutTool</span><span class="p">(</span>
+                <span class="n">requests_wrapper</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">requests_wrapper</span><span class="p">,</span>
+                <span class="n">allow_dangerous_requests</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">allow_dangerous_requests</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="n">RequestsDeleteTool</span><span class="p">(</span>
+                <span class="n">requests_wrapper</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">requests_wrapper</span><span class="p">,</span>
+                <span class="n">allow_dangerous_requests</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">allow_dangerous_requests</span><span class="p">,</span>
+            <span class="p">),</span>
         <span class="p">]</span></div></div>
 
 
@@ -248,6 +265,8 @@
 
     <span class="n">json_agent</span><span class="p">:</span> <span class="n">Any</span>
     <span class="n">requests_wrapper</span><span class="p">:</span> <span class="n">TextRequestsWrapper</span>
+    <span class="n">allow_dangerous_requests</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Allow dangerous requests. See documentation for details.&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="OpenAPIToolkit.get_tools"><a class="viewcode-back" href="../../../../agent_toolkits/langchain_community.agent_toolkits.openapi.toolkit.OpenAPIToolkit.html#langchain_community.agent_toolkits.openapi.toolkit.OpenAPIToolkit.get_tools">[docs]</a>    <span class="k">def</span> <span class="nf">get_tools</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">BaseTool</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the tools in the toolkit.&quot;&quot;&quot;</span>
@@ -256,7 +275,10 @@
             <span class="n">func</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">json_agent</span><span class="o">.</span><span class="n">run</span><span class="p">,</span>
             <span class="n">description</span><span class="o">=</span><span class="n">DESCRIPTION</span><span class="p">,</span>
         <span class="p">)</span>
-        <span class="n">request_toolkit</span> <span class="o">=</span> <span class="n">RequestsToolkit</span><span class="p">(</span><span class="n">requests_wrapper</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">requests_wrapper</span><span class="p">)</span>
+        <span class="n">request_toolkit</span> <span class="o">=</span> <span class="n">RequestsToolkit</span><span class="p">(</span>
+            <span class="n">requests_wrapper</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">requests_wrapper</span><span class="p">,</span>
+            <span class="n">allow_dangerous_requests</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">allow_dangerous_requests</span><span class="p">,</span>
+        <span class="p">)</span>
         <span class="k">return</span> <span class="p">[</span><span class="o">*</span><span class="n">request_toolkit</span><span class="o">.</span><span class="n">get_tools</span><span class="p">(),</span> <span class="n">json_agent_tool</span><span class="p">]</span></div>
 
 <div class="viewcode-block" id="OpenAPIToolkit.from_llm"><a class="viewcode-back" href="../../../../agent_toolkits/langchain_community.agent_toolkits.openapi.toolkit.OpenAPIToolkit.html#langchain_community.agent_toolkits.openapi.toolkit.OpenAPIToolkit.from_llm">[docs]</a>    <span class="nd">@classmethod</span>
@@ -265,18 +287,23 @@
         <span class="n">llm</span><span class="p">:</span> <span class="n">BaseLanguageModel</span><span class="p">,</span>
         <span class="n">json_spec</span><span class="p">:</span> <span class="n">JsonSpec</span><span class="p">,</span>
         <span class="n">requests_wrapper</span><span class="p">:</span> <span class="n">TextRequestsWrapper</span><span class="p">,</span>
+        <span class="n">allow_dangerous_requests</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OpenAPIToolkit</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create json agent from llm, then initialize.&quot;&quot;&quot;</span>
         <span class="n">json_agent</span> <span class="o">=</span> <span class="n">create_json_agent</span><span class="p">(</span><span class="n">llm</span><span class="p">,</span> <span class="n">JsonToolkit</span><span class="p">(</span><span class="n">spec</span><span class="o">=</span><span class="n">json_spec</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">json_agent</span><span class="o">=</span><span class="n">json_agent</span><span class="p">,</span> <span class="n">requests_wrapper</span><span class="o">=</span><span class="n">requests_wrapper</span><span class="p">)</span></div></div>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="n">json_agent</span><span class="o">=</span><span class="n">json_agent</span><span class="p">,</span>
+            <span class="n">requests_wrapper</span><span class="o">=</span><span class="n">requests_wrapper</span><span class="p">,</span>
+            <span class="n">allow_dangerous_requests</span><span class="o">=</span><span class="n">allow_dangerous_requests</span><span class="p">,</span>
+        <span class="p">)</span></div></div>
 </pre></div>
 
       </div>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 07, 2024.
+          Last updated on Mar 08, 2024.
       </footer>
     </div>
   </div>

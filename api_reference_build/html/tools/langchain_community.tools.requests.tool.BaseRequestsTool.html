@@ -177,6 +177,7 @@
               <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_community.tools.requests.tool</span></code>.BaseRequestsTool</a><ul>
 <li><a class="reference internal" href="#langchain_community.tools.requests.tool.BaseRequestsTool"><code class="docutils literal notranslate"><span class="pre">BaseRequestsTool</span></code></a><ul>
+<li><a class="reference internal" href="#langchain_community.tools.requests.tool.BaseRequestsTool.allow_dangerous_requests"><code class="docutils literal notranslate"><span class="pre">BaseRequestsTool.allow_dangerous_requests</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.tools.requests.tool.BaseRequestsTool.requests_wrapper"><code class="docutils literal notranslate"><span class="pre">BaseRequestsTool.requests_wrapper</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.tools.requests.tool.BaseRequestsTool.construct"><code class="docutils literal notranslate"><span class="pre">BaseRequestsTool.construct()</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.tools.requests.tool.BaseRequestsTool.copy"><code class="docutils literal notranslate"><span class="pre">BaseRequestsTool.copy()</span></code></a></li>
@@ -209,8 +210,12 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">langchain_community.tools.requests.tool.</span></span><span class="sig-name descname"><span class="pre">BaseRequestsTool</span></span><a class="reference internal" href="../_modules/langchain_community/tools/requests/tool.html#BaseRequestsTool"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#langchain_community.tools.requests.tool.BaseRequestsTool" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
 <p>Base class for requests tools.</p>
-<p>Create a new model by parsing and validating input data from keyword arguments.</p>
-<p>Raises ValidationError if the input data cannot be parsed to form a valid model.</p>
+<p>Initialize the tool.</p>
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="langchain_community.tools.requests.tool.BaseRequestsTool.allow_dangerous_requests">
+<em class="property"><span class="pre">param</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">allow_dangerous_requests</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#langchain_community.tools.requests.tool.BaseRequestsTool.allow_dangerous_requests" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="py attribute pydantic_field">
 <dt class="sig sig-object py" id="langchain_community.tools.requests.tool.BaseRequestsTool.requests_wrapper">
 <em class="property"><span class="pre">param</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">requests_wrapper</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../utilities/langchain_community.utilities.requests.GenericRequestsWrapper.html#langchain_community.utilities.requests.GenericRequestsWrapper" title="langchain_community.utilities.requests.GenericRequestsWrapper"><span class="pre">GenericRequestsWrapper</span></a></em><em class="property"> <span class="pre">[Required]</span></em><a class="headerlink" href="#langchain_community.tools.requests.tool.BaseRequestsTool.requests_wrapper" title="Permalink to this definition">¶</a></dt>
@@ -442,7 +447,7 @@ the new model: you should trust this data</p></li>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 07, 2024.
+          Last updated on Mar 08, 2024.
       </footer>
     </div>
   </div>

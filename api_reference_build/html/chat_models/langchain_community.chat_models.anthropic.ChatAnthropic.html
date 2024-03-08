@@ -283,7 +283,7 @@
 <dt class="sig sig-object py" id="langchain_community.chat_models.anthropic.ChatAnthropic">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">langchain_community.chat_models.anthropic.</span></span><span class="sig-name descname"><span class="pre">ChatAnthropic</span></span><a class="reference internal" href="../_modules/langchain_community/chat_models/anthropic.html#ChatAnthropic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#langchain_community.chat_models.anthropic.ChatAnthropic" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../language_models/langchain_core.language_models.chat_models.BaseChatModel.html#langchain_core.language_models.chat_models.BaseChatModel" title="langchain_core.language_models.chat_models.BaseChatModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseChatModel</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">_AnthropicCommon</span></code></p>
-<p><cite>Anthropic</cite> chat large language models.</p>
+<p>[<em>Deprecated</em>] <cite>Anthropic</cite> chat large language models.</p>
 <p>To use, you should have the <code class="docutils literal notranslate"><span class="pre">anthropic</span></code> python package installed, and the
 environment variable <code class="docutils literal notranslate"><span class="pre">ANTHROPIC_API_KEY</span></code> set with your API key, or pass
 it as a named parameter to the constructor.</p>
@@ -292,6 +292,10 @@ it as a named parameter to the constructor.</p>
 <span class="kn">from</span> <span class="nn">langchain_community.chat_models</span> <span class="kn">import</span> <span class="n">ChatAnthropic</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">ChatAnthropic</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;&lt;model_name&gt;&quot;</span><span class="p">,</span> <span class="n">anthropic_api_key</span><span class="o">=</span><span class="s2">&quot;my-api-key&quot;</span><span class="p">)</span>
 </pre></div>
+</div>
+<p class="rubric">Notes</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version langchain-community==0.0.28.</span></p>
 </div>
 <p>Create a new model by parsing and validating input data from keyword arguments.</p>
 <p>Raises ValidationError if the input data cannot be parsed to form a valid model.</p>
@@ -1922,7 +1926,7 @@ between retries</p></li>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 07, 2024.
+          Last updated on Mar 08, 2024.
       </footer>
     </div>
   </div>

@@ -177,6 +177,7 @@
               <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_community.tools.requests.tool</span></code>.RequestsPutTool</a><ul>
 <li><a class="reference internal" href="#langchain_community.tools.requests.tool.RequestsPutTool"><code class="docutils literal notranslate"><span class="pre">RequestsPutTool</span></code></a><ul>
+<li><a class="reference internal" href="#langchain_community.tools.requests.tool.RequestsPutTool.allow_dangerous_requests"><code class="docutils literal notranslate"><span class="pre">RequestsPutTool.allow_dangerous_requests</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.tools.requests.tool.RequestsPutTool.args_schema"><code class="docutils literal notranslate"><span class="pre">RequestsPutTool.args_schema</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.tools.requests.tool.RequestsPutTool.callback_manager"><code class="docutils literal notranslate"><span class="pre">RequestsPutTool.callback_manager</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.tools.requests.tool.RequestsPutTool.callbacks"><code class="docutils literal notranslate"><span class="pre">RequestsPutTool.callbacks</span></code></a></li>
@@ -265,8 +266,12 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">langchain_community.tools.requests.tool.</span></span><span class="sig-name descname"><span class="pre">RequestsPutTool</span></span><a class="reference internal" href="../_modules/langchain_community/tools/requests/tool.html#RequestsPutTool"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#langchain_community.tools.requests.tool.RequestsPutTool" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="langchain_community.tools.requests.tool.BaseRequestsTool.html#langchain_community.tools.requests.tool.BaseRequestsTool" title="langchain_community.tools.requests.tool.BaseRequestsTool"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseRequestsTool</span></code></a>, <a class="reference internal" href="langchain_core.tools.BaseTool.html#langchain_core.tools.BaseTool" title="langchain_core.tools.BaseTool"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseTool</span></code></a></p>
 <p>Tool for making a PUT request to an API endpoint.</p>
-<p>Create a new model by parsing and validating input data from keyword arguments.</p>
-<p>Raises ValidationError if the input data cannot be parsed to form a valid model.</p>
+<p>Initialize the tool.</p>
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="langchain_community.tools.requests.tool.RequestsPutTool.allow_dangerous_requests">
+<em class="property"><span class="pre">param</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">allow_dangerous_requests</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#langchain_community.tools.requests.tool.RequestsPutTool.allow_dangerous_requests" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="py attribute pydantic_field">
 <dt class="sig sig-object py" id="langchain_community.tools.requests.tool.RequestsPutTool.args_schema">
 <em class="property"><span class="pre">param</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">args_schema</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../vectorstores/langchain_community.vectorstores.pgembedding.BaseModel.html#langchain_community.vectorstores.pgembedding.BaseModel" title="langchain_community.vectorstores.pgembedding.BaseModel"><span class="pre">BaseModel</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#langchain_community.tools.requests.tool.RequestsPutTool.args_schema" title="Permalink to this definition">¶</a></dt>
@@ -1506,7 +1511,7 @@ between retries</p></li>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 07, 2024.
+          Last updated on Mar 08, 2024.
       </footer>
     </div>
   </div>

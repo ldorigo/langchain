@@ -718,6 +718,9 @@ an interface where “chat messages” are the inputs and outputs.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="graph_transformers/langchain_experimental.graph_transformers.diffbot.SimplifiedSchema.html#langchain_experimental.graph_transformers.diffbot.SimplifiedSchema" title="langchain_experimental.graph_transformers.diffbot.SimplifiedSchema"><code class="xref py py-obj docutils literal notranslate"><span class="pre">graph_transformers.diffbot.SimplifiedSchema</span></code></a>()</p></td>
 <td><p>Simplified schema mapping.</p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="graph_transformers/langchain_experimental.graph_transformers.llm.LLMGraphTransformer.html#langchain_experimental.graph_transformers.llm.LLMGraphTransformer" title="langchain_experimental.graph_transformers.llm.LLMGraphTransformer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">graph_transformers.llm.LLMGraphTransformer</span></code></a>(llm)</p></td>
+<td><p>A class designed to transform documents into graph-based documents using a LLM.</p></td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -731,6 +734,18 @@ an interface where “chat messages” are the inputs and outputs.</p>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="graph_transformers/langchain_experimental.graph_transformers.diffbot.format_property_key.html#langchain_experimental.graph_transformers.diffbot.format_property_key" title="langchain_experimental.graph_transformers.diffbot.format_property_key"><code class="xref py py-obj docutils literal notranslate"><span class="pre">graph_transformers.diffbot.format_property_key</span></code></a>(s)</p></td>
 <td><p>Formats a string to be used as a property key.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="graph_transformers/langchain_experimental.graph_transformers.llm.create_simple_model.html#langchain_experimental.graph_transformers.llm.create_simple_model" title="langchain_experimental.graph_transformers.llm.create_simple_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">graph_transformers.llm.create_simple_model</span></code></a>([...])</p></td>
+<td><p>Simple model allows to limit node and/or relationship types.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="graph_transformers/langchain_experimental.graph_transformers.llm.map_to_base_node.html#langchain_experimental.graph_transformers.llm.map_to_base_node" title="langchain_experimental.graph_transformers.llm.map_to_base_node"><code class="xref py py-obj docutils literal notranslate"><span class="pre">graph_transformers.llm.map_to_base_node</span></code></a>(node)</p></td>
+<td><p>Map the SimpleNode to the base Node.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="graph_transformers/langchain_experimental.graph_transformers.llm.map_to_base_relationship.html#langchain_experimental.graph_transformers.llm.map_to_base_relationship" title="langchain_experimental.graph_transformers.llm.map_to_base_relationship"><code class="xref py py-obj docutils literal notranslate"><span class="pre">graph_transformers.llm.map_to_base_relationship</span></code></a>(rel)</p></td>
+<td><p>Map the SimpleRelationship to the base Relationship.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="graph_transformers/langchain_experimental.graph_transformers.llm.optional_enum_field.html#langchain_experimental.graph_transformers.llm.optional_enum_field" title="langchain_experimental.graph_transformers.llm.optional_enum_field"><code class="xref py py-obj docutils literal notranslate"><span class="pre">graph_transformers.llm.optional_enum_field</span></code></a>([...])</p></td>
+<td><p>Utility function to conditionally create a field with an enum constraint.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1408,7 +1423,7 @@ possible solutions to a problem.</p>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 07, 2024.
+          Last updated on Mar 08, 2024.
       </footer>
     </div>
   </div>

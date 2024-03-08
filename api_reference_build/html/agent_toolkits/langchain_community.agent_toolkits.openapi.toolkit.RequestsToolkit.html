@@ -177,6 +177,7 @@
               <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">langchain_community.agent_toolkits.openapi.toolkit</span></code>.RequestsToolkit</a><ul>
 <li><a class="reference internal" href="#langchain_community.agent_toolkits.openapi.toolkit.RequestsToolkit"><code class="docutils literal notranslate"><span class="pre">RequestsToolkit</span></code></a><ul>
+<li><a class="reference internal" href="#langchain_community.agent_toolkits.openapi.toolkit.RequestsToolkit.allow_dangerous_requests"><code class="docutils literal notranslate"><span class="pre">RequestsToolkit.allow_dangerous_requests</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.agent_toolkits.openapi.toolkit.RequestsToolkit.requests_wrapper"><code class="docutils literal notranslate"><span class="pre">RequestsToolkit.requests_wrapper</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.agent_toolkits.openapi.toolkit.RequestsToolkit.construct"><code class="docutils literal notranslate"><span class="pre">RequestsToolkit.construct()</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.agent_toolkits.openapi.toolkit.RequestsToolkit.copy"><code class="docutils literal notranslate"><span class="pre">RequestsToolkit.copy()</span></code></a></li>
@@ -224,6 +225,12 @@ what network access it has.</p>
 </dl>
 <p>Create a new model by parsing and validating input data from keyword arguments.</p>
 <p>Raises ValidationError if the input data cannot be parsed to form a valid model.</p>
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="langchain_community.agent_toolkits.openapi.toolkit.RequestsToolkit.allow_dangerous_requests">
+<em class="property"><span class="pre">param</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">allow_dangerous_requests</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#langchain_community.agent_toolkits.openapi.toolkit.RequestsToolkit.allow_dangerous_requests" title="Permalink to this definition">¶</a></dt>
+<dd><p>Allow dangerous requests. See documentation for details.</p>
+</dd></dl>
+
 <dl class="py attribute pydantic_field">
 <dt class="sig sig-object py" id="langchain_community.agent_toolkits.openapi.toolkit.RequestsToolkit.requests_wrapper">
 <em class="property"><span class="pre">param</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">requests_wrapper</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../utilities/langchain_community.utilities.requests.TextRequestsWrapper.html#langchain_community.utilities.requests.TextRequestsWrapper" title="langchain_community.utilities.requests.TextRequestsWrapper"><span class="pre">TextRequestsWrapper</span></a></em><em class="property"> <span class="pre">[Required]</span></em><a class="headerlink" href="#langchain_community.agent_toolkits.openapi.toolkit.RequestsToolkit.requests_wrapper" title="Permalink to this definition">¶</a></dt>
@@ -466,7 +473,7 @@ the new model: you should trust this data</p></li>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 07, 2024.
+          Last updated on Mar 08, 2024.
       </footer>
     </div>
   </div>

@@ -181,6 +181,7 @@
 <li><a class="reference internal" href="#langchain_community.retrievers.kendra.ResultItem.DocumentId"><code class="docutils literal notranslate"><span class="pre">ResultItem.DocumentId</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.retrievers.kendra.ResultItem.DocumentURI"><code class="docutils literal notranslate"><span class="pre">ResultItem.DocumentURI</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.retrievers.kendra.ResultItem.Id"><code class="docutils literal notranslate"><span class="pre">ResultItem.Id</span></code></a></li>
+<li><a class="reference internal" href="#langchain_community.retrievers.kendra.ResultItem.ScoreAttributes"><code class="docutils literal notranslate"><span class="pre">ResultItem.ScoreAttributes</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.retrievers.kendra.ResultItem.construct"><code class="docutils literal notranslate"><span class="pre">ResultItem.construct()</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.retrievers.kendra.ResultItem.copy"><code class="docutils literal notranslate"><span class="pre">ResultItem.copy()</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.retrievers.kendra.ResultItem.dict"><code class="docutils literal notranslate"><span class="pre">ResultItem.dict()</span></code></a></li>
@@ -188,6 +189,7 @@
 <li><a class="reference internal" href="#langchain_community.retrievers.kendra.ResultItem.get_additional_metadata"><code class="docutils literal notranslate"><span class="pre">ResultItem.get_additional_metadata()</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.retrievers.kendra.ResultItem.get_document_attributes_dict"><code class="docutils literal notranslate"><span class="pre">ResultItem.get_document_attributes_dict()</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.retrievers.kendra.ResultItem.get_excerpt"><code class="docutils literal notranslate"><span class="pre">ResultItem.get_excerpt()</span></code></a></li>
+<li><a class="reference internal" href="#langchain_community.retrievers.kendra.ResultItem.get_score_attribute"><code class="docutils literal notranslate"><span class="pre">ResultItem.get_score_attribute()</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.retrievers.kendra.ResultItem.get_title"><code class="docutils literal notranslate"><span class="pre">ResultItem.get_title()</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.retrievers.kendra.ResultItem.json"><code class="docutils literal notranslate"><span class="pre">ResultItem.json()</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.retrievers.kendra.ResultItem.parse_file"><code class="docutils literal notranslate"><span class="pre">ResultItem.parse_file()</span></code></a></li>
@@ -241,6 +243,12 @@
 <dt class="sig sig-object py" id="langchain_community.retrievers.kendra.ResultItem.Id">
 <em class="property"><span class="pre">param</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#langchain_community.retrievers.kendra.ResultItem.Id" title="Permalink to this definition">¶</a></dt>
 <dd><p>The ID of the relevant result item.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="langchain_community.retrievers.kendra.ResultItem.ScoreAttributes">
+<em class="property"><span class="pre">param</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ScoreAttributes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#langchain_community.retrievers.kendra.ResultItem.ScoreAttributes" title="Permalink to this definition">¶</a></dt>
+<dd><p>The kendra score confidence</p>
 </dd></dl>
 
 <dl class="py method">
@@ -358,6 +366,17 @@ This returns any extra metadata except these:</p>
 <dt class="sig sig-object py" id="langchain_community.retrievers.kendra.ResultItem.get_excerpt">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_excerpt</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../_modules/langchain_community/retrievers/kendra.html#ResultItem.get_excerpt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#langchain_community.retrievers.kendra.ResultItem.get_excerpt" title="Permalink to this definition">¶</a></dt>
 <dd><p>Document excerpt or passage original content as retrieved by Kendra.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="langchain_community.retrievers.kendra.ResultItem.get_score_attribute">
+<span class="sig-name descname"><span class="pre">get_score_attribute</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../_modules/langchain_community/retrievers/kendra.html#ResultItem.get_score_attribute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#langchain_community.retrievers.kendra.ResultItem.get_score_attribute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Document Score Confidence</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>str</p>
@@ -538,7 +557,7 @@ This returns any extra metadata except these:</p>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 07, 2024.
+          Last updated on Mar 08, 2024.
       </footer>
     </div>
   </div>

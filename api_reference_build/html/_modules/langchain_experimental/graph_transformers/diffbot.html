@@ -305,24 +305,15 @@
 
 <span class="sd">    Example:</span>
 <span class="sd">        .. code-block:: python</span>
+<span class="sd">          from langchain_experimental.graph_transformers import DiffbotGraphTransformer</span>
+<span class="sd">          from langchain_core.documents import Document</span>
 
-<span class="sd">            class DiffbotGraphTransformer(BaseGraphDocumentTransformer):</span>
+<span class="sd">          diffbot_api_key = &quot;DIFFBOT_API_KEY&quot;</span>
+<span class="sd">          diffbot_nlp = DiffbotGraphTransformer(diffbot_api_key=diffbot_api_key)</span>
 
-<span class="sd">                def transform_documents(</span>
-<span class="sd">                    self, documents: Sequence[Document], **kwargs: Any</span>
-<span class="sd">                ) -&gt; Sequence[GraphDocument]:</span>
-<span class="sd">                    results = []</span>
+<span class="sd">          document = Document(page_content=&quot;Mike Tunge is the CEO of Diffbot.&quot;)</span>
+<span class="sd">          graph_documents = diffbot_nlp.convert_to_graph_documents([document])</span>
 
-<span class="sd">                    for document in documents:</span>
-<span class="sd">                        raw_results = self.nlp_request(document.page_content)</span>
-<span class="sd">                        graph_document = self.process_response(raw_results, document)</span>
-<span class="sd">                        results.append(graph_document)</span>
-<span class="sd">                    return results</span>
-
-<span class="sd">                async def atransform_documents(</span>
-<span class="sd">                    self, documents: Sequence[Document], **kwargs: Any</span>
-<span class="sd">                ) -&gt; Sequence[Document]:</span>
-<span class="sd">                    raise NotImplementedError</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="DiffbotGraphTransformer.__init__"><a class="viewcode-back" href="../../../graph_transformers/langchain_experimental.graph_transformers.diffbot.DiffbotGraphTransformer.html#langchain_experimental.graph_transformers.diffbot.DiffbotGraphTransformer.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
@@ -502,7 +493,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 07, 2024.
+          Last updated on Mar 08, 2024.
       </footer>
     </div>
   </div>

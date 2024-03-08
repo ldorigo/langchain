@@ -1232,12 +1232,19 @@
 
         <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="nb">input</span><span class="p">:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">got_first_val</span><span class="p">:</span>
-                <span class="n">final</span> <span class="o">=</span> <span class="n">chunk</span>
+                <span class="n">final</span> <span class="o">=</span> <span class="n">_adapt_first_streaming_chunk</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
                 <span class="n">got_first_val</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="c1"># Make a best effort to gather, for any type that supports `+`</span>
                 <span class="c1"># This method should throw an error if gathering fails.</span>
-                <span class="n">final</span> <span class="o">=</span> <span class="n">final</span> <span class="o">+</span> <span class="n">chunk</span>  <span class="c1"># type: ignore[operator]</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">final</span> <span class="o">=</span> <span class="n">final</span> <span class="o">+</span> <span class="n">chunk</span>  <span class="c1"># type: ignore[operator]</span>
+                <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;Failed while trying to add together &quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;type </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">final</span><span class="p">)</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span><span class="si">}</span><span class="s2">.&quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;These types should be addable for transform to work.&quot;</span>
+                    <span class="p">)</span>
 
         <span class="k">if</span> <span class="n">got_first_val</span><span class="p">:</span>
             <span class="k">yield from</span> <span class="bp">self</span><span class="o">.</span><span class="n">stream</span><span class="p">(</span><span class="n">final</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
@@ -1258,12 +1265,19 @@
 
         <span class="k">async</span> <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="nb">input</span><span class="p">:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">got_first_val</span><span class="p">:</span>
-                <span class="n">final</span> <span class="o">=</span> <span class="n">chunk</span>
+                <span class="n">final</span> <span class="o">=</span> <span class="n">_adapt_first_streaming_chunk</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
                 <span class="n">got_first_val</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="c1"># Make a best effort to gather, for any type that supports `+`</span>
                 <span class="c1"># This method should throw an error if gathering fails.</span>
-                <span class="n">final</span> <span class="o">=</span> <span class="n">final</span> <span class="o">+</span> <span class="n">chunk</span>  <span class="c1"># type: ignore[operator]</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">final</span> <span class="o">=</span> <span class="n">final</span> <span class="o">+</span> <span class="n">chunk</span>  <span class="c1"># type: ignore[operator]</span>
+                <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;Failed while trying to add together &quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;type </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">final</span><span class="p">)</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span><span class="si">}</span><span class="s2">.&quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;These types should be addable for atransform to work.&quot;</span>
+                    <span class="p">)</span>
 
         <span class="k">if</span> <span class="n">got_first_val</span><span class="p">:</span>
             <span class="k">async</span> <span class="k">for</span> <span class="n">output</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">astream</span><span class="p">(</span><span class="n">final</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -1442,7 +1456,7 @@
             <span class="n">output</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
                 <span class="n">Output</span><span class="p">,</span>
                 <span class="n">context</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
-                    <span class="n">call_func_with_variable_args</span><span class="p">,</span>
+                    <span class="n">call_func_with_variable_args</span><span class="p">,</span>  <span class="c1"># type: ignore[arg-type]</span>
                     <span class="n">func</span><span class="p">,</span>  <span class="c1"># type: ignore[arg-type]</span>
                     <span class="nb">input</span><span class="p">,</span>  <span class="c1"># type: ignore[arg-type]</span>
                     <span class="n">config</span><span class="p">,</span>
@@ -2070,7 +2084,7 @@
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
                 <span class="sa">f</span><span class="s2">&quot;RunnableSequence must have at least 2 steps, got </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">steps_flat</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
             <span class="p">)</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>  <span class="c1"># type: ignore[call-arg]</span>
             <span class="n">first</span><span class="o">=</span><span class="n">steps_flat</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
             <span class="n">middle</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">steps_flat</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
             <span class="n">last</span><span class="o">=</span><span class="n">steps_flat</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
@@ -2756,7 +2770,7 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">merged</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="n">__steps</span><span class="p">}</span> <span class="k">if</span> <span class="n">__steps</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">{}</span>
         <span class="n">merged</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>  <span class="c1"># type: ignore[call-arg]</span>
             <span class="n">steps</span><span class="o">=</span><span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">coerce_to_runnable</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">merged</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
         <span class="p">)</span>
 
@@ -3183,7 +3197,7 @@
             <span class="n">func_for_name</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="n">atransform</span>
 
         <span class="k">if</span> <span class="n">inspect</span><span class="o">.</span><span class="n">isasyncgenfunction</span><span class="p">(</span><span class="n">transform</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_atransform</span> <span class="o">=</span> <span class="n">transform</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_atransform</span> <span class="o">=</span> <span class="n">transform</span>  <span class="c1"># type: ignore[assignment]</span>
             <span class="n">func_for_name</span> <span class="o">=</span> <span class="n">transform</span>
         <span class="k">elif</span> <span class="n">inspect</span><span class="o">.</span><span class="n">isgeneratorfunction</span><span class="p">(</span><span class="n">transform</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_transform</span> <span class="o">=</span> <span class="n">transform</span>
@@ -3248,7 +3262,10 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;_transform&quot;</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="si">}</span><span class="s2"> only supports async methods.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transform_stream_with_config</span><span class="p">(</span>
-            <span class="nb">input</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transform</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+            <span class="nb">input</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_transform</span><span class="p">,</span>  <span class="c1"># type: ignore[arg-type]</span>
+            <span class="n">config</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>  <span class="c1"># type: ignore[arg-type]</span>
         <span class="p">)</span></div>
 
 <div class="viewcode-block" id="RunnableGenerator.stream"><a class="viewcode-back" href="../../../runnables/langchain_core.runnables.base.RunnableGenerator.html#langchain_community.agent_toolkits.nla.tool.RunnableGenerator.stream">[docs]</a>    <span class="k">def</span> <span class="nf">stream</span><span class="p">(</span>
@@ -3739,7 +3756,7 @@
         <span class="n">final</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Input</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">for</span> <span class="n">ichunk</span> <span class="ow">in</span> <span class="nb">input</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">final</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">final</span> <span class="o">=</span> <span class="n">ichunk</span>
+                <span class="n">final</span> <span class="o">=</span> <span class="n">_adapt_first_streaming_chunk</span><span class="p">(</span><span class="n">ichunk</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">try</span><span class="p">:</span>
                     <span class="n">final</span> <span class="o">=</span> <span class="n">final</span> <span class="o">+</span> <span class="n">ichunk</span>  <span class="c1"># type: ignore[operator]</span>
@@ -3823,7 +3840,7 @@
         <span class="n">final</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Input</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">async</span> <span class="k">for</span> <span class="n">ichunk</span> <span class="ow">in</span> <span class="nb">input</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">final</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">final</span> <span class="o">=</span> <span class="n">ichunk</span>
+                <span class="n">final</span> <span class="o">=</span> <span class="n">_adapt_first_streaming_chunk</span><span class="p">(</span><span class="n">ichunk</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">try</span><span class="p">:</span>
                     <span class="n">final</span> <span class="o">=</span> <span class="n">final</span> <span class="o">+</span> <span class="n">ichunk</span>  <span class="c1"># type: ignore[operator]</span>
@@ -4177,7 +4194,7 @@
 <span class="sd">                runnable with a custom type.</span>
 <span class="sd">            **other_kwargs: Unpacked into the base class.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>  <span class="c1"># type: ignore[call-arg]</span>
             <span class="n">bound</span><span class="o">=</span><span class="n">bound</span><span class="p">,</span>
             <span class="n">kwargs</span><span class="o">=</span><span class="n">kwargs</span> <span class="ow">or</span> <span class="p">{},</span>
             <span class="n">config</span><span class="o">=</span><span class="n">config</span> <span class="ow">or</span> <span class="p">{},</span>
@@ -4624,13 +4641,21 @@
 <span class="sd">                yield chunk</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">RunnableLambda</span><span class="p">(</span><span class="n">func</span><span class="p">)</span></div>
+
+
+<span class="k">def</span> <span class="nf">_adapt_first_streaming_chunk</span><span class="p">(</span><span class="n">chunk</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This might transform the first chunk of a stream into an AddableDict.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">chunk</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">chunk</span><span class="p">,</span> <span class="n">AddableDict</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">AddableDict</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">chunk</span>
 </pre></div>
 
       </div>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 07, 2024.
+          Last updated on Mar 08, 2024.
       </footer>
     </div>
   </div>

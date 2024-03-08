@@ -182,6 +182,7 @@
 <li><a class="reference internal" href="#langchain_community.retrievers.kendra.AmazonKendraRetriever.credentials_profile_name"><code class="docutils literal notranslate"><span class="pre">AmazonKendraRetriever.credentials_profile_name</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.retrievers.kendra.AmazonKendraRetriever.index_id"><code class="docutils literal notranslate"><span class="pre">AmazonKendraRetriever.index_id</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.retrievers.kendra.AmazonKendraRetriever.metadata"><code class="docutils literal notranslate"><span class="pre">AmazonKendraRetriever.metadata</span></code></a></li>
+<li><a class="reference internal" href="#langchain_community.retrievers.kendra.AmazonKendraRetriever.min_score_confidence"><code class="docutils literal notranslate"><span class="pre">AmazonKendraRetriever.min_score_confidence</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.retrievers.kendra.AmazonKendraRetriever.page_content_formatter"><code class="docutils literal notranslate"><span class="pre">AmazonKendraRetriever.page_content_formatter</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.retrievers.kendra.AmazonKendraRetriever.region_name"><code class="docutils literal notranslate"><span class="pre">AmazonKendraRetriever.region_name</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.retrievers.kendra.AmazonKendraRetriever.tags"><code class="docutils literal notranslate"><span class="pre">AmazonKendraRetriever.tags</span></code></a></li>
@@ -320,6 +321,19 @@ This metadata will be associated with each call to this retriever,
 and passed as arguments to the handlers defined in <cite>callbacks</cite>.
 You can use these to eg identify a specific instance of a retriever with its
 use case.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="langchain_community.retrievers.kendra.AmazonKendraRetriever.min_score_confidence">
+<em class="property"><span class="pre">param</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">min_score_confidence</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#langchain_community.retrievers.kendra.AmazonKendraRetriever.min_score_confidence" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Constraints</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>minimum</strong> = 0.0</p></li>
+<li><p><strong>maximum</strong> = 1.0</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py attribute pydantic_field">
@@ -1517,7 +1531,7 @@ between retries</p></li>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 07, 2024.
+          Last updated on Mar 08, 2024.
       </footer>
     </div>
   </div>

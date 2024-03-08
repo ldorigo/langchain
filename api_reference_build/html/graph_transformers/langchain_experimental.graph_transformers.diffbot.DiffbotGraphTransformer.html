@@ -202,25 +202,6 @@
 <p>A graph document transformation system takes a sequence of Documents and returns a
 sequence of Graph Documents.</p>
 <p class="rubric">Example</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DiffbotGraphTransformer</span><span class="p">(</span><span class="n">BaseGraphDocumentTransformer</span><span class="p">):</span>
-
-    <span class="k">def</span> <span class="nf">transform_documents</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">documents</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Document</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">GraphDocument</span><span class="p">]:</span>
-        <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
-
-        <span class="k">for</span> <span class="n">document</span> <span class="ow">in</span> <span class="n">documents</span><span class="p">:</span>
-            <span class="n">raw_results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nlp_request</span><span class="p">(</span><span class="n">document</span><span class="o">.</span><span class="n">page_content</span><span class="p">)</span>
-            <span class="n">graph_document</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_response</span><span class="p">(</span><span class="n">raw_results</span><span class="p">,</span> <span class="n">document</span><span class="p">)</span>
-            <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">graph_document</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">results</span>
-
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">atransform_documents</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">documents</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Document</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Document</span><span class="p">]:</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
-</pre></div>
-</div>
 <p>Initialize the graph transformer with various options.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -342,7 +323,7 @@ sequence of Graph Documents.</p>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 07, 2024.
+          Last updated on Mar 08, 2024.
       </footer>
     </div>
   </div>

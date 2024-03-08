@@ -208,7 +208,24 @@
 <div class="viewcode-block" id="BaseRequestsTool"><a class="viewcode-back" href="../../../../tools/langchain_community.tools.requests.tool.BaseRequestsTool.html#langchain_community.tools.requests.tool.BaseRequestsTool">[docs]</a><span class="k">class</span> <span class="nc">BaseRequestsTool</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Base class for requests tools.&quot;&quot;&quot;</span>
 
-    <span class="n">requests_wrapper</span><span class="p">:</span> <span class="n">GenericRequestsWrapper</span></div>
+    <span class="n">requests_wrapper</span><span class="p">:</span> <span class="n">GenericRequestsWrapper</span>
+
+    <span class="n">allow_dangerous_requests</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the tool.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;allow_dangerous_requests&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;You must set allow_dangerous_requests to True to use this tool. &quot;</span>
+                <span class="s2">&quot;Request scan be dangerous and can lead to security vulnerabilities. &quot;</span>
+                <span class="s2">&quot;For example, users can ask a server to make a request to an internal&quot;</span>
+                <span class="s2">&quot;server. It&#39;s recommended to use requests through a proxy server &quot;</span>
+                <span class="s2">&quot;and avoid accepting inputs from untrusted sources without proper &quot;</span>
+                <span class="s2">&quot;sandboxing.&quot;</span>
+                <span class="s2">&quot;Please see: https://python.langchain.com/docs/security for &quot;</span>
+                <span class="s2">&quot;further security information.&quot;</span>
+            <span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="RequestsGetTool"><a class="viewcode-back" href="../../../../tools/langchain_community.tools.requests.tool.RequestsGetTool.html#langchain_community.tools.requests.tool.RequestsGetTool">[docs]</a><span class="k">class</span> <span class="nc">RequestsGetTool</span><span class="p">(</span><span class="n">BaseRequestsTool</span><span class="p">,</span> <span class="n">BaseTool</span><span class="p">):</span>
@@ -370,7 +387,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 07, 2024.
+          Last updated on Mar 08, 2024.
       </footer>
     </div>
   </div>

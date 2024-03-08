@@ -180,6 +180,7 @@
 <li><a class="reference internal" href="#langchain.agents.agent.RunnableAgent.input_keys_arg"><code class="docutils literal notranslate"><span class="pre">RunnableAgent.input_keys_arg</span></code></a></li>
 <li><a class="reference internal" href="#langchain.agents.agent.RunnableAgent.return_keys_arg"><code class="docutils literal notranslate"><span class="pre">RunnableAgent.return_keys_arg</span></code></a></li>
 <li><a class="reference internal" href="#langchain.agents.agent.RunnableAgent.runnable"><code class="docutils literal notranslate"><span class="pre">RunnableAgent.runnable</span></code></a></li>
+<li><a class="reference internal" href="#langchain.agents.agent.RunnableAgent.stream_runnable"><code class="docutils literal notranslate"><span class="pre">RunnableAgent.stream_runnable</span></code></a></li>
 <li><a class="reference internal" href="#langchain.agents.agent.RunnableAgent.aplan"><code class="docutils literal notranslate"><span class="pre">RunnableAgent.aplan()</span></code></a></li>
 <li><a class="reference internal" href="#langchain.agents.agent.RunnableAgent.construct"><code class="docutils literal notranslate"><span class="pre">RunnableAgent.construct()</span></code></a></li>
 <li><a class="reference internal" href="#langchain.agents.agent.RunnableAgent.copy"><code class="docutils literal notranslate"><span class="pre">RunnableAgent.copy()</span></code></a></li>
@@ -235,6 +236,18 @@
 <dt class="sig sig-object py" id="langchain.agents.agent.RunnableAgent.runnable">
 <em class="property"><span class="pre">param</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">runnable</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../runnables/langchain_core.runnables.base.Runnable.html#langchain_core.runnables.base.Runnable" title="langchain_core.runnables.base.Runnable"><span class="pre">Runnable</span></a><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="langchain_core.agents.AgentAction.html#langchain_core.agents.AgentAction" title="langchain_core.agents.AgentAction"><span class="pre">AgentAction</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="langchain_core.agents.AgentFinish.html#langchain_core.agents.AgentFinish" title="langchain_core.agents.AgentFinish"><span class="pre">AgentFinish</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">[Required]</span></em><a class="headerlink" href="#langchain.agents.agent.RunnableAgent.runnable" title="Permalink to this definition">¶</a></dt>
 <dd><p>Runnable to call to get agent action.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="langchain.agents.agent.RunnableAgent.stream_runnable">
+<em class="property"><span class="pre">param</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stream_runnable</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#langchain.agents.agent.RunnableAgent.stream_runnable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to stream from the runnable or not.</p>
+<dl class="simple">
+<dt>If True then underlying LLM is invoked in a streaming fashion to make it possible</dt><dd><p>to get access to the individual LLM tokens when using stream_log with the Agent
+Executor. If False then LLM is invoked in a non-streaming fashion and
+individual LLM tokens will not be available in stream_log.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -581,7 +594,7 @@ agent.agent.save(file_path=”path/agent.yaml”)</p>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 07, 2024.
+          Last updated on Mar 08, 2024.
       </footer>
     </div>
   </div>

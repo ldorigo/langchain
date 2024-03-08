@@ -1114,9 +1114,13 @@
                     <span class="p">)</span>
                 <span class="p">]</span>
             <span class="p">)</span>
-            <span class="n">run_managers</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">run_managers</span><span class="p">]</span>
+            <span class="n">run_managers</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">run_managers</span><span class="p">]</span>  <span class="c1"># type: ignore[misc]</span>
             <span class="n">output</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_agenerate_helper</span><span class="p">(</span>
-                <span class="n">prompts</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">run_managers</span><span class="p">,</span> <span class="nb">bool</span><span class="p">(</span><span class="n">new_arg_supported</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span>
+                <span class="n">prompts</span><span class="p">,</span>
+                <span class="n">stop</span><span class="p">,</span>
+                <span class="n">run_managers</span><span class="p">,</span>  <span class="c1"># type: ignore[arg-type]</span>
+                <span class="nb">bool</span><span class="p">(</span><span class="n">new_arg_supported</span><span class="p">),</span>
+                <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>  <span class="c1"># type: ignore[arg-type]</span>
             <span class="p">)</span>
             <span class="k">return</span> <span class="n">output</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">missing_prompts</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
@@ -1133,15 +1137,19 @@
                     <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">missing_prompt_idxs</span>
                 <span class="p">]</span>
             <span class="p">)</span>
-            <span class="n">run_managers</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">run_managers</span><span class="p">]</span>
+            <span class="n">run_managers</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">run_managers</span><span class="p">]</span>  <span class="c1"># type: ignore[misc]</span>
             <span class="n">new_results</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_agenerate_helper</span><span class="p">(</span>
-                <span class="n">missing_prompts</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">run_managers</span><span class="p">,</span> <span class="nb">bool</span><span class="p">(</span><span class="n">new_arg_supported</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span>
+                <span class="n">missing_prompts</span><span class="p">,</span>
+                <span class="n">stop</span><span class="p">,</span>
+                <span class="n">run_managers</span><span class="p">,</span>  <span class="c1"># type: ignore[arg-type]</span>
+                <span class="nb">bool</span><span class="p">(</span><span class="n">new_arg_supported</span><span class="p">),</span>
+                <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>  <span class="c1"># type: ignore[arg-type]</span>
             <span class="p">)</span>
             <span class="n">llm_output</span> <span class="o">=</span> <span class="k">await</span> <span class="n">aupdate_cache</span><span class="p">(</span>
                 <span class="n">existing_prompts</span><span class="p">,</span> <span class="n">llm_string</span><span class="p">,</span> <span class="n">missing_prompt_idxs</span><span class="p">,</span> <span class="n">new_results</span><span class="p">,</span> <span class="n">prompts</span>
             <span class="p">)</span>
             <span class="n">run_info</span> <span class="o">=</span> <span class="p">(</span>
-                <span class="p">[</span><span class="n">RunInfo</span><span class="p">(</span><span class="n">run_id</span><span class="o">=</span><span class="n">run_manager</span><span class="o">.</span><span class="n">run_id</span><span class="p">)</span> <span class="k">for</span> <span class="n">run_manager</span> <span class="ow">in</span> <span class="n">run_managers</span><span class="p">]</span>
+                <span class="p">[</span><span class="n">RunInfo</span><span class="p">(</span><span class="n">run_id</span><span class="o">=</span><span class="n">run_manager</span><span class="o">.</span><span class="n">run_id</span><span class="p">)</span> <span class="k">for</span> <span class="n">run_manager</span> <span class="ow">in</span> <span class="n">run_managers</span><span class="p">]</span>  <span class="c1"># type: ignore[attr-defined]</span>
                 <span class="k">if</span> <span class="n">run_managers</span>
                 <span class="k">else</span> <span class="kc">None</span>
             <span class="p">)</span>
@@ -1387,7 +1395,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 07, 2024.
+          Last updated on Mar 08, 2024.
       </footer>
     </div>
   </div>

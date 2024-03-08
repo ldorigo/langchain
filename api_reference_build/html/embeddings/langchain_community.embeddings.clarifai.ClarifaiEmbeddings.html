@@ -183,6 +183,7 @@
 <li><a class="reference internal" href="#langchain_community.embeddings.clarifai.ClarifaiEmbeddings.model_url"><code class="docutils literal notranslate"><span class="pre">ClarifaiEmbeddings.model_url</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.embeddings.clarifai.ClarifaiEmbeddings.model_version_id"><code class="docutils literal notranslate"><span class="pre">ClarifaiEmbeddings.model_version_id</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.embeddings.clarifai.ClarifaiEmbeddings.pat"><code class="docutils literal notranslate"><span class="pre">ClarifaiEmbeddings.pat</span></code></a></li>
+<li><a class="reference internal" href="#langchain_community.embeddings.clarifai.ClarifaiEmbeddings.token"><code class="docutils literal notranslate"><span class="pre">ClarifaiEmbeddings.token</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.embeddings.clarifai.ClarifaiEmbeddings.user_id"><code class="docutils literal notranslate"><span class="pre">ClarifaiEmbeddings.user_id</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.embeddings.clarifai.ClarifaiEmbeddings.aembed_documents"><code class="docutils literal notranslate"><span class="pre">ClarifaiEmbeddings.aembed_documents()</span></code></a></li>
 <li><a class="reference internal" href="#langchain_community.embeddings.clarifai.ClarifaiEmbeddings.aembed_query"><code class="docutils literal notranslate"><span class="pre">ClarifaiEmbeddings.aembed_query()</span></code></a></li>
@@ -267,6 +268,12 @@ as a named parameter to the constructor.</p>
 <dt class="sig sig-object py" id="langchain_community.embeddings.clarifai.ClarifaiEmbeddings.pat">
 <em class="property"><span class="pre">param</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pat</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#langchain_community.embeddings.clarifai.ClarifaiEmbeddings.pat" title="Permalink to this definition">¶</a></dt>
 <dd><p>Clarifai personal access token to use.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="langchain_community.embeddings.clarifai.ClarifaiEmbeddings.token">
+<em class="property"><span class="pre">param</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">token</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#langchain_community.embeddings.clarifai.ClarifaiEmbeddings.token" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clarifai session token to use.</p>
 </dd></dl>
 
 <dl class="py attribute pydantic_field">
@@ -565,7 +572,7 @@ the new model: you should trust this data</p></li>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 07, 2024.
+          Last updated on Mar 08, 2024.
       </footer>
     </div>
   </div>

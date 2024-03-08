@@ -181,25 +181,29 @@
         
   <h1>Source code for langchain_core.output_parsers.pydantic</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Type</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Generic</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">TypeVar</span>
 
 <span class="kn">from</span> <span class="nn">langchain_core.exceptions</span> <span class="kn">import</span> <span class="n">OutputParserException</span>
 <span class="kn">from</span> <span class="nn">langchain_core.output_parsers</span> <span class="kn">import</span> <span class="n">JsonOutputParser</span>
 <span class="kn">from</span> <span class="nn">langchain_core.outputs</span> <span class="kn">import</span> <span class="n">Generation</span>
 <span class="kn">from</span> <span class="nn">langchain_core.pydantic_v1</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">ValidationError</span>
 
+<span class="n">TBaseModel</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;TBaseModel&quot;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="n">BaseModel</span><span class="p">)</span>
 
-<div class="viewcode-block" id="PydanticOutputParser"><a class="viewcode-back" href="../../../output_parsers/langchain_core.output_parsers.pydantic.PydanticOutputParser.html#langchain_core.output_parsers.pydantic.PydanticOutputParser">[docs]</a><span class="k">class</span> <span class="nc">PydanticOutputParser</span><span class="p">(</span><span class="n">JsonOutputParser</span><span class="p">):</span>
+
+<div class="viewcode-block" id="PydanticOutputParser"><a class="viewcode-back" href="../../../output_parsers/langchain_core.output_parsers.pydantic.PydanticOutputParser.html#langchain_core.output_parsers.pydantic.PydanticOutputParser">[docs]</a><span class="k">class</span> <span class="nc">PydanticOutputParser</span><span class="p">(</span><span class="n">JsonOutputParser</span><span class="p">,</span> <span class="n">Generic</span><span class="p">[</span><span class="n">TBaseModel</span><span class="p">]):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Parse an output using a pydantic model.&quot;&quot;&quot;</span>
 
-    <span class="n">pydantic_object</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">BaseModel</span><span class="p">]</span>
+    <span class="n">pydantic_object</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">TBaseModel</span><span class="p">]</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;The pydantic model to parse.</span>
 <span class="sd">    </span>
 <span class="sd">    Attention: To avoid potential compatibility issues, it&#39;s recommended to use</span>
 <span class="sd">        pydantic &lt;2 or leverage the v1 namespace in pydantic &gt;= 2.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="PydanticOutputParser.parse_result"><a class="viewcode-back" href="../../../output_parsers/langchain_core.output_parsers.pydantic.PydanticOutputParser.html#langchain_core.output_parsers.pydantic.PydanticOutputParser.parse_result">[docs]</a>    <span class="k">def</span> <span class="nf">parse_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Generation</span><span class="p">],</span> <span class="o">*</span><span class="p">,</span> <span class="n">partial</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<div class="viewcode-block" id="PydanticOutputParser.parse_result"><a class="viewcode-back" href="../../../output_parsers/langchain_core.output_parsers.pydantic.PydanticOutputParser.html#langchain_core.output_parsers.pydantic.PydanticOutputParser.parse_result">[docs]</a>    <span class="k">def</span> <span class="nf">parse_result</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Generation</span><span class="p">],</span> <span class="o">*</span><span class="p">,</span> <span class="n">partial</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TBaseModel</span><span class="p">:</span>
         <span class="n">json_object</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">parse_result</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pydantic_object</span><span class="o">.</span><span class="n">parse_obj</span><span class="p">(</span><span class="n">json_object</span><span class="p">)</span>
@@ -207,6 +211,9 @@
             <span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pydantic_object</span><span class="o">.</span><span class="vm">__name__</span>
             <span class="n">msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Failed to parse </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> from completion </span><span class="si">{</span><span class="n">json_object</span><span class="si">}</span><span class="s2">. Got: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span>
             <span class="k">raise</span> <span class="n">OutputParserException</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">llm_output</span><span class="o">=</span><span class="n">json_object</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PydanticOutputParser.parse"><a class="viewcode-back" href="../../../output_parsers/langchain_core.output_parsers.pydantic.PydanticOutputParser.html#langchain_core.output_parsers.pydantic.PydanticOutputParser.parse">[docs]</a>    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TBaseModel</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">text</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="PydanticOutputParser.get_format_instructions"><a class="viewcode-back" href="../../../output_parsers/langchain_core.output_parsers.pydantic.PydanticOutputParser.html#langchain_core.output_parsers.pydantic.PydanticOutputParser.get_format_instructions">[docs]</a>    <span class="k">def</span> <span class="nf">get_format_instructions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="c1"># Copy schema to avoid altering original Pydantic schema.</span>
@@ -228,7 +235,7 @@
         <span class="k">return</span> <span class="s2">&quot;pydantic&quot;</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">OutputType</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Type</span><span class="p">[</span><span class="n">BaseModel</span><span class="p">]:</span>
+    <span class="k">def</span> <span class="nf">OutputType</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Type</span><span class="p">[</span><span class="n">TBaseModel</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the pydantic model.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pydantic_object</span></div>
 
@@ -248,7 +255,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 07, 2024.
+          Last updated on Mar 08, 2024.
       </footer>
     </div>
   </div>

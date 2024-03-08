@@ -301,8 +301,10 @@ the HuggingFace Hub.</p>
 
 <dl class="py attribute pydantic_field">
 <dt class="sig sig-object py" id="langchain_community.chat_models.huggingface.ChatHuggingFace.llm">
-<em class="property"><span class="pre">param</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">llm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../llms/langchain_community.llms.huggingface_text_gen_inference.HuggingFaceTextGenInference.html#langchain_community.llms.huggingface_text_gen_inference.HuggingFaceTextGenInference" title="langchain_community.llms.huggingface_text_gen_inference.HuggingFaceTextGenInference"><span class="pre">HuggingFaceTextGenInference</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../llms/langchain_community.llms.huggingface_endpoint.HuggingFaceEndpoint.html#langchain_community.llms.huggingface_endpoint.HuggingFaceEndpoint" title="langchain_community.llms.huggingface_endpoint.HuggingFaceEndpoint"><span class="pre">HuggingFaceEndpoint</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../llms/langchain_community.llms.huggingface_hub.HuggingFaceHub.html#langchain_community.llms.huggingface_hub.HuggingFaceHub" title="langchain_community.llms.huggingface_hub.HuggingFaceHub"><span class="pre">HuggingFaceHub</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">[Required]</span></em><a class="headerlink" href="#langchain_community.chat_models.huggingface.ChatHuggingFace.llm" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<em class="property"><span class="pre">param</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">llm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Any</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#langchain_community.chat_models.huggingface.ChatHuggingFace.llm" title="Permalink to this definition">¶</a></dt>
+<dd><p>LLM, must be of type HuggingFaceTextGenInference, HuggingFaceEndpoint, or
+HuggingFaceHub.</p>
+</dd></dl>
 
 <dl class="py attribute pydantic_field">
 <dt class="sig sig-object py" id="langchain_community.chat_models.huggingface.ChatHuggingFace.metadata">
@@ -1822,7 +1824,7 @@ between retries</p></li>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 07, 2024.
+          Last updated on Mar 08, 2024.
       </footer>
     </div>
   </div>

@@ -288,23 +288,48 @@
 
 
 <span class="k">def</span> <span class="nf">_get_tools_requests_get</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">BaseTool</span><span class="p">:</span>
-    <span class="k">return</span> <span class="n">RequestsGetTool</span><span class="p">(</span><span class="n">requests_wrapper</span><span class="o">=</span><span class="n">TextRequestsWrapper</span><span class="p">())</span>
+    <span class="c1"># Dangerous requests are allowed here, because there&#39;s another flag that the user</span>
+    <span class="c1"># has to provide in order to actually opt in.</span>
+    <span class="c1"># This is a private function and should not be used directly.</span>
+    <span class="k">return</span> <span class="n">RequestsGetTool</span><span class="p">(</span>
+        <span class="n">requests_wrapper</span><span class="o">=</span><span class="n">TextRequestsWrapper</span><span class="p">(),</span> <span class="n">allow_dangerous_requests</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">_get_tools_requests_post</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">BaseTool</span><span class="p">:</span>
-    <span class="k">return</span> <span class="n">RequestsPostTool</span><span class="p">(</span><span class="n">requests_wrapper</span><span class="o">=</span><span class="n">TextRequestsWrapper</span><span class="p">())</span>
+    <span class="c1"># Dangerous requests are allowed here, because there&#39;s another flag that the user</span>
+    <span class="c1"># has to provide in order to actually opt in.</span>
+    <span class="c1"># This is a private function and should not be used directly.</span>
+    <span class="k">return</span> <span class="n">RequestsPostTool</span><span class="p">(</span>
+        <span class="n">requests_wrapper</span><span class="o">=</span><span class="n">TextRequestsWrapper</span><span class="p">(),</span> <span class="n">allow_dangerous_requests</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">_get_tools_requests_patch</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">BaseTool</span><span class="p">:</span>
-    <span class="k">return</span> <span class="n">RequestsPatchTool</span><span class="p">(</span><span class="n">requests_wrapper</span><span class="o">=</span><span class="n">TextRequestsWrapper</span><span class="p">())</span>
+    <span class="c1"># Dangerous requests are allowed here, because there&#39;s another flag that the user</span>
+    <span class="c1"># has to provide in order to actually opt in.</span>
+    <span class="c1"># This is a private function and should not be used directly.</span>
+    <span class="k">return</span> <span class="n">RequestsPatchTool</span><span class="p">(</span>
+        <span class="n">requests_wrapper</span><span class="o">=</span><span class="n">TextRequestsWrapper</span><span class="p">(),</span> <span class="n">allow_dangerous_requests</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">_get_tools_requests_put</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">BaseTool</span><span class="p">:</span>
-    <span class="k">return</span> <span class="n">RequestsPutTool</span><span class="p">(</span><span class="n">requests_wrapper</span><span class="o">=</span><span class="n">TextRequestsWrapper</span><span class="p">())</span>
+    <span class="c1"># Dangerous requests are allowed here, because there&#39;s another flag that the user</span>
+    <span class="c1"># has to provide in order to actually opt in.</span>
+    <span class="c1"># This is a private function and should not be used directly.</span>
+    <span class="k">return</span> <span class="n">RequestsPutTool</span><span class="p">(</span>
+        <span class="n">requests_wrapper</span><span class="o">=</span><span class="n">TextRequestsWrapper</span><span class="p">(),</span> <span class="n">allow_dangerous_requests</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">_get_tools_requests_delete</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">BaseTool</span><span class="p">:</span>
-    <span class="k">return</span> <span class="n">RequestsDeleteTool</span><span class="p">(</span><span class="n">requests_wrapper</span><span class="o">=</span><span class="n">TextRequestsWrapper</span><span class="p">())</span>
+    <span class="c1"># Dangerous requests are allowed here, because there&#39;s another flag that the user</span>
+    <span class="c1"># has to provide in order to actually opt in.</span>
+    <span class="c1"># This is a private function and should not be used directly.</span>
+    <span class="k">return</span> <span class="n">RequestsDeleteTool</span><span class="p">(</span>
+        <span class="n">requests_wrapper</span><span class="o">=</span><span class="n">TextRequestsWrapper</span><span class="p">(),</span> <span class="n">allow_dangerous_requests</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">_get_terminal</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">BaseTool</span><span class="p">:</span>
@@ -316,6 +341,15 @@
 
 
 <span class="n">_BASE_TOOLS</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="n">BaseTool</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;sleep&quot;</span><span class="p">:</span> <span class="n">_get_sleep</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">DANGEROUS_TOOLS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># Tools that contain some level of risk.</span>
+    <span class="c1"># Please use with caution and read the documentation of these tools</span>
+    <span class="c1"># to understand the risks and how to mitigate them.</span>
+    <span class="c1"># Refer to https://python.langchain.com/docs/security</span>
+    <span class="c1"># for more information.</span>
     <span class="s2">&quot;requests&quot;</span><span class="p">:</span> <span class="n">_get_tools_requests_get</span><span class="p">,</span>  <span class="c1"># preserved for backwards compatibility</span>
     <span class="s2">&quot;requests_get&quot;</span><span class="p">:</span> <span class="n">_get_tools_requests_get</span><span class="p">,</span>
     <span class="s2">&quot;requests_post&quot;</span><span class="p">:</span> <span class="n">_get_tools_requests_post</span><span class="p">,</span>
@@ -323,7 +357,6 @@
     <span class="s2">&quot;requests_put&quot;</span><span class="p">:</span> <span class="n">_get_tools_requests_put</span><span class="p">,</span>
     <span class="s2">&quot;requests_delete&quot;</span><span class="p">:</span> <span class="n">_get_tools_requests_delete</span><span class="p">,</span>
     <span class="s2">&quot;terminal&quot;</span><span class="p">:</span> <span class="n">_get_terminal</span><span class="p">,</span>
-    <span class="s2">&quot;sleep&quot;</span><span class="p">:</span> <span class="n">_get_sleep</span><span class="p">,</span>
 <span class="p">}</span>
 
 
@@ -723,6 +756,7 @@
     <span class="n">tool_names</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
     <span class="n">llm</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">BaseLanguageModel</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">callbacks</span><span class="p">:</span> <span class="n">Callbacks</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">allow_dangerous_tools</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">BaseTool</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Load tools based on their name.</span>
@@ -748,6 +782,15 @@
 <span class="sd">        llm: An optional language model, may be needed to initialize certain tools.</span>
 <span class="sd">        callbacks: Optional callback manager or list of callback handlers.</span>
 <span class="sd">            If not provided, default global callback manager will be used.</span>
+<span class="sd">        allow_dangerous_tools: Optional flag to allow dangerous tools.</span>
+<span class="sd">            Tools that contain some level of risk.</span>
+<span class="sd">            Please use with caution and read the documentation of these tools</span>
+<span class="sd">            to understand the risks and how to mitigate them.</span>
+<span class="sd">            Refer to https://python.langchain.com/docs/security</span>
+<span class="sd">            for more information.</span>
+<span class="sd">            Please note that this list may not be fully exhaustive.</span>
+<span class="sd">            It is your responsibility to understand which tools</span>
+<span class="sd">            you&#39;re using and the risks associated with them.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        List of tools.</span>
@@ -756,10 +799,26 @@
     <span class="n">callbacks</span> <span class="o">=</span> <span class="n">_handle_callbacks</span><span class="p">(</span>
         <span class="n">callback_manager</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;callback_manager&quot;</span><span class="p">),</span> <span class="n">callbacks</span><span class="o">=</span><span class="n">callbacks</span>
     <span class="p">)</span>
-    <span class="c1"># print(_BASE_TOOLS)</span>
-    <span class="c1"># print(1)</span>
     <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">tool_names</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;requests&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">DANGEROUS_TOOLS</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">allow_dangerous_tools</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> is a dangerous tool. You cannot use it without opting in &quot;</span>
+                <span class="s2">&quot;by setting allow_dangerous_tools to True. &quot;</span>
+                <span class="s2">&quot;Most tools have some inherit risk to them merely because they are &quot;</span>
+                <span class="s1">&#39;allowed to interact with the &quot;real world&quot;.&#39;</span>
+                <span class="s2">&quot;Please refer to LangChain security guidelines &quot;</span>
+                <span class="s2">&quot;to https://python.langchain.com/docs/security.&quot;</span>
+                <span class="s2">&quot;Some tools have been designated as dangerous because they pose &quot;</span>
+                <span class="s2">&quot;risk that is not intuitively obvious. For example, a tool that &quot;</span>
+                <span class="s2">&quot;allows an agent to make requests to the web, can also be used &quot;</span>
+                <span class="s2">&quot;to make requests to a server that is only accessible from the &quot;</span>
+                <span class="s2">&quot;server hosting the code.&quot;</span>
+                <span class="s2">&quot;Again, all tools carry some risk, and it&#39;s your responsibility to &quot;</span>
+                <span class="s2">&quot;understand which tools you&#39;re using and the risks associated with &quot;</span>
+                <span class="s2">&quot;them.&quot;</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">{</span><span class="s2">&quot;requests&quot;</span><span class="p">}:</span>
             <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
                 <span class="s2">&quot;tool name `requests` is deprecated - &quot;</span>
                 <span class="s2">&quot;please use `requests_all` or specify the requests method&quot;</span>
@@ -772,6 +831,8 @@
             <span class="n">tool_names</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">requests_method_tools</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">_BASE_TOOLS</span><span class="p">:</span>
             <span class="n">tools</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_BASE_TOOLS</span><span class="p">[</span><span class="n">name</span><span class="p">]())</span>
+        <span class="k">elif</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">DANGEROUS_TOOLS</span><span class="p">:</span>
+            <span class="n">tools</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">DANGEROUS_TOOLS</span><span class="p">[</span><span class="n">name</span><span class="p">]())</span>
         <span class="k">elif</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">_LLM_TOOLS</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">llm</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tool </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> requires an LLM to be provided&quot;</span><span class="p">)</span>
@@ -810,6 +871,7 @@
         <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">_EXTRA_OPTIONAL_TOOLS</span><span class="p">)</span>
         <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">_EXTRA_LLM_TOOLS</span><span class="p">)</span>
         <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">_LLM_TOOLS</span><span class="p">)</span>
+        <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">DANGEROUS_TOOLS</span><span class="p">)</span>
     <span class="p">)</span></div>
 </pre></div>
 
@@ -817,7 +879,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 07, 2024.
+          Last updated on Mar 08, 2024.
       </footer>
     </div>
   </div>
