@@ -222,7 +222,6 @@
 <span class="sd">        length_penalty: (float) The penalty to apply repeated tokens</span>
 <span class="sd">        tokens: (int) The maximum number of tokens to generate.</span>
 <span class="sd">        client: The client object used to communicate with the inference server</span>
-<span class="sd">        verbose_client: flag to pass to the client on creation</span>
 
 <span class="sd">    Example:</span>
 <span class="sd">        .. code-block:: python</span>
@@ -256,7 +255,6 @@
         <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Request the inference server to load the specified model.</span><span class="se">\</span>
 <span class="s2">            Certain Triton configurations do not allow for this operation.&quot;</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="n">verbose_client</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
 
     <span class="k">def</span> <span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Ensure the client streaming connection is properly shutdown&quot;&quot;&quot;</span>
@@ -266,9 +264,7 @@
     <span class="k">def</span> <span class="nf">validate_environment</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Validate that python package exists in environment.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">values</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;client&quot;</span><span class="p">):</span>
-            <span class="n">values</span><span class="p">[</span><span class="s2">&quot;client&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">grpcclient</span><span class="o">.</span><span class="n">InferenceServerClient</span><span class="p">(</span>
-                <span class="n">values</span><span class="p">[</span><span class="s2">&quot;server_url&quot;</span><span class="p">],</span> <span class="n">verbose</span><span class="o">=</span><span class="n">values</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;verbose_client&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-            <span class="p">)</span>
+            <span class="n">values</span><span class="p">[</span><span class="s2">&quot;client&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">grpcclient</span><span class="o">.</span><span class="n">InferenceServerClient</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">&quot;server_url&quot;</span><span class="p">])</span>
         <span class="k">return</span> <span class="n">values</span>
 
     <span class="nd">@property</span>
@@ -362,9 +358,9 @@
         <span class="n">result_queue</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_invoke_triton</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_name</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">outputs</span><span class="p">,</span> <span class="n">stop_words</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">result_queue</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">GenerationChunk</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">token</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">run_manager</span><span class="p">:</span>
                 <span class="n">run_manager</span><span class="o">.</span><span class="n">on_llm_new_token</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
-            <span class="k">yield</span> <span class="n">GenerationChunk</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">token</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">stop_stream</span><span class="p">()</span>
 
@@ -597,7 +593,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 08, 2024.
+          Last updated on Mar 09, 2024.
       </footer>
     </div>
   </div>

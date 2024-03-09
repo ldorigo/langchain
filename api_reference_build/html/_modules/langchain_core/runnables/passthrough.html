@@ -181,6 +181,7 @@
         
   <h1>Source code for langchain_core.runnables.passthrough</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Implementation of the RunnablePassthrough.&quot;&quot;&quot;</span>
+
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 
 <span class="kn">import</span> <span class="nn">asyncio</span>
@@ -497,6 +498,39 @@
 <div class="viewcode-block" id="RunnableAssign"><a class="viewcode-back" href="../../../runnables/langchain_core.runnables.passthrough.RunnableAssign.html#langchain_core.runnables.passthrough.RunnableAssign">[docs]</a><span class="k">class</span> <span class="nc">RunnableAssign</span><span class="p">(</span><span class="n">RunnableSerializable</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A runnable that assigns key-value pairs to Dict[str, Any] inputs.</span>
+
+<span class="sd">    The `RunnableAssign` class takes input dictionaries and, through a</span>
+<span class="sd">    `RunnableParallel` instance, applies transformations, then combines</span>
+<span class="sd">    these with the original data, introducing new key-value pairs based</span>
+<span class="sd">    on the mapper&#39;s logic.</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            # This is a RunnableAssign</span>
+<span class="sd">            from typing import Dict</span>
+<span class="sd">            from langchain_core.runnables.passthrough import (</span>
+<span class="sd">                RunnableAssign,</span>
+<span class="sd">                RunnableParallel,</span>
+<span class="sd">            )</span>
+<span class="sd">            from langchain_core.runnables.base import RunnableLambda</span>
+
+<span class="sd">            def add_ten(x: Dict[str, int]) -&gt; Dict[str, int]:</span>
+<span class="sd">                return {&quot;added&quot;: x[&quot;input&quot;] + 10}</span>
+
+<span class="sd">            mapper = RunnableParallel(</span>
+<span class="sd">                {&quot;add_step&quot;: RunnableLambda(add_ten),}</span>
+<span class="sd">            )</span>
+
+<span class="sd">            runnable_assign = RunnableAssign(mapper)</span>
+
+<span class="sd">            # Synchronous example</span>
+<span class="sd">            runnable_assign.invoke({&quot;input&quot;: 5})</span>
+<span class="sd">            # returns {&#39;input&#39;: 5, &#39;add_step&#39;: {&#39;added&#39;: 15}}</span>
+
+<span class="sd">            # Asynchronous example</span>
+<span class="sd">            await runnable_assign.ainvoke({&quot;input&quot;: 5})</span>
+<span class="sd">            # returns {&#39;input&#39;: 5, &#39;add_step&#39;: {&#39;added&#39;: 15}}</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">mapper</span><span class="p">:</span> <span class="n">RunnableParallel</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span>
@@ -891,7 +925,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 08, 2024.
+          Last updated on Mar 09, 2024.
       </footer>
     </div>
   </div>

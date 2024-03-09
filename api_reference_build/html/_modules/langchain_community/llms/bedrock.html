@@ -285,6 +285,7 @@
         <span class="s2">&quot;amazon&quot;</span><span class="p">:</span> <span class="s2">&quot;outputText&quot;</span><span class="p">,</span>
         <span class="s2">&quot;cohere&quot;</span><span class="p">:</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span>
         <span class="s2">&quot;meta&quot;</span><span class="p">:</span> <span class="s2">&quot;generation&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;mistral&quot;</span><span class="p">:</span> <span class="s2">&quot;outputs&quot;</span><span class="p">,</span>
     <span class="p">}</span>
 
 <div class="viewcode-block" id="LLMInputOutputAdapter.prepare_input"><a class="viewcode-back" href="../../../llms/langchain_community.llms.bedrock.LLMInputOutputAdapter.html#langchain_community.llms.bedrock.LLMInputOutputAdapter.prepare_input">[docs]</a>    <span class="nd">@classmethod</span>
@@ -309,7 +310,7 @@
                 <span class="n">input_body</span><span class="p">[</span><span class="s2">&quot;prompt&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_human_assistant_format</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
                 <span class="k">if</span> <span class="s2">&quot;max_tokens_to_sample&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">input_body</span><span class="p">:</span>
                     <span class="n">input_body</span><span class="p">[</span><span class="s2">&quot;max_tokens_to_sample&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1024</span>
-        <span class="k">elif</span> <span class="n">provider</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;ai21&quot;</span><span class="p">,</span> <span class="s2">&quot;cohere&quot;</span><span class="p">,</span> <span class="s2">&quot;meta&quot;</span><span class="p">):</span>
+        <span class="k">elif</span> <span class="n">provider</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;ai21&quot;</span><span class="p">,</span> <span class="s2">&quot;cohere&quot;</span><span class="p">,</span> <span class="s2">&quot;meta&quot;</span><span class="p">,</span> <span class="s2">&quot;mistral&quot;</span><span class="p">):</span>
             <span class="n">input_body</span><span class="p">[</span><span class="s2">&quot;prompt&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">prompt</span>
         <span class="k">elif</span> <span class="n">provider</span> <span class="o">==</span> <span class="s2">&quot;amazon&quot;</span><span class="p">:</span>
             <span class="n">input_body</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
@@ -338,6 +339,8 @@
                 <span class="n">text</span> <span class="o">=</span> <span class="n">response_body</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;generations&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;text&quot;</span><span class="p">)</span>
             <span class="k">elif</span> <span class="n">provider</span> <span class="o">==</span> <span class="s2">&quot;meta&quot;</span><span class="p">:</span>
                 <span class="n">text</span> <span class="o">=</span> <span class="n">response_body</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;generation&quot;</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">provider</span> <span class="o">==</span> <span class="s2">&quot;mistral&quot;</span><span class="p">:</span>
+                <span class="n">text</span> <span class="o">=</span> <span class="n">response_body</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;outputs&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;text&quot;</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">text</span> <span class="o">=</span> <span class="n">response_body</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;results&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;outputText&quot;</span><span class="p">)</span>
 
@@ -380,6 +383,13 @@
                 <span class="n">chunk_obj</span><span class="p">[</span><span class="s2">&quot;is_finished&quot;</span><span class="p">]</span> <span class="ow">or</span> <span class="n">chunk_obj</span><span class="p">[</span><span class="n">output_key</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;&lt;EOS_TOKEN&gt;&quot;</span>
             <span class="p">):</span>
                 <span class="k">return</span>
+
+            <span class="k">elif</span> <span class="p">(</span>
+                <span class="n">provider</span> <span class="o">==</span> <span class="s2">&quot;mistral&quot;</span>
+                <span class="ow">and</span> <span class="n">chunk_obj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">output_key</span><span class="p">,</span> <span class="p">[{}])[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;stop_reason&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;stop&quot;</span>
+            <span class="p">):</span>
+                <span class="k">return</span>
+
             <span class="k">elif</span> <span class="n">messages_api</span> <span class="ow">and</span> <span class="p">(</span><span class="n">chunk_obj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;content_block_stop&quot;</span><span class="p">):</span>
                 <span class="k">return</span>
 
@@ -396,11 +406,17 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="c1"># chunk obj format varies with provider</span>
                 <span class="k">yield</span> <span class="n">GenerationChunk</span><span class="p">(</span>
-                    <span class="n">text</span><span class="o">=</span><span class="n">chunk_obj</span><span class="p">[</span><span class="n">output_key</span><span class="p">],</span>
+                    <span class="n">text</span><span class="o">=</span><span class="p">(</span>
+                        <span class="n">chunk_obj</span><span class="p">[</span><span class="n">output_key</span><span class="p">]</span>
+                        <span class="k">if</span> <span class="n">provider</span> <span class="o">!=</span> <span class="s2">&quot;mistral&quot;</span>
+                        <span class="k">else</span> <span class="n">chunk_obj</span><span class="p">[</span><span class="n">output_key</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;text&quot;</span><span class="p">]</span>
+                    <span class="p">),</span>
                     <span class="n">generation_info</span><span class="o">=</span><span class="p">{</span>
-                        <span class="n">GUARDRAILS_BODY_KEY</span><span class="p">:</span> <span class="n">chunk_obj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">GUARDRAILS_BODY_KEY</span><span class="p">)</span>
-                        <span class="k">if</span> <span class="n">GUARDRAILS_BODY_KEY</span> <span class="ow">in</span> <span class="n">chunk_obj</span>
-                        <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+                        <span class="n">GUARDRAILS_BODY_KEY</span><span class="p">:</span> <span class="p">(</span>
+                            <span class="n">chunk_obj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">GUARDRAILS_BODY_KEY</span><span class="p">)</span>
+                            <span class="k">if</span> <span class="n">GUARDRAILS_BODY_KEY</span> <span class="ow">in</span> <span class="n">chunk_obj</span>
+                            <span class="k">else</span> <span class="kc">None</span>
+                        <span class="p">),</span>
                     <span class="p">},</span>
                 <span class="p">)</span></div>
 
@@ -432,7 +448,19 @@
             <span class="p">):</span>
                 <span class="k">return</span>
 
-            <span class="k">yield</span> <span class="n">GenerationChunk</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">chunk_obj</span><span class="p">[</span><span class="n">output_key</span><span class="p">])</span></div></div>
+            <span class="k">if</span> <span class="p">(</span>
+                <span class="n">provider</span> <span class="o">==</span> <span class="s2">&quot;mistral&quot;</span>
+                <span class="ow">and</span> <span class="n">chunk_obj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">output_key</span><span class="p">,</span> <span class="p">[{}])[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;stop_reason&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;stop&quot;</span>
+            <span class="p">):</span>
+                <span class="k">return</span>
+
+            <span class="k">yield</span> <span class="n">GenerationChunk</span><span class="p">(</span>
+                <span class="n">text</span><span class="o">=</span><span class="p">(</span>
+                    <span class="n">chunk_obj</span><span class="p">[</span><span class="n">output_key</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="n">provider</span> <span class="o">!=</span> <span class="s2">&quot;mistral&quot;</span>
+                    <span class="k">else</span> <span class="n">chunk_obj</span><span class="p">[</span><span class="n">output_key</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;text&quot;</span><span class="p">]</span>
+                <span class="p">)</span>
+            <span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="BedrockBase"><a class="viewcode-back" href="../../../llms/langchain_community.llms.bedrock.BedrockBase.html#langchain_community.llms.bedrock.BedrockBase">[docs]</a><span class="k">class</span> <span class="nc">BedrockBase</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">,</span> <span class="n">ABC</span><span class="p">):</span>
@@ -482,6 +510,7 @@
         <span class="s2">&quot;amazon&quot;</span><span class="p">:</span> <span class="s2">&quot;stopSequences&quot;</span><span class="p">,</span>
         <span class="s2">&quot;ai21&quot;</span><span class="p">:</span> <span class="s2">&quot;stop_sequences&quot;</span><span class="p">,</span>
         <span class="s2">&quot;cohere&quot;</span><span class="p">:</span> <span class="s2">&quot;stop_sequences&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;mistral&quot;</span><span class="p">:</span> <span class="s2">&quot;stop_sequences&quot;</span><span class="p">,</span>
     <span class="p">}</span>
 
     <span class="n">guardrails</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{</span>
@@ -1057,7 +1086,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 08, 2024.
+          Last updated on Mar 09, 2024.
       </footer>
     </div>
   </div>

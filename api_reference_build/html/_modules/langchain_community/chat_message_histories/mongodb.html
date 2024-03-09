@@ -212,6 +212,8 @@
 <span class="sd">            of a single chat session.</span>
 <span class="sd">        database_name: name of the database to use</span>
 <span class="sd">        collection_name: name of the collection to use</span>
+<span class="sd">        create_index: whether to create an index with name SessionId. Set to False if</span>
+<span class="sd">            such an index already exists.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="MongoDBChatMessageHistory.__init__"><a class="viewcode-back" href="../../../chat_message_histories/langchain_community.chat_message_histories.mongodb.MongoDBChatMessageHistory.html#langchain_community.chat_message_histories.mongodb.MongoDBChatMessageHistory.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
@@ -220,6 +222,7 @@
         <span class="n">session_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">database_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">DEFAULT_DBNAME</span><span class="p">,</span>
         <span class="n">collection_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">DEFAULT_COLLECTION_NAME</span><span class="p">,</span>
+        <span class="n">create_index</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="kn">from</span> <span class="nn">pymongo</span> <span class="kn">import</span> <span class="n">MongoClient</span><span class="p">,</span> <span class="n">errors</span>
 
@@ -235,7 +238,8 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">db</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">[</span><span class="n">database_name</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">collection</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">[</span><span class="n">collection_name</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">collection</span><span class="o">.</span><span class="n">create_index</span><span class="p">(</span><span class="s2">&quot;SessionId&quot;</span><span class="p">)</span></div>
+        <span class="k">if</span> <span class="n">create_index</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">collection</span><span class="o">.</span><span class="n">create_index</span><span class="p">(</span><span class="s2">&quot;SessionId&quot;</span><span class="p">)</span></div>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">messages</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">BaseMessage</span><span class="p">]:</span>  <span class="c1"># type: ignore</span>
@@ -283,7 +287,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 08, 2024.
+          Last updated on Mar 09, 2024.
       </footer>
     </div>
   </div>

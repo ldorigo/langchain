@@ -208,6 +208,7 @@
     <span class="kn">import</span> <span class="nn">pdfplumber.page</span>
     <span class="kn">import</span> <span class="nn">pypdf._page</span>
     <span class="kn">import</span> <span class="nn">pypdfium2._helpers.page</span>
+    <span class="kn">from</span> <span class="nn">textractor.data.text_linearization_config</span> <span class="kn">import</span> <span class="n">TextLinearizationConfig</span>
 
 
 <span class="n">_PDF_FILTER_WITH_LOSS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;DCTDecode&quot;</span><span class="p">,</span> <span class="s2">&quot;DCT&quot;</span><span class="p">,</span> <span class="s2">&quot;JPXDecode&quot;</span><span class="p">]</span>
@@ -636,6 +637,8 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">textract_features</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">client</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">linearization_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s2">&quot;TextLinearizationConfig&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initializes the parser.</span>
 
@@ -644,6 +647,9 @@
 <span class="sd">                               should be passed as an int that conforms to the enum</span>
 <span class="sd">                               `Textract_Features`, see `amazon-textract-caller` pkg</span>
 <span class="sd">            client: boto3 textract client</span>
+<span class="sd">            linearization_config: Config to be used for linearization of the output</span>
+<span class="sd">                                  should be an instance of TextLinearizationConfig from</span>
+<span class="sd">                                  the `textractor` pkg</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">try</span><span class="p">:</span>
@@ -659,6 +665,16 @@
                 <span class="p">]</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">textract_features</span> <span class="o">=</span> <span class="p">[]</span>
+
+            <span class="k">if</span> <span class="n">linearization_config</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">linearization_config</span> <span class="o">=</span> <span class="n">linearization_config</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">linearization_config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">textractor</span><span class="o">.</span><span class="n">TextLinearizationConfig</span><span class="p">(</span>
+                    <span class="n">hide_figure_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                    <span class="n">title_prefix</span><span class="o">=</span><span class="s2">&quot;# &quot;</span><span class="p">,</span>
+                    <span class="n">section_header_prefix</span><span class="o">=</span><span class="s2">&quot;## &quot;</span><span class="p">,</span>
+                    <span class="n">list_element_prefix</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="p">,</span>
+                <span class="p">)</span>
         <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span>
                 <span class="s2">&quot;Could not import amazon-textract-caller or &quot;</span>
@@ -709,15 +725,9 @@
 
         <span class="n">document</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">textractor</span><span class="o">.</span><span class="n">Document</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">textract_response_json</span><span class="p">)</span>
 
-        <span class="n">linearizer_config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">textractor</span><span class="o">.</span><span class="n">TextLinearizationConfig</span><span class="p">(</span>
-            <span class="n">hide_figure_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="n">title_prefix</span><span class="o">=</span><span class="s2">&quot;# &quot;</span><span class="p">,</span>
-            <span class="n">section_header_prefix</span><span class="o">=</span><span class="s2">&quot;## &quot;</span><span class="p">,</span>
-            <span class="n">list_element_prefix</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="p">,</span>
-        <span class="p">)</span>
         <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">page</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">document</span><span class="o">.</span><span class="n">pages</span><span class="p">):</span>
             <span class="k">yield</span> <span class="n">Document</span><span class="p">(</span>
-                <span class="n">page_content</span><span class="o">=</span><span class="n">page</span><span class="o">.</span><span class="n">get_text</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">linearizer_config</span><span class="p">),</span>
+                <span class="n">page_content</span><span class="o">=</span><span class="n">page</span><span class="o">.</span><span class="n">get_text</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">linearization_config</span><span class="p">),</span>
                 <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="n">blob</span><span class="o">.</span><span class="n">source</span><span class="p">,</span> <span class="s2">&quot;page&quot;</span><span class="p">:</span> <span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">},</span>
             <span class="p">)</span></div></div>
 
@@ -767,7 +777,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 08, 2024.
+          Last updated on Mar 09, 2024.
       </footer>
     </div>
   </div>

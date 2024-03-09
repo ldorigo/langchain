@@ -343,9 +343,9 @@
         <span class="n">inputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">custom_preprocess</span><span class="p">(</span><span class="n">messages</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">response</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_stream</span><span class="p">(</span><span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="n">stop</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
             <span class="n">chunk</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_filled_chunk</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">custom_postprocess</span><span class="p">(</span><span class="n">response</span><span class="p">))</span>
+            <span class="k">yield</span> <span class="n">chunk</span>
             <span class="k">if</span> <span class="n">run_manager</span><span class="p">:</span>
                 <span class="n">run_manager</span><span class="o">.</span><span class="n">on_llm_new_token</span><span class="p">(</span><span class="n">chunk</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="n">chunk</span><span class="o">=</span><span class="n">chunk</span><span class="p">)</span>
-            <span class="k">yield</span> <span class="n">chunk</span>
 
     <span class="k">async</span> <span class="k">def</span> <span class="nf">_astream</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -357,9 +357,9 @@
         <span class="n">inputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">custom_preprocess</span><span class="p">(</span><span class="n">messages</span><span class="p">)</span>
         <span class="k">async</span> <span class="k">for</span> <span class="n">response</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_astream</span><span class="p">(</span><span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="n">stop</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
             <span class="n">chunk</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_filled_chunk</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">custom_postprocess</span><span class="p">(</span><span class="n">response</span><span class="p">))</span>
+            <span class="k">yield</span> <span class="n">chunk</span>
             <span class="k">if</span> <span class="n">run_manager</span><span class="p">:</span>
                 <span class="k">await</span> <span class="n">run_manager</span><span class="o">.</span><span class="n">on_llm_new_token</span><span class="p">(</span><span class="n">chunk</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="n">chunk</span><span class="o">=</span><span class="n">chunk</span><span class="p">)</span>
-            <span class="k">yield</span> <span class="n">chunk</span>
 
 <div class="viewcode-block" id="ChatNVIDIA.custom_preprocess"><a class="viewcode-back" href="../../chat_models/langchain_nvidia_ai_endpoints.chat_models.ChatNVIDIA.html#langchain_nvidia_ai_endpoints.chat_models.ChatNVIDIA.custom_preprocess">[docs]</a>    <span class="k">def</span> <span class="nf">custom_preprocess</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">msg_list</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">BaseMessage</span><span class="p">]</span>
@@ -493,7 +493,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 08, 2024.
+          Last updated on Mar 09, 2024.
       </footer>
     </div>
   </div>

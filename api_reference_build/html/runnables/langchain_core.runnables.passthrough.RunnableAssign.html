@@ -250,6 +250,37 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">langchain_core.runnables.passthrough.</span></span><span class="sig-name descname"><span class="pre">RunnableAssign</span></span><a class="reference internal" href="../_modules/langchain_core/runnables/passthrough.html#RunnableAssign"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#langchain_core.runnables.passthrough.RunnableAssign" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="langchain_core.runnables.base.RunnableSerializable.html#langchain_core.runnables.base.RunnableSerializable" title="langchain_core.runnables.base.RunnableSerializable"><code class="xref py py-class docutils literal notranslate"><span class="pre">RunnableSerializable</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">Any</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">Any</span></code>]]</p>
 <p>A runnable that assigns key-value pairs to Dict[str, Any] inputs.</p>
+<p>The <cite>RunnableAssign</cite> class takes input dictionaries and, through a
+<cite>RunnableParallel</cite> instance, applies transformations, then combines
+these with the original data, introducing new key-value pairs based
+on the mapper’s logic.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is a RunnableAssign</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span>
+<span class="kn">from</span> <span class="nn">langchain_core.runnables.passthrough</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">RunnableAssign</span><span class="p">,</span>
+    <span class="n">RunnableParallel</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">langchain_core.runnables.base</span> <span class="kn">import</span> <span class="n">RunnableLambda</span>
+
+<span class="k">def</span> <span class="nf">add_ten</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;added&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;input&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">10</span><span class="p">}</span>
+
+<span class="n">mapper</span> <span class="o">=</span> <span class="n">RunnableParallel</span><span class="p">(</span>
+    <span class="p">{</span><span class="s2">&quot;add_step&quot;</span><span class="p">:</span> <span class="n">RunnableLambda</span><span class="p">(</span><span class="n">add_ten</span><span class="p">),}</span>
+<span class="p">)</span>
+
+<span class="n">runnable_assign</span> <span class="o">=</span> <span class="n">RunnableAssign</span><span class="p">(</span><span class="n">mapper</span><span class="p">)</span>
+
+<span class="c1"># Synchronous example</span>
+<span class="n">runnable_assign</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">})</span>
+<span class="c1"># returns {&#39;input&#39;: 5, &#39;add_step&#39;: {&#39;added&#39;: 15}}</span>
+
+<span class="c1"># Asynchronous example</span>
+<span class="k">await</span> <span class="n">runnable_assign</span><span class="o">.</span><span class="n">ainvoke</span><span class="p">({</span><span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">})</span>
+<span class="c1"># returns {&#39;input&#39;: 5, &#39;add_step&#39;: {&#39;added&#39;: 15}}</span>
+</pre></div>
+</div>
 <p>Create a new model by parsing and validating input data from keyword arguments.</p>
 <p>Raises ValidationError if the input data cannot be parsed to form a valid model.</p>
 <dl class="py attribute pydantic_field">
@@ -1352,7 +1383,7 @@ between retries</p></li>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 08, 2024.
+          Last updated on Mar 09, 2024.
       </footer>
     </div>
   </div>

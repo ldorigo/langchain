@@ -330,6 +330,23 @@
     <span class="n">usr_0_end</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot; [/INST]&quot;</span></div>
 
 
+<div class="viewcode-block" id="Mixtral"><a class="viewcode-back" href="../../../chat_models/langchain_experimental.chat_models.llm_wrapper.Mixtral.html#langchain_experimental.chat_models.llm_wrapper.Mixtral">[docs]</a><span class="k">class</span> <span class="nc">Mixtral</span><span class="p">(</span><span class="n">ChatWrapper</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;See https://huggingface.co/mistralai/Mixtral-8x7B-Instruct-v0.1#instruction-format&quot;&quot;&quot;</span>  <span class="c1"># noqa: E501</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">_llm_type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;mixtral&quot;</span>
+
+    <span class="n">sys_beg</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&lt;s&gt;[INST] &quot;</span>
+    <span class="n">sys_end</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="n">ai_n_beg</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span>
+    <span class="n">ai_n_end</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot; &lt;/s&gt;&quot;</span>
+    <span class="n">usr_n_beg</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot; [INST] &quot;</span>
+    <span class="n">usr_n_end</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot; [/INST]&quot;</span>
+    <span class="n">usr_0_beg</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">usr_0_end</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot; [/INST]&quot;</span></div>
+
+
 <div class="viewcode-block" id="Orca"><a class="viewcode-back" href="../../../chat_models/langchain_experimental.chat_models.llm_wrapper.Orca.html#langchain_experimental.chat_models.llm_wrapper.Orca">[docs]</a><span class="k">class</span> <span class="nc">Orca</span><span class="p">(</span><span class="n">ChatWrapper</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Wrapper for Orca-style models.&quot;&quot;&quot;</span>
 
@@ -364,7 +381,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 08, 2024.
+          Last updated on Mar 09, 2024.
       </footer>
     </div>
   </div>

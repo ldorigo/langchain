@@ -181,12 +181,15 @@
         
   <h1>Source code for langchain.hub</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Interface with the LangChain Hub.&quot;&quot;&quot;</span>
+
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 
+<span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span>
 
 <span class="kn">from</span> <span class="nn">langchain_core.load.dump</span> <span class="kn">import</span> <span class="n">dumps</span>
 <span class="kn">from</span> <span class="nn">langchain_core.load.load</span> <span class="kn">import</span> <span class="n">loads</span>
+<span class="kn">from</span> <span class="nn">langchain_core.prompts</span> <span class="kn">import</span> <span class="n">BasePromptTemplate</span>
 
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">langchainhub</span> <span class="kn">import</span> <span class="n">Client</span>
@@ -259,15 +262,22 @@
 <span class="sd">    :param api_key: The API key to use to authenticate with the LangChain Hub API.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">client</span> <span class="o">=</span> <span class="n">_get_client</span><span class="p">(</span><span class="n">api_url</span><span class="o">=</span><span class="n">api_url</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">)</span>
-    <span class="n">resp</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">pull</span><span class="p">(</span><span class="n">owner_repo_commit</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">loads</span><span class="p">(</span><span class="n">resp</span><span class="p">)</span></div>
+    <span class="n">res_dict</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">pull_repo</span><span class="p">(</span><span class="n">owner_repo_commit</span><span class="p">)</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="n">loads</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">res_dict</span><span class="p">[</span><span class="s2">&quot;manifest&quot;</span><span class="p">]))</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">BasePromptTemplate</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">obj</span><span class="o">.</span><span class="n">metadata</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">obj</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">obj</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;lc_hub_owner&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">res_dict</span><span class="p">[</span><span class="s2">&quot;owner&quot;</span><span class="p">]</span>
+        <span class="n">obj</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;lc_hub_repo&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">res_dict</span><span class="p">[</span><span class="s2">&quot;repo&quot;</span><span class="p">]</span>
+        <span class="n">obj</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;lc_hub_commit_hash&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">res_dict</span><span class="p">[</span><span class="s2">&quot;commit_hash&quot;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">obj</span></div>
 </pre></div>
 
       </div>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 08, 2024.
+          Last updated on Mar 09, 2024.
       </footer>
     </div>
   </div>

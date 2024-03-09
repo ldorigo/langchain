@@ -187,6 +187,7 @@
 <li><a class="reference internal" href="#langchain_anthropic.chat_models.ChatAnthropic.metadata"><code class="docutils literal notranslate"><span class="pre">ChatAnthropic.metadata</span></code></a></li>
 <li><a class="reference internal" href="#langchain_anthropic.chat_models.ChatAnthropic.model"><code class="docutils literal notranslate"><span class="pre">ChatAnthropic.model</span></code></a></li>
 <li><a class="reference internal" href="#langchain_anthropic.chat_models.ChatAnthropic.model_kwargs"><code class="docutils literal notranslate"><span class="pre">ChatAnthropic.model_kwargs</span></code></a></li>
+<li><a class="reference internal" href="#langchain_anthropic.chat_models.ChatAnthropic.streaming"><code class="docutils literal notranslate"><span class="pre">ChatAnthropic.streaming</span></code></a></li>
 <li><a class="reference internal" href="#langchain_anthropic.chat_models.ChatAnthropic.tags"><code class="docutils literal notranslate"><span class="pre">ChatAnthropic.tags</span></code></a></li>
 <li><a class="reference internal" href="#langchain_anthropic.chat_models.ChatAnthropic.temperature"><code class="docutils literal notranslate"><span class="pre">ChatAnthropic.temperature</span></code></a></li>
 <li><a class="reference internal" href="#langchain_anthropic.chat_models.ChatAnthropic.top_k"><code class="docutils literal notranslate"><span class="pre">ChatAnthropic.top_k</span></code></a></li>
@@ -354,6 +355,12 @@ or pass it as a named parameter to the constructor.</p>
 <dt class="sig sig-object py" id="langchain_anthropic.chat_models.ChatAnthropic.model_kwargs">
 <em class="property"><span class="pre">param</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">model_kwargs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">[Optional]</span></em><a class="headerlink" href="#langchain_anthropic.chat_models.ChatAnthropic.model_kwargs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="langchain_anthropic.chat_models.ChatAnthropic.streaming">
+<em class="property"><span class="pre">param</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">streaming</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#langchain_anthropic.chat_models.ChatAnthropic.streaming" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to use streaming or not.</p>
+</dd></dl>
 
 <dl class="py attribute pydantic_field">
 <dt class="sig sig-object py" id="langchain_anthropic.chat_models.ChatAnthropic.tags">
@@ -1882,7 +1889,7 @@ between retries</p></li>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 08, 2024.
+          Last updated on Mar 09, 2024.
       </footer>
     </div>
   </div>

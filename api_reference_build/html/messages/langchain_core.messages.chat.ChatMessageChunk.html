@@ -181,6 +181,7 @@
 <li><a class="reference internal" href="#langchain_core.messages.chat.ChatMessageChunk.content"><code class="docutils literal notranslate"><span class="pre">ChatMessageChunk.content</span></code></a></li>
 <li><a class="reference internal" href="#langchain_core.messages.chat.ChatMessageChunk.id"><code class="docutils literal notranslate"><span class="pre">ChatMessageChunk.id</span></code></a></li>
 <li><a class="reference internal" href="#langchain_core.messages.chat.ChatMessageChunk.name"><code class="docutils literal notranslate"><span class="pre">ChatMessageChunk.name</span></code></a></li>
+<li><a class="reference internal" href="#langchain_core.messages.chat.ChatMessageChunk.response_metadata"><code class="docutils literal notranslate"><span class="pre">ChatMessageChunk.response_metadata</span></code></a></li>
 <li><a class="reference internal" href="#langchain_core.messages.chat.ChatMessageChunk.role"><code class="docutils literal notranslate"><span class="pre">ChatMessageChunk.role</span></code></a></li>
 <li><a class="reference internal" href="#langchain_core.messages.chat.ChatMessageChunk.type"><code class="docutils literal notranslate"><span class="pre">ChatMessageChunk.type</span></code></a></li>
 <li><a class="reference internal" href="#langchain_core.messages.chat.ChatMessageChunk.construct"><code class="docutils literal notranslate"><span class="pre">ChatMessageChunk.construct()</span></code></a></li>
@@ -227,7 +228,8 @@
 <dl class="py attribute pydantic_field">
 <dt class="sig sig-object py" id="langchain_core.messages.chat.ChatMessageChunk.additional_kwargs">
 <em class="property"><span class="pre">param</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">additional_kwargs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span></em><em class="property"> <span class="pre">[Optional]</span></em><a class="headerlink" href="#langchain_core.messages.chat.ChatMessageChunk.additional_kwargs" title="Permalink to this definition">¶</a></dt>
-<dd><p>Any additional information.</p>
+<dd><p>Reserved for additional payload data associated with the message.</p>
+<p>For example, for a message from an AI, this could include tool calls.</p>
 </dd></dl>
 
 <dl class="py attribute pydantic_field">
@@ -245,6 +247,12 @@
 <dt class="sig sig-object py" id="langchain_core.messages.chat.ChatMessageChunk.name">
 <em class="property"><span class="pre">param</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#langchain_core.messages.chat.ChatMessageChunk.name" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="langchain_core.messages.chat.ChatMessageChunk.response_metadata">
+<em class="property"><span class="pre">param</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">response_metadata</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span></em><em class="property"> <span class="pre">[Optional]</span></em><a class="headerlink" href="#langchain_core.messages.chat.ChatMessageChunk.response_metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Response metadata. For example: response headers, logprobs, token counts.</p>
+</dd></dl>
 
 <dl class="py attribute pydantic_field">
 <dt class="sig sig-object py" id="langchain_core.messages.chat.ChatMessageChunk.role">
@@ -578,7 +586,7 @@ to the object.</p>
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 08, 2024.
+          Last updated on Mar 09, 2024.
       </footer>
     </div>
   </div>

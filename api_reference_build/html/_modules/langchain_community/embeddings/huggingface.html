@@ -371,11 +371,12 @@
 
 
 <div class="viewcode-block" id="HuggingFaceBgeEmbeddings"><a class="viewcode-back" href="../../../embeddings/langchain_community.embeddings.huggingface.HuggingFaceBgeEmbeddings.html#langchain_community.embeddings.huggingface.HuggingFaceBgeEmbeddings">[docs]</a><span class="k">class</span> <span class="nc">HuggingFaceBgeEmbeddings</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">,</span> <span class="n">Embeddings</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;HuggingFace BGE sentence_transformers embedding models.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;HuggingFace sentence_transformers embedding models.</span>
 
 <span class="sd">    To use, you should have the ``sentence_transformers`` python package installed.</span>
+<span class="sd">    To use Nomic, make sure the version of ``sentence_transformers`` &gt;= 2.3.0.</span>
 
-<span class="sd">    Example:</span>
+<span class="sd">    Bge Example:</span>
 <span class="sd">        .. code-block:: python</span>
 
 <span class="sd">            from langchain_community.embeddings import HuggingFaceBgeEmbeddings</span>
@@ -387,6 +388,24 @@
 <span class="sd">                model_name=model_name,</span>
 <span class="sd">                model_kwargs=model_kwargs,</span>
 <span class="sd">                encode_kwargs=encode_kwargs</span>
+<span class="sd">            )</span>
+<span class="sd">     Nomic Example:</span>
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            from langchain_community.embeddings import HuggingFaceBgeEmbeddings</span>
+
+<span class="sd">            model_name = &quot;nomic-ai/nomic-embed-text-v1&quot;</span>
+<span class="sd">            model_kwargs = {</span>
+<span class="sd">                &#39;device&#39;: &#39;cpu&#39;,</span>
+<span class="sd">                &#39;trust_remote_code&#39;:True</span>
+<span class="sd">                }</span>
+<span class="sd">            encode_kwargs = {&#39;normalize_embeddings&#39;: True}</span>
+<span class="sd">            hf = HuggingFaceBgeEmbeddings(</span>
+<span class="sd">                model_name=model_name,</span>
+<span class="sd">                model_kwargs=model_kwargs,</span>
+<span class="sd">                encode_kwargs=encode_kwargs,</span>
+<span class="sd">                query_instruction = &quot;search_query:&quot;,</span>
+<span class="sd">                embed_instruction = &quot;search_document:&quot;</span>
 <span class="sd">            )</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -402,6 +421,8 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Keyword arguments to pass when calling the `encode` method of the model.&quot;&quot;&quot;</span>
     <span class="n">query_instruction</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">DEFAULT_QUERY_BGE_INSTRUCTION_EN</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Instruction to use for embedding query.&quot;&quot;&quot;</span>
+    <span class="n">embed_instruction</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Instruction to use for embedding document.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the sentence_transformer.&quot;&quot;&quot;</span>
@@ -435,7 +456,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            List of embeddings, one for each text.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">texts</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">texts</span><span class="p">]</span>
+        <span class="n">texts</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">embed_instruction</span> <span class="o">+</span> <span class="n">t</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">texts</span><span class="p">]</span>
         <span class="n">embeddings</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">texts</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">encode_kwargs</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">embeddings</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span></div>
 
@@ -533,7 +554,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 08, 2024.
+          Last updated on Mar 09, 2024.
       </footer>
     </div>
   </div>
