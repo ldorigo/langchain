@@ -25,7 +25,7 @@ class LangChainBetaWarning(DeprecationWarning):
 # PUBLIC API
 
 
-T = TypeVar("T", Type, Callable)
+T = TypeVar("T", Callable[..., Any])
 
 
 def beta(
