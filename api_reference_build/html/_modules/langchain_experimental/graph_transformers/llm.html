@@ -248,7 +248,8 @@
 
 <div class="viewcode-block" id="optional_enum_field"><a class="viewcode-back" href="../../../graph_transformers/langchain_experimental.graph_transformers.llm.optional_enum_field.html#langchain_experimental.graph_transformers.llm.optional_enum_field">[docs]</a><span class="k">def</span> <span class="nf">optional_enum_field</span><span class="p">(</span>
     <span class="n">enum_values</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">description</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">description</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="n">is_rel</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="o">**</span><span class="n">field_kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Utility function to conditionally create a field with an enum constraint.&quot;&quot;&quot;</span>
@@ -260,7 +261,19 @@
             <span class="o">**</span><span class="n">field_kwargs</span><span class="p">,</span>
         <span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">description</span><span class="p">,</span> <span class="o">**</span><span class="n">field_kwargs</span><span class="p">)</span></div>
+        <span class="n">node_info</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s2">&quot;Ensure you use basic or elementary types for node labels.</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;For example, when you identify an entity representing a person, &quot;</span>
+            <span class="s2">&quot;always label it as **&#39;Person&#39;**. Avoid using more specific terms &quot;</span>
+            <span class="s2">&quot;like &#39;Mathematician&#39; or &#39;Scientist&#39;&quot;</span>
+        <span class="p">)</span>
+        <span class="n">rel_info</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s2">&quot;Instead of using specific and momentary types such as &quot;</span>
+            <span class="s2">&quot;&#39;BECAME_PROFESSOR&#39;, use more general and timeless relationship types like &quot;</span>
+            <span class="s2">&quot;&#39;PROFESSOR&#39;. However, do not sacrifice any accuracy for generality&quot;</span>
+        <span class="p">)</span>
+        <span class="n">additional_info</span> <span class="o">=</span> <span class="n">rel_info</span> <span class="k">if</span> <span class="n">is_rel</span> <span class="k">else</span> <span class="n">node_info</span>
+        <span class="k">return</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">description</span> <span class="o">+</span> <span class="n">additional_info</span><span class="p">,</span> <span class="o">**</span><span class="n">field_kwargs</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="create_simple_model"><a class="viewcode-back" href="../../../graph_transformers/langchain_experimental.graph_transformers.llm.create_simple_model.html#langchain_experimental.graph_transformers.llm.create_simple_model">[docs]</a><span class="k">def</span> <span class="nf">create_simple_model</span><span class="p">(</span>
@@ -274,7 +287,7 @@
     <span class="k">class</span> <span class="nc">SimpleNode</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Represents a node in a graph with associated properties.&quot;&quot;&quot;</span>
 
-        <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;A unique identifier for the node.&quot;</span><span class="p">)</span>
+        <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Name or human-readable unique identifier.&quot;</span><span class="p">)</span>
         <span class="nb">type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">optional_enum_field</span><span class="p">(</span>
             <span class="n">node_labels</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The type or label of the node.&quot;</span>
         <span class="p">)</span>
@@ -285,7 +298,7 @@
         <span class="n">source</span><span class="p">:</span> <span class="n">SimpleNode</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;The source node of the relationship.&quot;</span><span class="p">)</span>
         <span class="n">target</span><span class="p">:</span> <span class="n">SimpleNode</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;The target node of the relationship.&quot;</span><span class="p">)</span>
         <span class="nb">type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">optional_enum_field</span><span class="p">(</span>
-            <span class="n">rel_types</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The type of the relationship.&quot;</span>
+            <span class="n">rel_types</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The type of the relationship.&quot;</span><span class="p">,</span> <span class="n">is_rel</span><span class="o">=</span><span class="kc">True</span>
         <span class="p">)</span>
 
     <span class="k">class</span> <span class="nc">DynamicGraph</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
@@ -441,7 +454,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 09, 2024.
+          Last updated on Mar 10, 2024.
       </footer>
     </div>
   </div>

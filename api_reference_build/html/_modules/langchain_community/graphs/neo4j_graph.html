@@ -180,7 +180,8 @@
       <div class="sk-page-content container-fluid body px-md-3" role="main">
         
   <h1>Source code for langchain_community.graphs.neo4j_graph</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+<span></span><span class="kn">from</span> <span class="nn">hashlib</span> <span class="kn">import</span> <span class="n">md5</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
 
 <span class="kn">from</span> <span class="nn">langchain_core.utils</span> <span class="kn">import</span> <span class="n">get_from_dict_or_env</span>
 
@@ -221,7 +222,7 @@
 <span class="s2">&quot;&quot;&quot;</span>
 
 <span class="n">include_docs_query</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="s2">&quot;CREATE (d:Document) &quot;</span>
+    <span class="s2">&quot;MERGE (d:Document {id:$document.metadata.id}) &quot;</span>
     <span class="s2">&quot;SET d.text = $document.page_content &quot;</span>
     <span class="s2">&quot;SET d += $document.metadata &quot;</span>
     <span class="s2">&quot;WITH d &quot;</span>
@@ -521,7 +522,10 @@
 <span class="sd">        including nodes, relationships, and the source document information.</span>
 <span class="sd">        - include_source (bool, optional): If True, stores the source document</span>
 <span class="sd">        and links it to nodes in the graph using the MENTIONS relationship.</span>
-<span class="sd">        This is useful for tracing back the origin of data. Defaults to False.</span>
+<span class="sd">        This is useful for tracing back the origin of data. Merges source</span>
+<span class="sd">        documents based on the `id` property from the source document metadata</span>
+<span class="sd">        if available; otherwise it calculates the MD5 hash of `page_content`</span>
+<span class="sd">        for merging process. Defaults to False.</span>
 <span class="sd">        - baseEntityLabel (bool, optional): If True, each newly created node</span>
 <span class="sd">        gets a secondary __Entity__ label, which is indexed and improves import</span>
 <span class="sd">        speed and performance. Defaults to False.</span>
@@ -547,6 +551,11 @@
         <span class="n">node_import_query</span> <span class="o">=</span> <span class="n">_get_node_import_query</span><span class="p">(</span><span class="n">baseEntityLabel</span><span class="p">,</span> <span class="n">include_source</span><span class="p">)</span>
         <span class="n">rel_import_query</span> <span class="o">=</span> <span class="n">_get_rel_import_query</span><span class="p">(</span><span class="n">baseEntityLabel</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">document</span> <span class="ow">in</span> <span class="n">graph_documents</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">document</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">):</span>
+                <span class="n">document</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">md5</span><span class="p">(</span>
+                    <span class="n">document</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">page_content</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+                <span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+
             <span class="c1"># Import nodes</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
                 <span class="n">node_import_query</span><span class="p">,</span>
@@ -578,7 +587,7 @@
     <div class="container">
       <footer class="sk-content-footer">
             &copy; 2023, LangChain, Inc..
-          Last updated on Mar 09, 2024.
+          Last updated on Mar 10, 2024.
       </footer>
     </div>
   </div>
